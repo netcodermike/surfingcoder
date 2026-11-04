@@ -19,7 +19,7 @@ See [the publishing guide](docs/publishing.md) for GitHub access, GitHub Pages, 
 
 ## Featured Articles
 
-### Six Men, Seven Women: How Dropped Scores Reshape the 2026 Pipeline Title Race
+### How Dropped Scores Reshape the Race for the World Title
 
 A deep dive into the WSL's best-nine scoring system, the weighted Pipeline finale, and why the published standings may not tell the whole story.
 
