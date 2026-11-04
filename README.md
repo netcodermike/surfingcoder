@@ -4,6 +4,19 @@ Projects, analysis, and ideas worth exploring.
 
 SurfingCoder is a place for data-driven analysis, software projects, AI experimentation, surfing, and whatever else captures my curiosity.
 
+## Editing and publishing
+
+This is a plain static HTML site. No framework or build installation is required.
+
+```powershell
+python scripts/check_site.py
+python -m http.server 8000 --bind 127.0.0.1
+```
+
+Preview at `http://127.0.0.1:8000`. Before publishing, run `python scripts/check_site.py --strict`.
+
+See [the publishing guide](docs/publishing.md) for GitHub access, GitHub Pages, and custom-domain setup. Current article content remains a draft.
+
 ## Featured Articles
 
 ### The WSL Rankings Are Misleading: What the 2026 World Title Race Really Looks Like Before Pipeline
