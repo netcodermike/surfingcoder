@@ -1,0 +1,6166 @@
+{
+  "as_of": "2026-11-03 after Philippines Pro",
+  "rules": "Best 9 of 12; normal competitive participation; no final named draw assumed",
+  "points": {
+    "men": {
+      "1": 15000,
+      "2": 11700,
+      "3": 9125,
+      "5": 7115,
+      "9": 4980,
+      "17": 3240,
+      "25": 1500,
+      "33": 750
+    },
+    "women": {
+      "1": 15000,
+      "2": 11700,
+      "3": 9125,
+      "5": 7115,
+      "9": 3000,
+      "17": 1500
+    }
+  },
+  "capacities": {
+    "men": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "5": 4,
+      "9": 8,
+      "17": 8,
+      "25": 8,
+      "33": 4
+    },
+    "women": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "5": 4,
+      "9": 8,
+      "17": 8
+    }
+  },
+  "data": {
+    "men": [
+      {
+        "rank": 1,
+        "name": "Yago Dora",
+        "total": 54950,
+        "scores": [
+          7800,
+          4745,
+          1000,
+          6085,
+          3320,
+          10000,
+          1000,
+          4745,
+          6085,
+          6085,
+          6085
+        ],
+        "places": [
+          2,
+          5,
+          17,
+          3,
+          9,
+          1,
+          17,
+          5,
+          3,
+          3,
+          3
+        ],
+        "dropped": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 3320,
+        "finals": {
+          "1": 66630,
+          "2": 63330,
+          "3": 60755,
+          "5": 58745,
+          "9": 56610,
+          "17": 54950,
+          "25": 54950,
+          "33": 54950
+        },
+        "minplace": 9,
+        "floor": 56610,
+        "qualification": {
+          "1": {
+            "total": 66630,
+            "best": 1,
+            "worst": 1,
+            "best_pessimistic": 1,
+            "worst_optimistic": 1
+          },
+          "2": {
+            "total": 63330,
+            "best": 1,
+            "worst": 2,
+            "best_pessimistic": 1,
+            "worst_optimistic": 2
+          },
+          "3": {
+            "total": 60755,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "5": {
+            "total": 58745,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "9": {
+            "total": 56610,
+            "best": 2,
+            "worst": 4,
+            "best_pessimistic": 2,
+            "worst_optimistic": 4
+          }
+        }
+      },
+      {
+        "rank": 2,
+        "name": "Gabriel Medina",
+        "total": 53210,
+        "scores": [
+          6085,
+          7800,
+          3320,
+          3320,
+          6085,
+          1000,
+          1000,
+          7800,
+          1000,
+          7800,
+          10000
+        ],
+        "places": [
+          3,
+          2,
+          9,
+          9,
+          3,
+          17,
+          17,
+          2,
+          17,
+          2,
+          1
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 67210,
+          "2": 63910,
+          "3": 61335,
+          "5": 59325,
+          "9": 57190,
+          "17": 55450,
+          "25": 53710,
+          "33": 53210
+        },
+        "minplace": 9,
+        "floor": 57190,
+        "qualification": {
+          "1": {
+            "total": 67210,
+            "best": 1,
+            "worst": 1,
+            "best_pessimistic": 1,
+            "worst_optimistic": 1
+          },
+          "2": {
+            "total": 63910,
+            "best": 1,
+            "worst": 2,
+            "best_pessimistic": 1,
+            "worst_optimistic": 2
+          },
+          "3": {
+            "total": 61335,
+            "best": 1,
+            "worst": 2,
+            "best_pessimistic": 1,
+            "worst_optimistic": 2
+          },
+          "5": {
+            "total": 59325,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "9": {
+            "total": 57190,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          }
+        }
+      },
+      {
+        "rank": 3,
+        "name": "Italo Ferreira",
+        "total": 49335,
+        "scores": [
+          3320,
+          6085,
+          3320,
+          10000,
+          7800,
+          3320,
+          6085,
+          3320,
+          3320,
+          6085,
+          2500
+        ],
+        "places": [
+          9,
+          3,
+          9,
+          1,
+          2,
+          9,
+          3,
+          9,
+          9,
+          3,
+          9
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 3320,
+        "finals": {
+          "1": 61015,
+          "2": 57715,
+          "3": 55140,
+          "5": 53130,
+          "9": 50995,
+          "17": 49335,
+          "25": 49335,
+          "33": 49335
+        },
+        "minplace": 9,
+        "floor": 50995,
+        "qualification": {
+          "1": {
+            "total": 61015,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "2": {
+            "total": 57715,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          },
+          "3": {
+            "total": 55140,
+            "best": 3,
+            "worst": 5,
+            "best_pessimistic": 3,
+            "worst_optimistic": 5
+          },
+          "5": {
+            "total": 53130,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "9": {
+            "total": 50995,
+            "best": 3,
+            "worst": 8,
+            "best_pessimistic": 3,
+            "worst_optimistic": 8
+          }
+        }
+      },
+      {
+        "rank": 4,
+        "name": "Griffin Colapinto",
+        "total": 46195,
+        "scores": [
+          6085,
+          3320,
+          1000,
+          6085,
+          1000,
+          1000,
+          7800,
+          6085,
+          3320,
+          10000,
+          2500
+        ],
+        "places": [
+          3,
+          9,
+          17,
+          3,
+          17,
+          17,
+          2,
+          3,
+          9,
+          1,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 60195,
+          "2": 56895,
+          "3": 54320,
+          "5": 52310,
+          "9": 50175,
+          "17": 48435,
+          "25": 46695,
+          "33": 46195
+        },
+        "minplace": 9,
+        "floor": 50175,
+        "qualification": {
+          "1": {
+            "total": 60195,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "2": {
+            "total": 56895,
+            "best": 2,
+            "worst": 4,
+            "best_pessimistic": 2,
+            "worst_optimistic": 4
+          },
+          "3": {
+            "total": 54320,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "5": {
+            "total": 52310,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "9": {
+            "total": 50175,
+            "best": 4,
+            "worst": 8,
+            "best_pessimistic": 4,
+            "worst_optimistic": 8
+          }
+        }
+      },
+      {
+        "rank": 5,
+        "name": "Miguel Pupo",
+        "total": 45270,
+        "scores": [
+          10000,
+          3320,
+          3320,
+          4745,
+          1000,
+          4745,
+          3320,
+          3320,
+          10000,
+          2500,
+          2500
+        ],
+        "places": [
+          1,
+          9,
+          9,
+          5,
+          17,
+          5,
+          9,
+          9,
+          1,
+          9,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 2500,
+        "finals": {
+          "1": 57770,
+          "2": 54470,
+          "3": 51895,
+          "5": 49885,
+          "9": 47750,
+          "17": 46010,
+          "25": 45270,
+          "33": 45270
+        },
+        "minplace": 9,
+        "floor": 47750,
+        "qualification": {
+          "1": {
+            "total": 57770,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "2": {
+            "total": 54470,
+            "best": 3,
+            "worst": 5,
+            "best_pessimistic": 3,
+            "worst_optimistic": 5
+          },
+          "3": {
+            "total": 51895,
+            "best": 3,
+            "worst": 7,
+            "best_pessimistic": 3,
+            "worst_optimistic": 7
+          },
+          "5": {
+            "total": 49885,
+            "best": 5,
+            "worst": 8,
+            "best_pessimistic": 5,
+            "worst_optimistic": 8
+          },
+          "9": {
+            "total": 47750,
+            "best": 5,
+            "worst": 8,
+            "best_pessimistic": 5,
+            "worst_optimistic": 8
+          }
+        }
+      },
+      {
+        "rank": 6,
+        "name": "Leonardo Fioravanti",
+        "total": 45015,
+        "scores": [
+          4745,
+          3320,
+          4745,
+          3320,
+          10000,
+          7800,
+          1000,
+          6085,
+          1000,
+          2500,
+          2500
+        ],
+        "places": [
+          5,
+          9,
+          5,
+          9,
+          1,
+          2,
+          17,
+          3,
+          17,
+          9,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "replace": 2500,
+        "finals": {
+          "1": 57515,
+          "2": 54215,
+          "3": 51640,
+          "5": 49630,
+          "9": 47495,
+          "17": 45755,
+          "25": 45015,
+          "33": 45015
+        },
+        "minplace": 9,
+        "floor": 47495,
+        "qualification": {
+          "1": {
+            "total": 57515,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          },
+          "2": {
+            "total": 54215,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "3": {
+            "total": 51640,
+            "best": 3,
+            "worst": 8,
+            "best_pessimistic": 3,
+            "worst_optimistic": 8
+          },
+          "5": {
+            "total": 49630,
+            "best": 5,
+            "worst": 8,
+            "best_pessimistic": 5,
+            "worst_optimistic": 8
+          },
+          "9": {
+            "total": 47495,
+            "best": 6,
+            "worst": 8,
+            "best_pessimistic": 6,
+            "worst_optimistic": 8
+          }
+        }
+      },
+      {
+        "rank": 7,
+        "name": "Ethan Ewing",
+        "total": 41725,
+        "scores": [
+          1000,
+          4745,
+          10000,
+          1000,
+          1000,
+          6085,
+          4745,
+          1000,
+          3320,
+          4745,
+          6085
+        ],
+        "places": [
+          17,
+          5,
+          1,
+          17,
+          17,
+          3,
+          5,
+          17,
+          9,
+          5,
+          3
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 55725,
+          "2": 52425,
+          "3": 49850,
+          "5": 47840,
+          "9": 45705,
+          "17": 43965,
+          "25": 42225,
+          "33": 41725
+        },
+        "minplace": 9,
+        "floor": 45705,
+        "qualification": {
+          "1": {
+            "total": 55725,
+            "best": 3,
+            "worst": 4,
+            "best_pessimistic": 3,
+            "worst_optimistic": 4
+          },
+          "2": {
+            "total": 52425,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "3": {
+            "total": 49850,
+            "best": 5,
+            "worst": 8,
+            "best_pessimistic": 5,
+            "worst_optimistic": 8
+          },
+          "5": {
+            "total": 47840,
+            "best": 5,
+            "worst": 8,
+            "best_pessimistic": 5,
+            "worst_optimistic": 8
+          },
+          "9": {
+            "total": 45705,
+            "best": 7,
+            "worst": 9,
+            "best_pessimistic": 7,
+            "worst_optimistic": 9
+          }
+        }
+      },
+      {
+        "rank": 8,
+        "name": "Kanoa Igarashi",
+        "total": 39155,
+        "scores": [
+          4745,
+          3320,
+          1000,
+          3320,
+          6085,
+          3320,
+          1000,
+          3320,
+          7800,
+          2500,
+          4745
+        ],
+        "places": [
+          5,
+          9,
+          17,
+          9,
+          3,
+          9,
+          17,
+          9,
+          2,
+          9,
+          5
+        ],
+        "dropped": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 2500,
+        "finals": {
+          "1": 51655,
+          "2": 48355,
+          "3": 45780,
+          "5": 43770,
+          "9": 41635,
+          "17": 39895,
+          "25": 39155,
+          "33": 39155
+        },
+        "minplace": 9,
+        "floor": 41635,
+        "qualification": {
+          "1": {
+            "total": 51655,
+            "best": 3,
+            "worst": 7,
+            "best_pessimistic": 3,
+            "worst_optimistic": 7
+          },
+          "2": {
+            "total": 48355,
+            "best": 5,
+            "worst": 8,
+            "best_pessimistic": 5,
+            "worst_optimistic": 8
+          },
+          "3": {
+            "total": 45780,
+            "best": 7,
+            "worst": 9,
+            "best_pessimistic": 7,
+            "worst_optimistic": 9
+          },
+          "5": {
+            "total": 43770,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "9": {
+            "total": 41635,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          }
+        }
+      },
+      {
+        "rank": 9,
+        "name": "Jack Robinson",
+        "total": 34965,
+        "scores": [
+          1000,
+          3320,
+          3320,
+          3320,
+          3320,
+          3320,
+          4745,
+          1000,
+          3320,
+          2500,
+          7800
+        ],
+        "places": [
+          17,
+          9,
+          9,
+          9,
+          9,
+          9,
+          5,
+          17,
+          9,
+          9,
+          2
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "replace": 2500,
+        "finals": {
+          "1": 47465,
+          "2": 44165,
+          "3": 41590,
+          "5": 39580,
+          "9": 37445,
+          "17": 35705,
+          "25": 34965,
+          "33": 34965
+        },
+        "minplace": 17,
+        "floor": 35705,
+        "qualification": {
+          "1": {
+            "total": 47465,
+            "best": 7,
+            "worst": 9,
+            "best_pessimistic": 7,
+            "worst_optimistic": 9
+          },
+          "2": {
+            "total": 44165,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "3": {
+            "total": 41590,
+            "best": 9,
+            "worst": 11,
+            "best_pessimistic": 9,
+            "worst_optimistic": 11
+          },
+          "5": {
+            "total": 39580,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "9": {
+            "total": 37445,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "17": {
+            "total": 35705,
+            "best": 9,
+            "worst": 16,
+            "best_pessimistic": 9,
+            "worst_optimistic": 16
+          }
+        }
+      },
+      {
+        "rank": 10,
+        "name": "George Pittar",
+        "total": 32450,
+        "scores": [
+          3320,
+          10000,
+          3320,
+          1000,
+          1000,
+          3320,
+          4745,
+          1000,
+          1000,
+          1000,
+          4745
+        ],
+        "places": [
+          9,
+          1,
+          9,
+          17,
+          17,
+          9,
+          5,
+          17,
+          17,
+          17,
+          5
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 46450,
+          "2": 43150,
+          "3": 40575,
+          "5": 38565,
+          "9": 36430,
+          "17": 34690,
+          "25": 32950,
+          "33": 32450
+        },
+        "minplace": 17,
+        "floor": 34690,
+        "qualification": {
+          "1": {
+            "total": 46450,
+            "best": 7,
+            "worst": 9,
+            "best_pessimistic": 7,
+            "worst_optimistic": 9
+          },
+          "2": {
+            "total": 43150,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "3": {
+            "total": 40575,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "5": {
+            "total": 38565,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "9": {
+            "total": 36430,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "17": {
+            "total": 34690,
+            "best": 10,
+            "worst": 17,
+            "best_pessimistic": 10,
+            "worst_optimistic": 17
+          }
+        }
+      },
+      {
+        "rank": 11,
+        "name": "Kauli Vaast",
+        "total": 30120,
+        "scores": [
+          1000,
+          1000,
+          4745,
+          1000,
+          4745,
+          4745,
+          3320,
+          4745,
+          3320,
+          2500,
+          1000
+        ],
+        "places": [
+          17,
+          17,
+          5,
+          17,
+          5,
+          5,
+          9,
+          5,
+          9,
+          9,
+          17
+        ],
+        "dropped": [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 44120,
+          "2": 40820,
+          "3": 38245,
+          "5": 36235,
+          "9": 34100,
+          "17": 32360,
+          "25": 30620,
+          "33": 30120
+        },
+        "minplace": 17,
+        "floor": 32360,
+        "qualification": {
+          "1": {
+            "total": 44120,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 40820,
+            "best": 9,
+            "worst": 11,
+            "best_pessimistic": 9,
+            "worst_optimistic": 11
+          },
+          "3": {
+            "total": 38245,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 13
+          },
+          "5": {
+            "total": 36235,
+            "best": 9,
+            "worst": 15,
+            "best_pessimistic": 9,
+            "worst_optimistic": 15
+          },
+          "9": {
+            "total": 34100,
+            "best": 11,
+            "worst": 17,
+            "best_pessimistic": 11,
+            "worst_optimistic": 17
+          },
+          "17": {
+            "total": 32360,
+            "best": 11,
+            "worst": 19,
+            "best_pessimistic": 11,
+            "worst_optimistic": 19
+          }
+        }
+      },
+      {
+        "rank": 12,
+        "name": "Samuel Pupo",
+        "total": 29960,
+        "scores": [
+          4745,
+          6085,
+          4745,
+          1000,
+          3320,
+          4745,
+          1000,
+          3320,
+          1000,
+          1000,
+          1000
+        ],
+        "places": [
+          5,
+          3,
+          5,
+          17,
+          9,
+          5,
+          17,
+          9,
+          17,
+          17,
+          17
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 43960,
+          "2": 40660,
+          "3": 38085,
+          "5": 36075,
+          "9": 33940,
+          "17": 32200,
+          "25": 30460,
+          "33": 29960
+        },
+        "minplace": 17,
+        "floor": 32200,
+        "qualification": {
+          "1": {
+            "total": 43960,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 40660,
+            "best": 9,
+            "worst": 11,
+            "best_pessimistic": 9,
+            "worst_optimistic": 11
+          },
+          "3": {
+            "total": 38085,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "5": {
+            "total": 36075,
+            "best": 9,
+            "worst": 15,
+            "best_pessimistic": 9,
+            "worst_optimistic": 15
+          },
+          "9": {
+            "total": 33940,
+            "best": 11,
+            "worst": 17,
+            "best_pessimistic": 11,
+            "worst_optimistic": 17
+          },
+          "17": {
+            "total": 32200,
+            "best": 12,
+            "worst": 20,
+            "best_pessimistic": 12,
+            "worst_optimistic": 20
+          }
+        }
+      },
+      {
+        "rank": 13,
+        "name": "Liam O'Brien",
+        "total": 29505,
+        "scores": [
+          500,
+          3320,
+          6085,
+          3320,
+          3320,
+          3320,
+          3320,
+          1000,
+          3320,
+          1000,
+          2500
+        ],
+        "places": [
+          33,
+          9,
+          3,
+          9,
+          9,
+          9,
+          9,
+          17,
+          9,
+          17,
+          9
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 43505,
+          "2": 40205,
+          "3": 37630,
+          "5": 35620,
+          "9": 33485,
+          "17": 31745,
+          "25": 30005,
+          "33": 29505
+        },
+        "minplace": 17,
+        "floor": 31745,
+        "qualification": {
+          "1": {
+            "total": 43505,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 40205,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "3": {
+            "total": 37630,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "5": {
+            "total": 35620,
+            "best": 10,
+            "worst": 16,
+            "best_pessimistic": 10,
+            "worst_optimistic": 16
+          },
+          "9": {
+            "total": 33485,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "17": {
+            "total": 31745,
+            "best": 13,
+            "worst": 21,
+            "best_pessimistic": 13,
+            "worst_optimistic": 21
+          }
+        }
+      },
+      {
+        "rank": 14,
+        "name": "Seth Moniz",
+        "total": 27810,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          500,
+          10000,
+          3320,
+          1000,
+          4745,
+          4745
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          17,
+          17,
+          33,
+          1,
+          9,
+          17,
+          5,
+          5
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 41810,
+          "2": 38510,
+          "3": 35935,
+          "5": 33925,
+          "9": 31790,
+          "17": 30050,
+          "25": 28310,
+          "33": 27810
+        },
+        "minplace": 17,
+        "floor": 30050,
+        "qualification": {
+          "1": {
+            "total": 41810,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 38510,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "3": {
+            "total": 35935,
+            "best": 9,
+            "worst": 16,
+            "best_pessimistic": 9,
+            "worst_optimistic": 16
+          },
+          "5": {
+            "total": 33925,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "9": {
+            "total": 31790,
+            "best": 13,
+            "worst": 20,
+            "best_pessimistic": 13,
+            "worst_optimistic": 20
+          },
+          "17": {
+            "total": 30050,
+            "best": 14,
+            "worst": 22,
+            "best_pessimistic": 14,
+            "worst_optimistic": 22
+          }
+        }
+      },
+      {
+        "rank": 15,
+        "name": "Connor O'Leary",
+        "total": 27185,
+        "scores": [
+          1000,
+          3320,
+          7800,
+          1000,
+          1000,
+          1000,
+          3320,
+          4745,
+          1000,
+          2500,
+          2500
+        ],
+        "places": [
+          17,
+          9,
+          2,
+          17,
+          17,
+          17,
+          9,
+          5,
+          17,
+          9,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 41185,
+          "2": 37885,
+          "3": 35310,
+          "5": 33300,
+          "9": 31165,
+          "17": 29425,
+          "25": 27685,
+          "33": 27185
+        },
+        "minplace": 17,
+        "floor": 29425,
+        "qualification": {
+          "1": {
+            "total": 41185,
+            "best": 9,
+            "worst": 11,
+            "best_pessimistic": 9,
+            "worst_optimistic": 11
+          },
+          "2": {
+            "total": 37885,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "3": {
+            "total": 35310,
+            "best": 10,
+            "worst": 17,
+            "best_pessimistic": 10,
+            "worst_optimistic": 17
+          },
+          "5": {
+            "total": 33300,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "9": {
+            "total": 31165,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "17": {
+            "total": 29425,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          }
+        }
+      },
+      {
+        "rank": 16,
+        "name": "Cole Houshmand",
+        "total": 26830,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          4745,
+          1000,
+          1000,
+          1000,
+          10000,
+          6085,
+          1000,
+          1000
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          5,
+          17,
+          17,
+          17,
+          1,
+          3,
+          17,
+          17
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 40830,
+          "2": 37530,
+          "3": 34955,
+          "5": 32945,
+          "9": 30810,
+          "17": 29070,
+          "25": 27330,
+          "33": 26830
+        },
+        "minplace": 17,
+        "floor": 29070,
+        "qualification": {
+          "1": {
+            "total": 40830,
+            "best": 9,
+            "worst": 11,
+            "best_pessimistic": 9,
+            "worst_optimistic": 11
+          },
+          "2": {
+            "total": 37530,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "3": {
+            "total": 34955,
+            "best": 10,
+            "worst": 17,
+            "best_pessimistic": 10,
+            "worst_optimistic": 17
+          },
+          "5": {
+            "total": 32945,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "9": {
+            "total": 30810,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "17": {
+            "total": 29070,
+            "best": 16,
+            "worst": 23,
+            "best_pessimistic": 16,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 17,
+        "name": "Marco Mignot",
+        "total": 25770,
+        "scores": [
+          3320,
+          1000,
+          3320,
+          3320,
+          4745,
+          3320,
+          1000,
+          1000,
+          4745,
+          1000,
+          1000
+        ],
+        "places": [
+          9,
+          17,
+          9,
+          9,
+          5,
+          9,
+          17,
+          17,
+          5,
+          17,
+          17
+        ],
+        "dropped": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 39770,
+          "2": 36470,
+          "3": 33895,
+          "5": 31885,
+          "9": 29750,
+          "17": 28010,
+          "25": 26270,
+          "33": 25770
+        },
+        "minplace": 25,
+        "floor": 26270,
+        "qualification": {
+          "1": {
+            "total": 39770,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "2": {
+            "total": 36470,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "3": {
+            "total": 33895,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "5": {
+            "total": 31885,
+            "best": 13,
+            "worst": 20,
+            "best_pessimistic": 13,
+            "worst_optimistic": 20
+          },
+          "9": {
+            "total": 29750,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "17": {
+            "total": 28010,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "25": {
+            "total": 26270,
+            "best": 17,
+            "worst": 25,
+            "best_pessimistic": 17,
+            "worst_optimistic": 25
+          }
+        }
+      },
+      {
+        "rank": 18,
+        "name": "Morgan Cibilic",
+        "total": 25610,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          7800,
+          1000,
+          4745,
+          1000,
+          3320,
+          1000,
+          4745,
+          500
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          2,
+          17,
+          5,
+          17,
+          9,
+          17,
+          5,
+          33
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 39610,
+          "2": 36310,
+          "3": 33735,
+          "5": 31725,
+          "9": 29590,
+          "17": 27850,
+          "25": 26110,
+          "33": 25610
+        },
+        "minplace": 25,
+        "floor": 26110,
+        "qualification": {
+          "1": {
+            "total": 39610,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "2": {
+            "total": 36310,
+            "best": 9,
+            "worst": 14,
+            "best_pessimistic": 9,
+            "worst_optimistic": 14
+          },
+          "3": {
+            "total": 33735,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "5": {
+            "total": 31725,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "9": {
+            "total": 29590,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "17": {
+            "total": 27850,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "25": {
+            "total": 26110,
+            "best": 18,
+            "worst": 25,
+            "best_pessimistic": 18,
+            "worst_optimistic": 25
+          }
+        }
+      },
+      {
+        "rank": 19,
+        "name": "Filipe Toledo",
+        "total": 25395,
+        "scores": [
+          3320,
+          1000,
+          6085,
+          4745,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          2500,
+          4745
+        ],
+        "places": [
+          9,
+          17,
+          3,
+          5,
+          17,
+          17,
+          17,
+          17,
+          17,
+          9,
+          5
+        ],
+        "dropped": [
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 39395,
+          "2": 36095,
+          "3": 33520,
+          "5": 31510,
+          "9": 29375,
+          "17": 27635,
+          "25": 25895,
+          "33": 25395
+        },
+        "minplace": 25,
+        "floor": 25895,
+        "qualification": {
+          "1": {
+            "total": 39395,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "2": {
+            "total": 36095,
+            "best": 9,
+            "worst": 15,
+            "best_pessimistic": 9,
+            "worst_optimistic": 15
+          },
+          "3": {
+            "total": 33520,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "5": {
+            "total": 31510,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "9": {
+            "total": 29375,
+            "best": 16,
+            "worst": 22,
+            "best_pessimistic": 16,
+            "worst_optimistic": 22
+          },
+          "17": {
+            "total": 27635,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "25": {
+            "total": 25895,
+            "best": 19,
+            "worst": 25,
+            "best_pessimistic": 19,
+            "worst_optimistic": 25
+          }
+        }
+      },
+      {
+        "rank": 20,
+        "name": "Callum Robson",
+        "total": 24875,
+        "scores": [
+          500,
+          500,
+          3320,
+          1000,
+          4745,
+          3320,
+          1000,
+          4745,
+          4745,
+          1000,
+          1000
+        ],
+        "places": [
+          33,
+          33,
+          9,
+          17,
+          5,
+          9,
+          17,
+          5,
+          5,
+          17,
+          17
+        ],
+        "dropped": [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 38875,
+          "2": 35575,
+          "3": 33000,
+          "5": 30990,
+          "9": 28855,
+          "17": 27115,
+          "25": 25375,
+          "33": 24875
+        },
+        "minplace": 25,
+        "floor": 25375,
+        "qualification": {
+          "1": {
+            "total": 38875,
+            "best": 9,
+            "worst": 12,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "2": {
+            "total": 35575,
+            "best": 10,
+            "worst": 16,
+            "best_pessimistic": 10,
+            "worst_optimistic": 16
+          },
+          "3": {
+            "total": 33000,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "5": {
+            "total": 30990,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "9": {
+            "total": 28855,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 27115,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "25": {
+            "total": 25375,
+            "best": 20,
+            "worst": 27,
+            "best_pessimistic": 20,
+            "worst_optimistic": 27
+          }
+        }
+      },
+      {
+        "rank": 21,
+        "name": "Joao Chianca",
+        "total": 21045,
+        "scores": [
+          1000,
+          3320,
+          1000,
+          1000,
+          3320,
+          6085,
+          3320,
+          1000,
+          1000,
+          1000,
+          1000
+        ],
+        "places": [
+          17,
+          9,
+          17,
+          17,
+          9,
+          3,
+          9,
+          17,
+          17,
+          17,
+          17
+        ],
+        "dropped": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 35045,
+          "2": 31745,
+          "3": 29170,
+          "5": 27160,
+          "9": 25025,
+          "17": 23285,
+          "25": 21545,
+          "33": 21045
+        },
+        "minplace": 25,
+        "floor": 21545,
+        "qualification": {
+          "1": {
+            "total": 35045,
+            "best": 10,
+            "worst": 17,
+            "best_pessimistic": 10,
+            "worst_optimistic": 17
+          },
+          "2": {
+            "total": 31745,
+            "best": 13,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 20
+          },
+          "3": {
+            "total": 29170,
+            "best": 16,
+            "worst": 23,
+            "best_pessimistic": 16,
+            "worst_optimistic": 23
+          },
+          "5": {
+            "total": 27160,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "9": {
+            "total": 25025,
+            "best": 21,
+            "worst": 27,
+            "best_pessimistic": 21,
+            "worst_optimistic": 27
+          },
+          "17": {
+            "total": 23285,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "25": {
+            "total": 21545,
+            "best": 21,
+            "worst": 29,
+            "best_pessimistic": 21,
+            "worst_optimistic": 29
+          }
+        }
+      },
+      {
+        "rank": 22,
+        "name": "Jake Marshall",
+        "total": 19705,
+        "scores": [
+          3320,
+          1000,
+          3320,
+          1000,
+          1000,
+          1000,
+          1000,
+          3320,
+          4745,
+          1000,
+          500
+        ],
+        "places": [
+          9,
+          17,
+          9,
+          17,
+          17,
+          17,
+          17,
+          9,
+          5,
+          17,
+          33
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 33705,
+          "2": 30405,
+          "3": 27830,
+          "5": 25820,
+          "9": 23685,
+          "17": 21945,
+          "25": 20205,
+          "33": 19705
+        },
+        "minplace": 25,
+        "floor": 20205,
+        "qualification": {
+          "1": {
+            "total": 33705,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "2": {
+            "total": 30405,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "3": {
+            "total": 27830,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "5": {
+            "total": 25820,
+            "best": 20,
+            "worst": 26,
+            "best_pessimistic": 20,
+            "worst_optimistic": 26
+          },
+          "9": {
+            "total": 23685,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "17": {
+            "total": 21945,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "25": {
+            "total": 20205,
+            "best": 22,
+            "worst": 31,
+            "best_pessimistic": 23,
+            "worst_optimistic": 30
+          }
+        }
+      },
+      {
+        "rank": 23,
+        "name": "Barron Mamiya",
+        "total": 19705,
+        "scores": [
+          4745,
+          1000,
+          1000,
+          1000,
+          3320,
+          1000,
+          3320,
+          3320,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          5,
+          17,
+          17,
+          17,
+          9,
+          17,
+          9,
+          9,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 33705,
+          "2": 30405,
+          "3": 27830,
+          "5": 25820,
+          "9": 23685,
+          "17": 21945,
+          "25": 20205,
+          "33": 19705
+        },
+        "minplace": 25,
+        "floor": 20205,
+        "qualification": {
+          "1": {
+            "total": 33705,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "2": {
+            "total": 30405,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "3": {
+            "total": 27830,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "5": {
+            "total": 25820,
+            "best": 20,
+            "worst": 26,
+            "best_pessimistic": 20,
+            "worst_optimistic": 26
+          },
+          "9": {
+            "total": 23685,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "17": {
+            "total": 21945,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "25": {
+            "total": 20205,
+            "best": 22,
+            "worst": 31,
+            "best_pessimistic": 23,
+            "worst_optimistic": 30
+          }
+        }
+      },
+      {
+        "rank": 24,
+        "name": "Alan Cleland",
+        "total": 18810,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          1000,
+          4745,
+          1000,
+          4745,
+          1000,
+          3320,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          17,
+          5,
+          17,
+          5,
+          17,
+          9,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 32810,
+          "2": 29510,
+          "3": 26935,
+          "5": 24925,
+          "9": 22790,
+          "17": 21050,
+          "25": 19310,
+          "33": 18810
+        },
+        "minplace": 25,
+        "floor": 19310,
+        "qualification": {
+          "1": {
+            "total": 32810,
+            "best": 11,
+            "worst": 18,
+            "best_pessimistic": 11,
+            "worst_optimistic": 18
+          },
+          "2": {
+            "total": 29510,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "3": {
+            "total": 26935,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "5": {
+            "total": 24925,
+            "best": 21,
+            "worst": 27,
+            "best_pessimistic": 21,
+            "worst_optimistic": 27
+          },
+          "9": {
+            "total": 22790,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "17": {
+            "total": 21050,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "25": {
+            "total": 19310,
+            "best": 24,
+            "worst": 32,
+            "best_pessimistic": 24,
+            "worst_optimistic": 32
+          }
+        }
+      },
+      {
+        "rank": 25,
+        "name": "Crosby Colapinto",
+        "total": 17385,
+        "scores": [
+          1000,
+          4745,
+          1000,
+          3320,
+          3320,
+          1000,
+          1000,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          5,
+          17,
+          9,
+          9,
+          17,
+          17,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 31385,
+          "2": 28085,
+          "3": 25510,
+          "5": 23500,
+          "9": 21365,
+          "17": 19625,
+          "25": 17885,
+          "33": 17385
+        },
+        "minplace": 25,
+        "floor": 17885,
+        "qualification": {
+          "1": {
+            "total": 31385,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "2": {
+            "total": 28085,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "3": {
+            "total": 25510,
+            "best": 20,
+            "worst": 27,
+            "best_pessimistic": 20,
+            "worst_optimistic": 27
+          },
+          "5": {
+            "total": 23500,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "9": {
+            "total": 21365,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "17": {
+            "total": 19625,
+            "best": 24,
+            "worst": 31,
+            "best_pessimistic": 24,
+            "worst_optimistic": 31
+          },
+          "25": {
+            "total": 17885,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          }
+        }
+      },
+      {
+        "rank": 26,
+        "name": "Mateus Herdy",
+        "total": 15990,
+        "scores": [
+          1000,
+          500,
+          4745,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          4745,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          33,
+          5,
+          17,
+          17,
+          17,
+          17,
+          17,
+          5,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 30490,
+          "2": 27190,
+          "3": 24615,
+          "5": 22605,
+          "9": 20470,
+          "17": 18730,
+          "25": 16990,
+          "33": 16240
+        },
+        "minplace": 25,
+        "floor": 16990,
+        "qualification": {
+          "1": {
+            "total": 30490,
+            "best": 14,
+            "worst": 21,
+            "best_pessimistic": 14,
+            "worst_optimistic": 21
+          },
+          "2": {
+            "total": 27190,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "3": {
+            "total": 24615,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "5": {
+            "total": 22605,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "9": {
+            "total": 20470,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "17": {
+            "total": 18730,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          },
+          "25": {
+            "total": 16990,
+            "best": 26,
+            "worst": 32,
+            "best_pessimistic": 26,
+            "worst_optimistic": 32
+          }
+        }
+      },
+      {
+        "rank": 27,
+        "name": "Alejo Muniz",
+        "total": 15960,
+        "scores": [
+          3320,
+          1000,
+          1000,
+          3320,
+          1000,
+          1000,
+          3320,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          9,
+          17,
+          17,
+          9,
+          17,
+          17,
+          9,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 29960,
+          "2": 26660,
+          "3": 24085,
+          "5": 22075,
+          "9": 19940,
+          "17": 18200,
+          "25": 16460,
+          "33": 15960
+        },
+        "minplace": 25,
+        "floor": 16460,
+        "qualification": {
+          "1": {
+            "total": 29960,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "2": {
+            "total": 26660,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "3": {
+            "total": 24085,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "5": {
+            "total": 22075,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "9": {
+            "total": 19940,
+            "best": 24,
+            "worst": 31,
+            "best_pessimistic": 24,
+            "worst_optimistic": 31
+          },
+          "17": {
+            "total": 18200,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          },
+          "25": {
+            "total": 16460,
+            "best": 27,
+            "worst": 32,
+            "best_pessimistic": 27,
+            "worst_optimistic": 32
+          }
+        }
+      },
+      {
+        "rank": 28,
+        "name": "Rio Waida",
+        "total": 15065,
+        "scores": [
+          3320,
+          1000,
+          1000,
+          4745,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          9,
+          17,
+          17,
+          5,
+          17,
+          17,
+          17,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 29065,
+          "2": 25765,
+          "3": 23190,
+          "5": 21180,
+          "9": 19045,
+          "17": 17305,
+          "25": 15565,
+          "33": 15065
+        },
+        "minplace": 25,
+        "floor": 15565,
+        "qualification": {
+          "1": {
+            "total": 29065,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "2": {
+            "total": 25765,
+            "best": 20,
+            "worst": 26,
+            "best_pessimistic": 20,
+            "worst_optimistic": 26
+          },
+          "3": {
+            "total": 23190,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "5": {
+            "total": 21180,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "9": {
+            "total": 19045,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          },
+          "17": {
+            "total": 17305,
+            "best": 26,
+            "worst": 32,
+            "best_pessimistic": 26,
+            "worst_optimistic": 32
+          },
+          "25": {
+            "total": 15565,
+            "best": 28,
+            "worst": 32,
+            "best_pessimistic": 28,
+            "worst_optimistic": 32
+          }
+        }
+      },
+      {
+        "rank": 29,
+        "name": "Ramzi Boukhiam",
+        "total": 12585,
+        "scores": [
+          500,
+          1000,
+          500,
+          500,
+          1000,
+          1000,
+          6085,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          33,
+          17,
+          33,
+          33,
+          17,
+          17,
+          3,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 27085,
+          "2": 23785,
+          "3": 21210,
+          "5": 19200,
+          "9": 17065,
+          "17": 15325,
+          "25": 13585,
+          "33": 12835
+        },
+        "minplace": 33,
+        "floor": 12835,
+        "qualification": {
+          "1": {
+            "total": 27085,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "2": {
+            "total": 23785,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "3": {
+            "total": 21210,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "5": {
+            "total": 19200,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          },
+          "9": {
+            "total": 17065,
+            "best": 26,
+            "worst": 32,
+            "best_pessimistic": 26,
+            "worst_optimistic": 32
+          },
+          "17": {
+            "total": 15325,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "25": {
+            "total": 13585,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "33": {
+            "total": 12835,
+            "best": 29,
+            "worst": 33,
+            "best_pessimistic": 29,
+            "worst_optimistic": 33
+          }
+        }
+      },
+      {
+        "rank": 30,
+        "name": "Joel Vaughan",
+        "total": 12245,
+        "scores": [
+          1000,
+          4745,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          500,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          5,
+          17,
+          17,
+          17,
+          17,
+          17,
+          17,
+          33,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 26745,
+          "2": 23445,
+          "3": 20870,
+          "5": 18860,
+          "9": 16725,
+          "17": 14985,
+          "25": 13245,
+          "33": 12495
+        },
+        "minplace": 33,
+        "floor": 12495,
+        "qualification": {
+          "1": {
+            "total": 26745,
+            "best": 17,
+            "worst": 24,
+            "best_pessimistic": 17,
+            "worst_optimistic": 24
+          },
+          "2": {
+            "total": 23445,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "3": {
+            "total": 20870,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "5": {
+            "total": 18860,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          },
+          "9": {
+            "total": 16725,
+            "best": 27,
+            "worst": 32,
+            "best_pessimistic": 27,
+            "worst_optimistic": 32
+          },
+          "17": {
+            "total": 14985,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "25": {
+            "total": 13245,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "33": {
+            "total": 12495,
+            "best": 30,
+            "worst": 34,
+            "best_pessimistic": 30,
+            "worst_optimistic": 34
+          }
+        }
+      },
+      {
+        "rank": 31,
+        "name": "Eli Hanneman",
+        "total": 10820,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          1000,
+          3320,
+          1000,
+          500,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          17,
+          9,
+          17,
+          33,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 25320,
+          "2": 22020,
+          "3": 19445,
+          "5": 17435,
+          "9": 15300,
+          "17": 13560,
+          "25": 11820,
+          "33": 11070
+        },
+        "minplace": 33,
+        "floor": 11070,
+        "qualification": {
+          "1": {
+            "total": 25320,
+            "best": 21,
+            "worst": 27,
+            "best_pessimistic": 21,
+            "worst_optimistic": 27
+          },
+          "2": {
+            "total": 22020,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "3": {
+            "total": 19445,
+            "best": 24,
+            "worst": 31,
+            "best_pessimistic": 24,
+            "worst_optimistic": 31
+          },
+          "5": {
+            "total": 17435,
+            "best": 26,
+            "worst": 32,
+            "best_pessimistic": 26,
+            "worst_optimistic": 32
+          },
+          "9": {
+            "total": 15300,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "17": {
+            "total": 13560,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "25": {
+            "total": 11820,
+            "best": 31,
+            "worst": 34,
+            "best_pessimistic": 31,
+            "worst_optimistic": 34
+          },
+          "33": {
+            "total": 11070,
+            "best": 31,
+            "worst": 35,
+            "best_pessimistic": 31,
+            "worst_optimistic": 35
+          }
+        }
+      },
+      {
+        "rank": 32,
+        "name": "Luke Thompson",
+        "total": 9820,
+        "scores": [
+          1000,
+          500,
+          1000,
+          1000,
+          1000,
+          500,
+          1000,
+          500,
+          3320,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          33,
+          17,
+          17,
+          17,
+          33,
+          17,
+          33,
+          9,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 24320,
+          "2": 21020,
+          "3": 18445,
+          "5": 16435,
+          "9": 14300,
+          "17": 12560,
+          "25": 10820,
+          "33": 10070
+        },
+        "minplace": 33,
+        "floor": 10070,
+        "qualification": {
+          "1": {
+            "total": 24320,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "2": {
+            "total": 21020,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "3": {
+            "total": 18445,
+            "best": 25,
+            "worst": 32,
+            "best_pessimistic": 25,
+            "worst_optimistic": 32
+          },
+          "5": {
+            "total": 16435,
+            "best": 28,
+            "worst": 32,
+            "best_pessimistic": 28,
+            "worst_optimistic": 32
+          },
+          "9": {
+            "total": 14300,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "17": {
+            "total": 12560,
+            "best": 30,
+            "worst": 33,
+            "best_pessimistic": 30,
+            "worst_optimistic": 33
+          },
+          "25": {
+            "total": 10820,
+            "best": 32,
+            "worst": 35,
+            "best_pessimistic": 32,
+            "worst_optimistic": 35
+          },
+          "33": {
+            "total": 10070,
+            "best": 32,
+            "worst": 35,
+            "best_pessimistic": 32,
+            "worst_optimistic": 35
+          }
+        }
+      },
+      {
+        "rank": 33,
+        "name": "Jordy Smith",
+        "total": 8820,
+        "scores": [
+          3320,
+          1000,
+          1000,
+          1000,
+          500,
+          500,
+          500,
+          500,
+          500,
+          0,
+          0
+        ],
+        "places": [
+          9,
+          17,
+          17,
+          17,
+          33,
+          33,
+          33,
+          33,
+          33,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 23320,
+          "2": 20020,
+          "3": 17445,
+          "5": 15435,
+          "9": 13300,
+          "17": 11560,
+          "25": 9820,
+          "33": 9070
+        },
+        "minplace": 33,
+        "floor": 9070,
+        "qualification": {
+          "1": {
+            "total": 23320,
+            "best": 21,
+            "worst": 28,
+            "best_pessimistic": 21,
+            "worst_optimistic": 28
+          },
+          "2": {
+            "total": 20020,
+            "best": 24,
+            "worst": 31,
+            "best_pessimistic": 24,
+            "worst_optimistic": 31
+          },
+          "3": {
+            "total": 17445,
+            "best": 26,
+            "worst": 32,
+            "best_pessimistic": 26,
+            "worst_optimistic": 32
+          },
+          "5": {
+            "total": 15435,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "9": {
+            "total": 13300,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "17": {
+            "total": 11560,
+            "best": 31,
+            "worst": 34,
+            "best_pessimistic": 31,
+            "worst_optimistic": 34
+          },
+          "25": {
+            "total": 9820,
+            "best": 33,
+            "worst": 35,
+            "best_pessimistic": 33,
+            "worst_optimistic": 35
+          },
+          "33": {
+            "total": 9070,
+            "best": 33,
+            "worst": 35,
+            "best_pessimistic": 33,
+            "worst_optimistic": 35
+          }
+        }
+      },
+      {
+        "rank": 34,
+        "name": "Matthew McGillivray",
+        "total": 5820,
+        "scores": [
+          0,
+          0,
+          0,
+          0,
+          500,
+          3320,
+          500,
+          1000,
+          500,
+          0,
+          0
+        ],
+        "places": [
+          "-",
+          "-",
+          "-",
+          "-",
+          33,
+          9,
+          33,
+          17,
+          33,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 0,
+        "finals": {
+          "1": 20820,
+          "2": 17520,
+          "3": 14945,
+          "5": 12935,
+          "9": 10800,
+          "17": 9060,
+          "25": 7320,
+          "33": 6570
+        },
+        "minplace": 33,
+        "floor": 6570,
+        "qualification": {
+          "1": {
+            "total": 20820,
+            "best": 22,
+            "worst": 29,
+            "best_pessimistic": 22,
+            "worst_optimistic": 29
+          },
+          "2": {
+            "total": 17520,
+            "best": 26,
+            "worst": 32,
+            "best_pessimistic": 26,
+            "worst_optimistic": 32
+          },
+          "3": {
+            "total": 14945,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "5": {
+            "total": 12935,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "9": {
+            "total": 10800,
+            "best": 32,
+            "worst": 35,
+            "best_pessimistic": 32,
+            "worst_optimistic": 35
+          },
+          "17": {
+            "total": 9060,
+            "best": 34,
+            "worst": 35,
+            "best_pessimistic": 34,
+            "worst_optimistic": 35
+          },
+          "25": {
+            "total": 7320,
+            "best": 34,
+            "worst": 35,
+            "best_pessimistic": 34,
+            "worst_optimistic": 35
+          },
+          "33": {
+            "total": 6570,
+            "best": 34,
+            "worst": 35,
+            "best_pessimistic": 34,
+            "worst_optimistic": 35
+          }
+        }
+      },
+      {
+        "rank": 35,
+        "name": "Oscar Berry",
+        "total": 5000,
+        "scores": [
+          500,
+          500,
+          500,
+          500,
+          500,
+          500,
+          500,
+          500,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          33,
+          33,
+          33,
+          33,
+          33,
+          33,
+          33,
+          33,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 500,
+        "finals": {
+          "1": 19500,
+          "2": 16200,
+          "3": 13625,
+          "5": 11615,
+          "9": 9480,
+          "17": 7740,
+          "25": 6000,
+          "33": 5250
+        },
+        "minplace": 33,
+        "floor": 5250,
+        "qualification": {
+          "1": {
+            "total": 19500,
+            "best": 24,
+            "worst": 31,
+            "best_pessimistic": 24,
+            "worst_optimistic": 31
+          },
+          "2": {
+            "total": 16200,
+            "best": 28,
+            "worst": 32,
+            "best_pessimistic": 28,
+            "worst_optimistic": 32
+          },
+          "3": {
+            "total": 13625,
+            "best": 29,
+            "worst": 32,
+            "best_pessimistic": 29,
+            "worst_optimistic": 32
+          },
+          "5": {
+            "total": 11615,
+            "best": 31,
+            "worst": 34,
+            "best_pessimistic": 31,
+            "worst_optimistic": 34
+          },
+          "9": {
+            "total": 9480,
+            "best": 33,
+            "worst": 35,
+            "best_pessimistic": 33,
+            "worst_optimistic": 35
+          },
+          "17": {
+            "total": 7740,
+            "best": 34,
+            "worst": 35,
+            "best_pessimistic": 34,
+            "worst_optimistic": 35
+          },
+          "25": {
+            "total": 6000,
+            "best": 35,
+            "worst": 35,
+            "best_pessimistic": 35,
+            "worst_optimistic": 35
+          },
+          "33": {
+            "total": 5250,
+            "best": 35,
+            "worst": 35,
+            "best_pessimistic": 35,
+            "worst_optimistic": 35
+          }
+        }
+      }
+    ],
+    "women": [
+      {
+        "rank": 1,
+        "name": "Molly Picklum",
+        "total": 53695,
+        "scores": [
+          7800,
+          4745,
+          4745,
+          4745,
+          6085,
+          2000,
+          4745,
+          2000,
+          6085,
+          10000,
+          4745
+        ],
+        "places": [
+          2,
+          5,
+          5,
+          5,
+          3,
+          9,
+          5,
+          9,
+          3,
+          1,
+          5
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "replace": 4745,
+        "finals": {
+          "1": 63950,
+          "2": 60650,
+          "3": 58075,
+          "5": 56065,
+          "9": 53695,
+          "17": 53695
+        },
+        "minplace": 9,
+        "floor": 53695,
+        "qualification": {
+          "1": {
+            "total": 63950,
+            "best": 1,
+            "worst": 1,
+            "best_pessimistic": 1,
+            "worst_optimistic": 1
+          },
+          "2": {
+            "total": 60650,
+            "best": 1,
+            "worst": 2,
+            "best_pessimistic": 1,
+            "worst_optimistic": 2
+          },
+          "3": {
+            "total": 58075,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          },
+          "5": {
+            "total": 56065,
+            "best": 1,
+            "worst": 5,
+            "best_pessimistic": 1,
+            "worst_optimistic": 5
+          },
+          "9": {
+            "total": 53695,
+            "best": 2,
+            "worst": 6,
+            "best_pessimistic": 2,
+            "worst_optimistic": 6
+          }
+        }
+      },
+      {
+        "rank": 2,
+        "name": "Carissa Moore",
+        "total": 53150,
+        "scores": [
+          2000,
+          4745,
+          2000,
+          10000,
+          10000,
+          4745,
+          2000,
+          6085,
+          4745,
+          4745,
+          6085
+        ],
+        "places": [
+          9,
+          5,
+          9,
+          1,
+          1,
+          5,
+          9,
+          3,
+          5,
+          5,
+          3
+        ],
+        "dropped": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 66150,
+          "2": 62850,
+          "3": 60275,
+          "5": 58265,
+          "9": 54150,
+          "17": 53150
+        },
+        "minplace": 9,
+        "floor": 54150,
+        "qualification": {
+          "1": {
+            "total": 66150,
+            "best": 1,
+            "worst": 1,
+            "best_pessimistic": 1,
+            "worst_optimistic": 1
+          },
+          "2": {
+            "total": 62850,
+            "best": 1,
+            "worst": 2,
+            "best_pessimistic": 1,
+            "worst_optimistic": 2
+          },
+          "3": {
+            "total": 60275,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "5": {
+            "total": 58265,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "9": {
+            "total": 54150,
+            "best": 1,
+            "worst": 5,
+            "best_pessimistic": 1,
+            "worst_optimistic": 5
+          }
+        }
+      },
+      {
+        "rank": 3,
+        "name": "Caitlin Simmers",
+        "total": 49610,
+        "scores": [
+          4745,
+          6085,
+          4745,
+          2000,
+          4745,
+          4745,
+          4745,
+          1000,
+          2000,
+          7800,
+          10000
+        ],
+        "places": [
+          5,
+          3,
+          5,
+          9,
+          5,
+          5,
+          5,
+          17,
+          9,
+          2,
+          1
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 62610,
+          "2": 59310,
+          "3": 56735,
+          "5": 54725,
+          "9": 50610,
+          "17": 49610
+        },
+        "minplace": 9,
+        "floor": 50610,
+        "qualification": {
+          "1": {
+            "total": 62610,
+            "best": 1,
+            "worst": 2,
+            "best_pessimistic": 1,
+            "worst_optimistic": 2
+          },
+          "2": {
+            "total": 59310,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "3": {
+            "total": 56735,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          },
+          "5": {
+            "total": 54725,
+            "best": 1,
+            "worst": 5,
+            "best_pessimistic": 1,
+            "worst_optimistic": 5
+          },
+          "9": {
+            "total": 50610,
+            "best": 3,
+            "worst": 8,
+            "best_pessimistic": 3,
+            "worst_optimistic": 8
+          }
+        }
+      },
+      {
+        "rank": 4,
+        "name": "Gabriela Bryan",
+        "total": 46865,
+        "scores": [
+          10000,
+          4745,
+          4745,
+          4745,
+          6085,
+          4745,
+          2000,
+          2000,
+          7800,
+          2000,
+          2000
+        ],
+        "places": [
+          1,
+          5,
+          5,
+          5,
+          3,
+          5,
+          9,
+          9,
+          2,
+          9,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 59865,
+          "2": 56565,
+          "3": 53990,
+          "5": 51980,
+          "9": 47865,
+          "17": 46865
+        },
+        "minplace": 9,
+        "floor": 47865,
+        "qualification": {
+          "1": {
+            "total": 59865,
+            "best": 1,
+            "worst": 3,
+            "best_pessimistic": 1,
+            "worst_optimistic": 3
+          },
+          "2": {
+            "total": 56565,
+            "best": 1,
+            "worst": 5,
+            "best_pessimistic": 1,
+            "worst_optimistic": 5
+          },
+          "3": {
+            "total": 53990,
+            "best": 2,
+            "worst": 6,
+            "best_pessimistic": 2,
+            "worst_optimistic": 6
+          },
+          "5": {
+            "total": 51980,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "9": {
+            "total": 47865,
+            "best": 4,
+            "worst": 9,
+            "best_pessimistic": 4,
+            "worst_optimistic": 9
+          }
+        }
+      },
+      {
+        "rank": 5,
+        "name": "Erin Brooks",
+        "total": 44745,
+        "scores": [
+          2000,
+          2000,
+          1000,
+          2000,
+          1000,
+          2000,
+          10000,
+          10000,
+          10000,
+          4745,
+          2000
+        ],
+        "places": [
+          9,
+          9,
+          17,
+          9,
+          17,
+          9,
+          1,
+          1,
+          1,
+          5,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 57745,
+          "2": 54445,
+          "3": 51870,
+          "5": 49860,
+          "9": 45745,
+          "17": 44745
+        },
+        "minplace": 9,
+        "floor": 45745,
+        "qualification": {
+          "1": {
+            "total": 57745,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          },
+          "2": {
+            "total": 54445,
+            "best": 1,
+            "worst": 5,
+            "best_pessimistic": 1,
+            "worst_optimistic": 5
+          },
+          "3": {
+            "total": 51870,
+            "best": 3,
+            "worst": 7,
+            "best_pessimistic": 3,
+            "worst_optimistic": 7
+          },
+          "5": {
+            "total": 49860,
+            "best": 4,
+            "worst": 8,
+            "best_pessimistic": 4,
+            "worst_optimistic": 8
+          },
+          "9": {
+            "total": 45745,
+            "best": 5,
+            "worst": 9,
+            "best_pessimistic": 5,
+            "worst_optimistic": 9
+          }
+        }
+      },
+      {
+        "rank": 6,
+        "name": "Sawyer Lindblad",
+        "total": 44055,
+        "scores": [
+          1000,
+          6085,
+          6085,
+          7800,
+          2000,
+          10000,
+          2000,
+          2000,
+          6085,
+          2000,
+          2000
+        ],
+        "places": [
+          17,
+          3,
+          3,
+          2,
+          9,
+          1,
+          9,
+          9,
+          3,
+          9,
+          9
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 57055,
+          "2": 53755,
+          "3": 51180,
+          "5": 49170,
+          "9": 45055,
+          "17": 44055
+        },
+        "minplace": 9,
+        "floor": 45055,
+        "qualification": {
+          "1": {
+            "total": 57055,
+            "best": 1,
+            "worst": 4,
+            "best_pessimistic": 1,
+            "worst_optimistic": 4
+          },
+          "2": {
+            "total": 53755,
+            "best": 2,
+            "worst": 6,
+            "best_pessimistic": 2,
+            "worst_optimistic": 6
+          },
+          "3": {
+            "total": 51180,
+            "best": 3,
+            "worst": 8,
+            "best_pessimistic": 3,
+            "worst_optimistic": 8
+          },
+          "5": {
+            "total": 49170,
+            "best": 4,
+            "worst": 8,
+            "best_pessimistic": 4,
+            "worst_optimistic": 8
+          },
+          "9": {
+            "total": 45055,
+            "best": 6,
+            "worst": 9,
+            "best_pessimistic": 6,
+            "worst_optimistic": 9
+          }
+        }
+      },
+      {
+        "rank": 7,
+        "name": "Luana Silva",
+        "total": 43325,
+        "scores": [
+          4745,
+          7800,
+          7800,
+          2000,
+          4745,
+          4745,
+          2000,
+          2000,
+          4745,
+          2000,
+          4745
+        ],
+        "places": [
+          5,
+          2,
+          2,
+          9,
+          5,
+          5,
+          9,
+          9,
+          5,
+          9,
+          5
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 56325,
+          "2": 53025,
+          "3": 50450,
+          "5": 48440,
+          "9": 44325,
+          "17": 43325
+        },
+        "minplace": 9,
+        "floor": 44325,
+        "qualification": {
+          "1": {
+            "total": 56325,
+            "best": 1,
+            "worst": 5,
+            "best_pessimistic": 1,
+            "worst_optimistic": 5
+          },
+          "2": {
+            "total": 53025,
+            "best": 3,
+            "worst": 6,
+            "best_pessimistic": 3,
+            "worst_optimistic": 6
+          },
+          "3": {
+            "total": 50450,
+            "best": 4,
+            "worst": 8,
+            "best_pessimistic": 4,
+            "worst_optimistic": 8
+          },
+          "5": {
+            "total": 48440,
+            "best": 4,
+            "worst": 8,
+            "best_pessimistic": 4,
+            "worst_optimistic": 8
+          },
+          "9": {
+            "total": 44325,
+            "best": 7,
+            "worst": 10,
+            "best_pessimistic": 7,
+            "worst_optimistic": 10
+          }
+        }
+      },
+      {
+        "rank": 8,
+        "name": "Lakey Peterson",
+        "total": 38320,
+        "scores": [
+          4745,
+          10000,
+          4745,
+          2000,
+          2000,
+          2000,
+          2000,
+          4745,
+          2000,
+          6085,
+          2000
+        ],
+        "places": [
+          5,
+          1,
+          5,
+          9,
+          9,
+          9,
+          9,
+          5,
+          9,
+          3,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 51320,
+          "2": 48020,
+          "3": 45445,
+          "5": 43435,
+          "9": 39320,
+          "17": 38320
+        },
+        "minplace": 9,
+        "floor": 39320,
+        "qualification": {
+          "1": {
+            "total": 51320,
+            "best": 3,
+            "worst": 7,
+            "best_pessimistic": 3,
+            "worst_optimistic": 7
+          },
+          "2": {
+            "total": 48020,
+            "best": 4,
+            "worst": 9,
+            "best_pessimistic": 4,
+            "worst_optimistic": 9
+          },
+          "3": {
+            "total": 45445,
+            "best": 6,
+            "worst": 9,
+            "best_pessimistic": 6,
+            "worst_optimistic": 9
+          },
+          "5": {
+            "total": 43435,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "9": {
+            "total": 39320,
+            "best": 8,
+            "worst": 11,
+            "best_pessimistic": 8,
+            "worst_optimistic": 11
+          }
+        }
+      },
+      {
+        "rank": 9,
+        "name": "Isabella Nichols",
+        "total": 36770,
+        "scores": [
+          6085,
+          2000,
+          2000,
+          2000,
+          1000,
+          2000,
+          6085,
+          7800,
+          1000,
+          1000,
+          7800
+        ],
+        "places": [
+          3,
+          9,
+          9,
+          9,
+          17,
+          9,
+          3,
+          2,
+          17,
+          17,
+          2
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 50770,
+          "2": 47470,
+          "3": 44895,
+          "5": 42885,
+          "9": 38770,
+          "17": 37270
+        },
+        "minplace": 17,
+        "floor": 37270,
+        "qualification": {
+          "1": {
+            "total": 50770,
+            "best": 3,
+            "worst": 8,
+            "best_pessimistic": 3,
+            "worst_optimistic": 8
+          },
+          "2": {
+            "total": 47470,
+            "best": 5,
+            "worst": 9,
+            "best_pessimistic": 5,
+            "worst_optimistic": 9
+          },
+          "3": {
+            "total": 44895,
+            "best": 7,
+            "worst": 9,
+            "best_pessimistic": 7,
+            "worst_optimistic": 9
+          },
+          "5": {
+            "total": 42885,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "9": {
+            "total": 38770,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 13
+          },
+          "17": {
+            "total": 37270,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 13
+          }
+        }
+      },
+      {
+        "rank": 10,
+        "name": "Bettylou Sakura Johnson",
+        "total": 30660,
+        "scores": [
+          4745,
+          2000,
+          2000,
+          6085,
+          2000,
+          1000,
+          1000,
+          4745,
+          1000,
+          6085,
+          2000
+        ],
+        "places": [
+          5,
+          9,
+          9,
+          3,
+          9,
+          17,
+          17,
+          5,
+          17,
+          3,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 44660,
+          "2": 41360,
+          "3": 38785,
+          "5": 36775,
+          "9": 32660,
+          "17": 31160
+        },
+        "minplace": 17,
+        "floor": 31160,
+        "qualification": {
+          "1": {
+            "total": 44660,
+            "best": 7,
+            "worst": 10,
+            "best_pessimistic": 7,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 41360,
+            "best": 8,
+            "worst": 11,
+            "best_pessimistic": 8,
+            "worst_optimistic": 11
+          },
+          "3": {
+            "total": 38785,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "5": {
+            "total": 36775,
+            "best": 10,
+            "worst": 14,
+            "best_pessimistic": 10,
+            "worst_optimistic": 14
+          },
+          "9": {
+            "total": 32660,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "17": {
+            "total": 31160,
+            "best": 10,
+            "worst": 16,
+            "best_pessimistic": 11,
+            "worst_optimistic": 16
+          }
+        }
+      },
+      {
+        "rank": 11,
+        "name": "Nadia Erostarbe",
+        "total": 30660,
+        "scores": [
+          2000,
+          1000,
+          6085,
+          1000,
+          2000,
+          6085,
+          4745,
+          2000,
+          1000,
+          2000,
+          4745
+        ],
+        "places": [
+          9,
+          17,
+          3,
+          17,
+          9,
+          3,
+          5,
+          9,
+          17,
+          9,
+          5
+        ],
+        "dropped": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 44660,
+          "2": 41360,
+          "3": 38785,
+          "5": 36775,
+          "9": 32660,
+          "17": 31160
+        },
+        "minplace": 17,
+        "floor": 31160,
+        "qualification": {
+          "1": {
+            "total": 44660,
+            "best": 7,
+            "worst": 10,
+            "best_pessimistic": 7,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 41360,
+            "best": 8,
+            "worst": 11,
+            "best_pessimistic": 8,
+            "worst_optimistic": 11
+          },
+          "3": {
+            "total": 38785,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 12
+          },
+          "5": {
+            "total": 36775,
+            "best": 10,
+            "worst": 14,
+            "best_pessimistic": 10,
+            "worst_optimistic": 14
+          },
+          "9": {
+            "total": 32660,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "17": {
+            "total": 31160,
+            "best": 10,
+            "worst": 16,
+            "best_pessimistic": 11,
+            "worst_optimistic": 16
+          }
+        }
+      },
+      {
+        "rank": 12,
+        "name": "Caroline Marks",
+        "total": 30320,
+        "scores": [
+          2000,
+          4745,
+          2000,
+          4745,
+          4745,
+          6085,
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        "places": [
+          9,
+          5,
+          9,
+          5,
+          5,
+          3,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "dropped": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "replace": 2000,
+        "finals": {
+          "1": 43320,
+          "2": 40020,
+          "3": 37445,
+          "5": 35435,
+          "9": 31320,
+          "17": 30320
+        },
+        "minplace": 17,
+        "floor": 30320,
+        "qualification": {
+          "1": {
+            "total": 43320,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 40020,
+            "best": 8,
+            "worst": 11,
+            "best_pessimistic": 8,
+            "worst_optimistic": 11
+          },
+          "3": {
+            "total": 37445,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 13
+          },
+          "5": {
+            "total": 35435,
+            "best": 10,
+            "worst": 14,
+            "best_pessimistic": 10,
+            "worst_optimistic": 14
+          },
+          "9": {
+            "total": 31320,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "17": {
+            "total": 30320,
+            "best": 12,
+            "worst": 16,
+            "best_pessimistic": 12,
+            "worst_optimistic": 16
+          }
+        }
+      },
+      {
+        "rank": 13,
+        "name": "Tyler Wright",
+        "total": 28630,
+        "scores": [
+          2000,
+          1000,
+          2000,
+          4745,
+          7800,
+          1000,
+          1000,
+          1000,
+          2000,
+          2000,
+          6085
+        ],
+        "places": [
+          9,
+          17,
+          9,
+          5,
+          2,
+          17,
+          17,
+          17,
+          9,
+          9,
+          3
+        ],
+        "dropped": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 42630,
+          "2": 39330,
+          "3": 36755,
+          "5": 34745,
+          "9": 30630,
+          "17": 29130
+        },
+        "minplace": 17,
+        "floor": 29130,
+        "qualification": {
+          "1": {
+            "total": 42630,
+            "best": 8,
+            "worst": 10,
+            "best_pessimistic": 8,
+            "worst_optimistic": 10
+          },
+          "2": {
+            "total": 39330,
+            "best": 8,
+            "worst": 11,
+            "best_pessimistic": 8,
+            "worst_optimistic": 11
+          },
+          "3": {
+            "total": 36755,
+            "best": 10,
+            "worst": 14,
+            "best_pessimistic": 10,
+            "worst_optimistic": 14
+          },
+          "5": {
+            "total": 34745,
+            "best": 10,
+            "worst": 14,
+            "best_pessimistic": 10,
+            "worst_optimistic": 14
+          },
+          "9": {
+            "total": 30630,
+            "best": 12,
+            "worst": 16,
+            "best_pessimistic": 12,
+            "worst_optimistic": 16
+          },
+          "17": {
+            "total": 29130,
+            "best": 13,
+            "worst": 16,
+            "best_pessimistic": 13,
+            "worst_optimistic": 16
+          }
+        }
+      },
+      {
+        "rank": 14,
+        "name": "Yolanda Hopkins",
+        "total": 26575,
+        "scores": [
+          1000,
+          2000,
+          2000,
+          1000,
+          2000,
+          1000,
+          6085,
+          4745,
+          2000,
+          2000,
+          4745
+        ],
+        "places": [
+          17,
+          9,
+          9,
+          17,
+          9,
+          17,
+          3,
+          5,
+          9,
+          9,
+          5
+        ],
+        "dropped": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 40575,
+          "2": 37275,
+          "3": 34700,
+          "5": 32690,
+          "9": 28575,
+          "17": 27075
+        },
+        "minplace": 17,
+        "floor": 27075,
+        "qualification": {
+          "1": {
+            "total": 40575,
+            "best": 8,
+            "worst": 11,
+            "best_pessimistic": 8,
+            "worst_optimistic": 11
+          },
+          "2": {
+            "total": 37275,
+            "best": 9,
+            "worst": 13,
+            "best_pessimistic": 9,
+            "worst_optimistic": 13
+          },
+          "3": {
+            "total": 34700,
+            "best": 10,
+            "worst": 14,
+            "best_pessimistic": 10,
+            "worst_optimistic": 14
+          },
+          "5": {
+            "total": 32690,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "9": {
+            "total": 28575,
+            "best": 14,
+            "worst": 17,
+            "best_pessimistic": 14,
+            "worst_optimistic": 17
+          },
+          "17": {
+            "total": 27075,
+            "best": 14,
+            "worst": 18,
+            "best_pessimistic": 14,
+            "worst_optimistic": 18
+          }
+        }
+      },
+      {
+        "rank": 15,
+        "name": "Anat Lelior",
+        "total": 20545,
+        "scores": [
+          2000,
+          1000,
+          1000,
+          1000,
+          4745,
+          1000,
+          7800,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          9,
+          17,
+          17,
+          17,
+          5,
+          17,
+          2,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 34545,
+          "2": 31245,
+          "3": 28670,
+          "5": 26660,
+          "9": 22545,
+          "17": 21045
+        },
+        "minplace": 17,
+        "floor": 21045,
+        "qualification": {
+          "1": {
+            "total": 34545,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "2": {
+            "total": 31245,
+            "best": 10,
+            "worst": 16,
+            "best_pessimistic": 10,
+            "worst_optimistic": 16
+          },
+          "3": {
+            "total": 28670,
+            "best": 14,
+            "worst": 17,
+            "best_pessimistic": 14,
+            "worst_optimistic": 17
+          },
+          "5": {
+            "total": 26660,
+            "best": 15,
+            "worst": 19,
+            "best_pessimistic": 15,
+            "worst_optimistic": 19
+          },
+          "9": {
+            "total": 22545,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "17": {
+            "total": 21045,
+            "best": 15,
+            "worst": 23,
+            "best_pessimistic": 15,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 16,
+        "name": "Alyssa Spencer",
+        "total": 20170,
+        "scores": [
+          6085,
+          1000,
+          1000,
+          6085,
+          1000,
+          1000,
+          2000,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          3,
+          17,
+          17,
+          3,
+          17,
+          17,
+          9,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 34170,
+          "2": 30870,
+          "3": 28295,
+          "5": 26285,
+          "9": 22170,
+          "17": 20670
+        },
+        "minplace": 17,
+        "floor": 20670,
+        "qualification": {
+          "1": {
+            "total": 34170,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "2": {
+            "total": 30870,
+            "best": 12,
+            "worst": 16,
+            "best_pessimistic": 12,
+            "worst_optimistic": 16
+          },
+          "3": {
+            "total": 28295,
+            "best": 14,
+            "worst": 18,
+            "best_pessimistic": 14,
+            "worst_optimistic": 18
+          },
+          "5": {
+            "total": 26285,
+            "best": 15,
+            "worst": 19,
+            "best_pessimistic": 15,
+            "worst_optimistic": 19
+          },
+          "9": {
+            "total": 22170,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "17": {
+            "total": 20670,
+            "best": 16,
+            "worst": 23,
+            "best_pessimistic": 16,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 17,
+        "name": "Stephanie Gilmore",
+        "total": 19000,
+        "scores": [
+          1000,
+          1000,
+          10000,
+          2000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          17,
+          1,
+          9,
+          17,
+          17,
+          17,
+          17,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 33000,
+          "2": 29700,
+          "3": 27125,
+          "5": 25115,
+          "9": 21000,
+          "17": 19500
+        },
+        "minplace": 17,
+        "floor": 19500,
+        "qualification": {
+          "1": {
+            "total": 33000,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "2": {
+            "total": 29700,
+            "best": 13,
+            "worst": 16,
+            "best_pessimistic": 13,
+            "worst_optimistic": 16
+          },
+          "3": {
+            "total": 27125,
+            "best": 14,
+            "worst": 18,
+            "best_pessimistic": 14,
+            "worst_optimistic": 18
+          },
+          "5": {
+            "total": 25115,
+            "best": 15,
+            "worst": 21,
+            "best_pessimistic": 15,
+            "worst_optimistic": 21
+          },
+          "9": {
+            "total": 21000,
+            "best": 16,
+            "worst": 23,
+            "best_pessimistic": 16,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 19500,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 18,
+        "name": "Brisa Hennessy",
+        "total": 18085,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          1000,
+          2000,
+          2000,
+          2000,
+          6085,
+          2000,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          17,
+          9,
+          9,
+          9,
+          3,
+          9,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 32085,
+          "2": 28785,
+          "3": 26210,
+          "5": 24200,
+          "9": 20085,
+          "17": 18585
+        },
+        "minplace": 17,
+        "floor": 18585,
+        "qualification": {
+          "1": {
+            "total": 32085,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "2": {
+            "total": 28785,
+            "best": 14,
+            "worst": 16,
+            "best_pessimistic": 14,
+            "worst_optimistic": 16
+          },
+          "3": {
+            "total": 26210,
+            "best": 15,
+            "worst": 20,
+            "best_pessimistic": 15,
+            "worst_optimistic": 20
+          },
+          "5": {
+            "total": 24200,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "9": {
+            "total": 20085,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 18585,
+            "best": 18,
+            "worst": 23,
+            "best_pessimistic": 18,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 19,
+        "name": "Tya Zebrowski",
+        "total": 17800,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          2000,
+          1000,
+          7800,
+          1000,
+          1000,
+          2000,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          9,
+          17,
+          2,
+          17,
+          17,
+          9,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 31800,
+          "2": 28500,
+          "3": 25925,
+          "5": 23915,
+          "9": 19800,
+          "17": 18300
+        },
+        "minplace": 17,
+        "floor": 18300,
+        "qualification": {
+          "1": {
+            "total": 31800,
+            "best": 10,
+            "worst": 15,
+            "best_pessimistic": 10,
+            "worst_optimistic": 15
+          },
+          "2": {
+            "total": 28500,
+            "best": 14,
+            "worst": 17,
+            "best_pessimistic": 14,
+            "worst_optimistic": 17
+          },
+          "3": {
+            "total": 25925,
+            "best": 15,
+            "worst": 20,
+            "best_pessimistic": 15,
+            "worst_optimistic": 20
+          },
+          "5": {
+            "total": 23915,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "9": {
+            "total": 19800,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 18300,
+            "best": 19,
+            "worst": 23,
+            "best_pessimistic": 19,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 20,
+        "name": "Vahine Fierro",
+        "total": 16745,
+        "scores": [
+          1000,
+          2000,
+          2000,
+          2000,
+          1000,
+          1000,
+          1000,
+          4745,
+          2000,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          9,
+          9,
+          9,
+          17,
+          17,
+          17,
+          5,
+          9,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 30745,
+          "2": 27445,
+          "3": 24870,
+          "5": 22860,
+          "9": 18745,
+          "17": 17245
+        },
+        "minplace": 17,
+        "floor": 17245,
+        "qualification": {
+          "1": {
+            "total": 30745,
+            "best": 12,
+            "worst": 16,
+            "best_pessimistic": 12,
+            "worst_optimistic": 16
+          },
+          "2": {
+            "total": 27445,
+            "best": 14,
+            "worst": 18,
+            "best_pessimistic": 14,
+            "worst_optimistic": 18
+          },
+          "3": {
+            "total": 24870,
+            "best": 15,
+            "worst": 21,
+            "best_pessimistic": 15,
+            "worst_optimistic": 21
+          },
+          "5": {
+            "total": 22860,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "9": {
+            "total": 18745,
+            "best": 18,
+            "worst": 23,
+            "best_pessimistic": 18,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 17245,
+            "best": 20,
+            "worst": 23,
+            "best_pessimistic": 20,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 21,
+        "name": "Sally Fitzgibbons",
+        "total": 15000,
+        "scores": [
+          2000,
+          2000,
+          2000,
+          1000,
+          2000,
+          2000,
+          1000,
+          2000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          9,
+          9,
+          9,
+          17,
+          9,
+          9,
+          17,
+          9,
+          17,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 29000,
+          "2": 25700,
+          "3": 23125,
+          "5": 21115,
+          "9": 17000,
+          "17": 15500
+        },
+        "minplace": 17,
+        "floor": 15500,
+        "qualification": {
+          "1": {
+            "total": 29000,
+            "best": 14,
+            "worst": 16,
+            "best_pessimistic": 14,
+            "worst_optimistic": 16
+          },
+          "2": {
+            "total": 25700,
+            "best": 15,
+            "worst": 20,
+            "best_pessimistic": 15,
+            "worst_optimistic": 20
+          },
+          "3": {
+            "total": 23125,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "5": {
+            "total": 21115,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "9": {
+            "total": 17000,
+            "best": 21,
+            "worst": 23,
+            "best_pessimistic": 21,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 15500,
+            "best": 21,
+            "worst": 23,
+            "best_pessimistic": 21,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 22,
+        "name": "Bella Kenworthy",
+        "total": 14745,
+        "scores": [
+          1000,
+          1000,
+          1000,
+          1000,
+          2000,
+          2000,
+          1000,
+          1000,
+          4745,
+          0,
+          0
+        ],
+        "places": [
+          17,
+          17,
+          17,
+          17,
+          9,
+          9,
+          17,
+          17,
+          5,
+          "-",
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 28745,
+          "2": 25445,
+          "3": 22870,
+          "5": 20860,
+          "9": 16745,
+          "17": 15245
+        },
+        "minplace": 17,
+        "floor": 15245,
+        "qualification": {
+          "1": {
+            "total": 28745,
+            "best": 14,
+            "worst": 16,
+            "best_pessimistic": 14,
+            "worst_optimistic": 16
+          },
+          "2": {
+            "total": 25445,
+            "best": 15,
+            "worst": 20,
+            "best_pessimistic": 15,
+            "worst_optimistic": 20
+          },
+          "3": {
+            "total": 22870,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "5": {
+            "total": 20860,
+            "best": 16,
+            "worst": 23,
+            "best_pessimistic": 16,
+            "worst_optimistic": 23
+          },
+          "9": {
+            "total": 16745,
+            "best": 21,
+            "worst": 23,
+            "best_pessimistic": 21,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 15245,
+            "best": 22,
+            "worst": 23,
+            "best_pessimistic": 22,
+            "worst_optimistic": 23
+          }
+        }
+      },
+      {
+        "rank": 23,
+        "name": "Francisca Veselko",
+        "total": 12000,
+        "scores": [
+          2000,
+          2000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          2000,
+          1000,
+          0,
+          0
+        ],
+        "places": [
+          9,
+          9,
+          17,
+          17,
+          17,
+          17,
+          17,
+          9,
+          17,
+          5,
+          "-"
+        ],
+        "dropped": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "replace": 1000,
+        "finals": {
+          "1": 26000,
+          "2": 22700,
+          "3": 20125,
+          "5": 18115,
+          "9": 14000,
+          "17": 12500
+        },
+        "minplace": 17,
+        "floor": 12500,
+        "qualification": {
+          "1": {
+            "total": 26000,
+            "best": 15,
+            "worst": 20,
+            "best_pessimistic": 15,
+            "worst_optimistic": 20
+          },
+          "2": {
+            "total": 22700,
+            "best": 15,
+            "worst": 22,
+            "best_pessimistic": 15,
+            "worst_optimistic": 22
+          },
+          "3": {
+            "total": 20125,
+            "best": 17,
+            "worst": 23,
+            "best_pessimistic": 17,
+            "worst_optimistic": 23
+          },
+          "5": {
+            "total": 18115,
+            "best": 20,
+            "worst": 23,
+            "best_pessimistic": 20,
+            "worst_optimistic": 23
+          },
+          "9": {
+            "total": 14000,
+            "best": 23,
+            "worst": 23,
+            "best_pessimistic": 23,
+            "worst_optimistic": 23
+          },
+          "17": {
+            "total": 12500,
+            "best": 23,
+            "worst": 23,
+            "best_pessimistic": 23,
+            "worst_optimistic": 23
+          }
+        }
+      }
+    ]
+  },
+  "sources": [
+    [
+      "Men's 2026 CT rankings, including individual event points and top-22 requalification statement",
+      "https://www.worldsurfleague.com/athletes/tour/mct?year=2026"
+    ],
+    [
+      "Women's 2026 CT rankings, including individual event points and top-14 requalification statement",
+      "https://www.worldsurfleague.com/athletes/tour/wct?year=2026"
+    ],
+    [
+      "WSL Rules and Regulations (rulebook landing page)",
+      "https://www.worldsurfleague.com/pages/rules-and-regulations"
+    ],
+    [
+      "2026 WSL Rule Book; rules 1.05-1.10, pages 9-16; Appendix B, page 109",
+      "https://www.worldsurfleague.com/asset/43912/2026+WSL+Rule+Book+1102026.pdf"
+    ],
+    [
+      "Lexus Pipe Masters event page: dates and CT event 12",
+      "https://www.worldsurfleague.com/events/2026/ct/446/lexus-pipe-masters/main"
+    ],
+    [
+      "Official provisional men's heat draw",
+      "https://www.worldsurfleague.com/events/2026/ct/446/lexus-pipe-masters/results?statEventId=5116&showAll=1"
+    ],
+    [
+      "Official provisional women's heat draw",
+      "https://www.worldsurfleague.com/events/2026/ct/446/lexus-pipe-masters/results?statEventId=5117&showAll=1"
+    ]
+  ],
+  "title_conditions": {
+    "men": [
+      [
+        "Yago Dora",
+        "1st",
+        "66,630",
+        "Champion regardless of other results"
+      ],
+      [
+        "Yago Dora",
+        "2nd",
+        "63,330",
+        "Gabriel Medina 3rd or worse"
+      ],
+      [
+        "Yago Dora",
+        "3rd",
+        "60,755",
+        "Gabriel Medina 5th or worse; Italo Ferreira 2nd or worse"
+      ],
+      [
+        "Yago Dora",
+        "5th",
+        "58,745",
+        "Gabriel Medina 9th or worse; Italo Ferreira 2nd or worse; Griffin Colapinto 2nd or worse"
+      ],
+      [
+        "Gabriel Medina",
+        "1st",
+        "67,210",
+        "Champion regardless of other results"
+      ],
+      [
+        "Gabriel Medina",
+        "2nd",
+        "63,910",
+        "Yago Dora 3rd or worse"
+      ],
+      [
+        "Gabriel Medina",
+        "3rd",
+        "61,335",
+        "Yago Dora 3rd or worse"
+      ],
+      [
+        "Gabriel Medina",
+        "5th",
+        "59,325",
+        "Yago Dora 5th or worse; Italo Ferreira 2nd or worse; Griffin Colapinto 2nd or worse"
+      ],
+      [
+        "Gabriel Medina",
+        "9th",
+        "57,190",
+        "Yago Dora 9th or worse; Italo Ferreira 3rd or worse; Griffin Colapinto 2nd or worse; Miguel Pupo 2nd or worse; Leonardo Fioravanti 2nd or worse"
+      ],
+      [
+        "Italo Ferreira",
+        "1st",
+        "61,015",
+        "Yago Dora 3rd or worse; Gabriel Medina 5th or worse"
+      ],
+      [
+        "Italo Ferreira",
+        "2nd",
+        "57,715",
+        "Yago Dora 9th or worse; Gabriel Medina 9th or worse; Griffin Colapinto 3rd or worse; Miguel Pupo 3rd or worse"
+      ],
+      [
+        "Griffin Colapinto",
+        "1st",
+        "60,195",
+        "Yago Dora 5th or worse; Gabriel Medina 5th or worse"
+      ],
+      [
+        "Miguel Pupo",
+        "1st",
+        "57,770",
+        "Yago Dora 9th or worse; Gabriel Medina 9th or worse"
+      ],
+      [
+        "Leonardo Fioravanti",
+        "1st",
+        "57,515",
+        "Yago Dora 9th or worse; Gabriel Medina 9th or worse; Italo Ferreira 3rd or worse"
+      ]
+    ],
+    "women": [
+      [
+        "Molly Picklum",
+        "1st",
+        "63,950",
+        "Champion regardless of other results"
+      ],
+      [
+        "Molly Picklum",
+        "2nd",
+        "60,650",
+        "Carissa Moore 3rd or worse; Caitlin Simmers 3rd or worse"
+      ],
+      [
+        "Molly Picklum",
+        "3rd",
+        "58,075",
+        "Carissa Moore 9th or worse; Caitlin Simmers 3rd or worse; Gabriela Bryan 2nd or worse"
+      ],
+      [
+        "Molly Picklum",
+        "5th",
+        "56,065",
+        "Carissa Moore 9th or worse; Caitlin Simmers 5th or worse; Gabriela Bryan 3rd or worse; Erin Brooks 2nd or worse; Sawyer Lindblad 2nd or worse; Luana Silva 2nd or worse"
+      ],
+      [
+        "Carissa Moore",
+        "1st",
+        "66,150",
+        "Champion regardless of other results"
+      ],
+      [
+        "Carissa Moore",
+        "2nd",
+        "62,850",
+        "Molly Picklum 3rd or worse"
+      ],
+      [
+        "Carissa Moore",
+        "3rd",
+        "60,275",
+        "Molly Picklum 3rd or worse; Caitlin Simmers 2nd or worse"
+      ],
+      [
+        "Carissa Moore",
+        "5th",
+        "58,265",
+        "Molly Picklum 3rd or worse; Caitlin Simmers 3rd or worse; Gabriela Bryan 2nd or worse"
+      ],
+      [
+        "Carissa Moore",
+        "9th",
+        "54,150",
+        "Molly Picklum 9th or worse; Caitlin Simmers 9th or worse; Gabriela Bryan 3rd or worse; Erin Brooks 3rd or worse; Sawyer Lindblad 2nd or worse; Luana Silva 2nd or worse"
+      ],
+      [
+        "Caitlin Simmers",
+        "1st",
+        "62,610",
+        "Carissa Moore 3rd or worse"
+      ],
+      [
+        "Caitlin Simmers",
+        "2nd",
+        "59,310",
+        "Molly Picklum 3rd or worse; Carissa Moore 5th or worse; Gabriela Bryan 3rd or worse"
+      ],
+      [
+        "Caitlin Simmers",
+        "3rd",
+        "56,735",
+        "Molly Picklum 5th or worse; Carissa Moore 9th or worse; Gabriela Bryan 2nd or worse; Erin Brooks 2nd or worse; Sawyer Lindblad 2nd or worse"
+      ],
+      [
+        "Caitlin Simmers",
+        "5th",
+        "54,725",
+        "Molly Picklum 9th or worse; Carissa Moore 9th or worse; Gabriela Bryan 3rd or worse; Erin Brooks 2nd or worse; Sawyer Lindblad 2nd or worse; Luana Silva 2nd or worse"
+      ],
+      [
+        "Gabriela Bryan",
+        "1st",
+        "59,865",
+        "Molly Picklum 3rd or worse; Carissa Moore 5th or worse"
+      ],
+      [
+        "Gabriela Bryan",
+        "2nd",
+        "56,565",
+        "Molly Picklum 5th or worse; Carissa Moore 9th or worse; Caitlin Simmers 5th or worse; Erin Brooks 3rd or worse; Sawyer Lindblad 3rd or worse"
+      ],
+      [
+        "Erin Brooks",
+        "1st",
+        "57,745",
+        "Molly Picklum 5th or worse; Carissa Moore 9th or worse; Caitlin Simmers 3rd or worse"
+      ],
+      [
+        "Erin Brooks",
+        "2nd",
+        "54,445",
+        "Molly Picklum 9th or worse; Carissa Moore 9th or worse; Caitlin Simmers 9th or worse; Gabriela Bryan 3rd or worse; Sawyer Lindblad 3rd or worse; Luana Silva 3rd or worse"
+      ],
+      [
+        "Sawyer Lindblad",
+        "1st",
+        "57,055",
+        "Molly Picklum 5th or worse; Carissa Moore 9th or worse; Caitlin Simmers 3rd or worse"
+      ],
+      [
+        "Luana Silva",
+        "1st",
+        "56,325",
+        "Molly Picklum 5th or worse; Carissa Moore 9th or worse; Caitlin Simmers 5th or worse; Gabriela Bryan 3rd or worse"
+      ]
+    ]
+  }
+}

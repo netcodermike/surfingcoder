@@ -15,11 +15,11 @@ python -m http.server 8000 --bind 127.0.0.1
 
 Preview at `http://127.0.0.1:8000`. Before publishing, run `python scripts/check_site.py --strict`.
 
-See [the publishing guide](docs/publishing.md) for GitHub access, GitHub Pages, and custom-domain setup. Current article content remains a draft.
+See [the publishing guide](docs/publishing.md) for GitHub access, GitHub Pages, and custom-domain setup. The completed article is a review draft pending publication.
 
 ## Featured Articles
 
-### The WSL Rankings Are Misleading: What the 2026 World Title Race Really Looks Like Before Pipeline
+### Six Men, Seven Women: How Dropped Scores Reshape the 2026 Pipeline Title Race
 
 A deep dive into the WSL's best-nine scoring system, the weighted Pipeline finale, and why the published standings may not tell the whole story.
 
