@@ -16,7 +16,3 @@ A deep dive into the WSL's best-nine scoring system, the weighted Pipeline final
 - WSL Requalification Analysis
 - Surf Analytics Tools
 - Software & AI Projects
-
----
-
-Built by Mike.
