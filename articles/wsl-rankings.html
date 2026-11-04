@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A sample SurfingCoder analysis of why WSL standings need context: counting results, event opportunity, and the difference between rank and performance.">
+  <meta name="theme-color" content="#0b1116">
+  <meta property="og:title" content="The WSL Rankings Are Misleading — SurfingCoder">
+  <meta property="og:description" content="A leaderboard tells one story. A closer look at the numbers can tell a very different one.">
+  <meta property="og:type" content="article">
+  <title>The WSL Rankings Are Misleading — SurfingCoder</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="SurfingCoder home"><span class="brand-mark" aria-hidden="true">≈</span> Surfing<span>Coder</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu <span aria-hidden="true">☰</span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="index.html" aria-current="page">Articles</a><a href="../contact.html">Contact <span aria-hidden="true">↗</span></a></nav>
+    </div>
+  </header>
+  <main id="main" class="article-container">
+    <article>
+      <header class="article-header">
+        <a class="back-link" href="index.html">← Back to articles</a>
+        <div class="article-meta"><span>Data analysis / Surfing</span><span>4 min read</span><span>By SurfingCoder</span></div>
+        <h1>The WSL Rankings Are Misleading<span class="accent">.</span></h1>
+        <p class="lead">A leaderboard tells one story. A closer look at the numbers can tell a very different one.</p>
+      </header>
+      <div class="card-art rankings-art article-banner" aria-hidden="true"><span class="art-index">FIELD NOTES / 001</span><div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="art-note">Beyond the leaderboard · Decorative illustration</span></div>
+      <div class="prose article-prose">
+        <aside class="note">Sample article: the numbers and competitors below are fictional. This is an analytical framework, not a report on current WSL standings. Always check the applicable season’s official rules before applying it.</aside>
+        <p>A ranking is an answer to a specific question: who has accumulated the most counting points under a particular set of rules? It is not automatically an answer to “who is surfing best?” or “who is most likely to finish the season on top?”</p>
+        <p>That distinction matters. A table compresses a whole season into one number. It leaves out opportunity, conditions, discarded results, and the events still to come. The ranking may be correct while the interpretation is incomplete.</p>
+        <h2>The hidden denominator</h2>
+        <p>Imagine two surfers. Surfer A has 24,000 points from six starts; Surfer B has 21,000 from four. A sits above B in the standings, but B has earned more points per start.</p>
+        <table>
+          <caption>Illustrative raw totals, before any discarded-result rules</caption>
+          <thead><tr><th scope="col">Surfer</th><th scope="col">Points</th><th scope="col">Starts</th><th scope="col">Points / start</th></tr></thead>
+          <tbody><tr><th scope="row">A</th><td>24,000</td><td>6</td><td>4,000</td></tr><tr><th scope="row">B</th><td>21,000</td><td>4</td><td>5,250</td></tr></tbody>
+        </table>
+        <p>Neither metric settles the argument. Points per start can flatter a small sample, and missing an event can have many explanations. Still, showing the denominator exposes a question the headline ranking hides: are we comparing performance, availability, or both?</p>
+        <h2>Not all new points are gains</h2>
+        <p>In a format that counts only a surfer’s best results, a new event score may replace an older score rather than add to the total. If the lowest counting result is 3,000 and the next event produces 5,000, the net gain is 2,000—not 5,000.</p>
+        <p>Two surfers can earn identical finishes and move differently in the standings because their replacement scores differ. A projection that simply adds new points to both totals misses this entirely.</p>
+        <h2>A more useful dashboard</h2>
+        <p>I’d keep the official ranking, but put a little more context alongside it:</p>
+        <ul><li><strong>Opportunity:</strong> starts completed and events remaining.</li><li><strong>Counting results:</strong> which scores currently contribute to the total.</li><li><strong>Replacement threshold:</strong> the result a surfer must beat to improve.</li><li><strong>Range of outcomes:</strong> possible finishes under the actual rules, rather than one confident prediction.</li></ul>
+        <p>Recent form and venue history can add context too, but they should be labeled carefully. A handful of heats is not enough evidence to turn a pattern into a reliable probability.</p>
+        <h2>The takeaway</h2>
+        <p>The problem is not that rankings are useless. It is that we ask them to explain more than they were designed to explain. A good analysis starts with the leaderboard, then makes its assumptions visible.</p>
+        <p>That lesson extends well beyond surfing. Whenever a dashboard gives you a neat ordered list, ask what went into the number—and what was left out.</p>
+      </div>
+    </article>
+    <div class="related-article"><div><p class="eyebrow">Keep exploring</p><a href="pipeline-title-scenarios.html">Pipeline Title Scenarios →</a></div><span aria-hidden="true">≈</span></div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-top"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">≈</span> Surfing<span>Coder</span></a><p>Built with curiosity. Inspired by the ocean.</p><nav class="social-links" aria-label="Social links — placeholder profiles"><a href="https://github.com/" aria-label="GitHub — profile coming soon">GitHub ↗</a><a href="https://www.linkedin.com/" aria-label="LinkedIn — profile coming soon">LinkedIn ↗</a></nav></div>
+    <div class="container footer-bottom"><span>© <span data-year>2026</span> SurfingCoder</span><span>Social profiles coming soon. / Made for the open web.</span></div>
+  </footer>
+</body>
+</html>
