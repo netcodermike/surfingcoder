@@ -1,0 +1,569 @@
+[
+  {
+    "name": "SvdStudio",
+    "branch": "main",
+    "description": "Interactive WPF studio for singular value decomposition, low-rank approximation, matrix geometry, and grayscale image experiments.",
+    "images": [],
+    "url": "https://github.com/netcodermike/SvdStudio",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "coinbase-ladder",
+    "branch": "main",
+    "description": "Local-first Coinbase Advanced trading workstation with percentage ladders, guarded previews, WebSocket triggers, React, TypeScript, Flask, and Windows Credential Manager.",
+    "images": [],
+    "url": "https://github.com/netcodermike/coinbase-ladder",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "WpfDigitalClockAlarm",
+    "branch": "main",
+    "description": "Windows WPF digital clock, alarms, and task planner with priorities, deadlines, and daily reminders. .NET 10.",
+    "images": [],
+    "url": "https://github.com/netcodermike/WpfDigitalClockAlarm",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "personal-time-machine",
+    "branch": "main",
+    "description": "Python folder snapshots, content-addressed storage, diffs, safe restores, and a local timeline.",
+    "images": [],
+    "url": "https://github.com/netcodermike/personal-time-machine",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "multiplayer-escape-room",
+    "branch": "main",
+    "description": "TypeScript cooperative puzzle game with live rooms, shared inventory, and a room editor.",
+    "images": [],
+    "url": "https://github.com/netcodermike/multiplayer-escape-room",
+    "language": "TypeScript",
+    "private": false
+  },
+  {
+    "name": "linux-system-dashboard",
+    "branch": "main",
+    "description": "Rust Linux terminal dashboard for CPU, memory, network, disk I/O, and thermal readings.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-system-dashboard",
+    "language": "Rust",
+    "private": false
+  },
+  {
+    "name": "procedural-planet-explorer",
+    "branch": "main",
+    "description": "C# seeded planet maps, biome exploration, weather and life descriptions, and SVG export.",
+    "images": [],
+    "url": "https://github.com/netcodermike/procedural-planet-explorer",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "linux-backup-server",
+    "branch": "main",
+    "description": "Go client-encrypted backup vault with deduplication, verified restore, browser downloads, and Linux systemd deployment.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-backup-server",
+    "language": "Go",
+    "private": false
+  },
+  {
+    "name": "interactive-audio-synthesizer",
+    "branch": "main",
+    "description": "C++ oscillator, filter and echo workbench with WAV export and a visual Web Audio playground.",
+    "images": [],
+    "url": "https://github.com/netcodermike/interactive-audio-synthesizer",
+    "language": "C++",
+    "private": false
+  },
+  {
+    "name": "offline-field-journal",
+    "branch": "main",
+    "description": "A native Android field journal that saves observations, copies photo attachments into app storage, adds cached location markers, and exports JSON without internet access.",
+    "images": [],
+    "url": "https://github.com/netcodermike/offline-field-journal",
+    "language": "Kotlin",
+    "private": false
+  },
+  {
+    "name": "linux-sandbox-runner",
+    "branch": "main",
+    "description": "Explore Linux isolation by running a static executable in fresh namespaces with an empty tmpfs root, no external network, and resource limits.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-sandbox-runner",
+    "language": "C",
+    "private": false
+  },
+  {
+    "name": "spaced-repetition-adventure",
+    "branch": "main",
+    "description": "Study flashcards in a desktop adventure where successful recall earns XP, unlocks equipment, and advances through locations while a scheduler controls when cards return.",
+    "images": [],
+    "url": "https://github.com/netcodermike/spaced-repetition-adventure",
+    "language": "Java",
+    "private": false
+  },
+  {
+    "name": "searchable-screenshot-library",
+    "branch": "main",
+    "description": "Import screenshots into a native Mac library, recognize text locally, group by topic, search recognized content, and inspect or delete copies.",
+    "images": [],
+    "url": "https://github.com/netcodermike/searchable-screenshot-library",
+    "language": "Swift",
+    "private": false
+  },
+  {
+    "name": "pantry-meal-planner",
+    "branch": "main",
+    "description": "Match recipes against your pantry, build a meal selection, and export the ingredients you still need.",
+    "images": [],
+    "url": "https://github.com/netcodermike/pantry-meal-planner",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "pathfinding-playground",
+    "branch": "main",
+    "description": "Paint a weighted map and compare breadth-first search, Dijkstra, and A* through animated exploration.",
+    "images": [],
+    "url": "https://github.com/netcodermike/pathfinding-playground",
+    "language": "HTML",
+    "private": false
+  },
+  {
+    "name": "linux-process-explorer",
+    "branch": "main",
+    "description": "Inspect parent-child process trees, sort by resident memory, filter by name/PID, and watch a live view.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-process-explorer",
+    "language": "Rust",
+    "private": false
+  },
+  {
+    "name": "desktop-focus-timer",
+    "branch": "main",
+    "description": "Run focus and break sessions with pause/resume, adjustable durations, completion counts, and a Windows sound cue.",
+    "images": [],
+    "url": "https://github.com/netcodermike/desktop-focus-timer",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "linux-systemd-unit-checker",
+    "branch": "main",
+    "description": "Find common mistakes in systemd service files without starting, enabling, or modifying a service.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-systemd-unit-checker",
+    "language": "Go",
+    "private": false
+  },
+  {
+    "name": "maze-forge",
+    "branch": "main",
+    "description": "Generate a seeded perfect maze in C++ and export a self-contained browser game with movement controls and a route reveal.",
+    "images": [],
+    "url": "https://github.com/netcodermike/maze-forge",
+    "language": "C++",
+    "private": false
+  },
+  {
+    "name": "fairshare-expense-splitter",
+    "branch": "main",
+    "description": "Record shared expenses in exact cents, calculate equal shares, and propose payments that settle everyone\u2019s balance.",
+    "images": [],
+    "url": "https://github.com/netcodermike/fairshare-expense-splitter",
+    "language": "Kotlin",
+    "private": false
+  },
+  {
+    "name": "linux-directory-watch",
+    "branch": "main",
+    "description": "Stream immediate directory changes as JSON Lines, including paired rename cookies and explicit overflow notices.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-directory-watch",
+    "language": "C",
+    "private": false
+  },
+  {
+    "name": "round-robin-tournament-studio",
+    "branch": "main",
+    "description": "Create round-robin fixtures, record scores, calculate standings, and export a tournament report.",
+    "images": [],
+    "url": "https://github.com/netcodermike/round-robin-tournament-studio",
+    "language": "Java",
+    "private": false
+  },
+  {
+    "name": "menubar-break-reminder",
+    "branch": "main",
+    "description": "Keep a focus/break countdown in the menu bar, pause it, snooze reminders, and display a small break panel.",
+    "images": [],
+    "url": "https://github.com/netcodermike/menubar-break-reminder",
+    "language": "Swift",
+    "private": false
+  },
+  {
+    "name": "personal-library-tracker",
+    "branch": "main",
+    "description": "Catalog books, track reading status, manage checkouts and due dates, search your shelves, and export a CSV.",
+    "images": [],
+    "url": "https://github.com/netcodermike/personal-library-tracker",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "local-whiteboard-studio",
+    "branch": "main",
+    "description": "Sketch with pen, lines, and rectangles across layers, undo edits, save projects locally, and export flattened PNG images.",
+    "images": [],
+    "url": "https://github.com/netcodermike/local-whiteboard-studio",
+    "language": "TypeScript",
+    "private": false
+  },
+  {
+    "name": "linux-open-port-atlas",
+    "branch": "main",
+    "description": "Map local TCP listeners and bound UDP sockets to addresses, ports, UIDs, and visible owning processes.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-open-port-atlas",
+    "language": "Rust",
+    "private": false
+  },
+  {
+    "name": "markdown-note-graph",
+    "branch": "main",
+    "description": "Open a folder of Markdown notes, inspect wiki links and backlinks, explore a neighbor graph, and edit note text.",
+    "images": [],
+    "url": "https://github.com/netcodermike/markdown-note-graph",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "linux-cgroup-explorer",
+    "branch": "main",
+    "description": "Inspect local cgroup memory, PID, and CPU budgets with bounded hierarchy traversal and structured JSON output.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-cgroup-explorer",
+    "language": "Go",
+    "private": false
+  },
+  {
+    "name": "pixel-sprite-workshop",
+    "branch": "main",
+    "description": "Paint 16\u00d716 pixel-art frames, use palettes and transparency, preview animation, and export editable projects or PNG sprite sheets.",
+    "images": [],
+    "url": "https://github.com/netcodermike/pixel-sprite-workshop",
+    "language": "C++",
+    "private": false
+  },
+  {
+    "name": "habit-garden-desktop",
+    "branch": "main",
+    "description": "Plant named habits, check in once per day, track streaks, and grow a small illustrated garden from completed days.",
+    "images": [],
+    "url": "https://github.com/netcodermike/habit-garden-desktop",
+    "language": "Kotlin",
+    "private": false
+  },
+  {
+    "name": "linux-unix-socket-relay",
+    "branch": "main",
+    "description": "Forward one bidirectional Unix socket stream at a time, preserve half-closes, and report byte totals.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-unix-socket-relay",
+    "language": "C",
+    "private": false
+  },
+  {
+    "name": "midi-pattern-studio",
+    "branch": "main",
+    "description": "Compose one-bar drum patterns on an 8\u00d716 grid, loop them through MIDI, and export standard MIDI files or editable patterns.",
+    "images": [],
+    "url": "https://github.com/netcodermike/midi-pattern-studio",
+    "language": "Java",
+    "private": false
+  },
+  {
+    "name": "photo-metadata-inspector",
+    "branch": "main",
+    "description": "Browse image metadata locally, filter property paths, switch between selected files, and export a full text report.",
+    "images": [],
+    "url": "https://github.com/netcodermike/photo-metadata-inspector",
+    "language": "Swift",
+    "private": false
+  },
+  {
+    "name": "subtitle-sync-studio",
+    "branch": "main",
+    "description": "Shift SRT subtitle timing with a live text preview and explicit export.",
+    "images": [],
+    "url": "https://github.com/netcodermike/subtitle-sync-studio",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "offline-stockroom-tracker",
+    "branch": "main",
+    "description": "Track local inventory counts, flag reorder levels, and print numeric Code 39 labels.",
+    "images": [],
+    "url": "https://github.com/netcodermike/offline-stockroom-tracker",
+    "language": "HTML",
+    "private": false
+  },
+  {
+    "name": "linux-disk-space-sentinel",
+    "branch": "main",
+    "description": "Sample Linux filesystem capacity and show recent usage with threshold alerts.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-disk-space-sentinel",
+    "language": "Rust",
+    "private": false
+  },
+  {
+    "name": "log-timeline-studio",
+    "branch": "main",
+    "description": "Load text or JSON-line logs into a searchable Windows timeline.",
+    "images": [],
+    "url": "https://github.com/netcodermike/log-timeline-studio",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "linux-config-drift-monitor",
+    "branch": "main",
+    "description": "Compare configuration file contents against an explicit SHA-256 baseline.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-config-drift-monitor",
+    "language": "Go",
+    "private": false
+  },
+  {
+    "name": "wave-spectrum-lab",
+    "branch": "main",
+    "description": "Inspect a 16-bit PCM WAV with a native Qt spectrum image and PNG export.",
+    "images": [],
+    "url": "https://github.com/netcodermike/wave-spectrum-lab",
+    "language": "C++",
+    "private": false
+  },
+  {
+    "name": "packing-list-companion",
+    "branch": "main",
+    "description": "Compose reusable categorized packing checklists and track packed quantities.",
+    "images": [],
+    "url": "https://github.com/netcodermike/packing-list-companion",
+    "language": "Kotlin",
+    "private": false
+  },
+  {
+    "name": "linux-epoll-chat",
+    "branch": "main",
+    "description": "Run a small loopback chat broadcast server using Linux epoll and a terminal client.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-epoll-chat",
+    "language": "C",
+    "private": false
+  },
+  {
+    "name": "sudoku-studio-desktop",
+    "branch": "main",
+    "description": "Generate uniquely solvable Sudoku boards, validate entries, and reveal solutions.",
+    "images": [],
+    "url": "https://github.com/netcodermike/sudoku-studio-desktop",
+    "language": "Java",
+    "private": false
+  },
+  {
+    "name": "batch-image-resizer",
+    "branch": "main",
+    "description": "Write resized PNG copies of selected Mac images into an explicit output folder.",
+    "images": [],
+    "url": "https://github.com/netcodermike/batch-image-resizer",
+    "language": "Swift",
+    "private": false
+  },
+  {
+    "name": "document-similarity-explorer",
+    "branch": "main",
+    "description": "Compare local text documents with TF-IDF cosine similarity and threshold-based connected clusters.",
+    "images": [],
+    "url": "https://github.com/netcodermike/document-similarity-explorer",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "rhythm-practice-lab",
+    "branch": "main",
+    "description": "Practice a Web Audio metronome and inspect tap timing against a beat grid.",
+    "images": [],
+    "url": "https://github.com/netcodermike/rhythm-practice-lab",
+    "language": "HTML",
+    "private": false
+  },
+  {
+    "name": "linux-package-footprint",
+    "branch": "main",
+    "description": "Rank Debian-family installed packages by declared installed size.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-package-footprint",
+    "language": "Rust",
+    "private": false
+  },
+  {
+    "name": "local-clipboard-history",
+    "branch": "main",
+    "description": "Keep an explicitly enabled, memory-only Windows clipboard text history.",
+    "images": [],
+    "url": "https://github.com/netcodermike/local-clipboard-history",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "linux-journal-explorer",
+    "branch": "main",
+    "description": "Query a bounded systemd journal selection and emit structured, filtered JSON records.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-journal-explorer",
+    "language": "Go",
+    "private": false
+  },
+  {
+    "name": "tiny-raytracer-studio",
+    "branch": "main",
+    "description": "Render a small sphere scene with adjustable light position and PNG export.",
+    "images": [],
+    "url": "https://github.com/netcodermike/tiny-raytracer-studio",
+    "language": "C++",
+    "private": false
+  },
+  {
+    "name": "weekly-timetable-planner",
+    "branch": "main",
+    "description": "Plan a weekly timetable with time parsing, overlap rejection, and portable saved schedules.",
+    "images": [],
+    "url": "https://github.com/netcodermike/weekly-timetable-planner",
+    "language": "Kotlin",
+    "private": false
+  },
+  {
+    "name": "linux-mmap-search",
+    "branch": "main",
+    "description": "Search a regular file with a read-only memory mapping and report exact byte offsets.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-mmap-search",
+    "language": "C",
+    "private": false
+  },
+  {
+    "name": "file-tag-organizer",
+    "branch": "main",
+    "description": "Maintain a local file-path/tag index with AND filtering and portable saves.",
+    "images": [],
+    "url": "https://github.com/netcodermike/file-tag-organizer",
+    "language": "Java",
+    "private": false
+  },
+  {
+    "name": "image-palette-studio",
+    "branch": "main",
+    "description": "Extract a ranked, quantized color palette from a Mac image thumbnail.",
+    "images": [],
+    "url": "https://github.com/netcodermike/image-palette-studio",
+    "language": "Swift",
+    "private": false
+  },
+  {
+    "name": "family-tree-builder",
+    "branch": "main",
+    "description": "Create a small local genealogy graph with parent links, birth years, cycle checks, and JSON portability.",
+    "images": [],
+    "url": "https://github.com/netcodermike/family-tree-builder",
+    "language": "Python",
+    "private": false
+  },
+  {
+    "name": "tabletop-map-workshop",
+    "branch": "main",
+    "description": "Paint a local tabletop terrain map, flood-fill regions, place labels, undo, and export editable or flattened maps.",
+    "images": [],
+    "url": "https://github.com/netcodermike/tabletop-map-workshop",
+    "language": "HTML",
+    "private": false
+  },
+  {
+    "name": "linux-mount-explorer",
+    "branch": "main",
+    "description": "Inspect the current Linux mount namespace with filesystem types, sources, parent IDs, and options.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-mount-explorer",
+    "language": "Rust",
+    "private": false
+  },
+  {
+    "name": "csv-cleanup-studio",
+    "branch": "main",
+    "description": "Profile and clean local CSV files with quoted-field parsing, trimming, blank-row removal, deduplication, and explicit export.",
+    "images": [],
+    "url": "https://github.com/netcodermike/csv-cleanup-studio",
+    "language": "C#",
+    "private": false
+  },
+  {
+    "name": "linux-job-scheduler",
+    "branch": "main",
+    "description": "Execute trusted local command argument arrays after bounded foreground delays.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-job-scheduler",
+    "language": "Go",
+    "private": false
+  },
+  {
+    "name": "fractal-render-lab",
+    "branch": "main",
+    "description": "Explore Mandelbrot views through center/zoom controls and export rendered PNGs.",
+    "images": [],
+    "url": "https://github.com/netcodermike/fractal-render-lab",
+    "language": "C++",
+    "private": false
+  },
+  {
+    "name": "interval-workout-composer",
+    "branch": "main",
+    "description": "Compose named timed intervals and run them in a local desktop sequence timer.",
+    "images": [],
+    "url": "https://github.com/netcodermike/interval-workout-composer",
+    "language": "Kotlin",
+    "private": false
+  },
+  {
+    "name": "linux-resource-job-queue",
+    "branch": "main",
+    "description": "Run a bounded queue of trusted local commands concurrently with per-process resource limits and wall-time cleanup.",
+    "images": [],
+    "url": "https://github.com/netcodermike/linux-resource-job-queue",
+    "language": "C",
+    "private": false
+  },
+  {
+    "name": "chess-tactics-trainer",
+    "branch": "main",
+    "description": "Practice a small curated set of coordinate-move checking exercises on a desktop chessboard.",
+    "images": [],
+    "url": "https://github.com/netcodermike/chess-tactics-trainer",
+    "language": "Java",
+    "private": false
+  },
+  {
+    "name": "menubar-snippet-library",
+    "branch": "main",
+    "description": "Store named local text snippets in a Mac menu and copy them only on explicit selection.",
+    "images": [],
+    "url": "https://github.com/netcodermike/menubar-snippet-library",
+    "language": "Swift",
+    "private": false
+  }
+]

@@ -1,0 +1,116 @@
+name: Capture project interfaces
+on:
+  push:
+    branches: [site/project-gallery]
+    paths: ['scripts/capture*', 'scripts/capture-linux/**', 'scripts/capture-mac/**', 'scripts/projects-inventory.json', '.github/workflows/capture-projects.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [browser, python, java, kotlin, qt, cli]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Install capture dependencies
+        run: |
+          sudo timeout 180 apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
+          sudo timeout 300 apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends xvfb openbox scrot wmctrl python3-tk qt6-base-dev x11-utils fonts-dejavu
+          python -m pip install pillow playwright flask
+          python -m playwright install --with-deps chromium
+      - name: Capture actual interfaces
+        run: xvfb-run -a -s '-screen 0 1440x1000x24' python scripts/capture_linux.py --inventory scripts/projects-inventory.json --output screenshots --group ${{ matrix.group }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-linux-${{ matrix.group }}
+          path: screenshots/
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - run: python -m pip install pillow playwright
+      - run: python -m playwright install chromium
+      - run: python scripts/capture_windows.py --inventory scripts/projects-inventory.json --output screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-windows
+          path: screenshots/
+  mac:
+    runs-on: macos-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install pillow
+      - run: python scripts/capture_mac.py --inventory scripts/projects-inventory.json --output screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-mac
+          path: screenshots/
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - run: git clone --depth 1 https://github.com/netcodermike/offline-field-journal.git android-app
+      - run: gradle -p android-app :app:assembleDebug --no-daemon
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          script: |
+            adb install android-app/app/build/outputs/apk/debug/app-debug.apk
+            python3 scripts/capture_android.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-android
+          path: screenshots/
