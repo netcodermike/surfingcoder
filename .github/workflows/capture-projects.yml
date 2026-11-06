@@ -8,12 +8,12 @@ permissions:
   contents: read
 jobs:
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJSON(contains(github.event.head_commit.message, '[featured-refresh]') && '["browser","kotlin"]' || contains(github.event.head_commit.message, '[python-mac-refresh]') && '["python"]' || contains(github.event.head_commit.message, '[browser-refresh]') && '["browser"]' || '["browser","python","java","kotlin","qt","cli"]') }}
+        group: ${{ fromJSON(contains(github.event.head_commit.message, '[packing-refresh]') && '["kotlin"]' || contains(github.event.head_commit.message, '[featured-refresh]') && '["browser","kotlin"]' || contains(github.event.head_commit.message, '[python-mac-refresh]') && '["python"]' || contains(github.event.head_commit.message, '[browser-refresh]') && '["browser"]' || '["browser","python","java","kotlin","qt","cli"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -36,14 +36,14 @@ jobs:
           python -m pip install pillow playwright flask
           timeout 180 python -m playwright install chromium
       - name: Capture actual interfaces
-        run: xvfb-run -a -s '-screen 0 1440x1000x24' python scripts/capture_linux.py --inventory scripts/projects-inventory.json --output screenshots --group ${{ matrix.group }}
+        run: xvfb-run -a -s '-screen 0 1440x1000x24' python scripts/capture_linux.py --inventory scripts/projects-inventory.json --output screenshots --group ${{ matrix.group }} --only ${{ contains(github.event.head_commit.message, '[packing-refresh]') && 'packing-list-companion' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: screenshots-linux-${{ matrix.group }}
           path: screenshots/
   windows:
-    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[python-mac-refresh]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[packing-refresh]') && !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[python-mac-refresh]') }}
     runs-on: windows-latest
     timeout-minutes: 25
     steps:
@@ -65,7 +65,7 @@ jobs:
           name: screenshots-windows
           path: screenshots/
   mac:
-    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[featured-refresh]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[packing-refresh]') && !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[featured-refresh]') }}
     runs-on: macos-latest
     timeout-minutes: 25
     steps:
@@ -81,7 +81,7 @@ jobs:
           name: screenshots-mac
           path: screenshots/
   android:
-    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[python-mac-refresh]') && !contains(github.event.head_commit.message, '[featured-refresh]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[packing-refresh]') && !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[python-mac-refresh]') && !contains(github.event.head_commit.message, '[featured-refresh]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:

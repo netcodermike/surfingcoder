@@ -121,7 +121,7 @@ BROWSER_NAMES={'coinbase-ladder','personal-time-machine','multiplayer-escape-roo
 PY_NAMES={'pantry-meal-planner':'planner.py','personal-library-tracker':'library.py','subtitle-sync-studio':'app.py','document-similarity-explorer':'app.py','family-tree-builder':'app.py'}
 QT_NAMES={'pixel-sprite-workshop':'Pixel Sprite Workshop','wave-spectrum-lab':'Wave Spectrum Lab','tiny-raytracer-studio':'Tiny Raytracer Studio','fractal-render-lab':'Fractal Render Lab'}
 JAVA_TITLES={'spaced-repetition-adventure':'Recall Quest','round-robin-tournament-studio':'Round-Robin Tournament Studio','midi-pattern-studio':'MIDI Pattern Studio','sudoku-studio-desktop':'Sudoku Studio','file-tag-organizer':'File Tag Organizer','chess-tactics-trainer':'Chess Tactics Trainer'}
-KOTLIN_TITLES={'fairshare-expense-splitter':'FairShare','habit-garden-desktop':'Habit Garden','packing-list-companion':'Packing List Companion','weekly-timetable-planner':'Weekly Timetable Planner','interval-workout-composer':'Interval Workout Composer'}
+KOTLIN_TITLES={'fairshare-expense-splitter':'FairShare','habit-garden-desktop':'Habit Garden','packing-list-companion':'Packing List','weekly-timetable-planner':'Weekly Timetable Planner','interval-workout-composer':'Interval Workout Composer'}
 
 def group(row):
     name=row.get('name')or row.get('repository')or row.get('slug');language=row.get('language')
