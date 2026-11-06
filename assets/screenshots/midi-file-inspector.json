@@ -1,0 +1,14 @@
+{
+  "name": "midi-file-inspector",
+  "capture_date": "2026-11-06T12:17:29.209117+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "d49e5b1101e2c90f9e7808eb95c77ab39d821976",
+  "validation_commands": [
+    "cargo test",
+    "python3 examples/make_fixture.py"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "cargo run -- examples/demo.mid"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "wav-loudness-auditor",
+  "capture_date": "2026-11-06T12:17:30.518267+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "ed7d6e2d61778a2e4dcb9fa4c12c8173821052ff",
+  "validation_commands": [
+    "python app.py --self-test",
+    "python examples/make_fixture.py"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "python app.py examples/demo.wav"
+}

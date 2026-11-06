@@ -1,0 +1,14 @@
+{
+  "name": "sample-pack-cataloger",
+  "capture_date": "2026-11-06T12:17:42.254143+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "7c6c7c60e558e68baec8fd1092075f165f1d6610",
+  "validation_commands": [
+    "python app.py --self-test",
+    "python examples/make_fixture.py"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "python app.py examples --db demo.sqlite"
+}

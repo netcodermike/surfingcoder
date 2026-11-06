@@ -1,0 +1,13 @@
+{
+  "name": "lyrics-rhyme-notebook",
+  "capture_date": "2026-11-06T12:18:01.394164+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "d92971e56c342d78833cd378ee723144b46dd93e",
+  "validation_commands": [
+    "ruby app.rb --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "ruby app.rb demo"
+}

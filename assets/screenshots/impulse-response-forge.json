@@ -1,0 +1,14 @@
+{
+  "name": "impulse-response-forge",
+  "capture_date": "2026-11-06T12:17:45.336378+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "44e85da09c3eb89d15faca9e8f942f4c939428e1",
+  "validation_commands": [
+    "gcc -std=c11 -O2 -Wall -Wextra main.c -lm -o impulse-forge",
+    "./impulse-forge --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "./impulse-forge demo-ir.wav 125 0.65 2"
+}

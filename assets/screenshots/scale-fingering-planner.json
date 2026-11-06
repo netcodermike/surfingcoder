@@ -1,0 +1,13 @@
+{
+  "name": "scale-fingering-planner",
+  "capture_date": "2026-11-06T12:17:31.062002+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "a88d28650649db1c5f942aeb760bfb5fa003b260",
+  "validation_commands": [
+    "go test ./..."
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
+  "command": "go run . --root 9 --scale blues --frets 5"
+}

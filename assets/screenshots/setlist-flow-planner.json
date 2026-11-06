@@ -1,0 +1,13 @@
+{
+  "name": "setlist-flow-planner",
+  "capture_date": "2026-11-06T12:17:45.955804+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "425eb4cb5a0a5cbaea5c07696635cf1c15c8fa48",
+  "validation_commands": [
+    "dotnet run -- --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "dotnet run -- examples/songs.json"
+}

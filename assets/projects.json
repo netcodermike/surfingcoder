@@ -1789,5 +1789,292 @@
     },
     "ci": "https://github.com/netcodermike/spectrogram-waterfall/actions",
     "applicationUrl": "/apps/spectrogram-waterfall/"
+  },
+  {
+    "name": "wav-loudness-auditor",
+    "title": "WAV Loudness Auditor",
+    "description": "Measure PCM WAV peaks, RMS, clipping, DC offset, and crest factor with per-channel JSON reports.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/wav-loudness-auditor",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/wav-loudness-auditor.webp",
+    "capture": {
+      "name": "wav-loudness-auditor",
+      "capture_date": "2026-11-06T12:17:30.518267+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "ed7d6e2d61778a2e4dcb9fa4c12c8173821052ff",
+      "validation_commands": [
+        "python app.py --self-test",
+        "python examples/make_fixture.py"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples/demo.wav"
+    },
+    "ci": "https://github.com/netcodermike/wav-loudness-auditor/actions"
+  },
+  {
+    "name": "midi-file-inspector",
+    "title": "MIDI File Inspector",
+    "description": "Parse Standard MIDI Files, running status, tempo events, track names, and note counts.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/midi-file-inspector",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/midi-file-inspector.webp",
+    "capture": {
+      "name": "midi-file-inspector",
+      "capture_date": "2026-11-06T12:17:29.209117+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "d49e5b1101e2c90f9e7808eb95c77ab39d821976",
+      "validation_commands": [
+        "cargo test",
+        "python3 examples/make_fixture.py"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "cargo run -- examples/demo.mid"
+    },
+    "ci": "https://github.com/netcodermike/midi-file-inspector/actions"
+  },
+  {
+    "name": "scale-fingering-planner",
+    "title": "Scale Fingering Planner",
+    "description": "Map scale notes to any fretted string tuning and export positions as JSON or readable tablature.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/scale-fingering-planner",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/scale-fingering-planner.webp",
+    "capture": {
+      "name": "scale-fingering-planner",
+      "capture_date": "2026-11-06T12:17:31.062002+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "a88d28650649db1c5f942aeb760bfb5fa003b260",
+      "validation_commands": [
+        "go test ./..."
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
+      "command": "go run . --root 9 --scale blues --frets 5"
+    },
+    "ci": "https://github.com/netcodermike/scale-fingering-planner/actions"
+  },
+  {
+    "name": "sample-pack-cataloger",
+    "title": "Sample Pack Cataloger",
+    "description": "Index WAV libraries in SQLite, detect duplicate audio files, and search by duration and sample rate.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/sample-pack-cataloger",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/sample-pack-cataloger.webp",
+    "capture": {
+      "name": "sample-pack-cataloger",
+      "capture_date": "2026-11-06T12:17:42.254143+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "7c6c7c60e558e68baec8fd1092075f165f1d6610",
+      "validation_commands": [
+        "python app.py --self-test",
+        "python examples/make_fixture.py"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples --db demo.sqlite"
+    },
+    "ci": "https://github.com/netcodermike/sample-pack-cataloger/actions"
+  },
+  {
+    "name": "wav-channel-toolkit",
+    "title": "WAV Channel Toolkit",
+    "description": "Split PCM16 stereo recordings into mono channels or reverse frames without corrupting channel order.",
+    "languages": [
+      "C++"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/wav-channel-toolkit",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/wav-channel-toolkit.webp",
+    "capture": {
+      "name": "wav-channel-toolkit",
+      "capture_date": "2026-11-06T12:17:42.746746+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "75fe95a70031deb6779d1c181d998bf6e6a56817",
+      "validation_commands": [
+        "g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o wav-toolkit",
+        "./wav-toolkit --self-test",
+        "python3 examples/make_fixture.py"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "./wav-toolkit reverse examples/demo.wav reversed.wav"
+    },
+    "ci": "https://github.com/netcodermike/wav-channel-toolkit/actions"
+  },
+  {
+    "name": "impulse-response-forge",
+    "title": "Impulse Response Forge",
+    "description": "Generate deterministic stereo delay impulse-response WAV files for convolution experiments.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/impulse-response-forge",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/impulse-response-forge.webp",
+    "capture": {
+      "name": "impulse-response-forge",
+      "capture_date": "2026-11-06T12:17:45.336378+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "44e85da09c3eb89d15faca9e8f942f4c939428e1",
+      "validation_commands": [
+        "gcc -std=c11 -O2 -Wall -Wextra main.c -lm -o impulse-forge",
+        "./impulse-forge --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "./impulse-forge demo-ir.wav 125 0.65 2"
+    },
+    "ci": "https://github.com/netcodermike/impulse-response-forge/actions"
+  },
+  {
+    "name": "setlist-flow-planner",
+    "title": "Setlist Flow Planner",
+    "description": "Order a setlist using tempo and tonal-distance costs, with fixed openers and a transition report.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/setlist-flow-planner",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/setlist-flow-planner.webp",
+    "capture": {
+      "name": "setlist-flow-planner",
+      "capture_date": "2026-11-06T12:17:45.955804+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "425eb4cb5a0a5cbaea5c07696635cf1c15c8fa48",
+      "validation_commands": [
+        "dotnet run -- --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "dotnet run -- examples/songs.json"
+    },
+    "ci": "https://github.com/netcodermike/setlist-flow-planner/actions"
+  },
+  {
+    "name": "lyrics-rhyme-notebook",
+    "title": "Lyrics Rhyme Notebook",
+    "description": "Keep original lyric fragments in a local JSON notebook and search approximate suffix rhymes.",
+    "languages": [
+      "Ruby"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/lyrics-rhyme-notebook",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/lyrics-rhyme-notebook.webp",
+    "capture": {
+      "name": "lyrics-rhyme-notebook",
+      "capture_date": "2026-11-06T12:18:01.394164+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "d92971e56c342d78833cd378ee723144b46dd93e",
+      "validation_commands": [
+        "ruby app.rb --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "ruby app.rb demo"
+    },
+    "ci": "https://github.com/netcodermike/lyrics-rhyme-notebook/actions"
+  },
+  {
+    "name": "podcast-chapter-builder",
+    "title": "Podcast Chapter Builder",
+    "description": "Convert timestamped chapter notes into validated Podcasting 2.0 chapter JSON.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/podcast-chapter-builder",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/podcast-chapter-builder.webp",
+    "capture": {
+      "name": "podcast-chapter-builder",
+      "capture_date": "2026-11-06T12:17:37.169200+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "721fec7429e01e69976fd402f8432df8f9fc0c57",
+      "validation_commands": [
+        "javac Main.java",
+        "java Main --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "java Main examples/chapters.tsv"
+    },
+    "ci": "https://github.com/netcodermike/podcast-chapter-builder/actions"
+  },
+  {
+    "name": "practice-session-composer",
+    "title": "Practice Session Composer",
+    "description": "Allocate focused music-practice blocks using weighted priorities and export a timed Markdown plan.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/practice-session-composer",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 202,
+    "image": "assets/screenshots/practice-session-composer.webp",
+    "capture": {
+      "name": "practice-session-composer",
+      "capture_date": "2026-11-06T12:17:39.074739+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "5ae73dcfab7a474c586e610fc9bc3ddf275579d0",
+      "validation_commands": [
+        "gradle run --args=\"--self-test\" --quiet"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "gradle run --args=\"45 examples/priorities.tsv\" --quiet"
+    },
+    "ci": "https://github.com/netcodermike/practice-session-composer/actions"
   }
 ]

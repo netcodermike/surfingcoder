@@ -1,0 +1,15 @@
+{
+  "name": "wav-channel-toolkit",
+  "capture_date": "2026-11-06T12:17:42.746746+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "75fe95a70031deb6779d1c181d998bf6e6a56817",
+  "validation_commands": [
+    "g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o wav-toolkit",
+    "./wav-toolkit --self-test",
+    "python3 examples/make_fixture.py"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "./wav-toolkit reverse examples/demo.wav reversed.wav"
+}

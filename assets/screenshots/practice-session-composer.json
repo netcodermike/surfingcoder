@@ -1,0 +1,13 @@
+{
+  "name": "practice-session-composer",
+  "capture_date": "2026-11-06T12:17:39.074739+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "5ae73dcfab7a474c586e610fc9bc3ddf275579d0",
+  "validation_commands": [
+    "gradle run --args=\"--self-test\" --quiet"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "gradle run --args=\"45 examples/priorities.tsv\" --quiet"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "podcast-chapter-builder",
+  "capture_date": "2026-11-06T12:17:37.169200+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "721fec7429e01e69976fd402f8432df8f9fc0c57",
+  "validation_commands": [
+    "javac Main.java",
+    "java Main --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "java Main examples/chapters.tsv"
+}
