@@ -455,5 +455,244 @@
     "setup": "      - uses: actions/setup-java@v5\n        with:\n          distribution: temurin\n          java-version: '17'\n      - uses: gradle/actions/setup-gradle@v4\n        with:\n          gradle-version: '8.10.2'\n",
     "usage": "Edit `examples/priorities.tsv` with name TAB positive-weight rows. Run `gradle run --args=\"45 examples/priorities.tsv\" --quiet`. Integer minutes are allocated with the largest-remainder method.",
     "architecture": ""
+  },
+  {
+    "name": "local-rag-notebook",
+    "title": "Local RAG Notebook",
+    "language": "Python",
+    "group": "ai",
+    "summary": "Retrieve cited document chunks with BM25 and optionally answer using a local Ollama model.",
+    "batch": 3,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test"
+    ],
+    "run": "python app.py examples \"How are ocean waves measured?\"",
+    "demo": "python app.py examples \"How are ocean waves measured?\"",
+    "features": [
+      "Overlapping chunks with source citations",
+      "BM25 ranked document retrieval",
+      "Optional retrieval-augmented localhost Ollama response"
+    ],
+    "limits": "Lexical retrieval. Generation requires an installed Ollama model and is not exercised by offline tests; verify model citations.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Run `python app.py examples \"wave period\"` for cited retrieval. Optionally append `--model YOUR_INSTALLED_MODEL` after installing Ollama and a model. Selected chunks and the question go only to localhost:11434.",
+    "architecture": "BM25 implements document frequency, term saturation, and length normalization. File paths and chunk numbers accompany each excerpt. Optional generation uses Ollama /api/chat with stream=false."
+  },
+  {
+    "name": "prompt-evaluation-bench",
+    "title": "Prompt Evaluation Bench",
+    "language": "Python",
+    "group": "ai",
+    "summary": "Score model responses against reproducible contains, forbidden-text, and regular-expression checks.",
+    "batch": 3,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test"
+    ],
+    "run": "python app.py examples/cases.jsonl",
+    "demo": "python app.py examples/cases.jsonl",
+    "features": [
+      "Deterministic model-response assertions",
+      "Optional real localhost Ollama inference",
+      "Per-check outcomes and measured latency"
+    ],
+    "limits": "String and regex checks assess specified criteria, not general truthfulness. Live inference needs a separately installed model.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Cases require unique `id`, `prompt`, and at least one `contains`, `forbidden`, or `regex` assertion. Offline mode uses `response`; `--model NAME` calls local Ollama. Treat regex configurations as trusted input.",
+    "architecture": ""
+  },
+  {
+    "name": "embedding-neighbor-map",
+    "title": "Embedding Neighbor Map",
+    "language": "JavaScript",
+    "group": "ai",
+    "summary": "Explore document similarity using transparent TF-IDF vectors and a nearest-neighbor graph.",
+    "batch": 3,
+    "kind": "web",
+    "features": [
+      "Transparent TF-IDF vectors",
+      "Cosine nearest-neighbor graph",
+      "Document and vector export"
+    ],
+    "limits": "Lexical baseline rather than pretrained semantic embeddings. Graph positions use a circular layout, not learned dimensionality reduction.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "tiny-neural-network-playground",
+    "title": "Tiny Neural Network Playground",
+    "language": "TypeScript",
+    "group": "ai",
+    "summary": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
+    "batch": 3,
+    "kind": "web",
+    "features": [
+      "Actual forward/backpropagation",
+      "XOR decision boundary and cross-entropy loss",
+      "Deterministic initialization and weight export"
+    ],
+    "limits": "Educational four-hidden-unit neural network, not a general-purpose pretrained model.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts",
+    "capture_actions": [
+      {
+        "selector": "#train",
+        "action": "click"
+      }
+    ]
+  },
+  {
+    "name": "naive-bayes-mail-lab",
+    "title": "Naive Bayes Mail Lab",
+    "language": "Go",
+    "group": "ai",
+    "summary": "Train and evaluate a Laplace-smoothed text classifier with readable per-token evidence.",
+    "batch": 3,
+    "kind": "cli",
+    "core": "main.go",
+    "commands": [
+      "go test ./..."
+    ],
+    "run": "go run . examples/training.json \"team meeting project schedule\"",
+    "demo": "go run . examples/training.json \"team meeting project schedule\"",
+    "features": [
+      "Multinomial naive Bayes training",
+      "Laplace-smoothed text classification",
+      "Inspectable log scores and vocabulary size"
+    ],
+    "limits": "Toy local classifier; scores are not calibrated probabilities. Examples are insufficient for production spam filtering.",
+    "setup": "      - uses: actions/setup-go@v5\n        with:\n          go-version: '1.24.x'\n",
+    "usage": "Training JSON contains `label` and `text` rows. Run `go run . examples/training.json \"your sample\"`. The highest log score is the prediction. Unknown tokens are ignored.",
+    "architecture": ""
+  },
+  {
+    "name": "knn-signal-classifier",
+    "title": "KNN Signal Classifier",
+    "language": "Rust",
+    "group": "ai",
+    "summary": "Classify numeric feature vectors using standardized nearest neighbors and confidence votes.",
+    "batch": 3,
+    "kind": "cli",
+    "core": "src/main.rs",
+    "commands": [
+      "cargo test"
+    ],
+    "run": "cargo run -- examples/signals.tsv \"115,0.25\" 3",
+    "demo": "cargo run -- examples/signals.tsv \"115,0.25\" 3",
+    "features": [
+      "Training-set feature standardization",
+      "Distance-ranked neighbor votes",
+      "Finite-value, dimensions and k validation"
+    ],
+    "limits": "Requires labelled numeric features; does not automatically extract audio features. Vote share is not calibrated confidence.",
+    "setup": "",
+    "usage": "TSV rows use `label<TAB>number,number`. Run `cargo run -- examples/signals.tsv \"115,0.25\" 3`. Standardization is computed from the training rows only.",
+    "architecture": ""
+  },
+  {
+    "name": "local-model-chat-desk",
+    "title": "Local Model Chat Desk",
+    "language": "Python",
+    "group": "ai",
+    "summary": "Chat with installed Ollama models through a localhost-only server, with conversation export.",
+    "batch": 3,
+    "kind": "server",
+    "core": "server.py",
+    "commands": [
+      "python server.py --self-test"
+    ],
+    "run": "python server.py",
+    "demo": "python server.py",
+    "features": [
+      "Installed-model discovery",
+      "Real local Ollama chat with conversation history",
+      "Same-origin loopback proxy and JSON export"
+    ],
+    "limits": "Requires Ollama and a downloaded model. The interface displays an unavailable state rather than fabricated responses.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Install Ollama and pull a model using its official instructions. Start Ollama, run `python server.py`, and open localhost:8080. Select a model and send a message. No external model host is configured. Offline tests validate payload handling, not inference.",
+    "architecture": "The loopback HTTP server proxies only model discovery and chat to localhost:11434. Host/origin and payload sizes are checked. Output is rendered as text. Conversation state is in memory until an explicit export.",
+    "server_command": "python server.py",
+    "server_url": "http://127.0.0.1:8080"
+  },
+  {
+    "name": "ai-dataset-quality-auditor",
+    "title": "AI Dataset Quality Auditor",
+    "language": "Python",
+    "group": "ai",
+    "summary": "Audit JSONL datasets for malformed rows, duplicate prompts, split leakage, and possible sensitive fields.",
+    "batch": 3,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test"
+    ],
+    "run": "python app.py examples/dataset.jsonl",
+    "demo": "python app.py examples/dataset.jsonl",
+    "features": [
+      "JSONL schema and malformed-row checks",
+      "Normalized duplicates and split leakage",
+      "Redacted possible-email findings"
+    ],
+    "limits": "Heuristic data-quality checks, not comprehensive sensitive-data detection or training-data approval.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Input JSONL needs string `prompt` and `completion` fields and an optional `split`. Findings include line numbers and redact matched email values.",
+    "architecture": ""
+  },
+  {
+    "name": "decision-tree-workbench",
+    "title": "Decision Tree Workbench",
+    "language": "JavaScript",
+    "group": "ai",
+    "summary": "Train a small CART classifier, inspect readable split rules, and query new feature values.",
+    "batch": 3,
+    "kind": "web",
+    "features": [
+      "Numeric CART classifier",
+      "Readable split-rule tree and predictions",
+      "Decision-region chart and JSON export"
+    ],
+    "limits": "Trained on supplied examples, with no held-out accuracy claim. Chart axes are fixed to 0\u201310.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "surfcoder-regional-surf-report",
+    "title": "SurfCoder Regional Surf Report",
+    "language": "JavaScript",
+    "group": "surf",
+    "summary": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
+    "batch": 3,
+    "kind": "web",
+    "features": [
+      "Eleven regions and 26 coastal locations plus custom coordinates",
+      "Seven-day live wave, swell and wind forecasts",
+      "Local-time day selection, metric/imperial units, saved location and CSV"
+    ],
+    "limits": "Offshore grid forecasts do not resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js",
+    "usage": "Choose a region and forecast location, or enter coastal coordinates and select Use custom coordinates. Choose units and a day. Save a location only on your device, or download CSV. Forecast requests send the chosen coordinates to marine-api.open-meteo.com and api.open-meteo.com; no geolocation permission or API key is used. Data errors remain visible and are never replaced by invented live conditions.",
+    "architecture": "The static browser client joins Open-Meteo marine/wind forecasts by Unix timestamp and formats time in the returned location timezone. Marine forecasts use cell_selection=sea. Abort/sequence controls prevent an old location request from overwriting a new one. Wind failures do not hide available marine data. Values remain null when absent. Links attribute Open-Meteo and its source datasets. See official marine API documentation for licensing and commercial usage terms.",
+    "capture_wait_ms": 2500
   }
 ]
