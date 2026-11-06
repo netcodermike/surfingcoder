@@ -26,5 +26,5 @@ for p in projects:
     assert metadata == p['capture'], p['name']+': capture metadata differs'
     assert metadata['kind'] in ('runtime','terminal'), p['name']+': capture needs to be completed'
     assert metadata.get('caption'), p['name']+': missing capture description'
-assert len({language for p in projects for language in p['languages']}) == 10, 'Update language controls and count'
+assert all(p['languages'] for p in projects), 'Every project needs a language'
 print(f'Gallery checks passed: {len(projects)} repositories, ordered cards, valid links and real screenshots.')

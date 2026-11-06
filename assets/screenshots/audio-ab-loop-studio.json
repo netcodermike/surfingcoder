@@ -1,0 +1,15 @@
+{
+  "name": "audio-ab-loop-studio",
+  "capture_date": "2026-11-06T12:08:58.649656+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "a02ee7f631ca3cf580847c7cf6e5bd2190bc43c9",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Loop active"
+}

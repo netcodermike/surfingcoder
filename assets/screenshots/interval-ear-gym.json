@@ -1,0 +1,14 @@
+{
+  "name": "interval-ear-gym",
+  "capture_date": "2026-11-06T12:08:50.873491+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "28af39662cc44fcc07cc16d8eb158e700854c520",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner"
+}

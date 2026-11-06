@@ -1,0 +1,14 @@
+{
+  "name": "blues-progression-atlas",
+  "capture_date": "2026-11-06T12:08:43.402266+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "45c09b420509d73a0b91be3cc17ca42b8c2354f4",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner"
+}

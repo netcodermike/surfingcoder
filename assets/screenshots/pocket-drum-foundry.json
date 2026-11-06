@@ -1,0 +1,15 @@
+{
+  "name": "pocket-drum-foundry",
+  "capture_date": "2026-11-06T12:09:02.231949+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "6e58089bef5c208e08b02eaf80f075da99943635",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Step 9"
+}

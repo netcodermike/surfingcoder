@@ -1483,5 +1483,311 @@
       "height": 398
     },
     "ci": "https://github.com/netcodermike/menubar-snippet-library/actions/runs/42206964875"
+  },
+  {
+    "name": "string-instrument-tuner",
+    "title": "String Instrument Tuner",
+    "description": "Chromatic microphone tuner with string presets, custom tunings, cents deviation, and reference tones.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/string-instrument-tuner",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/string-instrument-tuner.webp",
+    "capture": {
+      "name": "string-instrument-tuner",
+      "capture_date": "2026-11-06T12:08:37.917166+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "d72e6696ef4720a3ef0f12ef9ffd197b98249ba1",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Microphone active · no audio is uploaded."
+    },
+    "ci": "https://github.com/netcodermike/string-instrument-tuner/actions",
+    "applicationUrl": "/apps/string-instrument-tuner/"
+  },
+  {
+    "name": "blues-progression-atlas",
+    "title": "Blues Progression Atlas",
+    "description": "Transpose classic blues forms, inspect chord tones, and audition a twelve-bar backing pattern.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/blues-progression-atlas",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/blues-progression-atlas.webp",
+    "capture": {
+      "name": "blues-progression-atlas",
+      "capture_date": "2026-11-06T12:08:43.402266+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "45c09b420509d73a0b91be3cc17ca42b8c2354f4",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/blues-progression-atlas/actions",
+    "applicationUrl": "/apps/blues-progression-atlas/"
+  },
+  {
+    "name": "surfcoder-boombox",
+    "title": "SurfCoder Boombox",
+    "description": "A virtual boombox for local audio queues and user-supplied radio streams, with spectrum meters.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/surfcoder-boombox",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/surfcoder-boombox.webp",
+    "capture": {
+      "name": "surfcoder-boombox",
+      "capture_date": "2026-11-06T12:08:45.201767+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "a9d964d644465700bfda0db8e69e6aa959f211d1",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Playing"
+    },
+    "ci": "https://github.com/netcodermike/surfcoder-boombox/actions",
+    "applicationUrl": "/apps/surfcoder-boombox/"
+  },
+  {
+    "name": "polyrhythm-matrix",
+    "title": "Polyrhythm Matrix",
+    "description": "Hear and visualize independent rhythmic cycles with tempo, subdivision, and accent control.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/polyrhythm-matrix",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/polyrhythm-matrix.webp",
+    "capture": {
+      "name": "polyrhythm-matrix",
+      "capture_date": "2026-11-06T12:08:48.927813+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "b052e57298d9c8811caa967604f8d91000d4c0db",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/polyrhythm-matrix/actions",
+    "applicationUrl": "/apps/polyrhythm-matrix/"
+  },
+  {
+    "name": "interval-ear-gym",
+    "title": "Interval Ear Gym",
+    "description": "A randomized listening quiz with ascending, descending, and harmonic intervals and session scores.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/interval-ear-gym",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/interval-ear-gym.webp",
+    "capture": {
+      "name": "interval-ear-gym",
+      "capture_date": "2026-11-06T12:08:50.873491+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "28af39662cc44fcc07cc16d8eb158e700854c520",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/interval-ear-gym/actions",
+    "applicationUrl": "/apps/interval-ear-gym/"
+  },
+  {
+    "name": "chord-voicing-lab",
+    "title": "Chord Voicing Lab",
+    "description": "Build and audition extended chords, inversions, and voice-leading between two harmonies.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/chord-voicing-lab",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/chord-voicing-lab.webp",
+    "capture": {
+      "name": "chord-voicing-lab",
+      "capture_date": "2026-11-06T12:08:53.639455+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "b57e7c4585fc2abe6b8e61992046d2c8501db1e3",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/chord-voicing-lab/actions",
+    "applicationUrl": "/apps/chord-voicing-lab/"
+  },
+  {
+    "name": "ambient-soundscape-mixer",
+    "title": "Ambient Soundscape Mixer",
+    "description": "Mix synthesized surf, rain, wind, and drone layers locally with a sleep fade timer.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/ambient-soundscape-mixer",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/ambient-soundscape-mixer.webp",
+    "capture": {
+      "name": "ambient-soundscape-mixer",
+      "capture_date": "2026-11-06T12:08:56.294488+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "de199ba891a1dc4af8bfff089d8580994bd90b22",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Four synthesized layers · no recordings or network requests."
+    },
+    "ci": "https://github.com/netcodermike/ambient-soundscape-mixer/actions",
+    "applicationUrl": "/apps/ambient-soundscape-mixer/"
+  },
+  {
+    "name": "audio-ab-loop-studio",
+    "title": "Audio A–B Loop Studio",
+    "description": "Practice a selected section of a local recording with A–B markers, playback speed, and pitch preservation.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/audio-ab-loop-studio",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/audio-ab-loop-studio.webp",
+    "capture": {
+      "name": "audio-ab-loop-studio",
+      "capture_date": "2026-11-06T12:08:58.649656+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "a02ee7f631ca3cf580847c7cf6e5bd2190bc43c9",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Loop active"
+    },
+    "ci": "https://github.com/netcodermike/audio-ab-loop-studio/actions",
+    "applicationUrl": "/apps/audio-ab-loop-studio/"
+  },
+  {
+    "name": "pocket-drum-foundry",
+    "title": "Pocket Drum Foundry",
+    "description": "Program a sixteen-step synthesized drum groove with swing, per-voice levels, and pattern export.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/pocket-drum-foundry",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/pocket-drum-foundry.webp",
+    "capture": {
+      "name": "pocket-drum-foundry",
+      "capture_date": "2026-11-06T12:09:02.231949+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "6e58089bef5c208e08b02eaf80f075da99943635",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Step 9"
+    },
+    "ci": "https://github.com/netcodermike/pocket-drum-foundry/actions",
+    "applicationUrl": "/apps/pocket-drum-foundry/"
+  },
+  {
+    "name": "spectrogram-waterfall",
+    "title": "Spectrogram Waterfall",
+    "description": "Inspect microphone or local audio as a scrolling frequency heatmap with adjustable range.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/spectrogram-waterfall",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 201,
+    "image": "assets/screenshots/spectrogram-waterfall.webp",
+    "capture": {
+      "name": "spectrogram-waterfall",
+      "capture_date": "2026-11-06T12:09:04.511804+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "d39769904a4c09e7938f2329b80557d5035f0cc0",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Input stopped"
+    },
+    "ci": "https://github.com/netcodermike/spectrogram-waterfall/actions",
+    "applicationUrl": "/apps/spectrogram-waterfall/"
   }
 ]

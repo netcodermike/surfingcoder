@@ -1,0 +1,15 @@
+{
+  "name": "spectrogram-waterfall",
+  "capture_date": "2026-11-06T12:09:04.511804+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "d39769904a4c09e7938f2329b80557d5035f0cc0",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Input stopped"
+}

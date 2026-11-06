@@ -1,0 +1,15 @@
+{
+  "name": "ambient-soundscape-mixer",
+  "capture_date": "2026-11-06T12:08:56.294488+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "de199ba891a1dc4af8bfff089d8580994bd90b22",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Four synthesized layers \u00b7 no recordings or network requests."
+}

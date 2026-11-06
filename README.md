@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 63 projects across 10 languages. SVD Studio and Coinbase Ladder lead the collection, followed by practical professional tools, Linux utilities, creative apps, and learning projects.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 73 projects across 11 languages. SVD Studio and Coinbase Ladder lead the collection, followed by practical professional tools, Linux utilities, creative apps, and learning projects.
 
 ## Run locally
 

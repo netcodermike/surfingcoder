@@ -1,0 +1,14 @@
+{
+  "name": "polyrhythm-matrix",
+  "capture_date": "2026-11-06T12:08:48.927813+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "b052e57298d9c8811caa967604f8d91000d4c0db",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner"
+}

@@ -13,10 +13,11 @@ def card(p,i):
  tags=''.join('<span class="language" data-language="'+esc(l)+'"><i aria-hidden="true"></i>'+esc(l)+'</span>'for l in p['languages'])
  capture=p['capture'];label='App screenshot'if capture.get('kind')=='runtime'else'Terminal capture'if capture.get('kind')=='terminal'else'Source preview'if capture.get('kind')=='source-preview'else'Project preview'
  heading=f'<div class="card-meta"><span>{esc(p["category"])}</span>'+('<span class="featured-label">Featured</span>'if p['featured']else'')+f'</div><h2><a href="{esc(p["url"])}" target="_blank" rel="noopener noreferrer">{esc(p["title"])}<span aria-hidden="true">↗</span></a></h2>'
+ launch=('<a class="repo-link" href="'+esc(p['applicationUrl'])+'">Launch app ↗</a>')if p.get('applicationUrl')else''
  return f'''<article class="project-card {'featured'if p['featured']else''}" {attrs}>
  {'<div class="featured-card-heading">'+heading+'</div>'if p['featured']else''}
  <button class="preview" data-project="{esc(p['name'])}" aria-label="Enlarge {esc(p['title'])} screenshot"><img src="{esc(p['image'])}" alt="{esc(p['title'])} — {esc(capture.get('caption','Application interface'))}" width="1200" height="780" {'fetchpriority="high"'if i<2 else'loading="lazy"'}><span class="preview-tag">{label}</span><span class="expand" aria-hidden="true">↗</span></button>
- <div class="card-body">{''if p['featured']else heading}<p class="description">{esc(p['description'])}</p><div class="card-footer"><div class="languages">{tags}</div><a class="repo-link" href="{esc(p['url'])}" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a></div></div></article>'''
+ <div class="card-body">{''if p['featured']else heading}<p class="description">{esc(p['description'])}</p><div class="card-footer"><div class="languages">{tags}</div><div class="project-actions">{launch}<a class="repo-link" href="{esc(p['url'])}" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a></div></div></div></article>'''
 
 def build():
     projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))

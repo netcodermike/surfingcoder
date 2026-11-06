@@ -1,0 +1,15 @@
+{
+  "name": "string-instrument-tuner",
+  "capture_date": "2026-11-06T12:08:37.917166+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "d72e6696ef4720a3ef0f12ef9ffd197b98249ba1",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Microphone active \u00b7 no audio is uploaded."
+}

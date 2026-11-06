@@ -1,0 +1,1 @@
+export function events(a,b,cycles=1){if(![a,b,cycles].every(x=>Number.isInteger(x)&&x>0&&x<=32))throw Error('Cycles must be integers 1–32');const events=[];for(let c=0;c<cycles;c++){for(let i=0;i<a;i++)events.push({time:c+i/a,voice:0});for(let i=0;i<b;i++)events.push({time:c+i/b,voice:1})}return events.sort((x,y)=>x.time-y.time)}

@@ -1,0 +1,14 @@
+{
+  "name": "chord-voicing-lab",
+  "capture_date": "2026-11-06T12:08:53.639455+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "b57e7c4585fc2abe6b8e61992046d2c8501db1e3",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner"
+}

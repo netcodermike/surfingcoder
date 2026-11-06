@@ -1,0 +1,15 @@
+{
+  "name": "surfcoder-boombox",
+  "capture_date": "2026-11-06T12:08:45.201767+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "a9d964d644465700bfda0db8e69e6aa959f211d1",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Playing"
+}

@@ -7,3 +7,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 .collection-head{padding:27px 0 24px}.collection-head h1{font-size:36px}.collection-head .eyebrow{margin-bottom:9px}.collection-count strong{font-size:43px}.featured-card-heading{padding:20px 27px 12px}.featured-card-heading .card-meta{margin-bottom:6px}.featured-card-heading h2{margin:0}.project-grid.list .featured-card-heading{grid-column:2;grid-row:1;padding-bottom:0}.project-grid.list .featured .preview{grid-column:1;grid-row:1 / span 2}.project-grid.list .featured .card-body{grid-column:2;grid-row:2;padding-top:9px}
 @media(max-width:700px){.collection-head{padding:23px 0 20px}.collection-head h1{font-size:29px}.collection-head h1 span{display:inline}.featured-card-heading{padding:17px 20px 12px}.project-grid.list .featured-card-heading{padding:13px 14px 0}.project-grid.list .featured .card-body{padding-top:8px}}
+
+.project-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}.card-footer{gap:12px;flex-wrap:wrap}.chips{row-gap:7px}
