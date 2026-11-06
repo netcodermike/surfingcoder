@@ -208,5 +208,252 @@
     ],
     "run": "npm start",
     "core": "src/core.js"
+  },
+  {
+    "name": "wav-loudness-auditor",
+    "title": "WAV Loudness Auditor",
+    "language": "Python",
+    "group": "music",
+    "summary": "Measure PCM WAV peaks, RMS, clipping, DC offset, and crest factor with per-channel JSON reports.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test",
+      "python examples/make_fixture.py"
+    ],
+    "run": "python app.py examples/demo.wav",
+    "demo": "python app.py examples/demo.wav",
+    "features": [
+      "Per-channel peak, RMS, crest factor and DC offset",
+      "Clipped-sample counts and format validation",
+      "Machine-readable JSON output"
+    ],
+    "limits": "PCM16 uncompressed WAV only; RMS is not integrated LUFS and sample peaks are not intersample true peaks.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Generate synthetic audio with `python examples/make_fixture.py`, then run `python app.py examples/demo.wav`. Supply your own PCM16 WAV path to measure it without modifying it.",
+    "architecture": ""
+  },
+  {
+    "name": "midi-file-inspector",
+    "title": "MIDI File Inspector",
+    "language": "Rust",
+    "group": "music",
+    "summary": "Parse Standard MIDI Files, running status, tempo events, track names, and note counts.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "src/main.rs",
+    "commands": [
+      "cargo test",
+      "python3 examples/make_fixture.py"
+    ],
+    "run": "cargo run -- examples/demo.mid",
+    "demo": "cargo run -- examples/demo.mid",
+    "features": [
+      "Standard MIDI header and track parsing",
+      "Running status and variable-length timing",
+      "Tempo, track names and note-event counts"
+    ],
+    "limits": "Reads Standard MIDI Files; reports ticks rather than claiming an exact elapsed duration across SMPTE/tempo maps.",
+    "setup": "",
+    "usage": "Run `cargo run -- examples/demo.mid`. The built executable also accepts any supported `.mid` file. Truncated chunks and malformed status bytes are rejected.",
+    "architecture": ""
+  },
+  {
+    "name": "scale-fingering-planner",
+    "title": "Scale Fingering Planner",
+    "language": "Go",
+    "group": "music",
+    "summary": "Map scale notes to any fretted string tuning and export positions as JSON or readable tablature.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "main.go",
+    "commands": [
+      "go test ./..."
+    ],
+    "run": "go run . --root 9 --scale blues --frets 5",
+    "demo": "go run . --root 9 --scale blues --frets 5",
+    "features": [
+      "Custom string tuning and fret range",
+      "Major, natural minor, minor pentatonic and blues scales",
+      "Pitch class, scale degree and MIDI position export"
+    ],
+    "limits": "Equal-tempered fret maps; does not infer optimal physical hand fingering or account for microtonal/fretless instruments.",
+    "setup": "      - uses: actions/setup-go@v5\n        with:\n          go-version: '1.24.x'\n",
+    "usage": "Example: `go run . --root 9 --scale blues --tuning 40,45,50,55,59,64 --frets 5`. Root 9 is A. Output lists each string/fret containing a scale tone.",
+    "architecture": ""
+  },
+  {
+    "name": "sample-pack-cataloger",
+    "title": "Sample Pack Cataloger",
+    "language": "Python",
+    "group": "music",
+    "summary": "Index WAV libraries in SQLite, detect duplicate audio files, and search by duration and sample rate.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test",
+      "python examples/make_fixture.py"
+    ],
+    "run": "python app.py examples --db demo.sqlite",
+    "demo": "python app.py examples --db demo.sqlite",
+    "features": [
+      "SQLite WAV metadata index",
+      "Exact-byte duplicate detection with SHA-256",
+      "Path and minimum-duration queries"
+    ],
+    "limits": "Uncompressed WAV formats supported by Python wave; duplicates mean identical files, not perceptually identical recordings. Missing files are retained until the index is rebuilt.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Index: `python app.py /path/to/samples --db catalog.sqlite`. Search: `python app.py --db catalog.sqlite --search kick --minimum 0.2`. Scanning writes only the catalog, never audio files.",
+    "architecture": ""
+  },
+  {
+    "name": "wav-channel-toolkit",
+    "title": "WAV Channel Toolkit",
+    "language": "C++",
+    "group": "music",
+    "summary": "Split PCM16 stereo recordings into mono channels or reverse frames without corrupting channel order.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "main.cpp",
+    "commands": [
+      "g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o wav-toolkit",
+      "./wav-toolkit --self-test",
+      "python3 examples/make_fixture.py"
+    ],
+    "run": "./wav-toolkit reverse examples/demo.wav reversed.wav",
+    "demo": "./wav-toolkit reverse examples/demo.wav reversed.wav",
+    "features": [
+      "PCM16 mono/stereo RIFF chunk parsing",
+      "Frame-preserving reverse and left/right extraction",
+      "New-file output with overwrite protection"
+    ],
+    "limits": "PCM16 mono/stereo only; files are loaded into memory. Does not decode compressed audio or preserve ancillary RIFF metadata.",
+    "setup": "",
+    "usage": "Build, then run `./wav-toolkit left examples/demo.wav left.wav` or `./wav-toolkit reverse examples/demo.wav reversed.wav`. Existing output files are rejected.",
+    "architecture": ""
+  },
+  {
+    "name": "impulse-response-forge",
+    "title": "Impulse Response Forge",
+    "language": "C",
+    "group": "music",
+    "summary": "Generate deterministic stereo delay impulse-response WAV files for convolution experiments.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "main.c",
+    "commands": [
+      "gcc -std=c11 -O2 -Wall -Wextra main.c -lm -o impulse-forge",
+      "./impulse-forge --self-test"
+    ],
+    "run": "./impulse-forge demo-ir.wav 125 0.65 2",
+    "demo": "./impulse-forge demo-ir.wav 125 0.65 2",
+    "features": [
+      "Deterministic stereo delay taps",
+      "Configurable spacing, decay and duration",
+      "New PCM16 impulse-response WAV export"
+    ],
+    "limits": "Synthetic sparse delay responses, not measured rooms. Twelve taps maximum; values are bounded to PCM range.",
+    "setup": "",
+    "usage": "Build and run `./impulse-forge room-ir.wav 125 0.65 2`. Import the output into a convolution processor. Choose a new output filename each time.",
+    "architecture": ""
+  },
+  {
+    "name": "setlist-flow-planner",
+    "title": "Setlist Flow Planner",
+    "language": "C#",
+    "group": "music",
+    "summary": "Order a setlist using tempo and tonal-distance costs, with fixed openers and a transition report.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "Program.cs",
+    "commands": [
+      "dotnet run -- --self-test"
+    ],
+    "run": "dotnet run -- examples/songs.json",
+    "demo": "dotnet run -- examples/songs.json",
+    "features": [
+      "Fixed opener and nearest-transition ordering",
+      "Tempo and circle-of-fifths transition costs",
+      "Readable sequence and validation"
+    ],
+    "limits": "Greedy heuristic, not a globally optimal setlist. Key must be a circle-of-fifths index 0\u201311; major/minor mode and musical style are not inferred.",
+    "setup": "      - uses: actions/setup-dotnet@v5\n        with:\n          dotnet-version: '8.0.x'\n",
+    "usage": "Create a JSON array with `title`, `bpm`, and `key` (circle-of-fifths index, e.g. C=0, G=1, D=2). Run `dotnet run -- examples/songs.json`. The first input stays the opener.",
+    "architecture": ""
+  },
+  {
+    "name": "lyrics-rhyme-notebook",
+    "title": "Lyrics Rhyme Notebook",
+    "language": "Ruby",
+    "group": "music",
+    "summary": "Keep original lyric fragments in a local JSON notebook and search approximate suffix rhymes.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "app.rb",
+    "commands": [
+      "ruby app.rb --self-test"
+    ],
+    "run": "ruby app.rb demo",
+    "demo": "ruby app.rb demo",
+    "features": [
+      "Local original-fragment notebook",
+      "Case-normalized approximate suffix search",
+      "Atomic JSON save for new fragments"
+    ],
+    "limits": "English spelling suffix heuristic, not phonetic rhyme detection. Homophones and irregular pronunciations can be missed.",
+    "setup": "",
+    "usage": "Add: `ruby app.rb add \"Your original line\"`. Search: `ruby app.rb rhyme night`. Use `--file path.json` to choose a notebook. No copyrighted lyric corpus is bundled.",
+    "architecture": ""
+  },
+  {
+    "name": "podcast-chapter-builder",
+    "title": "Podcast Chapter Builder",
+    "language": "Java",
+    "group": "music",
+    "summary": "Convert timestamped chapter notes into validated Podcasting 2.0 chapter JSON.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "Main.java",
+    "commands": [
+      "javac Main.java",
+      "java Main --self-test"
+    ],
+    "run": "java Main examples/chapters.tsv",
+    "demo": "java Main examples/chapters.tsv",
+    "features": [
+      "MM:SS and HH:MM:SS parsing",
+      "Strictly increasing chapter checks",
+      "Podcasting 2.0 version 1.2.0 JSON export"
+    ],
+    "limits": "Plain timestamp/title TSV only. Output does not alter the audio file; redirect stdout to a new chapter JSON file.",
+    "setup": "      - uses: actions/setup-java@v5\n        with:\n          distribution: temurin\n          java-version: '17'\n",
+    "usage": "Create a TSV with `00:00<TAB>Introduction` and subsequent increasing timestamps. Run `java Main chapters.tsv > chapters.json`. Each chapter requires a nonblank title.",
+    "architecture": ""
+  },
+  {
+    "name": "practice-session-composer",
+    "title": "Practice Session Composer",
+    "language": "Kotlin",
+    "group": "music",
+    "summary": "Allocate focused music-practice blocks using weighted priorities and export a timed Markdown plan.",
+    "batch": 2,
+    "kind": "cli",
+    "core": "src/main/kotlin/Main.kt",
+    "commands": [
+      "gradle run --args=\"--self-test\" --quiet"
+    ],
+    "run": "gradle run --args=\"45 examples/priorities.tsv\" --quiet",
+    "demo": "gradle run --args=\"45 examples/priorities.tsv\" --quiet",
+    "features": [
+      "Weighted largest-remainder time allocation",
+      "Exact requested session duration",
+      "Timestamped Markdown music-practice plan"
+    ],
+    "limits": "Planning tool only; does not listen to performance, assess technique, or prescribe physical exercise.",
+    "setup": "      - uses: actions/setup-java@v5\n        with:\n          distribution: temurin\n          java-version: '17'\n      - uses: gradle/actions/setup-gradle@v4\n        with:\n          gradle-version: '8.10.2'\n",
+    "usage": "Edit `examples/priorities.tsv` with name TAB positive-weight rows. Run `gradle run --args=\"45 examples/priorities.tsv\" --quiet`. Integer minutes are allocated with the largest-remainder method.",
+    "architecture": ""
   }
 ]
