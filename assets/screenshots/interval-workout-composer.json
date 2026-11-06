@@ -1,0 +1,10 @@
+{
+  "name": "interval-workout-composer",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:32:20.543525+00:00",
+  "demo_data": true,
+  "command": [
+    "/tmp/surf-capture-6rwpvnb_/interval-workout-composer/build/install/interval-workout-composer/bin/interval-workout-composer"
+  ]
+}

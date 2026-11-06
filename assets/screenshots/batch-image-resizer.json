@@ -1,0 +1,11 @@
+{
+  "name": "batch-image-resizer",
+  "repository": "batch-image-resizer",
+  "source_commit": "c868478af69b8919c078f033696abfa85ae00299",
+  "kind": "runtime",
+  "caption": "Native macOS application capture with synthetic demonstration data.",
+  "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+  "fixture": "Synthetic coastal image and synthetic text only; no private data",
+  "width": 900,
+  "height": 642
+}

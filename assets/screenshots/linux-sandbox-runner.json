@@ -1,0 +1,7 @@
+{
+  "name": "linux-sandbox-runner",
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated Linux runner.",
+  "capture_date": "2026-11-06T11:22:13.512506+00:00",
+  "demo_data": true
+}

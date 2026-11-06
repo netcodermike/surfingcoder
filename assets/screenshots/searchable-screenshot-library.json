@@ -1,0 +1,11 @@
+{
+  "name": "searchable-screenshot-library",
+  "repository": "searchable-screenshot-library",
+  "source_commit": "3afc0a3478d485802690763680bee7b1014e99ca",
+  "kind": "runtime",
+  "caption": "Native macOS application capture with synthetic demonstration data.",
+  "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+  "fixture": "Synthetic coastal image and synthetic text only; no private data",
+  "width": 1160,
+  "height": 702
+}

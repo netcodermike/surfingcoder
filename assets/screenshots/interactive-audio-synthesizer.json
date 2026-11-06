@@ -1,0 +1,7 @@
+{
+  "name": "interactive-audio-synthesizer",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:29:19.130083+00:00",
+  "demo_data": true
+}

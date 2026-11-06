@@ -1,0 +1,13 @@
+{
+  "name": "file-tag-organizer",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:21:50.896173+00:00",
+  "demo_data": true,
+  "command": [
+    "java",
+    "-cp",
+    "build",
+    "App"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "packing-list-companion",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:37:08.109276+00:00",
+  "demo_data": true,
+  "command": [
+    "/tmp/surf-capture-r16lfqri/packing-list-companion/build/install/packing-list-companion/bin/packing-list-companion"
+  ]
+}

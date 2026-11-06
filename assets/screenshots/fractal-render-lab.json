@@ -1,0 +1,10 @@
+{
+  "name": "fractal-render-lab",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:22:01.320826+00:00",
+  "demo_data": true,
+  "command": [
+    "/tmp/surf-capture-dsqp6yb5/fractal-render-lab/build/app"
+  ]
+}

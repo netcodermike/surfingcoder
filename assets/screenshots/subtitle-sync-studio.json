@@ -1,0 +1,11 @@
+{
+  "name": "subtitle-sync-studio",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:33:20.727355+00:00",
+  "demo_data": true,
+  "command": [
+    "/usr/bin/python3",
+    "app.py"
+  ]
+}

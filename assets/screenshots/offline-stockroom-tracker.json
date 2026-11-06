@@ -1,0 +1,7 @@
+{
+  "name": "offline-stockroom-tracker",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:29:30.166101+00:00",
+  "demo_data": true
+}

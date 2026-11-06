@@ -1,0 +1,6 @@
+{
+  "name": "local-clipboard-history",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demo data.",
+  "platform": "Windows"
+}

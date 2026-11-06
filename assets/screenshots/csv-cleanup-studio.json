@@ -1,0 +1,6 @@
+{
+  "name": "csv-cleanup-studio",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demo data.",
+  "platform": "Windows"
+}

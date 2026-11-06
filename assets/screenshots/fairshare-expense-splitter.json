@@ -1,0 +1,10 @@
+{
+  "name": "fairshare-expense-splitter",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:29:54.191597+00:00",
+  "demo_data": true,
+  "command": [
+    "/tmp/surf-capture-6rwpvnb_/fairshare-expense-splitter/build/install/FairShare/bin/FairShare"
+  ]
+}

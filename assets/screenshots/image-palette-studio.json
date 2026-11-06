@@ -1,0 +1,11 @@
+{
+  "name": "image-palette-studio",
+  "repository": "image-palette-studio",
+  "source_commit": "425acc569ead77b8ce3cd9931296844662aa6abd",
+  "kind": "runtime",
+  "caption": "Native macOS application capture with synthetic demonstration data.",
+  "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+  "fixture": "Synthetic coastal image and synthetic text only; no private data",
+  "width": 900,
+  "height": 642
+}

@@ -1,0 +1,6 @@
+{
+  "name": "procedural-planet-explorer",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demo data.",
+  "platform": "Windows"
+}

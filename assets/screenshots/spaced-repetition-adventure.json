@@ -1,0 +1,13 @@
+{
+  "name": "spaced-repetition-adventure",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:21:35.204499+00:00",
+  "demo_data": true,
+  "command": [
+    "java",
+    "-cp",
+    "build",
+    "Adventure"
+  ]
+}

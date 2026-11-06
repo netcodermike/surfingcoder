@@ -26,4 +26,4 @@ See docs/publishing.md for local setup, authentication, GitHub Pages, and DNS in
 
 ## Publication status
 
-The user chose to postpone connecting surfingcoder.com until the article is ready. Keep DNS and custom-domain settings unchanged while preparing the review version.
+On November 6, 2026, the user explicitly authorized making this repository public and activating surfingcoder.com with the repository gallery as its homepage. The gallery must be visible immediately on landing, with SvdStudio and coinbase-ladder first and professional tools next. Preserve existing writing and its snapshot context. See docs/publishing.md for the deployment source.

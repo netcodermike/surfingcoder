@@ -1,0 +1,10 @@
+{
+  "name": "tiny-raytracer-studio",
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration data.",
+  "capture_date": "2026-11-06T11:21:53.660845+00:00",
+  "demo_data": true,
+  "command": [
+    "/tmp/surf-capture-dsqp6yb5/tiny-raytracer-studio/build/app"
+  ]
+}

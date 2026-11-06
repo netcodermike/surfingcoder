@@ -1,0 +1,7 @@
+{
+  "name": "coinbase-ladder",
+  "kind": "runtime",
+  "caption": "Actual Crypto Ladder interface using its local demo calculator; disconnected from every account and exchange.",
+  "capture_date": "2026-11-06T11:28:45.841311+00:00",
+  "demo_data": true
+}

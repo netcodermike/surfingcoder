@@ -1,0 +1,6 @@
+{
+  "name": "offline-field-journal",
+  "kind": "runtime",
+  "caption": "Actual Android journal with synthetic field notes.",
+  "platform": "Android emulator"
+}
