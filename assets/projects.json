@@ -44,1635 +44,6 @@
     "ci": "https://github.com/netcodermike/coinbase-ladder/actions"
   },
   {
-    "name": "csv-cleanup-studio",
-    "title": "CSV Cleanup Studio",
-    "description": "Profile and clean local CSV files with quoted-field parsing, trimming, blank-row removal, deduplication, and explicit export.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows",
-    "url": "https://github.com/netcodermike/csv-cleanup-studio",
-    "category": "Data & analysis",
-    "featured": false,
-    "order": 2,
-    "image": "assets/screenshots/csv-cleanup-studio.webp",
-    "capture": {
-      "name": "csv-cleanup-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/csv-cleanup-studio/actions/runs/42207087181"
-  },
-  {
-    "name": "log-timeline-studio",
-    "title": "Log Timeline Studio",
-    "description": "Load text or JSON-line logs into a searchable Windows timeline.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows",
-    "url": "https://github.com/netcodermike/log-timeline-studio",
-    "category": "Data & analysis",
-    "featured": false,
-    "order": 3,
-    "image": "assets/screenshots/log-timeline-studio.webp",
-    "capture": {
-      "name": "log-timeline-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/log-timeline-studio/actions/runs/42205329861"
-  },
-  {
-    "name": "markdown-note-graph",
-    "title": "Markdown Note Graph",
-    "description": "Open a folder of Markdown notes, inspect wiki links and backlinks, explore a neighbor graph, and edit note text.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows",
-    "url": "https://github.com/netcodermike/markdown-note-graph",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 4,
-    "image": "assets/screenshots/markdown-note-graph.webp",
-    "capture": {
-      "name": "markdown-note-graph",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/markdown-note-graph/actions/runs/42204053636"
-  },
-  {
-    "name": "linux-config-drift-monitor",
-    "title": "Linux Config Drift Monitor",
-    "description": "Compare configuration file contents against an explicit SHA-256 baseline.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-config-drift-monitor",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 5,
-    "image": "assets/screenshots/linux-config-drift-monitor.webp",
-    "capture": {
-      "name": "linux-config-drift-monitor",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:37.779805+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-config-drift-monitor/actions/runs/42205349975"
-  },
-  {
-    "name": "linux-backup-server",
-    "title": "Linux Backup Vault",
-    "description": "Store client-encrypted folder backups in a self-hosted content-addressed vault, list snapshots, and restore files with verified hashes.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Linux server with systemd",
-    "url": "https://github.com/netcodermike/linux-backup-server",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 6,
-    "image": "assets/screenshots/linux-backup-server.webp",
-    "capture": {
-      "name": "linux-backup-server",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:17.230675+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-backup-server/actions"
-  },
-  {
-    "name": "WpfDigitalClockAlarm",
-    "title": "Clock & Task Planner",
-    "description": "A Windows desktop clock with alarms, synthesized tones, task priorities, deadlines, and daily reminders. Local storage keeps the workflow on your machine.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows · WPF",
-    "url": "https://github.com/netcodermike/WpfDigitalClockAlarm",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 7,
-    "image": "assets/screenshots/WpfDigitalClockAlarm.webp",
-    "capture": {
-      "name": "WpfDigitalClockAlarm",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/WpfDigitalClockAlarm/actions"
-  },
-  {
-    "name": "linux-systemd-unit-checker",
-    "title": "Linux systemd Unit Checker",
-    "description": "Find common mistakes in systemd service files without starting, enabling, or modifying a service.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-systemd-unit-checker",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 8,
-    "image": "assets/screenshots/linux-systemd-unit-checker.webp",
-    "capture": {
-      "name": "linux-systemd-unit-checker",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:30.079115+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-systemd-unit-checker/actions/runs/42198886718"
-  },
-  {
-    "name": "linux-cgroup-explorer",
-    "title": "Linux cgroup Explorer",
-    "description": "Inspect local cgroup memory, PID, and CPU budgets with bounded hierarchy traversal and structured JSON output.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Linux cgroup v2",
-    "url": "https://github.com/netcodermike/linux-cgroup-explorer",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 9,
-    "image": "assets/screenshots/linux-cgroup-explorer.webp",
-    "capture": {
-      "name": "linux-cgroup-explorer",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:34.322261+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-cgroup-explorer/actions/runs/42204070153"
-  },
-  {
-    "name": "file-tag-organizer",
-    "title": "File Tag Organizer",
-    "description": "Maintain a local file-path/tag index with AND filtering and portable saves.",
-    "languages": [
-      "Java"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/file-tag-organizer",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 10,
-    "image": "assets/screenshots/file-tag-organizer.webp",
-    "capture": {
-      "name": "file-tag-organizer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:50.896173+00:00",
-      "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "App"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/file-tag-organizer/actions/runs/42206226540"
-  },
-  {
-    "name": "personal-library-tracker",
-    "title": "Personal Library Tracker",
-    "description": "Catalog books, track reading status, manage checkouts and due dates, search your shelves, and export a CSV.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/personal-library-tracker",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 11,
-    "image": "assets/screenshots/personal-library-tracker.webp",
-    "capture": {
-      "name": "personal-library-tracker",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:33:18.040378+00:00",
-      "demo_data": true,
-      "command": [
-        "/usr/bin/python3",
-        "library.py"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/personal-library-tracker/actions/runs/42204015297"
-  },
-  {
-    "name": "local-clipboard-history",
-    "title": "Local Clipboard History",
-    "description": "Keep an explicitly enabled, memory-only Windows clipboard text history.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows",
-    "url": "https://github.com/netcodermike/local-clipboard-history",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 12,
-    "image": "assets/screenshots/local-clipboard-history.webp",
-    "capture": {
-      "name": "local-clipboard-history",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/local-clipboard-history/actions/runs/42206145406"
-  },
-  {
-    "name": "linux-journal-explorer",
-    "title": "Linux Journal Explorer",
-    "description": "Query a bounded systemd journal selection and emit structured, filtered JSON records.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-journal-explorer",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 13,
-    "image": "assets/screenshots/linux-journal-explorer.webp",
-    "capture": {
-      "name": "linux-journal-explorer",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:45.712726+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-journal-explorer/actions/runs/42206161180"
-  },
-  {
-    "name": "linux-resource-job-queue",
-    "title": "Linux Resource Job Queue",
-    "description": "Run a bounded queue of trusted local commands concurrently with per-process resource limits and wall-time cleanup.",
-    "languages": [
-      "C"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-resource-job-queue",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 14,
-    "image": "assets/screenshots/linux-resource-job-queue.webp",
-    "capture": {
-      "name": "linux-resource-job-queue",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:50.744775+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-resource-job-queue/actions/runs/42207302854"
-  },
-  {
-    "name": "desktop-focus-timer",
-    "title": "Desktop Focus Timer",
-    "description": "Run focus and break sessions with pause/resume, adjustable durations, completion counts, and a Windows sound cue.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows",
-    "url": "https://github.com/netcodermike/desktop-focus-timer",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 15,
-    "image": "assets/screenshots/desktop-focus-timer.webp",
-    "capture": {
-      "name": "desktop-focus-timer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/desktop-focus-timer/actions/runs/42198869227"
-  },
-  {
-    "name": "weekly-timetable-planner",
-    "title": "Weekly Timetable Planner",
-    "description": "Plan a weekly timetable with time parsing, overlap rejection, and portable saved schedules.",
-    "languages": [
-      "Kotlin"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/weekly-timetable-planner",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 16,
-    "image": "assets/screenshots/weekly-timetable-planner.webp",
-    "capture": {
-      "name": "weekly-timetable-planner",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:31:53.383881+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-6rwpvnb_/weekly-timetable-planner/build/install/weekly-timetable-planner/bin/weekly-timetable-planner"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/weekly-timetable-planner/actions/runs/42206191126"
-  },
-  {
-    "name": "local-whiteboard-studio",
-    "title": "Local Whiteboard Studio",
-    "description": "Sketch with pen, lines, and rectangles across layers, undo edits, save projects locally, and export flattened PNG images.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/local-whiteboard-studio",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 17,
-    "image": "assets/screenshots/local-whiteboard-studio.webp",
-    "capture": {
-      "name": "local-whiteboard-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:28.017534+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/local-whiteboard-studio/actions/runs/42204015675"
-  },
-  {
-    "name": "local-rag-notebook",
-    "title": "Local RAG Notebook",
-    "description": "Retrieve cited document chunks with BM25 and optionally answer using a local Ollama model.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/local-rag-notebook",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/local-rag-notebook.webp",
-    "capture": {
-      "name": "local-rag-notebook",
-      "capture_date": "2026-11-06T12:33:18.078272+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "dc8741cdec1aa6adeadfcb67463e5cd2430ccabc",
-      "validation_commands": [
-        "python app.py --self-test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "python app.py examples \"How are ocean waves measured?\""
-    },
-    "ci": "https://github.com/netcodermike/local-rag-notebook/actions"
-  },
-  {
-    "name": "prompt-evaluation-bench",
-    "title": "Prompt Evaluation Bench",
-    "description": "Score model responses against reproducible contains, forbidden-text, and regular-expression checks.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/prompt-evaluation-bench",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/prompt-evaluation-bench.webp",
-    "capture": {
-      "name": "prompt-evaluation-bench",
-      "capture_date": "2026-11-06T12:33:18.671696+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "e3585be742538eb38fac81df23bcb5f8b521e091",
-      "validation_commands": [
-        "python app.py --self-test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
-      "command": "python app.py examples/cases.jsonl"
-    },
-    "ci": "https://github.com/netcodermike/prompt-evaluation-bench/actions"
-  },
-  {
-    "name": "embedding-neighbor-map",
-    "title": "Embedding Neighbor Map",
-    "description": "Explore document similarity using transparent TF-IDF vectors and a nearest-neighbor graph.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/embedding-neighbor-map",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/embedding-neighbor-map.webp",
-    "capture": {
-      "name": "embedding-neighbor-map",
-      "capture_date": "2026-11-06T12:33:30.532475+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "8d447c6030faa43aa2546ae919f62bae1c44a440",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Lexical TF-IDF vectors, not a pretrained semantic model."
-    },
-    "ci": "https://github.com/netcodermike/embedding-neighbor-map/actions",
-    "applicationUrl": "/apps/embedding-neighbor-map/"
-  },
-  {
-    "name": "tiny-neural-network-playground",
-    "title": "Tiny Neural Network Playground",
-    "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/tiny-neural-network-playground",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/tiny-neural-network-playground.webp",
-    "capture": {
-      "name": "tiny-neural-network-playground",
-      "capture_date": "2026-11-06T12:33:32.427902+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "f980a7c61ab3eb516db2ea340d6b06da0e551763",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner"
-    },
-    "ci": "https://github.com/netcodermike/tiny-neural-network-playground/actions",
-    "applicationUrl": "/apps/tiny-neural-network-playground/"
-  },
-  {
-    "name": "naive-bayes-mail-lab",
-    "title": "Naive Bayes Mail Lab",
-    "description": "Train and evaluate a Laplace-smoothed text classifier with readable per-token evidence.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/naive-bayes-mail-lab",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/naive-bayes-mail-lab.webp",
-    "capture": {
-      "name": "naive-bayes-mail-lab",
-      "capture_date": "2026-11-06T12:33:19.154752+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "89ac5a4dfff2eefb7a178f3dfdf7f877659abe9e",
-      "validation_commands": [
-        "go test ./..."
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "go run . examples/training.json \"team meeting project schedule\""
-    },
-    "ci": "https://github.com/netcodermike/naive-bayes-mail-lab/actions"
-  },
-  {
-    "name": "knn-signal-classifier",
-    "title": "KNN Signal Classifier",
-    "description": "Classify numeric feature vectors using standardized nearest neighbors and confidence votes.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/knn-signal-classifier",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/knn-signal-classifier.webp",
-    "capture": {
-      "name": "knn-signal-classifier",
-      "capture_date": "2026-11-06T12:33:16.909593+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "4a110ccbfad9143211409acea992aaa2faea85ad",
-      "validation_commands": [
-        "cargo test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "cargo run -- examples/signals.tsv \"115,0.25\" 3"
-    },
-    "ci": "https://github.com/netcodermike/knn-signal-classifier/actions"
-  },
-  {
-    "name": "local-model-chat-desk",
-    "title": "Local Model Chat Desk",
-    "description": "Chat with installed Ollama models through a localhost-only server, with conversation export.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Local server",
-    "url": "https://github.com/netcodermike/local-model-chat-desk",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/local-model-chat-desk.webp",
-    "capture": {
-      "name": "local-model-chat-desk",
-      "capture_date": "2026-11-06T12:33:35.133090+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "968f1b2adc30d9aa472e361342540b07f1f62097",
-      "validation_commands": [
-        "python server.py --self-test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Ollama unavailable. Start it locally and install a model."
-    },
-    "ci": "https://github.com/netcodermike/local-model-chat-desk/actions"
-  },
-  {
-    "name": "ai-dataset-quality-auditor",
-    "title": "AI Dataset Quality Auditor",
-    "description": "Audit JSONL datasets for malformed rows, duplicate prompts, split leakage, and possible sensitive fields.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/ai-dataset-quality-auditor",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/ai-dataset-quality-auditor.webp",
-    "capture": {
-      "name": "ai-dataset-quality-auditor",
-      "capture_date": "2026-11-06T12:33:31.838880+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "f446ce1d164bc1e4f8048ab5d698447414aaf4ec",
-      "validation_commands": [
-        "python app.py --self-test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "python app.py examples/dataset.jsonl"
-    },
-    "ci": "https://github.com/netcodermike/ai-dataset-quality-auditor/actions"
-  },
-  {
-    "name": "decision-tree-workbench",
-    "title": "Decision Tree Workbench",
-    "description": "Train a small CART classifier, inspect readable split rules, and query new feature values.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/decision-tree-workbench",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/decision-tree-workbench.webp",
-    "capture": {
-      "name": "decision-tree-workbench",
-      "capture_date": "2026-11-06T12:33:36.407288+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "43d2fddbdc3fdd764cbcd846a7b2cc23587a2760",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "CART with Gini impurity; chart axes 0–10."
-    },
-    "ci": "https://github.com/netcodermike/decision-tree-workbench/actions",
-    "applicationUrl": "/apps/decision-tree-workbench/"
-  },
-  {
-    "name": "surfcoder-regional-surf-report",
-    "title": "SurfCoder Regional Surf Report",
-    "description": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/surfcoder-regional-surf-report",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 203,
-    "image": "assets/screenshots/surfcoder-regional-surf-report.webp",
-    "capture": {
-      "name": "surfcoder-regional-surf-report",
-      "capture_date": "2026-11-06T12:33:38.067678+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "dee63477b6589c47b8f893e56f24b8068f7281c4",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Fetched Nov 6, 7:33 AM · times in America/New_York. Offshore model forecast, not a beach observation. Missing values show —."
-    },
-    "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
-    "applicationUrl": "/surfreport/"
-  },
-  {
-    "name": "interactive-audio-synthesizer",
-    "title": "Patch Synth",
-    "description": "An interactive synthesis workbench that renders oscillator patches through an envelope, low-pass filter, and feedback echo into standard WAV files.",
-    "languages": [
-      "C++"
-    ],
-    "platform": "Windows, macOS, Linux  ",
-    "url": "https://github.com/netcodermike/interactive-audio-synthesizer",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 80,
-    "image": "assets/screenshots/interactive-audio-synthesizer.webp",
-    "capture": {
-      "name": "interactive-audio-synthesizer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:19.130083+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/interactive-audio-synthesizer/actions"
-  },
-  {
-    "name": "linux-sandbox-runner",
-    "title": "Linux Sandbox Runner",
-    "description": "Explore Linux isolation by running a static executable in fresh namespaces with an empty tmpfs root, no external network, and resource limits.",
-    "languages": [
-      "C"
-    ],
-    "platform": "Linux only",
-    "url": "https://github.com/netcodermike/linux-sandbox-runner",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 82,
-    "image": "assets/screenshots/linux-sandbox-runner.webp",
-    "capture": {
-      "name": "linux-sandbox-runner",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:13.512506+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-sandbox-runner/actions"
-  },
-  {
-    "name": "linux-system-dashboard",
-    "title": "Linux System Dashboard",
-    "description": "A dependency-free terminal dashboard for CPU, memory, network, block I/O, thermal readings, history, and threshold alerts.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Linux only  ",
-    "url": "https://github.com/netcodermike/linux-system-dashboard",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 83,
-    "image": "assets/screenshots/linux-system-dashboard.webp",
-    "capture": {
-      "name": "linux-system-dashboard",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:10.928581+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-system-dashboard/actions"
-  },
-  {
-    "name": "multiplayer-escape-room",
-    "title": "The Last Door — Multiplayer Escape Room",
-    "description": "A cooperative browser puzzle game with shared inventory, server-authoritative answers, live room updates, invitation links, and a JSON room editor.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/multiplayer-escape-room",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 84,
-    "image": "assets/screenshots/multiplayer-escape-room.webp",
-    "capture": {
-      "name": "multiplayer-escape-room",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:28:50.417547+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/multiplayer-escape-room/actions"
-  },
-  {
-    "name": "offline-field-journal",
-    "title": "Offline Field Journal",
-    "description": "A native Android field journal that saves observations, copies photo attachments into app storage, adds cached location markers, and exports JSON without internet access.",
-    "languages": [
-      "Kotlin"
-    ],
-    "platform": "Android 8.0+ (API 26)",
-    "url": "https://github.com/netcodermike/offline-field-journal",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 85,
-    "image": "assets/screenshots/offline-field-journal.webp",
-    "capture": {
-      "name": "offline-field-journal",
-      "kind": "runtime",
-      "caption": "Actual Android journal with synthetic field notes.",
-      "platform": "Android emulator"
-    },
-    "ci": "https://github.com/netcodermike/offline-field-journal/actions"
-  },
-  {
-    "name": "personal-time-machine",
-    "title": "Personal Time Machine",
-    "description": "Keep immutable snapshots of a folder, compare text changes, restore a revision to a new directory, and browse a local visual timeline.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Windows, macOS, Linux  ",
-    "url": "https://github.com/netcodermike/personal-time-machine",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 86,
-    "image": "assets/screenshots/personal-time-machine.webp",
-    "capture": {
-      "name": "personal-time-machine",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:28:47.869222+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/personal-time-machine/actions"
-  },
-  {
-    "name": "procedural-planet-explorer",
-    "title": "Procedural Planet Explorer",
-    "description": "Generate a deterministic 2D planet from a numeric seed, explore biome sectors, inspect weather and life, and export an SVG terrain map.",
-    "languages": [
-      "C#"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/procedural-planet-explorer",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 87,
-    "image": "assets/screenshots/procedural-planet-explorer.webp",
-    "capture": {
-      "name": "procedural-planet-explorer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
-    },
-    "ci": "https://github.com/netcodermike/procedural-planet-explorer/actions"
-  },
-  {
-    "name": "searchable-screenshot-library",
-    "title": "Searchable Screenshot Library",
-    "description": "Import screenshots into a native Mac library, recognize text locally, group by topic, search recognized content, and inspect or delete copies.",
-    "languages": [
-      "Swift"
-    ],
-    "platform": "macOS 13+ with Xcode command-line tools  ",
-    "url": "https://github.com/netcodermike/searchable-screenshot-library",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 88,
-    "image": "assets/screenshots/searchable-screenshot-library.webp",
-    "capture": {
-      "name": "searchable-screenshot-library",
-      "repository": "searchable-screenshot-library",
-      "source_commit": "3afc0a3478d485802690763680bee7b1014e99ca",
-      "kind": "runtime",
-      "caption": "Native macOS application capture with synthetic demonstration data.",
-      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
-      "fixture": "Synthetic coastal image and synthetic text only; no private data",
-      "width": 1160,
-      "height": 702
-    },
-    "ci": "https://github.com/netcodermike/searchable-screenshot-library/actions"
-  },
-  {
-    "name": "spaced-repetition-adventure",
-    "title": "Recall Quest — Spaced Repetition Adventure",
-    "description": "Study flashcards in a desktop adventure where successful recall earns XP, unlocks equipment, and advances through locations while a scheduler controls when cards return.",
-    "languages": [
-      "Java"
-    ],
-    "platform": "Windows, macOS, Linux with a graphical  ",
-    "url": "https://github.com/netcodermike/spaced-repetition-adventure",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 89,
-    "image": "assets/screenshots/spaced-repetition-adventure.webp",
-    "capture": {
-      "name": "spaced-repetition-adventure",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:35.204499+00:00",
-      "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "Adventure"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/spaced-repetition-adventure/actions"
-  },
-  {
-    "name": "pantry-meal-planner",
-    "title": "Pantry Meal Planner",
-    "description": "Match recipes against your pantry, build a meal selection, and export the ingredients you still need.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/pantry-meal-planner",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 100,
-    "image": "assets/screenshots/pantry-meal-planner.webp",
-    "capture": {
-      "name": "pantry-meal-planner",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:33:15.633251+00:00",
-      "demo_data": true,
-      "command": [
-        "/usr/bin/python3",
-        "planner.py"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/pantry-meal-planner/actions/runs/42198816571"
-  },
-  {
-    "name": "pathfinding-playground",
-    "title": "Pathfinding Playground",
-    "description": "Paint a weighted map and compare breadth-first search, Dijkstra, and A* through animated exploration.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/pathfinding-playground",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 101,
-    "image": "assets/screenshots/pathfinding-playground.webp",
-    "capture": {
-      "name": "pathfinding-playground",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:21.400853+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/pathfinding-playground/actions/runs/42198834987"
-  },
-  {
-    "name": "linux-process-explorer",
-    "title": "Linux Process Explorer",
-    "description": "Inspect parent-child process trees, sort by resident memory, filter by name/PID, and watch a live view.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-process-explorer",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 102,
-    "image": "assets/screenshots/linux-process-explorer.webp",
-    "capture": {
-      "name": "linux-process-explorer",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:15.197051+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-process-explorer/actions/runs/42198852722"
-  },
-  {
-    "name": "maze-forge",
-    "title": "Maze Forge",
-    "description": "Generate a seeded perfect maze in C++ and export a self-contained browser game with movement controls and a route reveal.",
-    "languages": [
-      "C++"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/maze-forge",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 105,
-    "image": "assets/screenshots/maze-forge.webp",
-    "capture": {
-      "name": "maze-forge",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:25.412372+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/maze-forge/actions/runs/42198904194"
-  },
-  {
-    "name": "fairshare-expense-splitter",
-    "title": "FairShare Expense Splitter",
-    "description": "Record shared expenses in exact cents, calculate equal shares, and propose payments that settle everyone’s balance.",
-    "languages": [
-      "Kotlin"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/fairshare-expense-splitter",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 106,
-    "image": "assets/screenshots/fairshare-expense-splitter.webp",
-    "capture": {
-      "name": "fairshare-expense-splitter",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:54.191597+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-6rwpvnb_/fairshare-expense-splitter/build/install/FairShare/bin/FairShare"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/fairshare-expense-splitter/actions/runs/42198923981"
-  },
-  {
-    "name": "linux-directory-watch",
-    "title": "Linux Directory Watch",
-    "description": "Stream immediate directory changes as JSON Lines, including paired rename cookies and explicit overflow notices.",
-    "languages": [
-      "C"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-directory-watch",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 107,
-    "image": "assets/screenshots/linux-directory-watch.webp",
-    "capture": {
-      "name": "linux-directory-watch",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:31.334890+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-directory-watch/actions/runs/42198937114"
-  },
-  {
-    "name": "round-robin-tournament-studio",
-    "title": "Round-Robin Tournament Studio",
-    "description": "Create round-robin fixtures, record scores, calculate standings, and export a tournament report.",
-    "languages": [
-      "Java"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/round-robin-tournament-studio",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 108,
-    "image": "assets/screenshots/round-robin-tournament-studio.webp",
-    "capture": {
-      "name": "round-robin-tournament-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:39.548593+00:00",
-      "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "Tournament"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/round-robin-tournament-studio/actions/runs/42198953221"
-  },
-  {
-    "name": "menubar-break-reminder",
-    "title": "Menu Bar Break Reminder",
-    "description": "Keep a focus/break countdown in the menu bar, pause it, snooze reminders, and display a small break panel.",
-    "languages": [
-      "Swift"
-    ],
-    "platform": "macOS 13+",
-    "url": "https://github.com/netcodermike/menubar-break-reminder",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 109,
-    "image": "assets/screenshots/menubar-break-reminder.webp",
-    "capture": {
-      "name": "menubar-break-reminder",
-      "repository": "menubar-break-reminder",
-      "source_commit": "dbc6382dfa2632380eba1891c7dc609524b797f2",
-      "kind": "runtime",
-      "caption": "Native macOS application capture with synthetic demonstration data.",
-      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
-      "fixture": "Synthetic coastal image and synthetic text only; no private data",
-      "width": 420,
-      "height": 190
-    },
-    "ci": "https://github.com/netcodermike/menubar-break-reminder/actions/runs/42199188442"
-  },
-  {
-    "name": "linux-open-port-atlas",
-    "title": "Linux Open Port Atlas",
-    "description": "Map local TCP listeners and bound UDP sockets to addresses, ports, UIDs, and visible owning processes.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-open-port-atlas",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 112,
-    "image": "assets/screenshots/linux-open-port-atlas.webp",
-    "capture": {
-      "name": "linux-open-port-atlas",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:32.735392+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-open-port-atlas/actions/runs/42204034421"
-  },
-  {
-    "name": "pixel-sprite-workshop",
-    "title": "Pixel Sprite Workshop",
-    "description": "Paint 16×16 pixel-art frames, use palettes and transparency, preview animation, and export editable projects or PNG sprite sheets.",
-    "languages": [
-      "C++"
-    ],
-    "platform": "Windows, macOS, Linux with Qt 6",
-    "url": "https://github.com/netcodermike/pixel-sprite-workshop",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 115,
-    "image": "assets/screenshots/pixel-sprite-workshop.webp",
-    "capture": {
-      "name": "pixel-sprite-workshop",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:37.430422+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-dsqp6yb5/pixel-sprite-workshop/build/sprite"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/pixel-sprite-workshop/actions/runs/42204087555"
-  },
-  {
-    "name": "habit-garden-desktop",
-    "title": "Habit Garden Desktop",
-    "description": "Plant named habits, check in once per day, track streaks, and grow a small illustrated garden from completed days.",
-    "languages": [
-      "Kotlin"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/habit-garden-desktop",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 116,
-    "image": "assets/screenshots/habit-garden-desktop.webp",
-    "capture": {
-      "name": "habit-garden-desktop",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:30:23.936895+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-6rwpvnb_/habit-garden-desktop/build/install/HabitGarden/bin/HabitGarden"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/habit-garden-desktop/actions/runs/42204101585"
-  },
-  {
-    "name": "linux-unix-socket-relay",
-    "title": "Linux Unix Socket Relay",
-    "description": "Forward one bidirectional Unix socket stream at a time, preserve half-closes, and report byte totals.",
-    "languages": [
-      "C"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-unix-socket-relay",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 117,
-    "image": "assets/screenshots/linux-unix-socket-relay.webp",
-    "capture": {
-      "name": "linux-unix-socket-relay",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:34.978559+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-unix-socket-relay/actions/runs/42204121065"
-  },
-  {
-    "name": "midi-pattern-studio",
-    "title": "MIDI Pattern Studio",
-    "description": "Compose one-bar drum patterns on an 8×16 grid, loop them through MIDI, and export standard MIDI files or editable patterns.",
-    "languages": [
-      "Java"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/midi-pattern-studio",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 118,
-    "image": "assets/screenshots/midi-pattern-studio.webp",
-    "capture": {
-      "name": "midi-pattern-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:43.687813+00:00",
-      "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "MidiStudio"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/midi-pattern-studio/actions/runs/42204138450"
-  },
-  {
-    "name": "photo-metadata-inspector",
-    "title": "Photo Metadata Inspector",
-    "description": "Browse image metadata locally, filter property paths, switch between selected files, and export a full text report.",
-    "languages": [
-      "Swift"
-    ],
-    "platform": "macOS 13+",
-    "url": "https://github.com/netcodermike/photo-metadata-inspector",
-    "category": "Data & analysis",
-    "featured": false,
-    "order": 119,
-    "image": "assets/screenshots/photo-metadata-inspector.webp",
-    "capture": {
-      "name": "photo-metadata-inspector",
-      "repository": "photo-metadata-inspector",
-      "source_commit": "b7f0298e2fcd669c5f8a821f91e0b404a935aa67",
-      "kind": "runtime",
-      "caption": "Native macOS application capture with synthetic demonstration data.",
-      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
-      "fixture": "Synthetic coastal image and synthetic text only; no private data",
-      "width": 1000,
-      "height": 642
-    },
-    "ci": "https://github.com/netcodermike/photo-metadata-inspector/actions/runs/42204155602"
-  },
-  {
-    "name": "subtitle-sync-studio",
-    "title": "Subtitle Sync Studio",
-    "description": "Shift SRT subtitle timing with a live text preview and explicit export.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/subtitle-sync-studio",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 120,
-    "image": "assets/screenshots/subtitle-sync-studio.webp",
-    "capture": {
-      "name": "subtitle-sync-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:33:20.727355+00:00",
-      "demo_data": true,
-      "command": [
-        "/usr/bin/python3",
-        "app.py"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/subtitle-sync-studio/actions/runs/42205280646"
-  },
-  {
-    "name": "offline-stockroom-tracker",
-    "title": "Offline Stockroom Tracker",
-    "description": "Track local inventory counts, flag reorder levels, and print numeric Code 39 labels.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Windows, macOS, Linux browser",
-    "url": "https://github.com/netcodermike/offline-stockroom-tracker",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 121,
-    "image": "assets/screenshots/offline-stockroom-tracker.webp",
-    "capture": {
-      "name": "offline-stockroom-tracker",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:30.166101+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/offline-stockroom-tracker/actions/runs/42205297197"
-  },
-  {
-    "name": "linux-disk-space-sentinel",
-    "title": "Linux Disk Space Sentinel",
-    "description": "Sample Linux filesystem capacity and show recent usage with threshold alerts.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-disk-space-sentinel",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 122,
-    "image": "assets/screenshots/linux-disk-space-sentinel.webp",
-    "capture": {
-      "name": "linux-disk-space-sentinel",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:35.946893+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-disk-space-sentinel/actions/runs/42205313910"
-  },
-  {
-    "name": "wave-spectrum-lab",
-    "title": "Wave Spectrum Lab",
-    "description": "Inspect a 16-bit PCM WAV with a native Qt spectrum image and PNG export.",
-    "languages": [
-      "C++"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/wave-spectrum-lab",
-    "category": "Data & analysis",
-    "featured": false,
-    "order": 125,
-    "image": "assets/screenshots/wave-spectrum-lab.webp",
-    "capture": {
-      "name": "wave-spectrum-lab",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:45.406250+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-dsqp6yb5/wave-spectrum-lab/build/app"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/wave-spectrum-lab/actions/runs/42205365452"
-  },
-  {
-    "name": "packing-list-companion",
-    "title": "Packing List Companion",
-    "description": "Compose reusable categorized packing checklists and track packed quantities.",
-    "languages": [
-      "Kotlin"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/packing-list-companion",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 126,
-    "image": "assets/screenshots/packing-list-companion.webp",
-    "capture": {
-      "name": "packing-list-companion",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:37:08.109276+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-r16lfqri/packing-list-companion/build/install/packing-list-companion/bin/packing-list-companion"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/packing-list-companion/actions/runs/42205383501"
-  },
-  {
-    "name": "linux-epoll-chat",
-    "title": "Linux Epoll Chat",
-    "description": "Run a small loopback chat broadcast server using Linux epoll and a terminal client.",
-    "languages": [
-      "C"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-epoll-chat",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 127,
-    "image": "assets/screenshots/linux-epoll-chat.webp",
-    "capture": {
-      "name": "linux-epoll-chat",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:38.579039+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-epoll-chat/actions/runs/42205400535"
-  },
-  {
-    "name": "sudoku-studio-desktop",
-    "title": "Sudoku Studio Desktop",
-    "description": "Generate uniquely solvable Sudoku boards, validate entries, and reveal solutions.",
-    "languages": [
-      "Java"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/sudoku-studio-desktop",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 128,
-    "image": "assets/screenshots/sudoku-studio-desktop.webp",
-    "capture": {
-      "name": "sudoku-studio-desktop",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:47.264247+00:00",
-      "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "App"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/sudoku-studio-desktop/actions/runs/42205416920"
-  },
-  {
-    "name": "batch-image-resizer",
-    "title": "Batch Image Resizer",
-    "description": "Write resized PNG copies of selected Mac images into an explicit output folder.",
-    "languages": [
-      "Swift"
-    ],
-    "platform": "macOS",
-    "url": "https://github.com/netcodermike/batch-image-resizer",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 129,
-    "image": "assets/screenshots/batch-image-resizer.webp",
-    "capture": {
-      "name": "batch-image-resizer",
-      "repository": "batch-image-resizer",
-      "source_commit": "c868478af69b8919c078f033696abfa85ae00299",
-      "kind": "runtime",
-      "caption": "Native macOS application capture with synthetic demonstration data.",
-      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
-      "fixture": "Synthetic coastal image and synthetic text only; no private data",
-      "width": 900,
-      "height": 642
-    },
-    "ci": "https://github.com/netcodermike/batch-image-resizer/actions/runs/42205433281"
-  },
-  {
-    "name": "document-similarity-explorer",
-    "title": "Document Similarity Explorer",
-    "description": "Compare local text documents with TF-IDF cosine similarity and threshold-based connected clusters.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/document-similarity-explorer",
-    "category": "Data & analysis",
-    "featured": false,
-    "order": 130,
-    "image": "assets/screenshots/document-similarity-explorer.webp",
-    "capture": {
-      "name": "document-similarity-explorer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:33:23.004491+00:00",
-      "demo_data": true,
-      "command": [
-        "/usr/bin/python3",
-        "app.py"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/document-similarity-explorer/actions/runs/42206091516"
-  },
-  {
-    "name": "rhythm-practice-lab",
-    "title": "Rhythm Practice Lab",
-    "description": "Practice a Web Audio metronome and inspect tap timing against a beat grid.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Windows, macOS, Linux browser",
-    "url": "https://github.com/netcodermike/rhythm-practice-lab",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 131,
-    "image": "assets/screenshots/rhythm-practice-lab.webp",
-    "capture": {
-      "name": "rhythm-practice-lab",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:32.076958+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/rhythm-practice-lab/actions/runs/42206108035"
-  },
-  {
-    "name": "linux-package-footprint",
-    "title": "Linux Package Footprint",
-    "description": "Rank Debian-family installed packages by declared installed size.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-package-footprint",
-    "category": "Data & analysis",
-    "featured": false,
-    "order": 132,
-    "image": "assets/screenshots/linux-package-footprint.webp",
-    "capture": {
-      "name": "linux-package-footprint",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:39.646152+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-package-footprint/actions/runs/42206127547"
-  },
-  {
-    "name": "tiny-raytracer-studio",
-    "title": "Tiny Raytracer Studio",
-    "description": "Render a small sphere scene with adjustable light position and PNG export.",
-    "languages": [
-      "C++"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/tiny-raytracer-studio",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 135,
-    "image": "assets/screenshots/tiny-raytracer-studio.webp",
-    "capture": {
-      "name": "tiny-raytracer-studio",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:53.660845+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-dsqp6yb5/tiny-raytracer-studio/build/app"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/tiny-raytracer-studio/actions/runs/42207016000"
-  },
-  {
-    "name": "linux-mmap-search",
-    "title": "Linux Mmap Search",
-    "description": "Search a regular file with a read-only memory mapping and report exact byte offsets.",
-    "languages": [
-      "C"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-mmap-search",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 137,
-    "image": "assets/screenshots/linux-mmap-search.webp",
-    "capture": {
-      "name": "linux-mmap-search",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:46.266486+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-mmap-search/actions/runs/42206209719"
-  },
-  {
-    "name": "image-palette-studio",
-    "title": "Image Palette Studio",
-    "description": "Extract a ranked, quantized color palette from a Mac image thumbnail.",
-    "languages": [
-      "Swift"
-    ],
-    "platform": "macOS",
-    "url": "https://github.com/netcodermike/image-palette-studio",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 139,
-    "image": "assets/screenshots/image-palette-studio.webp",
-    "capture": {
-      "name": "image-palette-studio",
-      "repository": "image-palette-studio",
-      "source_commit": "425acc569ead77b8ce3cd9931296844662aa6abd",
-      "kind": "runtime",
-      "caption": "Native macOS application capture with synthetic demonstration data.",
-      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
-      "fixture": "Synthetic coastal image and synthetic text only; no private data",
-      "width": 900,
-      "height": 642
-    },
-    "ci": "https://github.com/netcodermike/image-palette-studio/actions/runs/42206242628"
-  },
-  {
-    "name": "family-tree-builder",
-    "title": "Family Tree Builder",
-    "description": "Create a small local genealogy graph with parent links, birth years, cycle checks, and JSON portability.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/family-tree-builder",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 140,
-    "image": "assets/screenshots/family-tree-builder.webp",
-    "capture": {
-      "name": "family-tree-builder",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:33:25.299912+00:00",
-      "demo_data": true,
-      "command": [
-        "/usr/bin/python3",
-        "app.py"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/family-tree-builder/actions/runs/42206807459"
-  },
-  {
-    "name": "tabletop-map-workshop",
-    "title": "Tabletop Map Workshop",
-    "description": "Paint a local tabletop terrain map, flood-fill regions, place labels, undo, and export editable or flattened maps.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Windows, macOS, Linux browser",
-    "url": "https://github.com/netcodermike/tabletop-map-workshop",
-    "category": "Creative tools",
-    "featured": false,
-    "order": 141,
-    "image": "assets/screenshots/tabletop-map-workshop.webp",
-    "capture": {
-      "name": "tabletop-map-workshop",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:34.348286+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/tabletop-map-workshop/actions/runs/42206821206"
-  },
-  {
-    "name": "linux-mount-explorer",
-    "title": "Linux Mount Explorer",
-    "description": "Inspect the current Linux mount namespace with filesystem types, sources, parent IDs, and options.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-mount-explorer",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 142,
-    "image": "assets/screenshots/linux-mount-explorer.webp",
-    "capture": {
-      "name": "linux-mount-explorer",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:47.181415+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-mount-explorer/actions/runs/42206835976"
-  },
-  {
-    "name": "linux-job-scheduler",
-    "title": "Linux Job Scheduler",
-    "description": "Execute trusted local command argument arrays after bounded foreground delays.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Linux",
-    "url": "https://github.com/netcodermike/linux-job-scheduler",
-    "category": "Systems & Linux",
-    "featured": false,
-    "order": 144,
-    "image": "assets/screenshots/linux-job-scheduler.webp",
-    "capture": {
-      "name": "linux-job-scheduler",
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated Linux runner.",
-      "capture_date": "2026-11-06T11:22:49.944815+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/linux-job-scheduler/actions/runs/42206868756"
-  },
-  {
     "name": "fractal-render-lab",
     "title": "Fractal Render Lab",
     "description": "Explore Mandelbrot views through center/zoom controls and export rendered PNGs.",
@@ -1683,7 +54,7 @@
     "url": "https://github.com/netcodermike/fractal-render-lab",
     "category": "Creative tools",
     "featured": false,
-    "order": 145,
+    "order": 2,
     "image": "assets/screenshots/fractal-render-lab.webp",
     "capture": {
       "name": "fractal-render-lab",
@@ -1698,85 +69,6 @@
     "ci": "https://github.com/netcodermike/fractal-render-lab/actions/runs/42207093709"
   },
   {
-    "name": "interval-workout-composer",
-    "title": "Interval Workout Composer",
-    "description": "Compose named timed intervals and run them in a local desktop sequence timer.",
-    "languages": [
-      "Kotlin"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/interval-workout-composer",
-    "category": "Everyday apps",
-    "featured": false,
-    "order": 146,
-    "image": "assets/screenshots/interval-workout-composer.webp",
-    "capture": {
-      "name": "interval-workout-composer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:32:20.543525+00:00",
-      "demo_data": true,
-      "command": [
-        "/tmp/surf-capture-6rwpvnb_/interval-workout-composer/build/install/interval-workout-composer/bin/interval-workout-composer"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/interval-workout-composer/actions/runs/42206906731"
-  },
-  {
-    "name": "chess-tactics-trainer",
-    "title": "Chess Tactics Trainer",
-    "description": "Practice a small curated set of coordinate-move checking exercises on a desktop chessboard.",
-    "languages": [
-      "Java"
-    ],
-    "platform": "Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/chess-tactics-trainer",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 148,
-    "image": "assets/screenshots/chess-tactics-trainer.webp",
-    "capture": {
-      "name": "chess-tactics-trainer",
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:54.571725+00:00",
-      "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "App"
-      ]
-    },
-    "ci": "https://github.com/netcodermike/chess-tactics-trainer/actions/runs/42207308725"
-  },
-  {
-    "name": "menubar-snippet-library",
-    "title": "Menubar Snippet Library",
-    "description": "Store named local text snippets in a Mac menu and copy them only on explicit selection.",
-    "languages": [
-      "Swift"
-    ],
-    "platform": "macOS",
-    "url": "https://github.com/netcodermike/menubar-snippet-library",
-    "category": "Work & productivity",
-    "featured": false,
-    "order": 149,
-    "image": "assets/screenshots/menubar-snippet-library.webp",
-    "capture": {
-      "name": "menubar-snippet-library",
-      "repository": "menubar-snippet-library",
-      "source_commit": "db1fbeba4c0fc98a1bc0ca53b11c6303c400cf60",
-      "kind": "runtime",
-      "caption": "Native macOS application capture with synthetic demonstration data.",
-      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
-      "fixture": "Synthetic coastal image and synthetic text only; no private data",
-      "width": 432,
-      "height": 398
-    },
-    "ci": "https://github.com/netcodermike/menubar-snippet-library/actions/runs/42206964875"
-  },
-  {
     "name": "string-instrument-tuner",
     "title": "String Instrument Tuner",
     "description": "Chromatic microphone tuner with string presets, custom tunings, cents deviation, and reference tones.",
@@ -1787,7 +79,7 @@
     "url": "https://github.com/netcodermike/string-instrument-tuner",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 3,
     "image": "assets/screenshots/string-instrument-tuner.webp",
     "capture": {
       "name": "string-instrument-tuner",
@@ -1818,7 +110,7 @@
     "url": "https://github.com/netcodermike/blues-progression-atlas",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 4,
     "image": "assets/screenshots/blues-progression-atlas.webp",
     "capture": {
       "name": "blues-progression-atlas",
@@ -1848,7 +140,7 @@
     "url": "https://github.com/netcodermike/surfcoder-boombox",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 5,
     "image": "assets/screenshots/surfcoder-boombox.webp",
     "capture": {
       "name": "surfcoder-boombox",
@@ -1869,6 +161,117 @@
     "applicationUrl": "/apps/surfcoder-boombox/"
   },
   {
+    "name": "interactive-audio-synthesizer",
+    "title": "Patch Synth",
+    "description": "An interactive synthesis workbench that renders oscillator patches through an envelope, low-pass filter, and feedback echo into standard WAV files.",
+    "languages": [
+      "C++"
+    ],
+    "platform": "Windows, macOS, Linux  ",
+    "url": "https://github.com/netcodermike/interactive-audio-synthesizer",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 6,
+    "image": "assets/screenshots/interactive-audio-synthesizer.webp",
+    "capture": {
+      "name": "interactive-audio-synthesizer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:19.130083+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/interactive-audio-synthesizer/actions"
+  },
+  {
+    "name": "pocket-drum-foundry",
+    "title": "Pocket Drum Foundry",
+    "description": "Program a sixteen-step synthesized drum groove with swing, per-voice levels, and pattern export.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/pocket-drum-foundry",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 7,
+    "image": "assets/screenshots/pocket-drum-foundry.webp",
+    "capture": {
+      "name": "pocket-drum-foundry",
+      "capture_date": "2026-11-06T12:09:02.231949+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "6e58089bef5c208e08b02eaf80f075da99943635",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Step 9"
+    },
+    "ci": "https://github.com/netcodermike/pocket-drum-foundry/actions",
+    "applicationUrl": "/apps/pocket-drum-foundry/"
+  },
+  {
+    "name": "midi-pattern-studio",
+    "title": "MIDI Pattern Studio",
+    "description": "Compose one-bar drum patterns on an 8×16 grid, loop them through MIDI, and export standard MIDI files or editable patterns.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/midi-pattern-studio",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 8,
+    "image": "assets/screenshots/midi-pattern-studio.webp",
+    "capture": {
+      "name": "midi-pattern-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:43.687813+00:00",
+      "demo_data": true,
+      "command": [
+        "java",
+        "-cp",
+        "build",
+        "MidiStudio"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/midi-pattern-studio/actions/runs/42204138450"
+  },
+  {
+    "name": "chord-voicing-lab",
+    "title": "Chord Voicing Lab",
+    "description": "Build and audition extended chords, inversions, and voice-leading between two harmonies.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/chord-voicing-lab",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 9,
+    "image": "assets/screenshots/chord-voicing-lab.webp",
+    "capture": {
+      "name": "chord-voicing-lab",
+      "capture_date": "2026-11-06T12:08:53.639455+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "b57e7c4585fc2abe6b8e61992046d2c8501db1e3",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/chord-voicing-lab/actions",
+    "applicationUrl": "/apps/chord-voicing-lab/"
+  },
+  {
     "name": "polyrhythm-matrix",
     "title": "Polyrhythm Matrix",
     "description": "Hear and visualize independent rhythmic cycles with tempo, subdivision, and accent control.",
@@ -1879,7 +282,7 @@
     "url": "https://github.com/netcodermike/polyrhythm-matrix",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 10,
     "image": "assets/screenshots/polyrhythm-matrix.webp",
     "capture": {
       "name": "polyrhythm-matrix",
@@ -1909,7 +312,7 @@
     "url": "https://github.com/netcodermike/interval-ear-gym",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 11,
     "image": "assets/screenshots/interval-ear-gym.webp",
     "capture": {
       "name": "interval-ear-gym",
@@ -1929,34 +332,26 @@
     "applicationUrl": "/apps/interval-ear-gym/"
   },
   {
-    "name": "chord-voicing-lab",
-    "title": "Chord Voicing Lab",
-    "description": "Build and audition extended chords, inversions, and voice-leading between two harmonies.",
+    "name": "rhythm-practice-lab",
+    "title": "Rhythm Practice Lab",
+    "description": "Practice a Web Audio metronome and inspect tap timing against a beat grid.",
     "languages": [
       "TypeScript"
     ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/chord-voicing-lab",
+    "platform": "Windows, macOS, Linux browser",
+    "url": "https://github.com/netcodermike/rhythm-practice-lab",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
-    "image": "assets/screenshots/chord-voicing-lab.webp",
+    "order": 12,
+    "image": "assets/screenshots/rhythm-practice-lab.webp",
     "capture": {
-      "name": "chord-voicing-lab",
-      "capture_date": "2026-11-06T12:08:53.639455+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "b57e7c4585fc2abe6b8e61992046d2c8501db1e3",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
+      "name": "rhythm-practice-lab",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner"
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:32.076958+00:00",
+      "demo_data": true
     },
-    "ci": "https://github.com/netcodermike/chord-voicing-lab/actions",
-    "applicationUrl": "/apps/chord-voicing-lab/"
+    "ci": "https://github.com/netcodermike/rhythm-practice-lab/actions/runs/42206108035"
   },
   {
     "name": "ambient-soundscape-mixer",
@@ -1969,7 +364,7 @@
     "url": "https://github.com/netcodermike/ambient-soundscape-mixer",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 13,
     "image": "assets/screenshots/ambient-soundscape-mixer.webp",
     "capture": {
       "name": "ambient-soundscape-mixer",
@@ -2000,7 +395,7 @@
     "url": "https://github.com/netcodermike/audio-ab-loop-studio",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 14,
     "image": "assets/screenshots/audio-ab-loop-studio.webp",
     "capture": {
       "name": "audio-ab-loop-studio",
@@ -2021,37 +416,6 @@
     "applicationUrl": "/apps/audio-ab-loop-studio/"
   },
   {
-    "name": "pocket-drum-foundry",
-    "title": "Pocket Drum Foundry",
-    "description": "Program a sixteen-step synthesized drum groove with swing, per-voice levels, and pattern export.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/pocket-drum-foundry",
-    "category": "Music & audio",
-    "featured": false,
-    "order": 201,
-    "image": "assets/screenshots/pocket-drum-foundry.webp",
-    "capture": {
-      "name": "pocket-drum-foundry",
-      "capture_date": "2026-11-06T12:09:02.231949+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "6e58089bef5c208e08b02eaf80f075da99943635",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Step 9"
-    },
-    "ci": "https://github.com/netcodermike/pocket-drum-foundry/actions",
-    "applicationUrl": "/apps/pocket-drum-foundry/"
-  },
-  {
     "name": "spectrogram-waterfall",
     "title": "Spectrogram Waterfall",
     "description": "Inspect microphone or local audio as a scrolling frequency heatmap with adjustable range.",
@@ -2062,7 +426,7 @@
     "url": "https://github.com/netcodermike/spectrogram-waterfall",
     "category": "Music & audio",
     "featured": false,
-    "order": 201,
+    "order": 15,
     "image": "assets/screenshots/spectrogram-waterfall.webp",
     "capture": {
       "name": "spectrogram-waterfall",
@@ -2083,6 +447,31 @@
     "applicationUrl": "/apps/spectrogram-waterfall/"
   },
   {
+    "name": "wave-spectrum-lab",
+    "title": "Wave Spectrum Lab",
+    "description": "Inspect a 16-bit PCM WAV with a native Qt spectrum image and PNG export.",
+    "languages": [
+      "C++"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/wave-spectrum-lab",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 16,
+    "image": "assets/screenshots/wave-spectrum-lab.webp",
+    "capture": {
+      "name": "wave-spectrum-lab",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:45.406250+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-dsqp6yb5/wave-spectrum-lab/build/app"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/wave-spectrum-lab/actions/runs/42205365452"
+  },
+  {
     "name": "wav-loudness-auditor",
     "title": "WAV Loudness Auditor",
     "description": "Measure PCM WAV peaks, RMS, clipping, DC offset, and crest factor with per-channel JSON reports.",
@@ -2093,7 +482,7 @@
     "url": "https://github.com/netcodermike/wav-loudness-auditor",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 17,
     "image": "assets/screenshots/wav-loudness-auditor.webp",
     "capture": {
       "name": "wav-loudness-auditor",
@@ -2122,7 +511,7 @@
     "url": "https://github.com/netcodermike/midi-file-inspector",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 18,
     "image": "assets/screenshots/midi-file-inspector.webp",
     "capture": {
       "name": "midi-file-inspector",
@@ -2151,7 +540,7 @@
     "url": "https://github.com/netcodermike/scale-fingering-planner",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 19,
     "image": "assets/screenshots/scale-fingering-planner.webp",
     "capture": {
       "name": "scale-fingering-planner",
@@ -2179,7 +568,7 @@
     "url": "https://github.com/netcodermike/sample-pack-cataloger",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 20,
     "image": "assets/screenshots/sample-pack-cataloger.webp",
     "capture": {
       "name": "sample-pack-cataloger",
@@ -2208,7 +597,7 @@
     "url": "https://github.com/netcodermike/wav-channel-toolkit",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 21,
     "image": "assets/screenshots/wav-channel-toolkit.webp",
     "capture": {
       "name": "wav-channel-toolkit",
@@ -2238,7 +627,7 @@
     "url": "https://github.com/netcodermike/impulse-response-forge",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 22,
     "image": "assets/screenshots/impulse-response-forge.webp",
     "capture": {
       "name": "impulse-response-forge",
@@ -2267,7 +656,7 @@
     "url": "https://github.com/netcodermike/setlist-flow-planner",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 23,
     "image": "assets/screenshots/setlist-flow-planner.webp",
     "capture": {
       "name": "setlist-flow-planner",
@@ -2295,7 +684,7 @@
     "url": "https://github.com/netcodermike/lyrics-rhyme-notebook",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 24,
     "image": "assets/screenshots/lyrics-rhyme-notebook.webp",
     "capture": {
       "name": "lyrics-rhyme-notebook",
@@ -2323,7 +712,7 @@
     "url": "https://github.com/netcodermike/podcast-chapter-builder",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 25,
     "image": "assets/screenshots/podcast-chapter-builder.webp",
     "capture": {
       "name": "podcast-chapter-builder",
@@ -2352,7 +741,7 @@
     "url": "https://github.com/netcodermike/practice-session-composer",
     "category": "Music & audio",
     "featured": false,
-    "order": 202,
+    "order": 26,
     "image": "assets/screenshots/practice-session-composer.webp",
     "capture": {
       "name": "practice-session-composer",
@@ -2370,6 +759,1617 @@
     "ci": "https://github.com/netcodermike/practice-session-composer/actions"
   },
   {
+    "name": "csv-cleanup-studio",
+    "title": "CSV Cleanup Studio",
+    "description": "Profile and clean local CSV files with quoted-field parsing, trimming, blank-row removal, deduplication, and explicit export.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows",
+    "url": "https://github.com/netcodermike/csv-cleanup-studio",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 27,
+    "image": "assets/screenshots/csv-cleanup-studio.webp",
+    "capture": {
+      "name": "csv-cleanup-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/csv-cleanup-studio/actions/runs/42207087181"
+  },
+  {
+    "name": "log-timeline-studio",
+    "title": "Log Timeline Studio",
+    "description": "Load text or JSON-line logs into a searchable Windows timeline.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows",
+    "url": "https://github.com/netcodermike/log-timeline-studio",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 28,
+    "image": "assets/screenshots/log-timeline-studio.webp",
+    "capture": {
+      "name": "log-timeline-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/log-timeline-studio/actions/runs/42205329861"
+  },
+  {
+    "name": "markdown-note-graph",
+    "title": "Markdown Note Graph",
+    "description": "Open a folder of Markdown notes, inspect wiki links and backlinks, explore a neighbor graph, and edit note text.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows",
+    "url": "https://github.com/netcodermike/markdown-note-graph",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 29,
+    "image": "assets/screenshots/markdown-note-graph.webp",
+    "capture": {
+      "name": "markdown-note-graph",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/markdown-note-graph/actions/runs/42204053636"
+  },
+  {
+    "name": "linux-config-drift-monitor",
+    "title": "Linux Config Drift Monitor",
+    "description": "Compare configuration file contents against an explicit SHA-256 baseline.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-config-drift-monitor",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 30,
+    "image": "assets/screenshots/linux-config-drift-monitor.webp",
+    "capture": {
+      "name": "linux-config-drift-monitor",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:37.779805+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-config-drift-monitor/actions/runs/42205349975"
+  },
+  {
+    "name": "linux-backup-server",
+    "title": "Linux Backup Vault",
+    "description": "Store client-encrypted folder backups in a self-hosted content-addressed vault, list snapshots, and restore files with verified hashes.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Linux server with systemd",
+    "url": "https://github.com/netcodermike/linux-backup-server",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 31,
+    "image": "assets/screenshots/linux-backup-server.webp",
+    "capture": {
+      "name": "linux-backup-server",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:17.230675+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-backup-server/actions"
+  },
+  {
+    "name": "WpfDigitalClockAlarm",
+    "title": "Clock & Task Planner",
+    "description": "A Windows desktop clock with alarms, synthesized tones, task priorities, deadlines, and daily reminders. Local storage keeps the workflow on your machine.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows · WPF",
+    "url": "https://github.com/netcodermike/WpfDigitalClockAlarm",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 32,
+    "image": "assets/screenshots/WpfDigitalClockAlarm.webp",
+    "capture": {
+      "name": "WpfDigitalClockAlarm",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/WpfDigitalClockAlarm/actions"
+  },
+  {
+    "name": "linux-systemd-unit-checker",
+    "title": "Linux systemd Unit Checker",
+    "description": "Find common mistakes in systemd service files without starting, enabling, or modifying a service.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-systemd-unit-checker",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 33,
+    "image": "assets/screenshots/linux-systemd-unit-checker.webp",
+    "capture": {
+      "name": "linux-systemd-unit-checker",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:30.079115+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-systemd-unit-checker/actions/runs/42198886718"
+  },
+  {
+    "name": "linux-cgroup-explorer",
+    "title": "Linux cgroup Explorer",
+    "description": "Inspect local cgroup memory, PID, and CPU budgets with bounded hierarchy traversal and structured JSON output.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Linux cgroup v2",
+    "url": "https://github.com/netcodermike/linux-cgroup-explorer",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 34,
+    "image": "assets/screenshots/linux-cgroup-explorer.webp",
+    "capture": {
+      "name": "linux-cgroup-explorer",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:34.322261+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-cgroup-explorer/actions/runs/42204070153"
+  },
+  {
+    "name": "file-tag-organizer",
+    "title": "File Tag Organizer",
+    "description": "Maintain a local file-path/tag index with AND filtering and portable saves.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/file-tag-organizer",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 35,
+    "image": "assets/screenshots/file-tag-organizer.webp",
+    "capture": {
+      "name": "file-tag-organizer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:50.896173+00:00",
+      "demo_data": true,
+      "command": [
+        "java",
+        "-cp",
+        "build",
+        "App"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/file-tag-organizer/actions/runs/42206226540"
+  },
+  {
+    "name": "personal-library-tracker",
+    "title": "Personal Library Tracker",
+    "description": "Catalog books, track reading status, manage checkouts and due dates, search your shelves, and export a CSV.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/personal-library-tracker",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 36,
+    "image": "assets/screenshots/personal-library-tracker.webp",
+    "capture": {
+      "name": "personal-library-tracker",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:33:18.040378+00:00",
+      "demo_data": true,
+      "command": [
+        "/usr/bin/python3",
+        "library.py"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/personal-library-tracker/actions/runs/42204015297"
+  },
+  {
+    "name": "local-clipboard-history",
+    "title": "Local Clipboard History",
+    "description": "Keep an explicitly enabled, memory-only Windows clipboard text history.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows",
+    "url": "https://github.com/netcodermike/local-clipboard-history",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 37,
+    "image": "assets/screenshots/local-clipboard-history.webp",
+    "capture": {
+      "name": "local-clipboard-history",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/local-clipboard-history/actions/runs/42206145406"
+  },
+  {
+    "name": "linux-journal-explorer",
+    "title": "Linux Journal Explorer",
+    "description": "Query a bounded systemd journal selection and emit structured, filtered JSON records.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-journal-explorer",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 38,
+    "image": "assets/screenshots/linux-journal-explorer.webp",
+    "capture": {
+      "name": "linux-journal-explorer",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:45.712726+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-journal-explorer/actions/runs/42206161180"
+  },
+  {
+    "name": "linux-resource-job-queue",
+    "title": "Linux Resource Job Queue",
+    "description": "Run a bounded queue of trusted local commands concurrently with per-process resource limits and wall-time cleanup.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-resource-job-queue",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 39,
+    "image": "assets/screenshots/linux-resource-job-queue.webp",
+    "capture": {
+      "name": "linux-resource-job-queue",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:50.744775+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-resource-job-queue/actions/runs/42207302854"
+  },
+  {
+    "name": "desktop-focus-timer",
+    "title": "Desktop Focus Timer",
+    "description": "Run focus and break sessions with pause/resume, adjustable durations, completion counts, and a Windows sound cue.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows",
+    "url": "https://github.com/netcodermike/desktop-focus-timer",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 40,
+    "image": "assets/screenshots/desktop-focus-timer.webp",
+    "capture": {
+      "name": "desktop-focus-timer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/desktop-focus-timer/actions/runs/42198869227"
+  },
+  {
+    "name": "weekly-timetable-planner",
+    "title": "Weekly Timetable Planner",
+    "description": "Plan a weekly timetable with time parsing, overlap rejection, and portable saved schedules.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/weekly-timetable-planner",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 41,
+    "image": "assets/screenshots/weekly-timetable-planner.webp",
+    "capture": {
+      "name": "weekly-timetable-planner",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:31:53.383881+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-6rwpvnb_/weekly-timetable-planner/build/install/weekly-timetable-planner/bin/weekly-timetable-planner"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/weekly-timetable-planner/actions/runs/42206191126"
+  },
+  {
+    "name": "local-whiteboard-studio",
+    "title": "Local Whiteboard Studio",
+    "description": "Sketch with pen, lines, and rectangles across layers, undo edits, save projects locally, and export flattened PNG images.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/local-whiteboard-studio",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 42,
+    "image": "assets/screenshots/local-whiteboard-studio.webp",
+    "capture": {
+      "name": "local-whiteboard-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:28.017534+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/local-whiteboard-studio/actions/runs/42204015675"
+  },
+  {
+    "name": "local-rag-notebook",
+    "title": "Local RAG Notebook",
+    "description": "Retrieve cited document chunks with BM25 and optionally answer using a local Ollama model.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/local-rag-notebook",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 43,
+    "image": "assets/screenshots/local-rag-notebook.webp",
+    "capture": {
+      "name": "local-rag-notebook",
+      "capture_date": "2026-11-06T12:33:18.078272+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "dc8741cdec1aa6adeadfcb67463e5cd2430ccabc",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples \"How are ocean waves measured?\""
+    },
+    "ci": "https://github.com/netcodermike/local-rag-notebook/actions"
+  },
+  {
+    "name": "prompt-evaluation-bench",
+    "title": "Prompt Evaluation Bench",
+    "description": "Score model responses against reproducible contains, forbidden-text, and regular-expression checks.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/prompt-evaluation-bench",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 44,
+    "image": "assets/screenshots/prompt-evaluation-bench.webp",
+    "capture": {
+      "name": "prompt-evaluation-bench",
+      "capture_date": "2026-11-06T12:33:18.671696+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "e3585be742538eb38fac81df23bcb5f8b521e091",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
+      "command": "python app.py examples/cases.jsonl"
+    },
+    "ci": "https://github.com/netcodermike/prompt-evaluation-bench/actions"
+  },
+  {
+    "name": "embedding-neighbor-map",
+    "title": "Embedding Neighbor Map",
+    "description": "Explore document similarity using transparent TF-IDF vectors and a nearest-neighbor graph.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/embedding-neighbor-map",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 45,
+    "image": "assets/screenshots/embedding-neighbor-map.webp",
+    "capture": {
+      "name": "embedding-neighbor-map",
+      "capture_date": "2026-11-06T12:33:30.532475+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "8d447c6030faa43aa2546ae919f62bae1c44a440",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Lexical TF-IDF vectors, not a pretrained semantic model."
+    },
+    "ci": "https://github.com/netcodermike/embedding-neighbor-map/actions",
+    "applicationUrl": "/apps/embedding-neighbor-map/"
+  },
+  {
+    "name": "tiny-neural-network-playground",
+    "title": "Tiny Neural Network Playground",
+    "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/tiny-neural-network-playground",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 46,
+    "image": "assets/screenshots/tiny-neural-network-playground.webp",
+    "capture": {
+      "name": "tiny-neural-network-playground",
+      "capture_date": "2026-11-06T12:33:32.427902+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f980a7c61ab3eb516db2ea340d6b06da0e551763",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/tiny-neural-network-playground/actions",
+    "applicationUrl": "/apps/tiny-neural-network-playground/"
+  },
+  {
+    "name": "naive-bayes-mail-lab",
+    "title": "Naive Bayes Mail Lab",
+    "description": "Train and evaluate a Laplace-smoothed text classifier with readable per-token evidence.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/naive-bayes-mail-lab",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 47,
+    "image": "assets/screenshots/naive-bayes-mail-lab.webp",
+    "capture": {
+      "name": "naive-bayes-mail-lab",
+      "capture_date": "2026-11-06T12:33:19.154752+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "89ac5a4dfff2eefb7a178f3dfdf7f877659abe9e",
+      "validation_commands": [
+        "go test ./..."
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "go run . examples/training.json \"team meeting project schedule\""
+    },
+    "ci": "https://github.com/netcodermike/naive-bayes-mail-lab/actions"
+  },
+  {
+    "name": "knn-signal-classifier",
+    "title": "KNN Signal Classifier",
+    "description": "Classify numeric feature vectors using standardized nearest neighbors and confidence votes.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/knn-signal-classifier",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 48,
+    "image": "assets/screenshots/knn-signal-classifier.webp",
+    "capture": {
+      "name": "knn-signal-classifier",
+      "capture_date": "2026-11-06T12:33:16.909593+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "4a110ccbfad9143211409acea992aaa2faea85ad",
+      "validation_commands": [
+        "cargo test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "cargo run -- examples/signals.tsv \"115,0.25\" 3"
+    },
+    "ci": "https://github.com/netcodermike/knn-signal-classifier/actions"
+  },
+  {
+    "name": "local-model-chat-desk",
+    "title": "Local Model Chat Desk",
+    "description": "Chat with installed Ollama models through a localhost-only server, with conversation export.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Local server",
+    "url": "https://github.com/netcodermike/local-model-chat-desk",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 49,
+    "image": "assets/screenshots/local-model-chat-desk.webp",
+    "capture": {
+      "name": "local-model-chat-desk",
+      "capture_date": "2026-11-06T12:33:35.133090+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "968f1b2adc30d9aa472e361342540b07f1f62097",
+      "validation_commands": [
+        "python server.py --self-test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Ollama unavailable. Start it locally and install a model."
+    },
+    "ci": "https://github.com/netcodermike/local-model-chat-desk/actions"
+  },
+  {
+    "name": "ai-dataset-quality-auditor",
+    "title": "AI Dataset Quality Auditor",
+    "description": "Audit JSONL datasets for malformed rows, duplicate prompts, split leakage, and possible sensitive fields.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/ai-dataset-quality-auditor",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 50,
+    "image": "assets/screenshots/ai-dataset-quality-auditor.webp",
+    "capture": {
+      "name": "ai-dataset-quality-auditor",
+      "capture_date": "2026-11-06T12:33:31.838880+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f446ce1d164bc1e4f8048ab5d698447414aaf4ec",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples/dataset.jsonl"
+    },
+    "ci": "https://github.com/netcodermike/ai-dataset-quality-auditor/actions"
+  },
+  {
+    "name": "decision-tree-workbench",
+    "title": "Decision Tree Workbench",
+    "description": "Train a small CART classifier, inspect readable split rules, and query new feature values.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/decision-tree-workbench",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 51,
+    "image": "assets/screenshots/decision-tree-workbench.webp",
+    "capture": {
+      "name": "decision-tree-workbench",
+      "capture_date": "2026-11-06T12:33:36.407288+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "43d2fddbdc3fdd764cbcd846a7b2cc23587a2760",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "CART with Gini impurity; chart axes 0–10."
+    },
+    "ci": "https://github.com/netcodermike/decision-tree-workbench/actions",
+    "applicationUrl": "/apps/decision-tree-workbench/"
+  },
+  {
+    "name": "surfcoder-regional-surf-report",
+    "title": "SurfCoder Regional Surf Report",
+    "description": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/surfcoder-regional-surf-report",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 52,
+    "image": "assets/screenshots/surfcoder-regional-surf-report.webp",
+    "capture": {
+      "name": "surfcoder-regional-surf-report",
+      "capture_date": "2026-11-06T12:33:38.067678+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "dee63477b6589c47b8f893e56f24b8068f7281c4",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Fetched Nov 6, 7:33 AM · times in America/New_York. Offshore model forecast, not a beach observation. Missing values show —."
+    },
+    "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
+    "applicationUrl": "/surfreport/"
+  },
+  {
+    "name": "linux-sandbox-runner",
+    "title": "Linux Sandbox Runner",
+    "description": "Explore Linux isolation by running a static executable in fresh namespaces with an empty tmpfs root, no external network, and resource limits.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Linux only",
+    "url": "https://github.com/netcodermike/linux-sandbox-runner",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 53,
+    "image": "assets/screenshots/linux-sandbox-runner.webp",
+    "capture": {
+      "name": "linux-sandbox-runner",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:13.512506+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-sandbox-runner/actions"
+  },
+  {
+    "name": "linux-system-dashboard",
+    "title": "Linux System Dashboard",
+    "description": "A dependency-free terminal dashboard for CPU, memory, network, block I/O, thermal readings, history, and threshold alerts.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Linux only  ",
+    "url": "https://github.com/netcodermike/linux-system-dashboard",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 54,
+    "image": "assets/screenshots/linux-system-dashboard.webp",
+    "capture": {
+      "name": "linux-system-dashboard",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:10.928581+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-system-dashboard/actions"
+  },
+  {
+    "name": "multiplayer-escape-room",
+    "title": "The Last Door — Multiplayer Escape Room",
+    "description": "A cooperative browser puzzle game with shared inventory, server-authoritative answers, live room updates, invitation links, and a JSON room editor.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/multiplayer-escape-room",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 55,
+    "image": "assets/screenshots/multiplayer-escape-room.webp",
+    "capture": {
+      "name": "multiplayer-escape-room",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:28:50.417547+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/multiplayer-escape-room/actions"
+  },
+  {
+    "name": "offline-field-journal",
+    "title": "Offline Field Journal",
+    "description": "A native Android field journal that saves observations, copies photo attachments into app storage, adds cached location markers, and exports JSON without internet access.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Android 8.0+ (API 26)",
+    "url": "https://github.com/netcodermike/offline-field-journal",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 56,
+    "image": "assets/screenshots/offline-field-journal.webp",
+    "capture": {
+      "name": "offline-field-journal",
+      "kind": "runtime",
+      "caption": "Actual Android journal with synthetic field notes.",
+      "platform": "Android emulator"
+    },
+    "ci": "https://github.com/netcodermike/offline-field-journal/actions"
+  },
+  {
+    "name": "personal-time-machine",
+    "title": "Personal Time Machine",
+    "description": "Keep immutable snapshots of a folder, compare text changes, restore a revision to a new directory, and browse a local visual timeline.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Windows, macOS, Linux  ",
+    "url": "https://github.com/netcodermike/personal-time-machine",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 57,
+    "image": "assets/screenshots/personal-time-machine.webp",
+    "capture": {
+      "name": "personal-time-machine",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:28:47.869222+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/personal-time-machine/actions"
+  },
+  {
+    "name": "procedural-planet-explorer",
+    "title": "Procedural Planet Explorer",
+    "description": "Generate a deterministic 2D planet from a numeric seed, explore biome sectors, inspect weather and life, and export an SVG terrain map.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/procedural-planet-explorer",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 58,
+    "image": "assets/screenshots/procedural-planet-explorer.webp",
+    "capture": {
+      "name": "procedural-planet-explorer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demo data.",
+      "platform": "Windows"
+    },
+    "ci": "https://github.com/netcodermike/procedural-planet-explorer/actions"
+  },
+  {
+    "name": "searchable-screenshot-library",
+    "title": "Searchable Screenshot Library",
+    "description": "Import screenshots into a native Mac library, recognize text locally, group by topic, search recognized content, and inspect or delete copies.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "macOS 13+ with Xcode command-line tools  ",
+    "url": "https://github.com/netcodermike/searchable-screenshot-library",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 59,
+    "image": "assets/screenshots/searchable-screenshot-library.webp",
+    "capture": {
+      "name": "searchable-screenshot-library",
+      "repository": "searchable-screenshot-library",
+      "source_commit": "3afc0a3478d485802690763680bee7b1014e99ca",
+      "kind": "runtime",
+      "caption": "Native macOS application capture with synthetic demonstration data.",
+      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+      "fixture": "Synthetic coastal image and synthetic text only; no private data",
+      "width": 1160,
+      "height": 702
+    },
+    "ci": "https://github.com/netcodermike/searchable-screenshot-library/actions"
+  },
+  {
+    "name": "spaced-repetition-adventure",
+    "title": "Recall Quest — Spaced Repetition Adventure",
+    "description": "Study flashcards in a desktop adventure where successful recall earns XP, unlocks equipment, and advances through locations while a scheduler controls when cards return.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Windows, macOS, Linux with a graphical  ",
+    "url": "https://github.com/netcodermike/spaced-repetition-adventure",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 60,
+    "image": "assets/screenshots/spaced-repetition-adventure.webp",
+    "capture": {
+      "name": "spaced-repetition-adventure",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:35.204499+00:00",
+      "demo_data": true,
+      "command": [
+        "java",
+        "-cp",
+        "build",
+        "Adventure"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/spaced-repetition-adventure/actions"
+  },
+  {
+    "name": "pantry-meal-planner",
+    "title": "Pantry Meal Planner",
+    "description": "Match recipes against your pantry, build a meal selection, and export the ingredients you still need.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/pantry-meal-planner",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 61,
+    "image": "assets/screenshots/pantry-meal-planner.webp",
+    "capture": {
+      "name": "pantry-meal-planner",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:33:15.633251+00:00",
+      "demo_data": true,
+      "command": [
+        "/usr/bin/python3",
+        "planner.py"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/pantry-meal-planner/actions/runs/42198816571"
+  },
+  {
+    "name": "pathfinding-playground",
+    "title": "Pathfinding Playground",
+    "description": "Paint a weighted map and compare breadth-first search, Dijkstra, and A* through animated exploration.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/pathfinding-playground",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 62,
+    "image": "assets/screenshots/pathfinding-playground.webp",
+    "capture": {
+      "name": "pathfinding-playground",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:21.400853+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/pathfinding-playground/actions/runs/42198834987"
+  },
+  {
+    "name": "linux-process-explorer",
+    "title": "Linux Process Explorer",
+    "description": "Inspect parent-child process trees, sort by resident memory, filter by name/PID, and watch a live view.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-process-explorer",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 63,
+    "image": "assets/screenshots/linux-process-explorer.webp",
+    "capture": {
+      "name": "linux-process-explorer",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:15.197051+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-process-explorer/actions/runs/42198852722"
+  },
+  {
+    "name": "maze-forge",
+    "title": "Maze Forge",
+    "description": "Generate a seeded perfect maze in C++ and export a self-contained browser game with movement controls and a route reveal.",
+    "languages": [
+      "C++"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/maze-forge",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 64,
+    "image": "assets/screenshots/maze-forge.webp",
+    "capture": {
+      "name": "maze-forge",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:25.412372+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/maze-forge/actions/runs/42198904194"
+  },
+  {
+    "name": "fairshare-expense-splitter",
+    "title": "FairShare Expense Splitter",
+    "description": "Record shared expenses in exact cents, calculate equal shares, and propose payments that settle everyone’s balance.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/fairshare-expense-splitter",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 65,
+    "image": "assets/screenshots/fairshare-expense-splitter.webp",
+    "capture": {
+      "name": "fairshare-expense-splitter",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:54.191597+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-6rwpvnb_/fairshare-expense-splitter/build/install/FairShare/bin/FairShare"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/fairshare-expense-splitter/actions/runs/42198923981"
+  },
+  {
+    "name": "linux-directory-watch",
+    "title": "Linux Directory Watch",
+    "description": "Stream immediate directory changes as JSON Lines, including paired rename cookies and explicit overflow notices.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-directory-watch",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 66,
+    "image": "assets/screenshots/linux-directory-watch.webp",
+    "capture": {
+      "name": "linux-directory-watch",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:31.334890+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-directory-watch/actions/runs/42198937114"
+  },
+  {
+    "name": "round-robin-tournament-studio",
+    "title": "Round-Robin Tournament Studio",
+    "description": "Create round-robin fixtures, record scores, calculate standings, and export a tournament report.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/round-robin-tournament-studio",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 67,
+    "image": "assets/screenshots/round-robin-tournament-studio.webp",
+    "capture": {
+      "name": "round-robin-tournament-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:39.548593+00:00",
+      "demo_data": true,
+      "command": [
+        "java",
+        "-cp",
+        "build",
+        "Tournament"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/round-robin-tournament-studio/actions/runs/42198953221"
+  },
+  {
+    "name": "menubar-break-reminder",
+    "title": "Menu Bar Break Reminder",
+    "description": "Keep a focus/break countdown in the menu bar, pause it, snooze reminders, and display a small break panel.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "macOS 13+",
+    "url": "https://github.com/netcodermike/menubar-break-reminder",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 68,
+    "image": "assets/screenshots/menubar-break-reminder.webp",
+    "capture": {
+      "name": "menubar-break-reminder",
+      "repository": "menubar-break-reminder",
+      "source_commit": "dbc6382dfa2632380eba1891c7dc609524b797f2",
+      "kind": "runtime",
+      "caption": "Native macOS application capture with synthetic demonstration data.",
+      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+      "fixture": "Synthetic coastal image and synthetic text only; no private data",
+      "width": 420,
+      "height": 190
+    },
+    "ci": "https://github.com/netcodermike/menubar-break-reminder/actions/runs/42199188442"
+  },
+  {
+    "name": "linux-open-port-atlas",
+    "title": "Linux Open Port Atlas",
+    "description": "Map local TCP listeners and bound UDP sockets to addresses, ports, UIDs, and visible owning processes.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-open-port-atlas",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 69,
+    "image": "assets/screenshots/linux-open-port-atlas.webp",
+    "capture": {
+      "name": "linux-open-port-atlas",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:32.735392+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-open-port-atlas/actions/runs/42204034421"
+  },
+  {
+    "name": "pixel-sprite-workshop",
+    "title": "Pixel Sprite Workshop",
+    "description": "Paint 16×16 pixel-art frames, use palettes and transparency, preview animation, and export editable projects or PNG sprite sheets.",
+    "languages": [
+      "C++"
+    ],
+    "platform": "Windows, macOS, Linux with Qt 6",
+    "url": "https://github.com/netcodermike/pixel-sprite-workshop",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 70,
+    "image": "assets/screenshots/pixel-sprite-workshop.webp",
+    "capture": {
+      "name": "pixel-sprite-workshop",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:37.430422+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-dsqp6yb5/pixel-sprite-workshop/build/sprite"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/pixel-sprite-workshop/actions/runs/42204087555"
+  },
+  {
+    "name": "habit-garden-desktop",
+    "title": "Habit Garden Desktop",
+    "description": "Plant named habits, check in once per day, track streaks, and grow a small illustrated garden from completed days.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/habit-garden-desktop",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 71,
+    "image": "assets/screenshots/habit-garden-desktop.webp",
+    "capture": {
+      "name": "habit-garden-desktop",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:30:23.936895+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-6rwpvnb_/habit-garden-desktop/build/install/HabitGarden/bin/HabitGarden"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/habit-garden-desktop/actions/runs/42204101585"
+  },
+  {
+    "name": "linux-unix-socket-relay",
+    "title": "Linux Unix Socket Relay",
+    "description": "Forward one bidirectional Unix socket stream at a time, preserve half-closes, and report byte totals.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-unix-socket-relay",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 72,
+    "image": "assets/screenshots/linux-unix-socket-relay.webp",
+    "capture": {
+      "name": "linux-unix-socket-relay",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:34.978559+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-unix-socket-relay/actions/runs/42204121065"
+  },
+  {
+    "name": "photo-metadata-inspector",
+    "title": "Photo Metadata Inspector",
+    "description": "Browse image metadata locally, filter property paths, switch between selected files, and export a full text report.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "macOS 13+",
+    "url": "https://github.com/netcodermike/photo-metadata-inspector",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 73,
+    "image": "assets/screenshots/photo-metadata-inspector.webp",
+    "capture": {
+      "name": "photo-metadata-inspector",
+      "repository": "photo-metadata-inspector",
+      "source_commit": "b7f0298e2fcd669c5f8a821f91e0b404a935aa67",
+      "kind": "runtime",
+      "caption": "Native macOS application capture with synthetic demonstration data.",
+      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+      "fixture": "Synthetic coastal image and synthetic text only; no private data",
+      "width": 1000,
+      "height": 642
+    },
+    "ci": "https://github.com/netcodermike/photo-metadata-inspector/actions/runs/42204155602"
+  },
+  {
+    "name": "subtitle-sync-studio",
+    "title": "Subtitle Sync Studio",
+    "description": "Shift SRT subtitle timing with a live text preview and explicit export.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/subtitle-sync-studio",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 74,
+    "image": "assets/screenshots/subtitle-sync-studio.webp",
+    "capture": {
+      "name": "subtitle-sync-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:33:20.727355+00:00",
+      "demo_data": true,
+      "command": [
+        "/usr/bin/python3",
+        "app.py"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/subtitle-sync-studio/actions/runs/42205280646"
+  },
+  {
+    "name": "offline-stockroom-tracker",
+    "title": "Offline Stockroom Tracker",
+    "description": "Track local inventory counts, flag reorder levels, and print numeric Code 39 labels.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Windows, macOS, Linux browser",
+    "url": "https://github.com/netcodermike/offline-stockroom-tracker",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 75,
+    "image": "assets/screenshots/offline-stockroom-tracker.webp",
+    "capture": {
+      "name": "offline-stockroom-tracker",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:30.166101+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/offline-stockroom-tracker/actions/runs/42205297197"
+  },
+  {
+    "name": "linux-disk-space-sentinel",
+    "title": "Linux Disk Space Sentinel",
+    "description": "Sample Linux filesystem capacity and show recent usage with threshold alerts.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-disk-space-sentinel",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 76,
+    "image": "assets/screenshots/linux-disk-space-sentinel.webp",
+    "capture": {
+      "name": "linux-disk-space-sentinel",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:35.946893+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-disk-space-sentinel/actions/runs/42205313910"
+  },
+  {
+    "name": "packing-list-companion",
+    "title": "Packing List Companion",
+    "description": "Compose reusable categorized packing checklists and track packed quantities.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/packing-list-companion",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 77,
+    "image": "assets/screenshots/packing-list-companion.webp",
+    "capture": {
+      "name": "packing-list-companion",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:37:08.109276+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-r16lfqri/packing-list-companion/build/install/packing-list-companion/bin/packing-list-companion"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/packing-list-companion/actions/runs/42205383501"
+  },
+  {
+    "name": "linux-epoll-chat",
+    "title": "Linux Epoll Chat",
+    "description": "Run a small loopback chat broadcast server using Linux epoll and a terminal client.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-epoll-chat",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 78,
+    "image": "assets/screenshots/linux-epoll-chat.webp",
+    "capture": {
+      "name": "linux-epoll-chat",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:38.579039+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-epoll-chat/actions/runs/42205400535"
+  },
+  {
+    "name": "sudoku-studio-desktop",
+    "title": "Sudoku Studio Desktop",
+    "description": "Generate uniquely solvable Sudoku boards, validate entries, and reveal solutions.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/sudoku-studio-desktop",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 79,
+    "image": "assets/screenshots/sudoku-studio-desktop.webp",
+    "capture": {
+      "name": "sudoku-studio-desktop",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:47.264247+00:00",
+      "demo_data": true,
+      "command": [
+        "java",
+        "-cp",
+        "build",
+        "App"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/sudoku-studio-desktop/actions/runs/42205416920"
+  },
+  {
+    "name": "batch-image-resizer",
+    "title": "Batch Image Resizer",
+    "description": "Write resized PNG copies of selected Mac images into an explicit output folder.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "macOS",
+    "url": "https://github.com/netcodermike/batch-image-resizer",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 80,
+    "image": "assets/screenshots/batch-image-resizer.webp",
+    "capture": {
+      "name": "batch-image-resizer",
+      "repository": "batch-image-resizer",
+      "source_commit": "c868478af69b8919c078f033696abfa85ae00299",
+      "kind": "runtime",
+      "caption": "Native macOS application capture with synthetic demonstration data.",
+      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+      "fixture": "Synthetic coastal image and synthetic text only; no private data",
+      "width": 900,
+      "height": 642
+    },
+    "ci": "https://github.com/netcodermike/batch-image-resizer/actions/runs/42205433281"
+  },
+  {
+    "name": "document-similarity-explorer",
+    "title": "Document Similarity Explorer",
+    "description": "Compare local text documents with TF-IDF cosine similarity and threshold-based connected clusters.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/document-similarity-explorer",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 81,
+    "image": "assets/screenshots/document-similarity-explorer.webp",
+    "capture": {
+      "name": "document-similarity-explorer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:33:23.004491+00:00",
+      "demo_data": true,
+      "command": [
+        "/usr/bin/python3",
+        "app.py"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/document-similarity-explorer/actions/runs/42206091516"
+  },
+  {
+    "name": "linux-package-footprint",
+    "title": "Linux Package Footprint",
+    "description": "Rank Debian-family installed packages by declared installed size.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-package-footprint",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 82,
+    "image": "assets/screenshots/linux-package-footprint.webp",
+    "capture": {
+      "name": "linux-package-footprint",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:39.646152+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-package-footprint/actions/runs/42206127547"
+  },
+  {
+    "name": "tiny-raytracer-studio",
+    "title": "Tiny Raytracer Studio",
+    "description": "Render a small sphere scene with adjustable light position and PNG export.",
+    "languages": [
+      "C++"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/tiny-raytracer-studio",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 83,
+    "image": "assets/screenshots/tiny-raytracer-studio.webp",
+    "capture": {
+      "name": "tiny-raytracer-studio",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:53.660845+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-dsqp6yb5/tiny-raytracer-studio/build/app"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/tiny-raytracer-studio/actions/runs/42207016000"
+  },
+  {
+    "name": "linux-mmap-search",
+    "title": "Linux Mmap Search",
+    "description": "Search a regular file with a read-only memory mapping and report exact byte offsets.",
+    "languages": [
+      "C"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-mmap-search",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 84,
+    "image": "assets/screenshots/linux-mmap-search.webp",
+    "capture": {
+      "name": "linux-mmap-search",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:46.266486+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-mmap-search/actions/runs/42206209719"
+  },
+  {
+    "name": "image-palette-studio",
+    "title": "Image Palette Studio",
+    "description": "Extract a ranked, quantized color palette from a Mac image thumbnail.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "macOS",
+    "url": "https://github.com/netcodermike/image-palette-studio",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 85,
+    "image": "assets/screenshots/image-palette-studio.webp",
+    "capture": {
+      "name": "image-palette-studio",
+      "repository": "image-palette-studio",
+      "source_commit": "425acc569ead77b8ce3cd9931296844662aa6abd",
+      "kind": "runtime",
+      "caption": "Native macOS application capture with synthetic demonstration data.",
+      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+      "fixture": "Synthetic coastal image and synthetic text only; no private data",
+      "width": 900,
+      "height": 642
+    },
+    "ci": "https://github.com/netcodermike/image-palette-studio/actions/runs/42206242628"
+  },
+  {
+    "name": "family-tree-builder",
+    "title": "Family Tree Builder",
+    "description": "Create a small local genealogy graph with parent links, birth years, cycle checks, and JSON portability.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/family-tree-builder",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 86,
+    "image": "assets/screenshots/family-tree-builder.webp",
+    "capture": {
+      "name": "family-tree-builder",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:33:25.299912+00:00",
+      "demo_data": true,
+      "command": [
+        "/usr/bin/python3",
+        "app.py"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/family-tree-builder/actions/runs/42206807459"
+  },
+  {
+    "name": "tabletop-map-workshop",
+    "title": "Tabletop Map Workshop",
+    "description": "Paint a local tabletop terrain map, flood-fill regions, place labels, undo, and export editable or flattened maps.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Windows, macOS, Linux browser",
+    "url": "https://github.com/netcodermike/tabletop-map-workshop",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 87,
+    "image": "assets/screenshots/tabletop-map-workshop.webp",
+    "capture": {
+      "name": "tabletop-map-workshop",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:29:34.348286+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/tabletop-map-workshop/actions/runs/42206821206"
+  },
+  {
+    "name": "linux-mount-explorer",
+    "title": "Linux Mount Explorer",
+    "description": "Inspect the current Linux mount namespace with filesystem types, sources, parent IDs, and options.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-mount-explorer",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 88,
+    "image": "assets/screenshots/linux-mount-explorer.webp",
+    "capture": {
+      "name": "linux-mount-explorer",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:47.181415+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-mount-explorer/actions/runs/42206835976"
+  },
+  {
+    "name": "linux-job-scheduler",
+    "title": "Linux Job Scheduler",
+    "description": "Execute trusted local command argument arrays after bounded foreground delays.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Linux",
+    "url": "https://github.com/netcodermike/linux-job-scheduler",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 89,
+    "image": "assets/screenshots/linux-job-scheduler.webp",
+    "capture": {
+      "name": "linux-job-scheduler",
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated Linux runner.",
+      "capture_date": "2026-11-06T11:22:49.944815+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/linux-job-scheduler/actions/runs/42206868756"
+  },
+  {
+    "name": "interval-workout-composer",
+    "title": "Interval Workout Composer",
+    "description": "Compose named timed intervals and run them in a local desktop sequence timer.",
+    "languages": [
+      "Kotlin"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/interval-workout-composer",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 90,
+    "image": "assets/screenshots/interval-workout-composer.webp",
+    "capture": {
+      "name": "interval-workout-composer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:32:20.543525+00:00",
+      "demo_data": true,
+      "command": [
+        "/tmp/surf-capture-6rwpvnb_/interval-workout-composer/build/install/interval-workout-composer/bin/interval-workout-composer"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/interval-workout-composer/actions/runs/42206906731"
+  },
+  {
+    "name": "chess-tactics-trainer",
+    "title": "Chess Tactics Trainer",
+    "description": "Practice a small curated set of coordinate-move checking exercises on a desktop chessboard.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/chess-tactics-trainer",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 91,
+    "image": "assets/screenshots/chess-tactics-trainer.webp",
+    "capture": {
+      "name": "chess-tactics-trainer",
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration data.",
+      "capture_date": "2026-11-06T11:21:54.571725+00:00",
+      "demo_data": true,
+      "command": [
+        "java",
+        "-cp",
+        "build",
+        "App"
+      ]
+    },
+    "ci": "https://github.com/netcodermike/chess-tactics-trainer/actions/runs/42207308725"
+  },
+  {
+    "name": "menubar-snippet-library",
+    "title": "Menubar Snippet Library",
+    "description": "Store named local text snippets in a Mac menu and copy them only on explicit selection.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "macOS",
+    "url": "https://github.com/netcodermike/menubar-snippet-library",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 92,
+    "image": "assets/screenshots/menubar-snippet-library.webp",
+    "capture": {
+      "name": "menubar-snippet-library",
+      "repository": "menubar-snippet-library",
+      "source_commit": "db1fbeba4c0fc98a1bc0ca53b11c6303c400cf60",
+      "kind": "runtime",
+      "caption": "Native macOS application capture with synthetic demonstration data.",
+      "capture_method": "Running native macOS app NSView cacheDisplay bitmap",
+      "fixture": "Synthetic coastal image and synthetic text only; no private data",
+      "width": 432,
+      "height": 398
+    },
+    "ci": "https://github.com/netcodermike/menubar-snippet-library/actions/runs/42206964875"
+  },
+  {
     "name": "home-energy-scenario-lab",
     "title": "Home Energy Scenario Lab",
     "description": "Compare appliance schedules, energy use, and tariff costs with a downloadable scenario report.",
@@ -2380,7 +2380,7 @@
     "url": "https://github.com/netcodermike/home-energy-scenario-lab",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 93,
     "image": "assets/screenshots/home-energy-scenario-lab.webp",
     "capture": {
       "name": "home-energy-scenario-lab",
@@ -2411,7 +2411,7 @@
     "url": "https://github.com/netcodermike/offline-recipe-scaling-kit",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 94,
     "image": "assets/screenshots/offline-recipe-scaling-kit.webp",
     "capture": {
       "name": "offline-recipe-scaling-kit",
@@ -2440,7 +2440,7 @@
     "url": "https://github.com/netcodermike/network-subnet-workbench",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 95,
     "image": "assets/screenshots/network-subnet-workbench.webp",
     "capture": {
       "name": "network-subnet-workbench",
@@ -2468,7 +2468,7 @@
     "url": "https://github.com/netcodermike/sqlite-migration-rehearsal",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 96,
     "image": "assets/screenshots/sqlite-migration-rehearsal.webp",
     "capture": {
       "name": "sqlite-migration-rehearsal",
@@ -2497,7 +2497,7 @@
     "url": "https://github.com/netcodermike/password-entropy-playground",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 97,
     "image": "assets/screenshots/password-entropy-playground.webp",
     "capture": {
       "name": "password-entropy-playground",
@@ -2527,7 +2527,7 @@
     "url": "https://github.com/netcodermike/portable-invoice-ledger",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 98,
     "image": "assets/screenshots/portable-invoice-ledger.webp",
     "capture": {
       "name": "portable-invoice-ledger",
@@ -2555,7 +2555,7 @@
     "url": "https://github.com/netcodermike/dependency-license-board",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 99,
     "image": "assets/screenshots/dependency-license-board.webp",
     "capture": {
       "name": "dependency-license-board",
@@ -2583,7 +2583,7 @@
     "url": "https://github.com/netcodermike/color-accessibility-studio",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 100,
     "image": "assets/screenshots/color-accessibility-studio.webp",
     "capture": {
       "name": "color-accessibility-studio",
@@ -2613,7 +2613,7 @@
     "url": "https://github.com/netcodermike/calendar-ics-conflict-lens",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 101,
     "image": "assets/screenshots/calendar-ics-conflict-lens.webp",
     "capture": {
       "name": "calendar-ics-conflict-lens",
@@ -2642,7 +2642,7 @@
     "url": "https://github.com/netcodermike/markdown-link-health-map",
     "category": "Work & productivity",
     "featured": false,
-    "order": 204,
+    "order": 102,
     "image": "assets/screenshots/markdown-link-health-map.webp",
     "capture": {
       "name": "markdown-link-health-map",

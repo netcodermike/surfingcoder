@@ -6,6 +6,8 @@ ROOT = Path(__file__).resolve().parents[1]
 projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))
 assert len(projects) == len({p['name'] for p in projects}), 'Duplicate repository names'
 assert [p['name'] for p in projects[:2]] == ['SvdStudio', 'coinbase-ladder'], 'Featured priorities changed'
+assert projects[2]['name']=='fractal-render-lab', 'Fractal app must follow the two lead projects'
+assert all(p['category']=='Music & audio' for p in projects[3:27]), 'Music apps must remain near the top'
 page = (ROOT/'index.html').read_text(encoding='utf-8')
 embedded = re.search(r'<script type="application/json" id="project-data">(.*?)</script>', page, re.S)
 assert embedded and json.loads(embedded[1].replace('<\\/', '</')) == projects, 'Rebuild static gallery data'

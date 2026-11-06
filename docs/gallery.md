@@ -18,7 +18,7 @@
 | `applicationUrl` | Optional same-site browser app path used by the Launch app link |
 | `ci` | Link to source build or validation history |
 
-Keep SvdStudio and coinbase-ladder as the first two entries. Place other professional tools ahead of casual experiments. New categories/languages require corresponding controls in `index.html` as well as CSS color rules if desired.
+Keep SvdStudio and coinbase-ladder as the first two entries, fractal-render-lab third, and the music/audio collection immediately afterward. Other professional tools follow the music group. New categories/languages require corresponding controls in `index.html` as well as CSS color rules if desired.
 
 Search matches title, description, name, category, language, and platform. Filters combine, and sorting changes only the display order. The URL stores search/filter/sort state for sharing. Grid/list preference is stored locally; storage failures are tolerated. The initial HTML includes every card for progressive enhancement.
 
