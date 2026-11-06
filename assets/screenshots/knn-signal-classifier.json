@@ -1,0 +1,13 @@
+{
+  "name": "knn-signal-classifier",
+  "capture_date": "2026-11-06T12:33:16.909593+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "4a110ccbfad9143211409acea992aaa2faea85ad",
+  "validation_commands": [
+    "cargo test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "cargo run -- examples/signals.tsv \"115,0.25\" 3"
+}

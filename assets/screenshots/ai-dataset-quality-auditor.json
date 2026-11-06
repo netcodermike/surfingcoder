@@ -1,0 +1,13 @@
+{
+  "name": "ai-dataset-quality-auditor",
+  "capture_date": "2026-11-06T12:33:31.838880+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "f446ce1d164bc1e4f8048ab5d698447414aaf4ec",
+  "validation_commands": [
+    "python app.py --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "python app.py examples/dataset.jsonl"
+}

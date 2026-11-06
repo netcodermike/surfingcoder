@@ -1,0 +1,13 @@
+{
+  "name": "naive-bayes-mail-lab",
+  "capture_date": "2026-11-06T12:33:19.154752+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "89ac5a4dfff2eefb7a178f3dfdf7f877659abe9e",
+  "validation_commands": [
+    "go test ./..."
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "go run . examples/training.json \"team meeting project schedule\""
+}

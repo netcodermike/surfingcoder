@@ -10,11 +10,12 @@
 | `url` | Public GitHub repository URL |
 | `languages` | Array of languages matching the filter options |
 | `platform` | Platforms included in keyword searches |
-| `category` | One of the six category filters |
+| `category` | One of the eight category filters |
 | `featured` | Whether to use the larger featured card treatment |
 | `order` | Historical curation metadata; array order controls display |
 | `image` | Local WebP screenshot path |
 | `capture` | Capture metadata including `kind`, `caption`, date, and demo-data flag |
+| `applicationUrl` | Optional same-site browser app path used by the Launch app link |
 | `ci` | Link to source build or validation history |
 
 Keep SvdStudio and coinbase-ladder as the first two entries. Place other professional tools ahead of casual experiments. New categories/languages require corresponding controls in `index.html` as well as CSS color rules if desired.

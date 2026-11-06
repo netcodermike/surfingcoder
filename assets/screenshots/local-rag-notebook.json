@@ -1,0 +1,13 @@
+{
+  "name": "local-rag-notebook",
+  "capture_date": "2026-11-06T12:33:18.078272+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "dc8741cdec1aa6adeadfcb67463e5cd2430ccabc",
+  "validation_commands": [
+    "python app.py --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "python app.py examples \"How are ocean waves measured?\""
+}

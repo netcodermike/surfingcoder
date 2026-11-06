@@ -1,0 +1,15 @@
+{
+  "name": "decision-tree-workbench",
+  "capture_date": "2026-11-06T12:33:36.407288+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "43d2fddbdc3fdd764cbcd846a7b2cc23587a2760",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "CART with Gini impurity; chart axes 0\u201310."
+}

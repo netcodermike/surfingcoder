@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 83 projects across 12 languages. SVD Studio and Coinbase Ladder lead the collection, followed by practical professional tools, Linux utilities, creative apps, and learning projects.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 103 projects across 13 languages. SVD Studio and Coinbase Ladder lead the collection, followed by practical professional tools, Linux utilities, creative apps, and learning projects.
 
 ## Run locally
 
@@ -22,6 +22,10 @@ Open http://127.0.0.1:8000. Search, category/language filters, sorting, grid/lis
 4. Run both checks above, preview desktop and mobile layouts, and review `git diff` before publication.
 
 The JSON fields are documented in [docs/gallery.md](docs/gallery.md). Layout and behavior live in `gallery.css` and `gallery.js`. Fonts use Google Fonts with system fallbacks. There are no analytics, accounts, or backend services.
+
+## New music, AI, and practical apps
+
+The latest expansion adds 20 music/audio apps, 9 AI projects, a [regional surf report](https://surfingcoder.com/surfreport/), and 10 practical tools. [Browse all 40 new repositories and setup notes](docs/expansion40.md). Browser apps have **Launch app** links directly in the gallery; CLI and local-server projects link to their documented setup.
 
 ## Screenshots
 

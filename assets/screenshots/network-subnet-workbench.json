@@ -1,0 +1,13 @@
+{
+  "name": "network-subnet-workbench",
+  "capture_date": "2026-11-06T12:33:18.833457+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "551ad470b9996496a0009acde24bc9eba7868ae8",
+  "validation_commands": [
+    "go test ./..."
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "go run . --cidr 192.168.10.40/24 --split 26 --contains 192.168.10.72"
+}

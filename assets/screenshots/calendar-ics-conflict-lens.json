@@ -1,0 +1,14 @@
+{
+  "name": "calendar-ics-conflict-lens",
+  "capture_date": "2026-11-06T12:33:38.521935+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "61339edc4a5fdf02f9c558d6351cc8db2f957305",
+  "validation_commands": [
+    "javac Main.java",
+    "java Main --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "java Main examples/calendar.ics"
+}

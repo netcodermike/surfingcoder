@@ -27,3 +27,9 @@ The **Capture project interfaces** workflow can be dispatched manually. Its init
 `kind: runtime` means a running interface, `kind: terminal` means actual command output. Capture scripts can create a clearly labelled `source-preview` if a build fails; the gallery publication check rejects those and pending captures so they cannot silently replace runtime screenshots.
 
 Coinbase Ladder uses its disconnected local demo calculator. Its screenshot runner blocks outbound browser requests and WebSockets, disables credential loading and order submission, and never starts the account monitor. Backup server screenshots use an isolated demo vault and obviously synthetic keys.
+
+## Forty-app expansion
+
+`Capture expansion applications` validates a selected batch of ten using `scripts/expansion40-inventory.json` and `scripts/capture_expansion.py`. Dispatch with batch 1–4, or 0 for all forty. Groups use Node/TypeScript/Web Audio, Python/Go/C/C++/.NET/Ruby/PHP, Rust, Java/Kotlin, and Swift toolchains. Browser inputs use generated sine-wave WAV files; terminal captures show actual successful demo commands. Failed checks produce diagnostics and fail the job, never substitute invented screenshots.
+
+The screenshot metadata records the captured source commit and validation commands. A local-model server screenshot shows its real disconnected state when Ollama is not installed. Surf forecasts are actual live API results, timestamped in the interface.

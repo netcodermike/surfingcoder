@@ -9,3 +9,5 @@
 @media(max-width:700px){.collection-head{padding:23px 0 20px}.collection-head h1{font-size:29px}.collection-head h1 span{display:inline}.featured-card-heading{padding:17px 20px 12px}.project-grid.list .featured-card-heading{padding:13px 14px 0}.project-grid.list .featured .card-body{padding-top:8px}}
 
 .project-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}.card-footer{gap:12px;flex-wrap:wrap}.chips{row-gap:7px}
+
+@media(max-width:700px){nav>a[href^="articles/"],nav>a[href="about.html"],nav>a[href="#projects"]{display:none}nav>a[href="/surfreport/"]{display:block}nav{gap:11px}.brand{font-size:18px;gap:7px}.nav-github{padding:8px}}

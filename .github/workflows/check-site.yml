@@ -1,0 +1,22 @@
+name: Validate static site
+on:
+  push:
+    branches: [main, site/expansion40]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python scripts/check_site.py --strict
+      - run: python scripts/check_gallery.py
+      - name: Confirm generated cards match their source
+        run: |
+          python scripts/build_gallery.py
+          git diff --exit-code -- index.html

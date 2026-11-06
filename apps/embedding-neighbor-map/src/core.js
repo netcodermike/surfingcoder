@@ -1,0 +1,3 @@
+export function vectors(lines){const words=lines.map(s=>s.toLowerCase().match(/[a-z0-9]+/g)||[]),vocab=[...new Set(words.flat())].sort();return {vocab,values:words.map(row=>vocab.map(w=>{const tf=row.filter(t=>t===w).length/(row.length||1),df=words.filter(r=>r.includes(w)).length;return tf*(Math.log((1+lines.length)/(1+df))+1)}))}}
+export function cosine(a,b){let dot=0,aa=0,bb=0;for(let i=0;i<a.length;i++){dot+=a[i]*b[i];aa+=a[i]**2;bb+=b[i]**2}return aa&&bb?dot/Math.sqrt(aa*bb):0}
+export function neighbors(lines){const {values}=vectors(lines);return lines.map((text,i)=>({text,matches:lines.map((other,j)=>({index:j,text:other,similarity:cosine(values[i],values[j])})).filter(x=>x.index!==i).sort((a,b)=>b.similarity-a.similarity).slice(0,3)}))}

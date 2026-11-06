@@ -1,0 +1,15 @@
+{
+  "name": "home-energy-scenario-lab",
+  "capture_date": "2026-11-06T12:33:29.902926+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "2cb181a55e5df132c1356a89f30c4cf0dda50f1d",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Constant power \u00d7 active hours. Standby, taxes, fixed fees and tiered rates excluded."
+}

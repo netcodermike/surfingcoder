@@ -403,6 +403,298 @@
     "ci": "https://github.com/netcodermike/local-whiteboard-studio/actions/runs/42204015675"
   },
   {
+    "name": "local-rag-notebook",
+    "title": "Local RAG Notebook",
+    "description": "Retrieve cited document chunks with BM25 and optionally answer using a local Ollama model.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/local-rag-notebook",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/local-rag-notebook.webp",
+    "capture": {
+      "name": "local-rag-notebook",
+      "capture_date": "2026-11-06T12:33:18.078272+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "dc8741cdec1aa6adeadfcb67463e5cd2430ccabc",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples \"How are ocean waves measured?\""
+    },
+    "ci": "https://github.com/netcodermike/local-rag-notebook/actions"
+  },
+  {
+    "name": "prompt-evaluation-bench",
+    "title": "Prompt Evaluation Bench",
+    "description": "Score model responses against reproducible contains, forbidden-text, and regular-expression checks.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/prompt-evaluation-bench",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/prompt-evaluation-bench.webp",
+    "capture": {
+      "name": "prompt-evaluation-bench",
+      "capture_date": "2026-11-06T12:33:18.671696+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "e3585be742538eb38fac81df23bcb5f8b521e091",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
+      "command": "python app.py examples/cases.jsonl"
+    },
+    "ci": "https://github.com/netcodermike/prompt-evaluation-bench/actions"
+  },
+  {
+    "name": "embedding-neighbor-map",
+    "title": "Embedding Neighbor Map",
+    "description": "Explore document similarity using transparent TF-IDF vectors and a nearest-neighbor graph.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/embedding-neighbor-map",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/embedding-neighbor-map.webp",
+    "capture": {
+      "name": "embedding-neighbor-map",
+      "capture_date": "2026-11-06T12:33:30.532475+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "8d447c6030faa43aa2546ae919f62bae1c44a440",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Lexical TF-IDF vectors, not a pretrained semantic model."
+    },
+    "ci": "https://github.com/netcodermike/embedding-neighbor-map/actions",
+    "applicationUrl": "/apps/embedding-neighbor-map/"
+  },
+  {
+    "name": "tiny-neural-network-playground",
+    "title": "Tiny Neural Network Playground",
+    "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/tiny-neural-network-playground",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/tiny-neural-network-playground.webp",
+    "capture": {
+      "name": "tiny-neural-network-playground",
+      "capture_date": "2026-11-06T12:33:32.427902+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f980a7c61ab3eb516db2ea340d6b06da0e551763",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/tiny-neural-network-playground/actions",
+    "applicationUrl": "/apps/tiny-neural-network-playground/"
+  },
+  {
+    "name": "naive-bayes-mail-lab",
+    "title": "Naive Bayes Mail Lab",
+    "description": "Train and evaluate a Laplace-smoothed text classifier with readable per-token evidence.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/naive-bayes-mail-lab",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/naive-bayes-mail-lab.webp",
+    "capture": {
+      "name": "naive-bayes-mail-lab",
+      "capture_date": "2026-11-06T12:33:19.154752+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "89ac5a4dfff2eefb7a178f3dfdf7f877659abe9e",
+      "validation_commands": [
+        "go test ./..."
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "go run . examples/training.json \"team meeting project schedule\""
+    },
+    "ci": "https://github.com/netcodermike/naive-bayes-mail-lab/actions"
+  },
+  {
+    "name": "knn-signal-classifier",
+    "title": "KNN Signal Classifier",
+    "description": "Classify numeric feature vectors using standardized nearest neighbors and confidence votes.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/knn-signal-classifier",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/knn-signal-classifier.webp",
+    "capture": {
+      "name": "knn-signal-classifier",
+      "capture_date": "2026-11-06T12:33:16.909593+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "4a110ccbfad9143211409acea992aaa2faea85ad",
+      "validation_commands": [
+        "cargo test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "cargo run -- examples/signals.tsv \"115,0.25\" 3"
+    },
+    "ci": "https://github.com/netcodermike/knn-signal-classifier/actions"
+  },
+  {
+    "name": "local-model-chat-desk",
+    "title": "Local Model Chat Desk",
+    "description": "Chat with installed Ollama models through a localhost-only server, with conversation export.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Local server",
+    "url": "https://github.com/netcodermike/local-model-chat-desk",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/local-model-chat-desk.webp",
+    "capture": {
+      "name": "local-model-chat-desk",
+      "capture_date": "2026-11-06T12:33:35.133090+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "968f1b2adc30d9aa472e361342540b07f1f62097",
+      "validation_commands": [
+        "python server.py --self-test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Ollama unavailable. Start it locally and install a model."
+    },
+    "ci": "https://github.com/netcodermike/local-model-chat-desk/actions"
+  },
+  {
+    "name": "ai-dataset-quality-auditor",
+    "title": "AI Dataset Quality Auditor",
+    "description": "Audit JSONL datasets for malformed rows, duplicate prompts, split leakage, and possible sensitive fields.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/ai-dataset-quality-auditor",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/ai-dataset-quality-auditor.webp",
+    "capture": {
+      "name": "ai-dataset-quality-auditor",
+      "capture_date": "2026-11-06T12:33:31.838880+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f446ce1d164bc1e4f8048ab5d698447414aaf4ec",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples/dataset.jsonl"
+    },
+    "ci": "https://github.com/netcodermike/ai-dataset-quality-auditor/actions"
+  },
+  {
+    "name": "decision-tree-workbench",
+    "title": "Decision Tree Workbench",
+    "description": "Train a small CART classifier, inspect readable split rules, and query new feature values.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/decision-tree-workbench",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/decision-tree-workbench.webp",
+    "capture": {
+      "name": "decision-tree-workbench",
+      "capture_date": "2026-11-06T12:33:36.407288+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "43d2fddbdc3fdd764cbcd846a7b2cc23587a2760",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "CART with Gini impurity; chart axes 0–10."
+    },
+    "ci": "https://github.com/netcodermike/decision-tree-workbench/actions",
+    "applicationUrl": "/apps/decision-tree-workbench/"
+  },
+  {
+    "name": "surfcoder-regional-surf-report",
+    "title": "SurfCoder Regional Surf Report",
+    "description": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/surfcoder-regional-surf-report",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 203,
+    "image": "assets/screenshots/surfcoder-regional-surf-report.webp",
+    "capture": {
+      "name": "surfcoder-regional-surf-report",
+      "capture_date": "2026-11-06T12:33:38.067678+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "dee63477b6589c47b8f893e56f24b8068f7281c4",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Fetched Nov 6, 7:33 AM · times in America/New_York. Offshore model forecast, not a beach observation. Missing values show —."
+    },
+    "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
+    "applicationUrl": "/surfreport/"
+  },
+  {
     "name": "interactive-audio-synthesizer",
     "title": "Patch Synth",
     "description": "An interactive synthesis workbench that renders oscillator patches through an envelope, low-pass filter, and feedback echo into standard WAV files.",
@@ -2076,5 +2368,295 @@
       "command": "gradle run --args=\"45 examples/priorities.tsv\" --quiet"
     },
     "ci": "https://github.com/netcodermike/practice-session-composer/actions"
+  },
+  {
+    "name": "home-energy-scenario-lab",
+    "title": "Home Energy Scenario Lab",
+    "description": "Compare appliance schedules, energy use, and tariff costs with a downloadable scenario report.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/home-energy-scenario-lab",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/home-energy-scenario-lab.webp",
+    "capture": {
+      "name": "home-energy-scenario-lab",
+      "capture_date": "2026-11-06T12:33:29.902926+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "2cb181a55e5df132c1356a89f30c4cf0dda50f1d",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Constant power × active hours. Standby, taxes, fixed fees and tiered rates excluded."
+    },
+    "ci": "https://github.com/netcodermike/home-energy-scenario-lab/actions",
+    "applicationUrl": "/apps/home-energy-scenario-lab/"
+  },
+  {
+    "name": "offline-recipe-scaling-kit",
+    "title": "Offline Recipe Scaling Kit",
+    "description": "Scale structured ingredient quantities and servings without rounding intermediate measurements.",
+    "languages": [
+      "Swift"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/offline-recipe-scaling-kit",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/offline-recipe-scaling-kit.webp",
+    "capture": {
+      "name": "offline-recipe-scaling-kit",
+      "capture_date": "2026-11-06T12:33:18.996094+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "3eebbbd870353d1341c75ce42a4096609159e044",
+      "validation_commands": [
+        "swiftc main.swift -o recipe-kit",
+        "./recipe-kit --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "./recipe-kit examples/recipe.json 6"
+    },
+    "ci": "https://github.com/netcodermike/offline-recipe-scaling-kit/actions"
+  },
+  {
+    "name": "network-subnet-workbench",
+    "title": "Network Subnet Workbench",
+    "description": "Inspect IPv4 or IPv6 CIDR networks, membership, address counts, and subnet splits offline.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/network-subnet-workbench",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/network-subnet-workbench.webp",
+    "capture": {
+      "name": "network-subnet-workbench",
+      "capture_date": "2026-11-06T12:33:18.833457+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "551ad470b9996496a0009acde24bc9eba7868ae8",
+      "validation_commands": [
+        "go test ./..."
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "go run . --cidr 192.168.10.40/24 --split 26 --contains 192.168.10.72"
+    },
+    "ci": "https://github.com/netcodermike/network-subnet-workbench/actions"
+  },
+  {
+    "name": "sqlite-migration-rehearsal",
+    "title": "SQLite Migration Rehearsal",
+    "description": "Rehearse SQL migrations against a temporary database copy and report schema changes before application.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/sqlite-migration-rehearsal",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/sqlite-migration-rehearsal.webp",
+    "capture": {
+      "name": "sqlite-migration-rehearsal",
+      "capture_date": "2026-11-06T12:33:28.737196+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "86f528511f304d349887777a0d5488fab7eafa59",
+      "validation_commands": [
+        "python app.py --self-test",
+        "python examples/make_fixture.py"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples/demo.sqlite examples/migration.sql"
+    },
+    "ci": "https://github.com/netcodermike/sqlite-migration-rehearsal/actions"
+  },
+  {
+    "name": "password-entropy-playground",
+    "title": "Password Entropy Playground",
+    "description": "Compare explicit password-generation models and generate random passphrases entirely on-device.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/password-entropy-playground",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/password-entropy-playground.webp",
+    "capture": {
+      "name": "password-entropy-playground",
+      "capture_date": "2026-11-06T12:33:33.795170+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "c030a99d6064cc4652ad01378072fb1f0a84f09f",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/password-entropy-playground/actions",
+    "applicationUrl": "/apps/password-entropy-playground/"
+  },
+  {
+    "name": "portable-invoice-ledger",
+    "title": "Portable Invoice Ledger",
+    "description": "Generate itemized invoice JSON using integer cents, explicit tax basis points, and validated quantities.",
+    "languages": [
+      "PHP"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/portable-invoice-ledger",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/portable-invoice-ledger.webp",
+    "capture": {
+      "name": "portable-invoice-ledger",
+      "capture_date": "2026-11-06T12:33:29.487288+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "93b79e2604e64829f13e8a10f7a3d6ac36f6911a",
+      "validation_commands": [
+        "php app.php --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "php app.php examples/invoice.json"
+    },
+    "ci": "https://github.com/netcodermike/portable-invoice-ledger/actions"
+  },
+  {
+    "name": "dependency-license-board",
+    "title": "Dependency License Board",
+    "description": "Inventory package manifests and local license files into an evidence-based dependency report.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/dependency-license-board",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/dependency-license-board.webp",
+    "capture": {
+      "name": "dependency-license-board",
+      "capture_date": "2026-11-06T12:33:29.981665+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f24dc6fe643d0cabb07f18e923d3abbae02ab156",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples"
+    },
+    "ci": "https://github.com/netcodermike/dependency-license-board/actions"
+  },
+  {
+    "name": "color-accessibility-studio",
+    "title": "Color Accessibility Studio",
+    "description": "Compare WCAG contrast pairs, preview text sizes, and export accessible color tokens.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/color-accessibility-studio",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/color-accessibility-studio.webp",
+    "capture": {
+      "name": "color-accessibility-studio",
+      "capture_date": "2026-11-06T12:33:35.711627+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "2cafc185bac7720d67dd1768ee0f49ece72af79e",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/color-accessibility-studio/actions",
+    "applicationUrl": "/apps/color-accessibility-studio/"
+  },
+  {
+    "name": "calendar-ics-conflict-lens",
+    "title": "Calendar ICS Conflict Lens",
+    "description": "Inspect UTC calendar events and find overlapping time ranges with explicit unsupported-rule reporting.",
+    "languages": [
+      "Java"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/calendar-ics-conflict-lens",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/calendar-ics-conflict-lens.webp",
+    "capture": {
+      "name": "calendar-ics-conflict-lens",
+      "capture_date": "2026-11-06T12:33:38.521935+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "61339edc4a5fdf02f9c558d6351cc8db2f957305",
+      "validation_commands": [
+        "javac Main.java",
+        "java Main --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "java Main examples/calendar.ics"
+    },
+    "ci": "https://github.com/netcodermike/calendar-ics-conflict-lens/actions"
+  },
+  {
+    "name": "markdown-link-health-map",
+    "title": "Markdown Link Health Map",
+    "description": "Check relative Markdown links and anchor targets locally without sending files to a remote crawler.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/markdown-link-health-map",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 204,
+    "image": "assets/screenshots/markdown-link-health-map.webp",
+    "capture": {
+      "name": "markdown-link-health-map",
+      "capture_date": "2026-11-06T12:33:21.808151+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "9c61147f219b4940a21737dfb82b733bbe614981",
+      "validation_commands": [
+        "cargo test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "cargo run -- examples"
+    },
+    "ci": "https://github.com/netcodermike/markdown-link-health-map/actions"
   }
 ]

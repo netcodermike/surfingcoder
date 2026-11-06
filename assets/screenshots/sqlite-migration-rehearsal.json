@@ -1,0 +1,14 @@
+{
+  "name": "sqlite-migration-rehearsal",
+  "capture_date": "2026-11-06T12:33:28.737196+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "86f528511f304d349887777a0d5488fab7eafa59",
+  "validation_commands": [
+    "python app.py --self-test",
+    "python examples/make_fixture.py"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "python app.py examples/demo.sqlite examples/migration.sql"
+}

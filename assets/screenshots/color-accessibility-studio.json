@@ -1,0 +1,14 @@
+{
+  "name": "color-accessibility-studio",
+  "capture_date": "2026-11-06T12:33:35.711627+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "2cafc185bac7720d67dd1768ee0f49ece72af79e",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner"
+}

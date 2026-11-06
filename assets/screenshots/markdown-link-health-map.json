@@ -1,0 +1,13 @@
+{
+  "name": "markdown-link-health-map",
+  "capture_date": "2026-11-06T12:33:21.808151+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "9c61147f219b4940a21737dfb82b733bbe614981",
+  "validation_commands": [
+    "cargo test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "cargo run -- examples"
+}

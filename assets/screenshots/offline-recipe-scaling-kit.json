@@ -1,0 +1,14 @@
+{
+  "name": "offline-recipe-scaling-kit",
+  "capture_date": "2026-11-06T12:33:18.996094+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "3eebbbd870353d1341c75ce42a4096609159e044",
+  "validation_commands": [
+    "swiftc main.swift -o recipe-kit",
+    "./recipe-kit --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "./recipe-kit examples/recipe.json 6"
+}

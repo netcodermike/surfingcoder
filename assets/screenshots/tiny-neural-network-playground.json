@@ -1,0 +1,14 @@
+{
+  "name": "tiny-neural-network-playground",
+  "capture_date": "2026-11-06T12:33:32.427902+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "f980a7c61ab3eb516db2ea340d6b06da0e551763",
+  "validation_commands": [
+    "npm install --ignore-scripts",
+    "npm test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner"
+}

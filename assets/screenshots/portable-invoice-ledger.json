@@ -1,0 +1,13 @@
+{
+  "name": "portable-invoice-ledger",
+  "capture_date": "2026-11-06T12:33:29.487288+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "93b79e2604e64829f13e8a10f7a3d6ac36f6911a",
+  "validation_commands": [
+    "php app.php --self-test"
+  ],
+  "kind": "terminal",
+  "caption": "Actual command output from an isolated runner using synthetic inputs.",
+  "command": "php app.php examples/invoice.json"
+}

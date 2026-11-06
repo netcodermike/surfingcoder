@@ -1,0 +1,14 @@
+{
+  "name": "local-model-chat-desk",
+  "capture_date": "2026-11-06T12:33:35.133090+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "968f1b2adc30d9aa472e361342540b07f1f62097",
+  "validation_commands": [
+    "python server.py --self-test"
+  ],
+  "kind": "runtime",
+  "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+  "capture_method": "Playwright Chromium on disposable CI runner",
+  "visible_status": "Ollama unavailable. Start it locally and install a model."
+}
