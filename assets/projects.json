@@ -1393,18 +1393,17 @@
     "image": "assets/screenshots/surfcoder-regional-surf-report.webp",
     "capture": {
       "name": "surfcoder-regional-surf-report",
-      "capture_date": "2026-11-06T12:33:38.067678+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "dee63477b6589c47b8f893e56f24b8068f7281c4",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Fetched Nov 6, 7:33 AM · times in America/New_York. Offshore model forecast, not a beach observation. Missing values show —."
+      "caption": "Actual surf-report interface showing North Topsail Beach, NC, with live Open-Meteo forecasts and the expanded North Carolina location selector.",
+      "capture_date": "2026-11-06T12:51:31.207261+00:00",
+      "demo_data": false,
+      "validation_passed": true,
+      "source_commit": "d26763a10a8883ae0e55df5f4da1864ac5f30e25",
+      "capture_method": "Browser verification of local source with live public forecasts",
+      "validation_commands": [
+        "node --test tests/core.test.js",
+        "node --check app.js"
+      ]
     },
     "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
     "applicationUrl": "/surfreport/"

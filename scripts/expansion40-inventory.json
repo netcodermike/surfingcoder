@@ -680,7 +680,7 @@
     "batch": 3,
     "kind": "web",
     "features": [
-      "Eleven regions and 26 coastal locations plus custom coordinates",
+      "Twelve regions including 46 named North Carolina coastal locations plus custom coordinates",
       "Seven-day live wave, swell and wind forecasts",
       "Local-time day selection, metric/imperial units, saved location and CSV"
     ],

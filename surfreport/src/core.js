@@ -1,5 +1,8 @@
+import { ncBeaches } from './nc-beaches.js';
+export { ncBeaches };
 export const regions={
-'US East Coast':[['Outer Banks, NC',35.6,-75.35],['Cocoa Beach, FL',28.3,-80.5],['Montauk, NY',41.03,-71.8],['Belmar, NJ',40.18,-73.95]],
+'North Carolina':ncBeaches.map(b=>[b.name,b.lat,b.lon]),
+'US East Coast':[['Cocoa Beach, FL',28.3,-80.5],['Montauk, NY',41.03,-71.8],['Belmar, NJ',40.18,-73.95]],
 'US West Coast':[['San Diego, CA',32.75,-117.3],['Huntington Beach, CA',33.61,-118.05],['Santa Cruz, CA',36.94,-122.06],['Oregon Coast',45.9,-124.1]],
 'Hawaii':[['North Shore, Oahu',21.7,-158.06],['South Shore, Oahu',21.22,-157.85]],
 'UK & Ireland':[['Newquay, Cornwall',50.43,-5.13],['Bundoran, Ireland',54.5,-8.3]],
@@ -14,3 +17,5 @@ export function coordinates(lat,lon){lat=Number(lat);lon=Number(lon);if(!Number.
 export function compass(deg){return deg==null?'—':['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(((deg%360)+360)%360/22.5)%16]}
 export function height(m,units){return m==null?null:m*(units==='imperial'?3.28084:1)}
 export function align(marine,weather){if(!marine?.hourly?.time?.length)throw Error('No marine forecast returned for this location');const wind=new Map((weather?.hourly?.time||[]).map((t,i)=>[t,{speed:weather.hourly.wind_speed_10m?.[i],wind_direction:weather.hourly.wind_direction_10m?.[i]}]));return marine.hourly.time.map((time,i)=>({time,wave:marine.hourly.wave_height?.[i]??null,period:marine.hourly.wave_period?.[i]??null,direction:marine.hourly.wave_direction?.[i]??null,swell:marine.hourly.swell_wave_height?.[i]??null,swellPeriod:marine.hourly.swell_wave_period?.[i]??null,...(wind.get(time)||{})}))}
+
+export function presetForLabel(label){for(const [region,spots]of Object.entries(regions)){const index=spots.findIndex(p=>p[0]===label);if(index>=0)return {region,index,point:spots[index]}}return null}
