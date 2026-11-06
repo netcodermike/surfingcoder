@@ -131,7 +131,7 @@
     "description": "Paint a weighted map and compare breadth-first search, Dijkstra, and A* through animated exploration.",
     "images": [],
     "url": "https://github.com/netcodermike/pathfinding-playground",
-    "language": "HTML",
+    "language": "TypeScript",
     "private": false
   },
   {
@@ -311,7 +311,7 @@
     "description": "Track local inventory counts, flag reorder levels, and print numeric Code 39 labels.",
     "images": [],
     "url": "https://github.com/netcodermike/offline-stockroom-tracker",
-    "language": "HTML",
+    "language": "TypeScript",
     "private": false
   },
   {
@@ -401,7 +401,7 @@
     "description": "Practice a Web Audio metronome and inspect tap timing against a beat grid.",
     "images": [],
     "url": "https://github.com/netcodermike/rhythm-practice-lab",
-    "language": "HTML",
+    "language": "TypeScript",
     "private": false
   },
   {
@@ -491,7 +491,7 @@
     "description": "Paint a local tabletop terrain map, flood-fill regions, place labels, undo, and export editable or flattened maps.",
     "images": [],
     "url": "https://github.com/netcodermike/tabletop-map-workshop",
-    "language": "HTML",
+    "language": "TypeScript",
     "private": false
   },
   {

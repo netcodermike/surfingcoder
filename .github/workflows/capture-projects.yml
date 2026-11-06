@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: [browser, python, java, kotlin, qt, cli]
+        group: ${{ fromJSON(contains(github.event.head_commit.message, '[browser-refresh]') && '["browser"]' || '["browser","python","java","kotlin","qt","cli"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,6 +43,7 @@ jobs:
           name: screenshots-linux-${{ matrix.group }}
           path: screenshots/
   windows:
+    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') }}
     runs-on: windows-latest
     timeout-minutes: 25
     steps:
@@ -64,6 +65,7 @@ jobs:
           name: screenshots-windows
           path: screenshots/
   mac:
+    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') }}
     runs-on: macos-latest
     timeout-minutes: 25
     steps:
@@ -79,6 +81,7 @@ jobs:
           name: screenshots-mac
           path: screenshots/
   android:
+    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:

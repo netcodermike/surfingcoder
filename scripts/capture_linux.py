@@ -119,6 +119,7 @@ KOTLIN_TITLES={'fairshare-expense-splitter':'FairShare','habit-garden-desktop':'
 
 def group(row):
     name=row.get('name')or row.get('repository')or row.get('slug');language=row.get('language')
+    if name=='offline-field-journal':return None  # Android is captured by its own emulator job.
     if name in BROWSER_NAMES or language=='TypeScript':return 'browser'
     if name in PY_NAMES:return 'python'
     if name in QT_NAMES:return 'qt'
@@ -130,8 +131,12 @@ def group(row):
 def browser_app(name,path):
     if name=='coinbase-ladder':
         run([sys.executable,'-m','pip','install','-q','-r','requirements.txt'],path,timeout=120)
+        # The legacy form hardcodes public rules; select the app's existing demo
+        # calculation mode in this ephemeral screenshot checkout only.
+        static_js=path/'static/app.js'
+        static_js.write_text(static_js.read_text(encoding='utf-8').replace("mode: 'public'","mode: 'demo'"),encoding='utf-8')
         # Importing rather than app.py __main__ prevents the conditional monitor starting.
-        (path/'gallery_server.py').write_text('''import app,connection\nconnection.load_credentials=lambda:None\napp.get_catalog=lambda:{"assets":[{"symbol":"BTC","name":"Bitcoin","rank":1,"favorite":True,"pairs":{"USD":{"product":"BTC-USD","available":True},"USDC":{"product":"BTC-USDC","available":True}}},{"symbol":"ETH","name":"Ethereum","rank":2,"favorite":True,"pairs":{"USD":{"product":"ETH-USD","available":True}}}],"as_of":"2026-11-06T12:00:00Z","ranking":"Synthetic demo catalog"}\napp.app.run(host="127.0.0.1",port=8765,use_reloader=False)\n''',encoding='utf-8')
+        (path/'gallery_server.py').write_text('''import app,connection\nfrom flask import request,abort\nconnection.load_credentials=lambda:None\napp.get_catalog=lambda:{"assets":[{"symbol":"BTC","name":"Bitcoin","rank":1,"favorite":True,"pairs":{"USD":{"product":"BTC-USD","available":True},"USDC":{"product":"BTC-USDC","available":True}}},{"symbol":"ETH","name":"Ethereum","rank":2,"favorite":True,"pairs":{"USD":{"product":"ETH-USD","available":True}}}],"as_of":"2026-11-06T12:00:00Z","ranking":"Synthetic demo catalog"}\n@app.app.before_request\ndef gallery_guard():\n if request.method=='POST' and request.path not in ['/api/calculate','/api/connection/status']:abort(403)\napp.app.run(host="127.0.0.1",port=8765,use_reloader=False)\n''',encoding='utf-8')
         start([sys.executable,'gallery_server.py'],path)
         def seed(page):
             page.add_init_script("window.WebSocket=class{constructor(){this.readyState=3;}addEventListener(){}send(){}close(){}};")
@@ -169,7 +174,11 @@ def browser_app(name,path):
         if name=='multiplayer-escape-room':
             page.locator('#create').click();page.wait_for_timeout(600)
         elif name=='pathfinding-playground':
-            page.evaluate("grid.forEach((r,y)=>{if(y>2&&y<16)r[15]=0;});grid[11][15]=1;draw();")
+            page.locator('#brush').select_option('0')
+            box=page.locator('#grid').bounding_box()
+            if box:
+                x=box['x']+box['width']*.52;top=box['y']+box['height']*.08;bottom=min(920,box['y']+box['height']*.7)
+                page.mouse.move(x,top);page.mouse.down();page.mouse.move(x,bottom,steps=18);page.mouse.up()
         elif name=='local-whiteboard-studio':
             page.mouse.move(280,420);page.mouse.down();page.mouse.move(500,470,steps=15);page.mouse.move(650,400,steps=15);page.mouse.up()
             page.locator('#tool').select_option('rect');page.mouse.move(620,450);page.mouse.down();page.mouse.move(880,650,steps=10);page.mouse.up()
@@ -202,6 +211,12 @@ def python_app(name,path):
 
 def java_app(name,path):
     src=next((path/'src').glob('*.java'));classname=src.stem
+    if name=='spaced-repetition-adventure':
+        (path/'deck.tsv').write_text('What is the time complexity of binary search?\tO(log n)\nWhich data structure follows FIFO?\tQueue\nWhat is a pure function?\tA function determined only by its inputs\n',encoding='utf-8')
+    elif name=='round-robin-tournament-studio':
+        (path/'tournament.properties').write_text('teams=4\nteam.0=Falcons\nteam.1=Otters\nteam.2=Foxes\nteam.3=Owls\nscore.0=2,1\nscore.1=1,1\nscore.2=0,3\n',encoding='utf-8')
+    elif name=='midi-pattern-studio':
+        patch(src,'root.add(grid,BorderLayout.CENTER);','for(int column=0;column<16;column++){cells[2][column].setSelected(column%2==0);cells[0][column].setSelected(column==0||column==8);cells[1][column].setSelected(column==4||column==12);}root.add(grid,BorderLayout.CENTER);')
     if name=='file-tag-organizer':
         fixture=path/'demo-report.txt';fixture.write_text('Synthetic project report')
         patch(src,'Map<String,Set<String>>data=new TreeMap<>();',f'Map<String,Set<String>>data=new TreeMap<>();data.put({json.dumps(str(fixture))},tags("work, reports"));data.put("/demo/architecture.md",tags("work, design"));')
@@ -218,7 +233,7 @@ def kotlin_app(name,path):
             days=','.join((dt.date.today()-dt.timedelta(days=j)).isoformat()for j in range(count));lines+= [f'habit.{i}.name={title}',f'habit.{i}.days={days}']
         (path/'garden.properties').write_text('\n'.join(lines))
     elif name=='packing-list-companion':
-        patch(source,'var items = mutableListOf<Item>()','var items = mutableListOf(Item("Clothing","Base layers",3,true),Item("Gear","Notebook",1,false),Item("Clothing","Walking shoes",1,true),Item("Essentials","Water bottle",1,false))')
+        patch(source,'var items=mutableListOf<Item>()','var items=mutableListOf(Item("Clothing","Base layers",3,true),Item("Gear","Notebook",1,false),Item("Clothing","Walking shoes",1,true),Item("Essentials","Water bottle",1,false))')
     elif name=='weekly-timetable-planner':
         patch(source,'var events=mutableListOf<Event>()','var events=mutableListOf(Event(0,540,600,"Deep work"),Event(0,630,660,"Project review"),Event(1,600,690,"Design session"),Event(2,780,840,"Learning hour"))')
     elif name=='interval-workout-composer':
@@ -244,7 +259,7 @@ def qt_app(name,path):
         patch(source,'w.show();',f'input->setText({json.dumps(str(wav))});render->click();w.show();')
     run(['cmake','-S','.','-B','build','-DCMAKE_BUILD_TYPE=Release'],path,timeout=60);run(['cmake','--build','build','-j','2'],path,timeout=120)
     executable='sprite'if name=='pixel-sprite-workshop'else'app'
-    native_capture(name,QT_NAMES[name],[str(path/'build'/executable)],path)
+    native_capture(name,QT_NAMES[name],[str(path/'build'/executable)],path,dict(os.environ,QT_QPA_PLATFORM='xcb'))
 
 def cli_app(name,path):
     language=next((r.get('language')for r in rows if (r.get('name')or r.get('repository')or r.get('slug'))==name),None)
