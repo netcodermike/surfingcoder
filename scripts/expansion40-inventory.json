@@ -694,5 +694,239 @@
     "usage": "Choose a region and forecast location, or enter coastal coordinates and select Use custom coordinates. Choose units and a day. Save a location only on your device, or download CSV. Forecast requests send the chosen coordinates to marine-api.open-meteo.com and api.open-meteo.com; no geolocation permission or API key is used. Data errors remain visible and are never replaced by invented live conditions.",
     "architecture": "The static browser client joins Open-Meteo marine/wind forecasts by Unix timestamp and formats time in the returned location timezone. Marine forecasts use cell_selection=sea. Abort/sequence controls prevent an old location request from overwriting a new one. Wind failures do not hide available marine data. Values remain null when absent. Links attribute Open-Meteo and its source datasets. See official marine API documentation for licensing and commercial usage terms.",
     "capture_wait_ms": 2500
+  },
+  {
+    "name": "home-energy-scenario-lab",
+    "title": "Home Energy Scenario Lab",
+    "language": "TypeScript",
+    "group": "useful",
+    "summary": "Compare appliance schedules, energy use, and tariff costs with a downloadable scenario report.",
+    "batch": 4,
+    "kind": "web",
+    "features": [
+      "Appliance watts/hours/count calculations",
+      "Baseline and reduced-use comparison",
+      "Tariff and scenario JSON report"
+    ],
+    "limits": "Simple constant-power scenario model, not measured household usage or a billing prediction. No utility credentials are requested.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "offline-recipe-scaling-kit",
+    "title": "Offline Recipe Scaling Kit",
+    "language": "Swift",
+    "group": "useful",
+    "summary": "Scale structured ingredient quantities and servings without rounding intermediate measurements.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "main.swift",
+    "commands": [
+      "swiftc main.swift -o recipe-kit",
+      "./recipe-kit --self-test"
+    ],
+    "run": "./recipe-kit examples/recipe.json 6",
+    "demo": "./recipe-kit examples/recipe.json 6",
+    "features": [
+      "Structured JSON recipe scaling",
+      "Fractional quantities without intermediate rounding",
+      "Validated servings and unchanged ingredient units"
+    ],
+    "limits": "Does not convert units, infer cooking times, or assess allergens/nutrition. Scaling cooking technique requires judgement.",
+    "setup": "",
+    "usage": "Run `./recipe-kit examples/recipe.json 6`. JSON contains `title`, positive `servings`, and `ingredients` with name/quantity/unit. Output goes to stdout; the input remains unchanged.",
+    "architecture": ""
+  },
+  {
+    "name": "network-subnet-workbench",
+    "title": "Network Subnet Workbench",
+    "language": "Go",
+    "group": "useful",
+    "summary": "Inspect IPv4 or IPv6 CIDR networks, membership, address counts, and subnet splits offline.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "main.go",
+    "commands": [
+      "go test ./..."
+    ],
+    "run": "go run . --cidr 192.168.10.40/24 --split 26 --contains 192.168.10.72",
+    "demo": "go run . --cidr 192.168.10.40/24 --split 26 --contains 192.168.10.72",
+    "features": [
+      "IPv4 and IPv6 network boundaries",
+      "Arbitrary-width address counts",
+      "Membership and bounded subnet splitting"
+    ],
+    "limits": "Offline address arithmetic only; no network scanning. IPv6 has no broadcast address. Usable-host conventions are explicitly labelled.",
+    "setup": "      - uses: actions/setup-go@v5\n        with:\n          go-version: '1.24.x'\n",
+    "usage": "Inspect: `go run . --cidr 2001:db8::/64`. Split: `go run . --cidr 192.168.10.0/24 --split 26`. Add `--contains ADDRESS` for membership. IPv4 /31 and /32 host counts follow point-to-point/single-address conventions.",
+    "architecture": ""
+  },
+  {
+    "name": "sqlite-migration-rehearsal",
+    "title": "SQLite Migration Rehearsal",
+    "language": "Python",
+    "group": "useful",
+    "summary": "Rehearse SQL migrations against a temporary database copy and report schema changes before application.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test",
+      "python examples/make_fixture.py"
+    ],
+    "run": "python app.py examples/demo.sqlite examples/migration.sql",
+    "demo": "python app.py examples/demo.sqlite examples/migration.sql",
+    "features": [
+      "SQLite backup API to a temporary copy",
+      "Schema diff and post-migration row counts",
+      "Read-only original and blocked ATTACH/DETACH"
+    ],
+    "limits": "Rehearses trusted SQLite SQL only; does not apply migrations to production or validate other database engines. Large files require temporary disk space.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Run `python app.py database.sqlite migration.sql`. The source opens read-only and is backed up to a temporary database before SQL runs. The tool never applies changes to the source. ATTACH/DETACH are denied.",
+    "architecture": ""
+  },
+  {
+    "name": "password-entropy-playground",
+    "title": "Password Entropy Playground",
+    "language": "JavaScript",
+    "group": "useful",
+    "summary": "Compare explicit password-generation models and generate random passphrases entirely on-device.",
+    "batch": 4,
+    "kind": "web",
+    "features": [
+      "Explicit random-generation entropy models",
+      "Web Crypto passphrase generation with rejection sampling",
+      "Local generation without saving passwords"
+    ],
+    "limits": "Entropy applies only to independent uniform generation. The compact bundled word list needs more words than a large Diceware list for equal entropy.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "portable-invoice-ledger",
+    "title": "Portable Invoice Ledger",
+    "language": "PHP",
+    "group": "useful",
+    "summary": "Generate itemized invoice JSON using integer cents, explicit tax basis points, and validated quantities.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "app.php",
+    "commands": [
+      "php app.php --self-test"
+    ],
+    "run": "php app.php examples/invoice.json",
+    "demo": "php app.php examples/invoice.json",
+    "features": [
+      "Integer-cent invoice calculation",
+      "Explicit tax basis points and discounts",
+      "Optional locked JSONL ledger with duplicate-ID prevention"
+    ],
+    "limits": "Calculation and recordkeeping only; no payment processing or tax-rule determination. Tax rate/currency must be supplied by the user.",
+    "setup": "",
+    "usage": "Run `php app.php invoice.json`. Values are integer cents; `tax_bps: 825` means 8.25%. Optional `--ledger history.jsonl` appends under a lock and rejects repeated IDs. Zero tax must be explicit; no tax jurisdiction is inferred.",
+    "architecture": ""
+  },
+  {
+    "name": "dependency-license-board",
+    "title": "Dependency License Board",
+    "language": "Python",
+    "group": "useful",
+    "summary": "Inventory package manifests and local license files into an evidence-based dependency report.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "app.py",
+    "commands": [
+      "python app.py --self-test"
+    ],
+    "run": "python app.py examples",
+    "demo": "python app.py examples",
+    "features": [
+      "Direct npm/Python requirement inventory",
+      "Local license/notice evidence excerpts",
+      "Unknown-license and unsupported-directive reporting"
+    ],
+    "limits": "Does not resolve transitive dependencies or infer legal license compatibility. Review actual package license evidence before distribution.",
+    "setup": "      - uses: actions/setup-python@v5\n        with:\n          python-version: '3.13'\n",
+    "usage": "Run `python app.py /path/to/project`. It reads only direct package.json/requirements.txt and root LICENSE/COPYING/NOTICE files. It performs no network lookup or package installation. Unknown licenses remain unknown.",
+    "architecture": ""
+  },
+  {
+    "name": "color-accessibility-studio",
+    "title": "Color Accessibility Studio",
+    "language": "TypeScript",
+    "group": "useful",
+    "summary": "Compare WCAG contrast pairs, preview text sizes, and export accessible color tokens.",
+    "batch": 4,
+    "kind": "web",
+    "features": [
+      "WCAG relative luminance and contrast ratios",
+      "AA/AAA normal and large text checks",
+      "Live preview, color swapping and CSS tokens"
+    ],
+    "limits": "Contrast ratio checks are only one part of accessibility; they do not certify full WCAG conformance.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "calendar-ics-conflict-lens",
+    "title": "Calendar ICS Conflict Lens",
+    "language": "Java",
+    "group": "useful",
+    "summary": "Inspect UTC calendar events and find overlapping time ranges with explicit unsupported-rule reporting.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "Main.java",
+    "commands": [
+      "javac Main.java",
+      "java Main --self-test"
+    ],
+    "run": "java Main examples/calendar.ics",
+    "demo": "java Main examples/calendar.ics",
+    "features": [
+      "Unfolded ICS UTC event parsing",
+      "Overlapping interval detection",
+      "Explicit rejection of recurrences/timezone rules"
+    ],
+    "limits": "Explicit UTC DTSTART/DTEND VEVENTs only; recurring, all-day, timezone-local and duration-only events must be normalized first.",
+    "setup": "      - uses: actions/setup-java@v5\n        with:\n          distribution: temurin\n          java-version: '17'\n",
+    "usage": "Run `java Main calendar.ics`. Supported events need unique UID, DTSTART and DTEND as YYYYMMDDTHHMMSSZ. Events touching at an endpoint do not conflict. Unsupported recurrence/timezone rules fail explicitly.",
+    "architecture": ""
+  },
+  {
+    "name": "markdown-link-health-map",
+    "title": "Markdown Link Health Map",
+    "language": "Rust",
+    "group": "useful",
+    "summary": "Check relative Markdown links and anchor targets locally without sending files to a remote crawler.",
+    "batch": 4,
+    "kind": "cli",
+    "core": "src/main.rs",
+    "commands": [
+      "cargo test"
+    ],
+    "run": "cargo run -- examples",
+    "demo": "cargo run -- examples",
+    "features": [
+      "Local inline Markdown link checks",
+      "ATX heading anchors with duplicate suffixes",
+      "Missing/out-of-root findings and nonzero exit status"
+    ],
+    "limits": "Small Markdown subset: inline links and ATX headings. Reference links, HTML anchors, complex nested-parenthesis URLs and complete CommonMark parsing are unsupported. No network requests.",
+    "setup": "",
+    "usage": "Run `cargo run -- docs-directory`. Relative paths are resolved from each Markdown file. Paths outside the supplied root are flagged. Exit 0 means no issues in the supported subset; 1 means broken links; 2 means input/read errors.",
+    "architecture": ""
   }
 ]
