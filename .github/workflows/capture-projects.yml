@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJSON(contains(github.event.head_commit.message, '[python-mac-refresh]') && '["python"]' || contains(github.event.head_commit.message, '[browser-refresh]') && '["browser"]' || '["browser","python","java","kotlin","qt","cli"]') }}
+        group: ${{ fromJSON(contains(github.event.head_commit.message, '[featured-refresh]') && '["browser","kotlin"]' || contains(github.event.head_commit.message, '[python-mac-refresh]') && '["python"]' || contains(github.event.head_commit.message, '[browser-refresh]') && '["browser"]' || '["browser","python","java","kotlin","qt","cli"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,7 +34,7 @@ jobs:
           sudo timeout 180 apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
           sudo timeout 300 apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends xvfb openbox scrot wmctrl python3-tk qt6-base-dev x11-utils fonts-dejavu
           python -m pip install pillow playwright flask
-          python -m playwright install --with-deps chromium
+          timeout 180 python -m playwright install chromium
       - name: Capture actual interfaces
         run: xvfb-run -a -s '-screen 0 1440x1000x24' python scripts/capture_linux.py --inventory scripts/projects-inventory.json --output screenshots --group ${{ matrix.group }}
       - uses: actions/upload-artifact@v4
@@ -58,14 +58,14 @@ jobs:
             10.0.x
       - run: python -m pip install pillow playwright
       - run: python -m playwright install chromium
-      - run: python scripts/capture_windows.py --inventory scripts/projects-inventory.json --output screenshots
+      - run: python scripts/capture_windows.py --inventory scripts/projects-inventory.json --output screenshots --only ${{ contains(github.event.head_commit.message, '[featured-refresh]') && 'SvdStudio' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: screenshots-windows
           path: screenshots/
   mac:
-    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[featured-refresh]') }}
     runs-on: macos-latest
     timeout-minutes: 25
     steps:
@@ -81,7 +81,7 @@ jobs:
           name: screenshots-mac
           path: screenshots/
   android:
-    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[python-mac-refresh]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[browser-refresh]') && !contains(github.event.head_commit.message, '[python-mac-refresh]') && !contains(github.event.head_commit.message, '[featured-refresh]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:

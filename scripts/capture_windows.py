@@ -1,7 +1,7 @@
 """Genuine WPF render captures in isolated CI clones, using synthetic fixtures only."""
 import argparse,json,os,subprocess,time
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--inventory',required=True);p.add_argument('--output',default='screenshots');args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--inventory',required=True);p.add_argument('--output',default='screenshots');p.add_argument('--only',nargs='*');args=p.parse_args()
 out=Path(args.output).resolve();out.mkdir(parents=True,exist_ok=True);root=Path('capture-work-windows').resolve();root.mkdir(exist_ok=True)
 items=json.loads(Path(args.inventory).read_text(encoding='utf-8'))
 helper=r'''
@@ -18,7 +18,9 @@ def run(command,cwd,timeout=240):
  return r
 for item in items:
  if item.get('language')!='C#':continue
- name=item['name'];folder=root/name;png=out/(name+'.png')
+ name=item['name']
+ if args.only and name not in args.only:continue
+ folder=root/name;png=out/(name+'.png')
  try:
   if not(folder/'.git').exists():run(['git','clone','--depth','1',item['url']+'.git',str(folder)],root)
   if name=='SvdStudio':project=folder/'SvdStudio/SvdStudio.csproj'
@@ -26,7 +28,10 @@ for item in items:
   else:project=next(folder.glob('*.csproj'))
   (folder/'fixtures').mkdir(exist_ok=True)
   if name!='procedural-planet-explorer':
-   (project.parent/'GalleryCapture.cs').write_text(helper,encoding='utf-8')
+   sized=helper.replace('int width=Math.Max(1,(int)Math.Ceiling(view.ActualWidth)),height=Math.Max(1,(int)Math.Ceiling(view.ActualHeight));','view.Measure(new Size(1440,900));view.Arrange(new Rect(0,0,1440,900));view.UpdateLayout();int width=1440,height=900;')
+   (project.parent/'GalleryCapture.cs').write_text(sized,encoding='utf-8')
+   if name=='SvdStudio':
+    xaml=project.parent/'MainWindow.xaml';xaml.write_text(xaml.read_text(encoding='utf-8').replace('<TabControl Grid.Column="2">','<TabControl Grid.Column="2" SelectedIndex="1">'),encoding='utf-8')
    source=folder/'Program.cs'
    if source.exists():
     text=source.read_text(encoding='utf-8')

@@ -103,6 +103,7 @@ def browser_capture(name,url,seed=None,caption=None):
         page.goto(url,wait_until='networkidle',timeout=30000)
         if seed:seed(page)
         page.wait_for_timeout(700)
+        page.evaluate('window.scrollTo(0,0)')
         page.screenshot(path=str(OUTPUT/(name+'.png')),full_page=False)
         record(name,'runtime',caption or 'Actual application interface with synthetic demonstration data.')
     finally:context.close()
@@ -155,7 +156,7 @@ def browser_app(name,path):
         ready('http://127.0.0.1:8765');context,page=browser_page()
         try:
             page.add_init_script("window.WebSocket=class{constructor(){this.readyState=3;}addEventListener(){}send(){}close(){}};")
-            page.goto('http://127.0.0.1:8765',wait_until='networkidle');seed(page);page.screenshot(path=str(OUTPUT/(name+'.png')))
+            page.goto('http://127.0.0.1:8765',wait_until='networkidle');seed(page);page.evaluate('window.scrollTo(0,0)');page.screenshot(path=str(OUTPUT/(name+'.png')))
             record(name,'runtime','Actual Crypto Ladder interface using its local demo calculator; disconnected from every account and exchange.')
         finally:context.close()
         return
