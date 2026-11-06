@@ -117,7 +117,7 @@ def inject(repo: Path, slug: str, demo: Path):
         text = text.replace(marker, 'item.button?.title="Snippets";menu();if ' + environment + '{add()}}', 1)
         marker = 'alert.accessoryView=box;guard alert.runModal()'
         demo_text = json.dumps('Review changes\nRun project checks\nConfirm the release notes\nDeploy the verified build')
-        replacement = ('alert.accessoryView=box;if ' + environment + '{title.stringValue="Deployment checklist";text.string=' + demo_text + ';alert.window.center();galleryCapture(alert.window);return};guard alert.runModal()')
+        replacement = ('alert.accessoryView=box;if ' + environment + '{title.stringValue="Deployment checklist";text.string=' + demo_text + ';alert.layout();alert.window.center();galleryCapture(alert.window);return};guard alert.runModal()')
         if marker not in text:
             raise RuntimeError('Snippet dialog marker changed')
         text = text.replace(marker, replacement, 1)

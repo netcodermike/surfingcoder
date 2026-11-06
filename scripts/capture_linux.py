@@ -77,7 +77,12 @@ def native_capture(name,title,command,cwd,env=None):
         hits=[line for line in listing.splitlines()if title.lower()in line.lower()]
         if hits:window=hits[-1].split()[0];break
         time.sleep(.4)
-    if not window:raise RuntimeError('No expected native window: '+title)
+    if not window:
+        logs=[]
+        for process,stream in PROCS:
+            stream.flush()
+            with contextlib.suppress(OSError):logs.append(Path(stream.name).read_text(encoding='utf-8',errors='replace')[-1800:])
+        raise RuntimeError('No expected native window: '+title+'\n'+'\n'.join(logs))
     run(['wmctrl','-i','-r',window,'-e','0,30,30,1320,900'],check=False)
     run(['wmctrl','-i','-a',window],check=False);time.sleep(1.2)
     target=OUTPUT/(name+'.png')
@@ -207,7 +212,7 @@ def python_app(name,path):
         data={'version':1,'people':{'a':{'name':'Alex Morgan','year':1950},'b':{'name':'Sam Morgan','year':1953},'c':{'name':'Taylor Morgan','year':1980},'d':{'name':'Robin Morgan','year':2007}},'edges':[['a','c'],['b','c'],['c','d']]}
         patch(path/'app.py',"data={'version':1,'people':{},'edges':[]}",'data='+repr(data))
     title={'pantry-meal-planner':'Pantry Meal Planner','personal-library-tracker':'Personal Library','subtitle-sync-studio':'Subtitle Sync Studio','document-similarity-explorer':'Document Similarity Explorer','family-tree-builder':'Family Tree Builder'}[name]
-    native_capture(name,title,[sys.executable,PY_NAMES[name]],path)
+    native_capture(name,title,['/usr/bin/python3',PY_NAMES[name]],path)
 
 def java_app(name,path):
     src=next((path/'src').glob('*.java'));classname=src.stem
