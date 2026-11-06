@@ -1,0 +1,212 @@
+[
+  {
+    "name": "string-instrument-tuner",
+    "title": "String Instrument Tuner",
+    "language": "TypeScript",
+    "group": "music",
+    "summary": "Chromatic microphone tuner with string presets, custom tunings, cents deviation, and reference tones.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Chromatic live tuning",
+      "Nine preset instrument families and arbitrary custom strings",
+      "Adjustable concert pitch and reference tone"
+    ],
+    "limits": "Microphone requires HTTPS or localhost and permission. Monophonic periodic signals about 24\u20131400 Hz; harmonics and noise can reduce accuracy.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "blues-progression-atlas",
+    "title": "Blues Progression Atlas",
+    "language": "JavaScript",
+    "group": "music",
+    "summary": "Transpose classic blues forms, inspect chord tones, and audition a twelve-bar backing pattern.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Four original educational blues form charts",
+      "All twelve keys and chord-tone inspection",
+      "Synthesized backing playback and JSON export"
+    ],
+    "limits": "Educational harmonic templates; no copyrighted recordings or lyrics are bundled.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "surfcoder-boombox",
+    "title": "SurfCoder Boombox",
+    "language": "TypeScript",
+    "group": "music",
+    "summary": "A virtual boombox for local audio queues and user-supplied radio streams, with spectrum meters.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Local audio queue and custom stream URLs",
+      "Native seek controls, volume, shuffle",
+      "Local-file frequency visualizer"
+    ],
+    "limits": "Stream availability and formats depend on the provider. No stations or copyrighted tracks are bundled; stream requests go to the URL you choose.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "polyrhythm-matrix",
+    "title": "Polyrhythm Matrix",
+    "language": "JavaScript",
+    "group": "music",
+    "summary": "Hear and visualize independent rhythmic cycles with tempo, subdivision, and accent control.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Independent cycle lengths",
+      "Four-cycle synthesized playback",
+      "Event alignment visualization"
+    ],
+    "limits": "Audio timing is subject to browser timer scheduling.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "interval-ear-gym",
+    "title": "Interval Ear Gym",
+    "language": "TypeScript",
+    "group": "music",
+    "summary": "A randomized listening quiz with ascending, descending, and harmonic intervals and session scores.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Twelve interval identities",
+      "Ascending, descending and simultaneous playback",
+      "Session scoring without an account"
+    ],
+    "limits": "Training tones only. Playback starts after a user action.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "chord-voicing-lab",
+    "title": "Chord Voicing Lab",
+    "language": "TypeScript",
+    "group": "music",
+    "summary": "Build and audition extended chords, inversions, and voice-leading between two harmonies.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Eight chord qualities in all keys",
+      "Inversion rotation and voice-motion inspection",
+      "Sequence audition and JSON note export"
+    ],
+    "limits": "Close-position educational voicings; no automatic professional arrangement claims.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "ambient-soundscape-mixer",
+    "title": "Ambient Soundscape Mixer",
+    "language": "JavaScript",
+    "group": "music",
+    "summary": "Mix synthesized surf, rain, wind, and drone layers locally with a sleep fade timer.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Four independent procedural layers",
+      "Live per-layer gain control",
+      "Timed final fade and stop"
+    ],
+    "limits": "Procedural noise is an approximation of natural sounds. No therapeutic claims.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "audio-ab-loop-studio",
+    "title": "Audio A\u2013B Loop Studio",
+    "language": "TypeScript",
+    "group": "music",
+    "summary": "Practice a selected section of a local recording with A\u2013B markers, playback speed, and pitch preservation.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Local file playback and A\u2013B markers",
+      "Half to one-and-a-half speed",
+      "Pitch-preservation request and loop validation"
+    ],
+    "limits": "Loop precision and pitch preservation depend on browser media implementation.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.ts"
+  },
+  {
+    "name": "pocket-drum-foundry",
+    "title": "Pocket Drum Foundry",
+    "language": "JavaScript",
+    "group": "music",
+    "summary": "Program a sixteen-step synthesized drum groove with swing, per-voice levels, and pattern export.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Three synthesized drum voices",
+      "Sixteen-step pattern editor and swing",
+      "Validated JSON import/export"
+    ],
+    "limits": "Browser timers can introduce jitter. No hardware drum samples are included.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  },
+  {
+    "name": "spectrogram-waterfall",
+    "title": "Spectrogram Waterfall",
+    "language": "JavaScript",
+    "group": "music",
+    "summary": "Inspect microphone or local audio as a scrolling frequency heatmap with adjustable range.",
+    "batch": 1,
+    "kind": "web",
+    "features": [
+      "Microphone or local audio input",
+      "Four FFT resolutions and range selection",
+      "Scrolling live frequency heatmap"
+    ],
+    "limits": "Microphone requires HTTPS/localhost and permission. This is a relative magnitude display, not a calibrated measurement instrument.",
+    "commands": [
+      "npm install --ignore-scripts",
+      "npm test"
+    ],
+    "run": "npm start",
+    "core": "src/core.js"
+  }
+]
