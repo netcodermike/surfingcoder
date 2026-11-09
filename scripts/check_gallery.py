@@ -5,9 +5,12 @@ from html.parser import HTMLParser
 ROOT = Path(__file__).resolve().parents[1]
 projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))
 assert len(projects) == len({p['name'] for p in projects}), 'Duplicate repository names'
-assert [p['name'] for p in projects[:2]] == ['SvdStudio', 'coinbase-ladder'], 'Featured priorities changed'
-assert projects[2]['name']=='fractal-render-lab', 'Fractal app must follow the two lead projects'
-assert all(p['category']=='Music & audio' for p in projects[3:27]), 'Music apps must remain near the top'
+category_order = ['AI & machine learning', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Everyday apps', 'Games & learning', 'Systems & Linux']
+assert list(dict.fromkeys(p['category'] for p in projects)) == category_order, 'Curated category priorities changed'
+assert [category_order.index(p['category']) for p in projects] == sorted(category_order.index(p['category']) for p in projects), 'Categories must stay grouped'
+leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Data & analysis': 'SvdStudio', 'Work & productivity': 'coinbase-ladder', 'Creative tools': 'fractal-render-lab', 'Music & audio': 'spectrogram-waterfall'}
+for category, name in leaders.items():
+    assert next(p['name'] for p in projects if p['category']==category) == name, category+': visual lead changed'
 page = (ROOT/'index.html').read_text(encoding='utf-8')
 embedded = re.search(r'<script type="application/json" id="project-data">(.*?)</script>', page, re.S)
 assert embedded and json.loads(embedded[1].replace('<\\/', '</')) == projects, 'Rebuild static gallery data'

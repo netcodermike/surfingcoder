@@ -1,4 +1,4 @@
-import { $,field,select,area,button,on,show,download,audio,tone,plot,notes,hz,note,microphone } from './ui.js';
+import { $,field,select,area,button,on,show,download,audio,tone,plot,theme,notes,hz,note,microphone } from './ui.js';
 import * as core from './dist/core.js';
 
 $('controls').innerHTML=select('Instrument','instrument',Object.keys(core.tunings))+field('A4 reference (Hz)','reference','number',440,'min="400" max="480"')+field('Custom MIDI string notes (optional)','custom','text','','placeholder="40,45,50,55,59,64"')+button('Start microphone','start')+button('Stop','stop')+button('Play selected string','reference-tone')+select('Reference string','string',core.tunings.Guitar.map((m,i)=>[m,note(m)]));

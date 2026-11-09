@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 103 projects across 13 languages. SVD Studio and Coinbase Ladder lead the collection, followed by Fractal Render Lab and the music/audio apps. Professional tools, Linux utilities, creative apps, and learning projects complete the gallery.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 103 projects across 13 languages. AI apps lead the collection, followed by data analysis, productivity, creative tools, music/audio, everyday apps, games, and Linux utilities. Each category opens with its strongest visual interfaces. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
 
 ## Run locally
 
@@ -16,12 +16,18 @@ Open http://127.0.0.1:8000. Search, category/language filters, sorting, grid/lis
 
 ## Edit the gallery
 
-1. Edit `assets/projects.json`. Array order sets the default display priority; keep SvdStudio and coinbase-ladder first.
+1. Edit `assets/projects.json`. Array order sets the default display priority; keep AI first and projects grouped by category, with the strongest screenshots first in each group.
 2. Add a genuine screenshot as `assets/screenshots/<repository>.webp` and its capture metadata as `<repository>.json`. Use synthetic demonstration data. Describe terminal captures as terminal output rather than app interfaces.
 3. Run `python scripts/build_gallery.py` to update the static cards and embedded data.
 4. Run both checks above, preview desktop and mobile layouts, and review `git diff` before publication.
 
 The JSON fields are documented in [docs/gallery.md](docs/gallery.md). Layout and behavior live in `gallery.css` and `gallery.js`. Fonts use Google Fonts with system fallbacks. There are no analytics, accounts, or backend services.
+
+## Appearance
+
+Every HTML page loads `theme.css`, the shared **Amethyst & Graphite** palette: `#18161E` background, `#27222F` panels, `#A879E8` purple accents, `#D9C4F5` metallic highlights, and soft off-white text. Edit its CSS variables to keep the gallery, writing, About page, surf report, and hosted apps consistent. `app.css` holds shared app layouts; each hosted app's `style.css` imports it. Canvas charts read the same theme variables through the `theme()` helper in `ui.js`.
+
+Gallery screenshots remain genuine captures of their source applications; they are not recolored. Hosted app styling is maintained in this website repository independently of the standalone app repositories.
 
 ## New music, AI, and practical apps
 
