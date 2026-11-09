@@ -1,0 +1,9 @@
+{
+  "name": "trading-indicator-playground",
+  "kind": "runtime",
+  "caption": "Actual Trading Indicator Playground interface with deterministic synthetic prices, SMA and EMA overlays, and Bollinger Bands.",
+  "capture_date": "2026-11-09",
+  "capture_method": "Browser screenshot after mathematical, CSV-import, replay, and responsive checks",
+  "demo_data": true,
+  "validation_passed": true
+}

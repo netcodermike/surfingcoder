@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 104 projects across 13 languages. AI apps lead the collection, followed by data analysis, productivity, creative tools, music/audio, everyday apps, games, and Linux utilities. Each category opens with its strongest visual interfaces. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 105 projects across 13 languages. AI apps lead the collection, followed by data analysis, productivity, creative tools, music/audio, everyday apps, games, and Linux utilities. Each category opens with its strongest visual interfaces. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
 
 ## Run locally
 
@@ -43,8 +43,12 @@ The publication branch is `main`, with GitHub Pages serving the repository root 
 
 ## Writing
 
-The existing [Pipeline title-race analysis](articles/wsl-rankings-misleading.html), its supporting data, and the About page remain available. The article retains its November 3, 2026 snapshot and review-draft context.
+The existing [Pipeline title-race analysis](articles/wsl-rankings-misleading.html), its supporting data, and the About page remain available. The published article retains its November 3, 2026 snapshot and explicit assumptions.
 
 ## Operations research and forecast updates
 
 [OR Tableau Studio](https://surfingcoder.com/apps/or-tableau-studio/) adds a documented, tested simplex and farm-planning workbench. Its standalone source lives at [netcodermike/or-tableau-studio](https://github.com/netcodermike/or-tableau-studio). Refresh the hosted static copy when publishing app changes. The surf report now includes [seven-day component graphs](docs/surf-forecast-stage1.md). The Pipeline article retains its original snapshot, with [November 9 verification notes](docs/article-review-2026-11-09.md).
+
+## Trading indicator lab
+
+[Trading Indicator Playground](https://surfingcoder.com/marketlab/) explains SMA, EMA, Bollinger Bands, RSI, and MACD with synthetic data and local CSV import. Its [standalone repository](https://github.com/netcodermike/trading-indicator-playground) documents formulas, numerical conventions, input limits, and tests. The hosted copy uses the shared site theme. Gallery validation now checks the large header, filter, and initial result counts against the canonical catalog.

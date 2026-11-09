@@ -282,6 +282,31 @@
     "ci": "https://github.com/netcodermike/SvdStudio/actions"
   },
   {
+    "name": "trading-indicator-playground",
+    "title": "Trading Indicator Playground",
+    "description": "Explore moving averages, Bollinger Bands, RSI, and MACD with interactive charts, formula explanations, historical replay, and local CSV import.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/trading-indicator-playground",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 10,
+    "image": "assets/screenshots/trading-indicator-playground.webp",
+    "capture": {
+      "name": "trading-indicator-playground",
+      "kind": "runtime",
+      "caption": "Actual Trading Indicator Playground interface with deterministic synthetic prices, SMA and EMA overlays, and Bollinger Bands.",
+      "capture_date": "2026-11-09",
+      "capture_method": "Browser screenshot after mathematical, CSV-import, replay, and responsive checks",
+      "demo_data": true,
+      "validation_passed": true
+    },
+    "ci": "https://github.com/netcodermike/trading-indicator-playground/actions",
+    "applicationUrl": "/marketlab/"
+  },
+  {
     "name": "or-tableau-studio",
     "title": "OR Tableau Studio",
     "description": "Plan a farm with linear programming, walk every simplex pivot, compare weather scenarios, and inspect shadow prices and sensitivity ranges.",
@@ -304,7 +329,7 @@
     },
     "ci": "https://github.com/netcodermike/or-tableau-studio/actions",
     "applicationUrl": "/apps/or-tableau-studio/",
-    "order": 10
+    "order": 11
   },
   {
     "name": "document-similarity-explorer",
@@ -317,7 +342,7 @@
     "url": "https://github.com/netcodermike/document-similarity-explorer",
     "category": "Data & analysis",
     "featured": false,
-    "order": 11,
+    "order": 12,
     "image": "assets/screenshots/document-similarity-explorer.webp",
     "capture": {
       "name": "document-similarity-explorer",
@@ -343,7 +368,7 @@
     "url": "https://github.com/netcodermike/csv-cleanup-studio",
     "category": "Data & analysis",
     "featured": false,
-    "order": 12,
+    "order": 13,
     "image": "assets/screenshots/csv-cleanup-studio.webp",
     "capture": {
       "name": "csv-cleanup-studio",
@@ -364,7 +389,7 @@
     "url": "https://github.com/netcodermike/log-timeline-studio",
     "category": "Data & analysis",
     "featured": false,
-    "order": 13,
+    "order": 14,
     "image": "assets/screenshots/log-timeline-studio.webp",
     "capture": {
       "name": "log-timeline-studio",
@@ -385,7 +410,7 @@
     "url": "https://github.com/netcodermike/photo-metadata-inspector",
     "category": "Data & analysis",
     "featured": false,
-    "order": 14,
+    "order": 15,
     "image": "assets/screenshots/photo-metadata-inspector.webp",
     "capture": {
       "name": "photo-metadata-inspector",
@@ -411,7 +436,7 @@
     "url": "https://github.com/netcodermike/linux-package-footprint",
     "category": "Data & analysis",
     "featured": false,
-    "order": 15,
+    "order": 16,
     "image": "assets/screenshots/linux-package-footprint.webp",
     "capture": {
       "name": "linux-package-footprint",
@@ -434,7 +459,7 @@
     "url": "https://github.com/netcodermike/coinbase-ladder",
     "category": "Work & productivity",
     "featured": true,
-    "order": 16,
+    "order": 17,
     "image": "assets/screenshots/coinbase-ladder.webp",
     "capture": {
       "name": "coinbase-ladder",
@@ -456,7 +481,7 @@
     "url": "https://github.com/netcodermike/WpfDigitalClockAlarm",
     "category": "Work & productivity",
     "featured": false,
-    "order": 17,
+    "order": 18,
     "image": "assets/screenshots/WpfDigitalClockAlarm.webp",
     "capture": {
       "name": "WpfDigitalClockAlarm",
@@ -477,7 +502,7 @@
     "url": "https://github.com/netcodermike/local-whiteboard-studio",
     "category": "Work & productivity",
     "featured": false,
-    "order": 18,
+    "order": 19,
     "image": "assets/screenshots/local-whiteboard-studio.webp",
     "capture": {
       "name": "local-whiteboard-studio",
@@ -499,7 +524,7 @@
     "url": "https://github.com/netcodermike/offline-stockroom-tracker",
     "category": "Work & productivity",
     "featured": false,
-    "order": 19,
+    "order": 20,
     "image": "assets/screenshots/offline-stockroom-tracker.webp",
     "capture": {
       "name": "offline-stockroom-tracker",
@@ -521,7 +546,7 @@
     "url": "https://github.com/netcodermike/home-energy-scenario-lab",
     "category": "Work & productivity",
     "featured": false,
-    "order": 20,
+    "order": 21,
     "image": "assets/screenshots/home-energy-scenario-lab.webp",
     "capture": {
       "name": "home-energy-scenario-lab",
@@ -552,7 +577,7 @@
     "url": "https://github.com/netcodermike/color-accessibility-studio",
     "category": "Work & productivity",
     "featured": false,
-    "order": 21,
+    "order": 22,
     "image": "assets/screenshots/color-accessibility-studio.webp",
     "capture": {
       "name": "color-accessibility-studio",
@@ -582,7 +607,7 @@
     "url": "https://github.com/netcodermike/password-entropy-playground",
     "category": "Work & productivity",
     "featured": false,
-    "order": 22,
+    "order": 23,
     "image": "assets/screenshots/password-entropy-playground.webp",
     "capture": {
       "name": "password-entropy-playground",
@@ -612,7 +637,7 @@
     "url": "https://github.com/netcodermike/personal-time-machine",
     "category": "Work & productivity",
     "featured": false,
-    "order": 23,
+    "order": 24,
     "image": "assets/screenshots/personal-time-machine.webp",
     "capture": {
       "name": "personal-time-machine",
@@ -634,7 +659,7 @@
     "url": "https://github.com/netcodermike/markdown-note-graph",
     "category": "Work & productivity",
     "featured": false,
-    "order": 24,
+    "order": 25,
     "image": "assets/screenshots/markdown-note-graph.webp",
     "capture": {
       "name": "markdown-note-graph",
@@ -655,7 +680,7 @@
     "url": "https://github.com/netcodermike/personal-library-tracker",
     "category": "Work & productivity",
     "featured": false,
-    "order": 25,
+    "order": 26,
     "image": "assets/screenshots/personal-library-tracker.webp",
     "capture": {
       "name": "personal-library-tracker",
@@ -681,7 +706,7 @@
     "url": "https://github.com/netcodermike/fairshare-expense-splitter",
     "category": "Work & productivity",
     "featured": false,
-    "order": 26,
+    "order": 27,
     "image": "assets/screenshots/fairshare-expense-splitter.webp",
     "capture": {
       "name": "fairshare-expense-splitter",
@@ -706,7 +731,7 @@
     "url": "https://github.com/netcodermike/desktop-focus-timer",
     "category": "Work & productivity",
     "featured": false,
-    "order": 27,
+    "order": 28,
     "image": "assets/screenshots/desktop-focus-timer.webp",
     "capture": {
       "name": "desktop-focus-timer",
@@ -727,7 +752,7 @@
     "url": "https://github.com/netcodermike/weekly-timetable-planner",
     "category": "Work & productivity",
     "featured": false,
-    "order": 28,
+    "order": 29,
     "image": "assets/screenshots/weekly-timetable-planner.webp",
     "capture": {
       "name": "weekly-timetable-planner",
@@ -752,7 +777,7 @@
     "url": "https://github.com/netcodermike/file-tag-organizer",
     "category": "Work & productivity",
     "featured": false,
-    "order": 29,
+    "order": 30,
     "image": "assets/screenshots/file-tag-organizer.webp",
     "capture": {
       "name": "file-tag-organizer",
@@ -780,7 +805,7 @@
     "url": "https://github.com/netcodermike/menubar-snippet-library",
     "category": "Work & productivity",
     "featured": false,
-    "order": 30,
+    "order": 31,
     "image": "assets/screenshots/menubar-snippet-library.webp",
     "capture": {
       "name": "menubar-snippet-library",
@@ -806,7 +831,7 @@
     "url": "https://github.com/netcodermike/local-clipboard-history",
     "category": "Work & productivity",
     "featured": false,
-    "order": 31,
+    "order": 32,
     "image": "assets/screenshots/local-clipboard-history.webp",
     "capture": {
       "name": "local-clipboard-history",
@@ -827,7 +852,7 @@
     "url": "https://github.com/netcodermike/network-subnet-workbench",
     "category": "Work & productivity",
     "featured": false,
-    "order": 32,
+    "order": 33,
     "image": "assets/screenshots/network-subnet-workbench.webp",
     "capture": {
       "name": "network-subnet-workbench",
@@ -855,7 +880,7 @@
     "url": "https://github.com/netcodermike/sqlite-migration-rehearsal",
     "category": "Work & productivity",
     "featured": false,
-    "order": 33,
+    "order": 34,
     "image": "assets/screenshots/sqlite-migration-rehearsal.webp",
     "capture": {
       "name": "sqlite-migration-rehearsal",
@@ -884,7 +909,7 @@
     "url": "https://github.com/netcodermike/dependency-license-board",
     "category": "Work & productivity",
     "featured": false,
-    "order": 34,
+    "order": 35,
     "image": "assets/screenshots/dependency-license-board.webp",
     "capture": {
       "name": "dependency-license-board",
@@ -912,7 +937,7 @@
     "url": "https://github.com/netcodermike/markdown-link-health-map",
     "category": "Work & productivity",
     "featured": false,
-    "order": 35,
+    "order": 36,
     "image": "assets/screenshots/markdown-link-health-map.webp",
     "capture": {
       "name": "markdown-link-health-map",
@@ -940,7 +965,7 @@
     "url": "https://github.com/netcodermike/calendar-ics-conflict-lens",
     "category": "Work & productivity",
     "featured": false,
-    "order": 36,
+    "order": 37,
     "image": "assets/screenshots/calendar-ics-conflict-lens.webp",
     "capture": {
       "name": "calendar-ics-conflict-lens",
@@ -969,7 +994,7 @@
     "url": "https://github.com/netcodermike/portable-invoice-ledger",
     "category": "Work & productivity",
     "featured": false,
-    "order": 37,
+    "order": 38,
     "image": "assets/screenshots/portable-invoice-ledger.webp",
     "capture": {
       "name": "portable-invoice-ledger",
@@ -997,7 +1022,7 @@
     "url": "https://github.com/netcodermike/offline-recipe-scaling-kit",
     "category": "Work & productivity",
     "featured": false,
-    "order": 38,
+    "order": 39,
     "image": "assets/screenshots/offline-recipe-scaling-kit.webp",
     "capture": {
       "name": "offline-recipe-scaling-kit",
@@ -1026,7 +1051,7 @@
     "url": "https://github.com/netcodermike/fractal-render-lab",
     "category": "Creative tools",
     "featured": false,
-    "order": 39,
+    "order": 40,
     "image": "assets/screenshots/fractal-render-lab.webp",
     "capture": {
       "name": "fractal-render-lab",
@@ -1051,7 +1076,7 @@
     "url": "https://github.com/netcodermike/pixel-sprite-workshop",
     "category": "Creative tools",
     "featured": false,
-    "order": 40,
+    "order": 41,
     "image": "assets/screenshots/pixel-sprite-workshop.webp",
     "capture": {
       "name": "pixel-sprite-workshop",
@@ -1076,7 +1101,7 @@
     "url": "https://github.com/netcodermike/tiny-raytracer-studio",
     "category": "Creative tools",
     "featured": false,
-    "order": 41,
+    "order": 42,
     "image": "assets/screenshots/tiny-raytracer-studio.webp",
     "capture": {
       "name": "tiny-raytracer-studio",
@@ -1101,7 +1126,7 @@
     "url": "https://github.com/netcodermike/tabletop-map-workshop",
     "category": "Creative tools",
     "featured": false,
-    "order": 42,
+    "order": 43,
     "image": "assets/screenshots/tabletop-map-workshop.webp",
     "capture": {
       "name": "tabletop-map-workshop",
@@ -1123,7 +1148,7 @@
     "url": "https://github.com/netcodermike/searchable-screenshot-library",
     "category": "Creative tools",
     "featured": false,
-    "order": 43,
+    "order": 44,
     "image": "assets/screenshots/searchable-screenshot-library.webp",
     "capture": {
       "name": "searchable-screenshot-library",
@@ -1149,7 +1174,7 @@
     "url": "https://github.com/netcodermike/image-palette-studio",
     "category": "Creative tools",
     "featured": false,
-    "order": 44,
+    "order": 45,
     "image": "assets/screenshots/image-palette-studio.webp",
     "capture": {
       "name": "image-palette-studio",
@@ -1175,7 +1200,7 @@
     "url": "https://github.com/netcodermike/batch-image-resizer",
     "category": "Creative tools",
     "featured": false,
-    "order": 45,
+    "order": 46,
     "image": "assets/screenshots/batch-image-resizer.webp",
     "capture": {
       "name": "batch-image-resizer",
@@ -1201,7 +1226,7 @@
     "url": "https://github.com/netcodermike/subtitle-sync-studio",
     "category": "Creative tools",
     "featured": false,
-    "order": 46,
+    "order": 47,
     "image": "assets/screenshots/subtitle-sync-studio.webp",
     "capture": {
       "name": "subtitle-sync-studio",
@@ -1227,7 +1252,7 @@
     "url": "https://github.com/netcodermike/spectrogram-waterfall",
     "category": "Music & audio",
     "featured": false,
-    "order": 47,
+    "order": 48,
     "image": "assets/screenshots/spectrogram-waterfall.webp",
     "capture": {
       "name": "spectrogram-waterfall",
@@ -1258,7 +1283,7 @@
     "url": "https://github.com/netcodermike/pocket-drum-foundry",
     "category": "Music & audio",
     "featured": false,
-    "order": 48,
+    "order": 49,
     "image": "assets/screenshots/pocket-drum-foundry.webp",
     "capture": {
       "name": "pocket-drum-foundry",
@@ -1289,7 +1314,7 @@
     "url": "https://github.com/netcodermike/midi-pattern-studio",
     "category": "Music & audio",
     "featured": false,
-    "order": 49,
+    "order": 50,
     "image": "assets/screenshots/midi-pattern-studio.webp",
     "capture": {
       "name": "midi-pattern-studio",
@@ -1317,7 +1342,7 @@
     "url": "https://github.com/netcodermike/surfcoder-boombox",
     "category": "Music & audio",
     "featured": false,
-    "order": 50,
+    "order": 51,
     "image": "assets/screenshots/surfcoder-boombox.webp",
     "capture": {
       "name": "surfcoder-boombox",
@@ -1348,7 +1373,7 @@
     "url": "https://github.com/netcodermike/chord-voicing-lab",
     "category": "Music & audio",
     "featured": false,
-    "order": 51,
+    "order": 52,
     "image": "assets/screenshots/chord-voicing-lab.webp",
     "capture": {
       "name": "chord-voicing-lab",
@@ -1378,7 +1403,7 @@
     "url": "https://github.com/netcodermike/blues-progression-atlas",
     "category": "Music & audio",
     "featured": false,
-    "order": 52,
+    "order": 53,
     "image": "assets/screenshots/blues-progression-atlas.webp",
     "capture": {
       "name": "blues-progression-atlas",
@@ -1408,7 +1433,7 @@
     "url": "https://github.com/netcodermike/string-instrument-tuner",
     "category": "Music & audio",
     "featured": false,
-    "order": 53,
+    "order": 54,
     "image": "assets/screenshots/string-instrument-tuner.webp",
     "capture": {
       "name": "string-instrument-tuner",
@@ -1439,7 +1464,7 @@
     "url": "https://github.com/netcodermike/polyrhythm-matrix",
     "category": "Music & audio",
     "featured": false,
-    "order": 54,
+    "order": 55,
     "image": "assets/screenshots/polyrhythm-matrix.webp",
     "capture": {
       "name": "polyrhythm-matrix",
@@ -1469,7 +1494,7 @@
     "url": "https://github.com/netcodermike/ambient-soundscape-mixer",
     "category": "Music & audio",
     "featured": false,
-    "order": 55,
+    "order": 56,
     "image": "assets/screenshots/ambient-soundscape-mixer.webp",
     "capture": {
       "name": "ambient-soundscape-mixer",
@@ -1500,7 +1525,7 @@
     "url": "https://github.com/netcodermike/audio-ab-loop-studio",
     "category": "Music & audio",
     "featured": false,
-    "order": 56,
+    "order": 57,
     "image": "assets/screenshots/audio-ab-loop-studio.webp",
     "capture": {
       "name": "audio-ab-loop-studio",
@@ -1531,7 +1556,7 @@
     "url": "https://github.com/netcodermike/interval-ear-gym",
     "category": "Music & audio",
     "featured": false,
-    "order": 57,
+    "order": 58,
     "image": "assets/screenshots/interval-ear-gym.webp",
     "capture": {
       "name": "interval-ear-gym",
@@ -1561,7 +1586,7 @@
     "url": "https://github.com/netcodermike/interactive-audio-synthesizer",
     "category": "Music & audio",
     "featured": false,
-    "order": 58,
+    "order": 59,
     "image": "assets/screenshots/interactive-audio-synthesizer.webp",
     "capture": {
       "name": "interactive-audio-synthesizer",
@@ -1583,7 +1608,7 @@
     "url": "https://github.com/netcodermike/wave-spectrum-lab",
     "category": "Music & audio",
     "featured": false,
-    "order": 59,
+    "order": 60,
     "image": "assets/screenshots/wave-spectrum-lab.webp",
     "capture": {
       "name": "wave-spectrum-lab",
@@ -1608,7 +1633,7 @@
     "url": "https://github.com/netcodermike/rhythm-practice-lab",
     "category": "Music & audio",
     "featured": false,
-    "order": 60,
+    "order": 61,
     "image": "assets/screenshots/rhythm-practice-lab.webp",
     "capture": {
       "name": "rhythm-practice-lab",
@@ -1630,7 +1655,7 @@
     "url": "https://github.com/netcodermike/wav-loudness-auditor",
     "category": "Music & audio",
     "featured": false,
-    "order": 61,
+    "order": 62,
     "image": "assets/screenshots/wav-loudness-auditor.webp",
     "capture": {
       "name": "wav-loudness-auditor",
@@ -1659,7 +1684,7 @@
     "url": "https://github.com/netcodermike/sample-pack-cataloger",
     "category": "Music & audio",
     "featured": false,
-    "order": 62,
+    "order": 63,
     "image": "assets/screenshots/sample-pack-cataloger.webp",
     "capture": {
       "name": "sample-pack-cataloger",
@@ -1688,7 +1713,7 @@
     "url": "https://github.com/netcodermike/scale-fingering-planner",
     "category": "Music & audio",
     "featured": false,
-    "order": 63,
+    "order": 64,
     "image": "assets/screenshots/scale-fingering-planner.webp",
     "capture": {
       "name": "scale-fingering-planner",
@@ -1716,7 +1741,7 @@
     "url": "https://github.com/netcodermike/setlist-flow-planner",
     "category": "Music & audio",
     "featured": false,
-    "order": 64,
+    "order": 65,
     "image": "assets/screenshots/setlist-flow-planner.webp",
     "capture": {
       "name": "setlist-flow-planner",
@@ -1744,7 +1769,7 @@
     "url": "https://github.com/netcodermike/midi-file-inspector",
     "category": "Music & audio",
     "featured": false,
-    "order": 65,
+    "order": 66,
     "image": "assets/screenshots/midi-file-inspector.webp",
     "capture": {
       "name": "midi-file-inspector",
@@ -1773,7 +1798,7 @@
     "url": "https://github.com/netcodermike/impulse-response-forge",
     "category": "Music & audio",
     "featured": false,
-    "order": 66,
+    "order": 67,
     "image": "assets/screenshots/impulse-response-forge.webp",
     "capture": {
       "name": "impulse-response-forge",
@@ -1802,7 +1827,7 @@
     "url": "https://github.com/netcodermike/wav-channel-toolkit",
     "category": "Music & audio",
     "featured": false,
-    "order": 67,
+    "order": 68,
     "image": "assets/screenshots/wav-channel-toolkit.webp",
     "capture": {
       "name": "wav-channel-toolkit",
@@ -1832,7 +1857,7 @@
     "url": "https://github.com/netcodermike/podcast-chapter-builder",
     "category": "Music & audio",
     "featured": false,
-    "order": 68,
+    "order": 69,
     "image": "assets/screenshots/podcast-chapter-builder.webp",
     "capture": {
       "name": "podcast-chapter-builder",
@@ -1861,7 +1886,7 @@
     "url": "https://github.com/netcodermike/practice-session-composer",
     "category": "Music & audio",
     "featured": false,
-    "order": 69,
+    "order": 70,
     "image": "assets/screenshots/practice-session-composer.webp",
     "capture": {
       "name": "practice-session-composer",
@@ -1889,7 +1914,7 @@
     "url": "https://github.com/netcodermike/lyrics-rhyme-notebook",
     "category": "Music & audio",
     "featured": false,
-    "order": 70,
+    "order": 71,
     "image": "assets/screenshots/lyrics-rhyme-notebook.webp",
     "capture": {
       "name": "lyrics-rhyme-notebook",
@@ -1917,7 +1942,7 @@
     "url": "https://github.com/netcodermike/surfcoder-regional-surf-report",
     "category": "Everyday apps",
     "featured": false,
-    "order": 71,
+    "order": 72,
     "image": "assets/screenshots/surfcoder-regional-surf-report.webp",
     "capture": {
       "name": "surfcoder-regional-surf-report",
@@ -1947,7 +1972,7 @@
     "url": "https://github.com/netcodermike/habit-garden-desktop",
     "category": "Everyday apps",
     "featured": false,
-    "order": 72,
+    "order": 73,
     "image": "assets/screenshots/habit-garden-desktop.webp",
     "capture": {
       "name": "habit-garden-desktop",
@@ -1972,7 +1997,7 @@
     "url": "https://github.com/netcodermike/offline-field-journal",
     "category": "Everyday apps",
     "featured": false,
-    "order": 73,
+    "order": 74,
     "image": "assets/screenshots/offline-field-journal.webp",
     "capture": {
       "name": "offline-field-journal",
@@ -1993,7 +2018,7 @@
     "url": "https://github.com/netcodermike/pantry-meal-planner",
     "category": "Everyday apps",
     "featured": false,
-    "order": 74,
+    "order": 75,
     "image": "assets/screenshots/pantry-meal-planner.webp",
     "capture": {
       "name": "pantry-meal-planner",
@@ -2019,7 +2044,7 @@
     "url": "https://github.com/netcodermike/family-tree-builder",
     "category": "Everyday apps",
     "featured": false,
-    "order": 75,
+    "order": 76,
     "image": "assets/screenshots/family-tree-builder.webp",
     "capture": {
       "name": "family-tree-builder",
@@ -2045,7 +2070,7 @@
     "url": "https://github.com/netcodermike/interval-workout-composer",
     "category": "Everyday apps",
     "featured": false,
-    "order": 76,
+    "order": 77,
     "image": "assets/screenshots/interval-workout-composer.webp",
     "capture": {
       "name": "interval-workout-composer",
@@ -2070,7 +2095,7 @@
     "url": "https://github.com/netcodermike/menubar-break-reminder",
     "category": "Everyday apps",
     "featured": false,
-    "order": 77,
+    "order": 78,
     "image": "assets/screenshots/menubar-break-reminder.webp",
     "capture": {
       "name": "menubar-break-reminder",
@@ -2096,7 +2121,7 @@
     "url": "https://github.com/netcodermike/packing-list-companion",
     "category": "Everyday apps",
     "featured": false,
-    "order": 78,
+    "order": 79,
     "image": "assets/screenshots/packing-list-companion.webp",
     "capture": {
       "name": "packing-list-companion",
@@ -2121,7 +2146,7 @@
     "url": "https://github.com/netcodermike/procedural-planet-explorer",
     "category": "Games & learning",
     "featured": false,
-    "order": 79,
+    "order": 80,
     "image": "assets/screenshots/procedural-planet-explorer.webp",
     "capture": {
       "name": "procedural-planet-explorer",
@@ -2142,7 +2167,7 @@
     "url": "https://github.com/netcodermike/pathfinding-playground",
     "category": "Games & learning",
     "featured": false,
-    "order": 80,
+    "order": 81,
     "image": "assets/screenshots/pathfinding-playground.webp",
     "capture": {
       "name": "pathfinding-playground",
@@ -2164,7 +2189,7 @@
     "url": "https://github.com/netcodermike/multiplayer-escape-room",
     "category": "Games & learning",
     "featured": false,
-    "order": 81,
+    "order": 82,
     "image": "assets/screenshots/multiplayer-escape-room.webp",
     "capture": {
       "name": "multiplayer-escape-room",
@@ -2186,7 +2211,7 @@
     "url": "https://github.com/netcodermike/chess-tactics-trainer",
     "category": "Games & learning",
     "featured": false,
-    "order": 82,
+    "order": 83,
     "image": "assets/screenshots/chess-tactics-trainer.webp",
     "capture": {
       "name": "chess-tactics-trainer",
@@ -2214,7 +2239,7 @@
     "url": "https://github.com/netcodermike/maze-forge",
     "category": "Games & learning",
     "featured": false,
-    "order": 83,
+    "order": 84,
     "image": "assets/screenshots/maze-forge.webp",
     "capture": {
       "name": "maze-forge",
@@ -2236,7 +2261,7 @@
     "url": "https://github.com/netcodermike/sudoku-studio-desktop",
     "category": "Games & learning",
     "featured": false,
-    "order": 84,
+    "order": 85,
     "image": "assets/screenshots/sudoku-studio-desktop.webp",
     "capture": {
       "name": "sudoku-studio-desktop",
@@ -2264,7 +2289,7 @@
     "url": "https://github.com/netcodermike/round-robin-tournament-studio",
     "category": "Games & learning",
     "featured": false,
-    "order": 85,
+    "order": 86,
     "image": "assets/screenshots/round-robin-tournament-studio.webp",
     "capture": {
       "name": "round-robin-tournament-studio",
@@ -2292,7 +2317,7 @@
     "url": "https://github.com/netcodermike/spaced-repetition-adventure",
     "category": "Games & learning",
     "featured": false,
-    "order": 86,
+    "order": 87,
     "image": "assets/screenshots/spaced-repetition-adventure.webp",
     "capture": {
       "name": "spaced-repetition-adventure",
@@ -2320,7 +2345,7 @@
     "url": "https://github.com/netcodermike/linux-backup-server",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 87,
+    "order": 88,
     "image": "assets/screenshots/linux-backup-server.webp",
     "capture": {
       "name": "linux-backup-server",
@@ -2342,7 +2367,7 @@
     "url": "https://github.com/netcodermike/linux-system-dashboard",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 88,
+    "order": 89,
     "image": "assets/screenshots/linux-system-dashboard.webp",
     "capture": {
       "name": "linux-system-dashboard",
@@ -2364,7 +2389,7 @@
     "url": "https://github.com/netcodermike/linux-process-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 89,
+    "order": 90,
     "image": "assets/screenshots/linux-process-explorer.webp",
     "capture": {
       "name": "linux-process-explorer",
@@ -2386,7 +2411,7 @@
     "url": "https://github.com/netcodermike/linux-open-port-atlas",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 90,
+    "order": 91,
     "image": "assets/screenshots/linux-open-port-atlas.webp",
     "capture": {
       "name": "linux-open-port-atlas",
@@ -2408,7 +2433,7 @@
     "url": "https://github.com/netcodermike/linux-cgroup-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 91,
+    "order": 92,
     "image": "assets/screenshots/linux-cgroup-explorer.webp",
     "capture": {
       "name": "linux-cgroup-explorer",
@@ -2430,7 +2455,7 @@
     "url": "https://github.com/netcodermike/linux-config-drift-monitor",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 92,
+    "order": 93,
     "image": "assets/screenshots/linux-config-drift-monitor.webp",
     "capture": {
       "name": "linux-config-drift-monitor",
@@ -2452,7 +2477,7 @@
     "url": "https://github.com/netcodermike/linux-systemd-unit-checker",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 93,
+    "order": 94,
     "image": "assets/screenshots/linux-systemd-unit-checker.webp",
     "capture": {
       "name": "linux-systemd-unit-checker",
@@ -2474,7 +2499,7 @@
     "url": "https://github.com/netcodermike/linux-journal-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 94,
+    "order": 95,
     "image": "assets/screenshots/linux-journal-explorer.webp",
     "capture": {
       "name": "linux-journal-explorer",
@@ -2496,7 +2521,7 @@
     "url": "https://github.com/netcodermike/linux-resource-job-queue",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 95,
+    "order": 96,
     "image": "assets/screenshots/linux-resource-job-queue.webp",
     "capture": {
       "name": "linux-resource-job-queue",
@@ -2518,7 +2543,7 @@
     "url": "https://github.com/netcodermike/linux-sandbox-runner",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 96,
+    "order": 97,
     "image": "assets/screenshots/linux-sandbox-runner.webp",
     "capture": {
       "name": "linux-sandbox-runner",
@@ -2540,7 +2565,7 @@
     "url": "https://github.com/netcodermike/linux-directory-watch",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 97,
+    "order": 98,
     "image": "assets/screenshots/linux-directory-watch.webp",
     "capture": {
       "name": "linux-directory-watch",
@@ -2562,7 +2587,7 @@
     "url": "https://github.com/netcodermike/linux-unix-socket-relay",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 98,
+    "order": 99,
     "image": "assets/screenshots/linux-unix-socket-relay.webp",
     "capture": {
       "name": "linux-unix-socket-relay",
@@ -2584,7 +2609,7 @@
     "url": "https://github.com/netcodermike/linux-disk-space-sentinel",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 99,
+    "order": 100,
     "image": "assets/screenshots/linux-disk-space-sentinel.webp",
     "capture": {
       "name": "linux-disk-space-sentinel",
@@ -2606,7 +2631,7 @@
     "url": "https://github.com/netcodermike/linux-epoll-chat",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 100,
+    "order": 101,
     "image": "assets/screenshots/linux-epoll-chat.webp",
     "capture": {
       "name": "linux-epoll-chat",
@@ -2628,7 +2653,7 @@
     "url": "https://github.com/netcodermike/linux-mmap-search",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 101,
+    "order": 102,
     "image": "assets/screenshots/linux-mmap-search.webp",
     "capture": {
       "name": "linux-mmap-search",
@@ -2650,7 +2675,7 @@
     "url": "https://github.com/netcodermike/linux-mount-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 102,
+    "order": 103,
     "image": "assets/screenshots/linux-mount-explorer.webp",
     "capture": {
       "name": "linux-mount-explorer",
@@ -2672,7 +2697,7 @@
     "url": "https://github.com/netcodermike/linux-job-scheduler",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 103,
+    "order": 104,
     "image": "assets/screenshots/linux-job-scheduler.webp",
     "capture": {
       "name": "linux-job-scheduler",

@@ -17,7 +17,7 @@ Owner: netcodermike. Remote: https://github.com/netcodermike/surfingcoder.git.
 ## Editorial context
 
 - SurfingCoder covers software, data analysis, AI experiments, surfing, and related interests.
-- The WSL article is a complete review draft. Keep the November 3, 2026 snapshot and its normal-participation assumptions explicit.
+- The WSL article is published. Keep the November 3, 2026 snapshot and its normal-participation assumptions explicit; the user requested removal of the old Review draft badge.
 - For surfing analysis, use official rules and timestamped official event results.
 - Distinguish exact points conditions from paths that depend on the eventual draw, entry list, withdrawals, or wildcard decisions.
 - Explain dropped-result arithmetic and use the exact published points table, including rounding.

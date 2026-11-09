@@ -12,6 +12,13 @@ leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Data & an
 for category, name in leaders.items():
     assert next(p['name'] for p in projects if p['category']==category) == name, category+': visual lead changed'
 page = (ROOT/'index.html').read_text(encoding='utf-8')
+for pattern, label in [
+    (r'class="collection-count"[^>]*>\s*<strong[^>]*>(\d+)</strong>', 'large header count'),
+    (r'All projects\s*<span[^>]*>(\d+)</span>', 'all-projects filter count'),
+    (r'id="result-count"[^>]*>\s*<strong[^>]*>(\d+)</strong>', 'initial results count'),
+]:
+    match = re.search(pattern, page)
+    assert match and int(match[1]) == len(projects), label+': rebuild gallery counts'
 embedded = re.search(r'<script type="application/json" id="project-data">(.*?)</script>', page, re.S)
 assert embedded and json.loads(embedded[1].replace('<\\/', '</')) == projects, 'Rebuild static gallery data'
 class Cards(HTMLParser):
