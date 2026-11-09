@@ -1,0 +1,55 @@
+.about-page { max-width: 1200px; }
+.about-hero { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 64px; align-items: center; padding: 68px 0 60px; }
+.about-hero h1 { font-size: clamp(42px, 5vw, 68px); letter-spacing: -2.5px; margin: 20px 0 24px; }
+.about-hero h1 > span { display: block; font-size: .56em; line-height: 1.35; letter-spacing: -1px; margin-top: 16px; color: var(--accent-light); font-weight: 500; }
+.about-page p { line-height: 1.8; color: var(--muted); }
+.about-page .eyebrow { color: var(--accent); line-height: 1.5; }
+.intro { font-size: 18px; max-width: 660px; }
+.about-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-top: 26px; }
+.about-page .button-primary { display: inline-flex; gap: 14px; align-items: center; padding: 13px 19px; border: 1px solid; border-radius: 8px; font-weight: 650; white-space: nowrap; }
+.profile-link { color: var(--accent-light); font-size: 14px; overflow-wrap: anywhere; }
+.about-summary { background: var(--panel-metal); border: 1px solid var(--border); border-radius: 20px; padding: 28px; box-shadow: inset 0 1px 0 #d9c4f51c; }
+.monogram { font: 750 64px 'Manrope', system-ui, sans-serif; letter-spacing: -4px; color: var(--accent-light); }
+.monogram span { display: block; font: 12px ui-monospace, monospace; letter-spacing: 0; margin-top: 8px; color: var(--muted); }
+.about-summary dl { margin: 25px 0 0; }
+.about-summary dl div { border-top: 1px solid var(--border); padding: 14px 0; }
+.about-summary dt { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; }
+.about-summary dd { margin: 6px 0 0; font-weight: 650; font-size: 16px; }
+.about-summary p { font-size: 13px; margin-bottom: 0; }
+.about-section { padding: 48px 0; border-top: 1px solid var(--border); }
+.about-page h2 { font: 650 clamp(24px, 3vw, 32px)/1.3 'Manrope', system-ui, sans-serif; letter-spacing: -.8px; margin: 12px 0 20px; }
+.about-page h3 { font-size: 17px; line-height: 1.5; margin: 0 0 10px; }
+.section-heading { max-width: 720px; margin-bottom: 28px; }
+.experience-list { border-left: 1px solid var(--border-strong); padding-left: 28px; }
+.experience-list article { position: relative; padding: 4px 0 24px; max-width: 950px; }
+.experience-list article:last-child { padding-bottom: 0; }
+.experience-list article::before { content: ''; position: absolute; left: -33px; top: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px var(--page-bg); }
+.role-heading { display: flex; flex-wrap: wrap; gap: 4px 24px; justify-content: space-between; align-items: baseline; }
+.role-heading h3 { margin: 0; }
+.role-heading > span { color: var(--accent-light); font-size: 12px; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; }
+.skills-grid article { border-top: 1px solid var(--border); padding: 23px 0 8px; }
+.skills-grid h3 { color: var(--accent-light); }
+.skills-grid p { font-size: 14px; }
+.education-section { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 64px; }
+.degree { margin-top: 30px; }
+.degree h3 { margin-bottom: 6px; }
+.degree p { margin: 4px 0 10px; color: var(--accent-light); font-size: 14px; }
+.degree > span { color: var(--muted); line-height: 1.8; font-size: 14px; }
+.certifications { align-self: start; background: var(--panel-metal); border: 1px solid var(--border); border-radius: 16px; padding: 26px; }
+.certifications ul { padding-left: 18px; font-size: 14px; line-height: 1.8; color: var(--text-secondary); }
+.certifications li { margin: 12px 0; }
+.certifications .credential-note { font-size: 12px; border-top: 1px solid var(--border); padding-top: 14px; }
+.interest-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.interest-links > a { border-top: 2px solid var(--border-strong); padding: 20px 0; }
+.interest-links > a:hover { border-color: var(--accent-light); }
+.interest-links > a > span { color: var(--accent); font: 12px ui-monospace, monospace; }
+.interest-links h3 { margin: 16px 0 12px; }
+.interest-links h3 span { color: var(--accent); }
+.interest-links p { font-size: 14px; }
+.github-callout { display: flex; justify-content: space-between; align-items: center; gap: 32px; border: 1px solid var(--border-strong); border-radius: 16px; background: var(--panel-metal); padding: 32px; margin: 12px 0 64px; }
+.github-callout p { max-width: 650px; margin-bottom: 0; }
+.github-callout .eyebrow { margin-top: 0; }
+@media(max-width:1000px) { .about-hero { gap: 32px; grid-template-columns: minmax(0,1fr) 270px; } .skills-grid { grid-template-columns: repeat(2,1fr); } .education-section { gap: 32px; } .github-callout { align-items: flex-start; flex-direction: column; } }
+@media(max-width:700px) { .about-hero { grid-template-columns: 1fr; padding: 36px 0; gap: 32px; } .about-hero h1 { letter-spacing: -1.8px; } .intro { font-size: 16px; } .about-summary { padding: 24px; } .monogram { font-size: 48px; } .education-section, .interest-links { grid-template-columns: 1fr; gap: 28px; } .about-section { padding: 34px 0; } .github-callout { padding: 24px; } .experience-list { padding-left: 20px; } .experience-list article::before { left: -25px; } }
+@media(max-width:440px) { .skills-grid { grid-template-columns: 1fr; } .about-actions { align-items: flex-start; flex-direction: column; } }
