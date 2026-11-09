@@ -1,0 +1,59 @@
+/* SurfingCoder: Amethyst & Graphite. Shared by every public HTML page. */
+:root {
+  color-scheme: dark;
+  --page-bg: #18161e;
+  --panel-bg: #27222f;
+  --surface: #211d28;
+  --surface-raised: #302839;
+  --input-bg: #1e1a25;
+  --ink: #f0eaf6;
+  --muted: #b5a9c2;
+  --text-secondary: #d0c4da;
+  --accent: #a879e8;
+  --accent-light: #d9c4f5;
+  --accent-strong: #bd96ef;
+  --accent-ink: #1d1427;
+  --accent-rgb: 168 121 232;
+  --border: #44394f;
+  --border-strong: #79618e;
+  --hover: #352b43;
+  --canvas-bg: #1d1924;
+  --chart-grid: #44364f;
+  --warning: #e7bd8b;
+  --metal: linear-gradient(125deg, #a879e8 0%, #d9c4f5 43%, #b98be8 57%, #a879e8 100%);
+  --panel-metal: linear-gradient(145deg, #302739 0%, #27222f 38%, #24202c 100%);
+  --line: var(--border);
+  --soft: var(--hover);
+  --orange: var(--warning);
+}
+html { background: var(--page-bg); accent-color: var(--accent); }
+body { background: radial-gradient(ellipse at 82% 0%, #39244940, transparent 660px), var(--page-bg); color: var(--ink); }
+::selection { background: #775298; color: #fff; }
+:focus-visible { outline-color: var(--accent-light); }
+input, select, textarea { color-scheme: dark; accent-color: var(--accent); }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
+option, optgroup { background: var(--input-bg); color: var(--ink); }
+a:hover { color: var(--accent-light); }
+/* Metallic highlights stay on accents and edges, keeping large reading surfaces quiet. */
+.site-nav { background: #18161ef2; border-bottom-color: var(--border); }
+.site-header { background: #18161eb3; }
+.project-card, .panel { background: var(--panel-metal); box-shadow: inset 0 1px 0 #d9c4f512, 0 5px 18px #09070d26; }
+.project-card:hover { border-color: var(--border-strong); box-shadow: inset 0 1px 0 #d9c4f51f, 0 12px 28px #09070d47; }
+.brand rect { fill: #392747; }
+.brand path { stroke: var(--accent-light); }
+.collection-head h1 span { color: var(--accent-light); }
+.collection-count strong, .metric { color: var(--accent-light); }
+.filter-chip.active, .button-primary, #empty-state button { background: var(--metal); color: var(--accent-ink); border-color: #c2a0e8; box-shadow: inset 0 1px 0 #f6eaff73, 0 3px 12px #0b07122e; }
+.filter-chip.active span { color: inherit; opacity: .85; }
+.featured-label { background: #3b2c49; color: var(--accent-light); border: 1px solid #705488; }
+.preview, .featured .preview, .project-card[data-name=coinbase-ladder] .preview { background: linear-gradient(140deg, #302537, #211d29); }
+.preview:before { background-image: radial-gradient(#b79acf25 .7px, transparent .7px); }
+.preview-tag, .expand { background: #292230f0; border-color: #806695; color: var(--accent-light); }
+.project-grid.list .preview { border-color: var(--border); }
+.nav-github:hover, .view-switch button[aria-pressed=true] { background: var(--hover); color: var(--accent-light); }
+.dialog-toolbar, #empty-state { background: var(--panel-bg); }
+dialog { background: var(--surface); border-color: var(--border-strong); }
+dialog::backdrop { background: #120e19d9; }
+footer { background: var(--surface); }
+.status-dot { background: var(--accent); box-shadow: 0 0 0 4px #a879e81c, 0 0 14px #a879e83d; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

@@ -1,0 +1,9 @@
+{
+  "name": "or-tableau-studio",
+  "kind": "runtime",
+  "caption": "Actual OR Tableau Studio interface showing the academic farm-management example, recomputed with the stated $30,000 existing-cow value.",
+  "capture_date": "2026-11-09",
+  "capture_method": "Local browser screenshot after solver and UI checks",
+  "demo_data": true,
+  "validation_passed": true
+}
