@@ -1,0 +1,7 @@
+{
+  "name": "coastal-observation-mesh",
+  "kind": "terminal",
+  "caption": "Actual demo output from forecast and advisory using synthetic data.",
+  "capture_date": "2026-11-11T22:47:56.192902+00:00",
+  "demo_data": true
+}

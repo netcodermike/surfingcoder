@@ -1,0 +1,7 @@
+{
+  "name": "festival-set-planner",
+  "kind": "terminal",
+  "caption": "Actual demo output from itinerary and stage-graph using synthetic data.",
+  "capture_date": "2026-11-11T22:48:05.606771+00:00",
+  "demo_data": true
+}

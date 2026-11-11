@@ -1,0 +1,7 @@
+{
+  "name": "carbon-aware-job-planner",
+  "kind": "terminal",
+  "caption": "Actual demo output from planner and grid-model using synthetic data.",
+  "capture_date": "2026-11-11T22:48:05.309093+00:00",
+  "demo_data": true
+}

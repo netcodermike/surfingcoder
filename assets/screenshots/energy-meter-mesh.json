@@ -1,0 +1,7 @@
+{
+  "name": "energy-meter-mesh",
+  "kind": "terminal",
+  "caption": "Actual demo output from reporter and meter using synthetic data.",
+  "capture_date": "2026-11-11T22:47:56.205192+00:00",
+  "demo_data": true
+}

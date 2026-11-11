@@ -1,0 +1,7 @@
+{
+  "name": "caption-quality-pipeline",
+  "kind": "terminal",
+  "caption": "Actual demo output from parser and quality using synthetic data.",
+  "capture_date": "2026-11-11T22:47:59.418231+00:00",
+  "demo_data": true
+}

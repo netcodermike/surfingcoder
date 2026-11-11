@@ -1932,6 +1932,236 @@
     "ci": "https://github.com/netcodermike/lyrics-rhyme-notebook/actions"
   },
   {
+    "name": "festival-set-planner",
+    "title": "Festival Set Planner",
+    "description": "Build a festival itinerary around favorite sets while accounting for walking time between stages.",
+    "languages": [
+      "JavaScript",
+      "C#"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/festival-set-planner",
+    "category": "Microservices",
+    "featured": false,
+    "order": 72,
+    "image": "assets/screenshots/festival-set-planner.webp",
+    "capture": {
+      "name": "festival-set-planner",
+      "kind": "terminal",
+      "caption": "Actual demo output from itinerary and stage-graph using synthetic data.",
+      "capture_date": "2026-11-11T22:48:05.606771+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/festival-set-planner/actions/workflows/verify.yml"
+  },
+  {
+    "name": "coastal-observation-mesh",
+    "title": "Coastal Observation Mesh",
+    "description": "Combine recent buoy readings into a beach conditions summary, with a separate advisory service and stale-data handling.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/coastal-observation-mesh",
+    "category": "Microservices",
+    "featured": false,
+    "order": 73,
+    "image": "assets/screenshots/coastal-observation-mesh.webp",
+    "capture": {
+      "name": "coastal-observation-mesh",
+      "kind": "terminal",
+      "caption": "Actual demo output from forecast and advisory using synthetic data.",
+      "capture_date": "2026-11-11T22:47:56.192902+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/coastal-observation-mesh/actions/workflows/verify.yml"
+  },
+  {
+    "name": "inventory-reservation-mesh",
+    "title": "Inventory Reservation Mesh",
+    "description": "Exercise atomic stock reservations, idempotent retries and oversell prevention with separate order and stock services.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/inventory-reservation-mesh",
+    "category": "Microservices",
+    "featured": false,
+    "order": 74,
+    "image": "assets/screenshots/inventory-reservation-mesh.webp",
+    "capture": {
+      "name": "inventory-reservation-mesh",
+      "kind": "terminal",
+      "caption": "Actual demo output from orders and stock using synthetic data.",
+      "capture_date": "2026-11-11T22:47:59.499222+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/inventory-reservation-mesh/actions/workflows/verify.yml"
+  },
+  {
+    "name": "carbon-aware-job-planner",
+    "title": "Carbon-Aware Job Planner",
+    "description": "Compare feasible batch-job start times against an hourly grid carbon forecast.",
+    "languages": [
+      "Python",
+      "C#"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/carbon-aware-job-planner",
+    "category": "Microservices",
+    "featured": false,
+    "order": 75,
+    "image": "assets/screenshots/carbon-aware-job-planner.webp",
+    "capture": {
+      "name": "carbon-aware-job-planner",
+      "kind": "terminal",
+      "caption": "Actual demo output from planner and grid-model using synthetic data.",
+      "capture_date": "2026-11-11T22:48:05.309093+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/carbon-aware-job-planner/actions/workflows/verify.yml"
+  },
+  {
+    "name": "parcel-event-timeline",
+    "title": "Parcel Event Timeline",
+    "description": "Replay shipment scans into a delivery timeline that handles duplicates and events arriving out of order.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/parcel-event-timeline",
+    "category": "Microservices",
+    "featured": false,
+    "order": 76,
+    "image": "assets/screenshots/parcel-event-timeline.webp",
+    "capture": {
+      "name": "parcel-event-timeline",
+      "kind": "terminal",
+      "caption": "Actual demo output from timeline and scan-log using synthetic data.",
+      "capture_date": "2026-11-11T22:47:56.215390+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/parcel-event-timeline/actions/workflows/verify.yml"
+  },
+  {
+    "name": "rollout-cohort-lab",
+    "title": "Rollout Cohort Lab",
+    "description": "Try percentage rollouts and explicit overrides with independent policy and deterministic cohort services.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/rollout-cohort-lab",
+    "category": "Microservices",
+    "featured": false,
+    "order": 77,
+    "image": "assets/screenshots/rollout-cohort-lab.webp",
+    "capture": {
+      "name": "rollout-cohort-lab",
+      "kind": "terminal",
+      "caption": "Actual demo output from policy and cohorts using synthetic data.",
+      "capture_date": "2026-11-11T22:47:57.909709+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/rollout-cohort-lab/actions/workflows/verify.yml"
+  },
+  {
+    "name": "caption-quality-pipeline",
+    "title": "Caption Quality Pipeline",
+    "description": "Parse SubRip captions in one service and measure timing overlaps, reading speed and long lines in another.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/caption-quality-pipeline",
+    "category": "Microservices",
+    "featured": false,
+    "order": 78,
+    "image": "assets/screenshots/caption-quality-pipeline.webp",
+    "capture": {
+      "name": "caption-quality-pipeline",
+      "kind": "terminal",
+      "caption": "Actual demo output from parser and quality using synthetic data.",
+      "capture_date": "2026-11-11T22:47:59.418231+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/caption-quality-pipeline/actions/workflows/verify.yml"
+  },
+  {
+    "name": "food-rescue-dispatch",
+    "title": "Food Rescue Dispatch",
+    "description": "Route surplus food batches to partner sites using separate eligibility and capacity-allocation services.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/food-rescue-dispatch",
+    "category": "Microservices",
+    "featured": false,
+    "order": 79,
+    "image": "assets/screenshots/food-rescue-dispatch.webp",
+    "capture": {
+      "name": "food-rescue-dispatch",
+      "kind": "terminal",
+      "caption": "Actual demo output from dispatch and eligibility using synthetic data.",
+      "capture_date": "2026-11-11T22:47:56.215390+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/food-rescue-dispatch/actions/workflows/verify.yml"
+  },
+  {
+    "name": "energy-meter-mesh",
+    "title": "Energy Meter Mesh",
+    "description": "Ingest interval readings into a SQLite-backed meter service and compare site energy use through a separate reporting API.",
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/energy-meter-mesh",
+    "category": "Microservices",
+    "featured": false,
+    "order": 80,
+    "image": "assets/screenshots/energy-meter-mesh.webp",
+    "capture": {
+      "name": "energy-meter-mesh",
+      "kind": "terminal",
+      "caption": "Actual demo output from reporter and meter using synthetic data.",
+      "capture_date": "2026-11-11T22:47:56.205192+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/energy-meter-mesh/actions/workflows/verify.yml"
+  },
+  {
+    "name": "incident-signal-mesh",
+    "title": "Incident Signal Mesh",
+    "description": "Group noisy deployment and health alerts by service and fingerprint, then rank the active incidents.",
+    "languages": [
+      "Python",
+      "JavaScript"
+    ],
+    "platform": "Cross-platform, Docker Compose",
+    "url": "https://github.com/netcodermike/incident-signal-mesh",
+    "category": "Microservices",
+    "featured": false,
+    "order": 81,
+    "image": "assets/screenshots/incident-signal-mesh.webp",
+    "capture": {
+      "name": "incident-signal-mesh",
+      "kind": "terminal",
+      "caption": "Actual demo output from triage and normalizer using synthetic data.",
+      "capture_date": "2026-11-11T22:47:57.914180+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/incident-signal-mesh/actions/workflows/verify.yml"
+  },
+  {
     "name": "surfcoder-regional-surf-report",
     "title": "SurfCoder Regional Surf Report",
     "description": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
@@ -1942,7 +2172,7 @@
     "url": "https://github.com/netcodermike/surfcoder-regional-surf-report",
     "category": "Everyday apps",
     "featured": false,
-    "order": 72,
+    "order": 82,
     "image": "assets/screenshots/surfcoder-regional-surf-report.webp",
     "capture": {
       "name": "surfcoder-regional-surf-report",
@@ -1972,7 +2202,7 @@
     "url": "https://github.com/netcodermike/habit-garden-desktop",
     "category": "Everyday apps",
     "featured": false,
-    "order": 73,
+    "order": 83,
     "image": "assets/screenshots/habit-garden-desktop.webp",
     "capture": {
       "name": "habit-garden-desktop",
@@ -1997,7 +2227,7 @@
     "url": "https://github.com/netcodermike/offline-field-journal",
     "category": "Everyday apps",
     "featured": false,
-    "order": 74,
+    "order": 84,
     "image": "assets/screenshots/offline-field-journal.webp",
     "capture": {
       "name": "offline-field-journal",
@@ -2018,7 +2248,7 @@
     "url": "https://github.com/netcodermike/pantry-meal-planner",
     "category": "Everyday apps",
     "featured": false,
-    "order": 75,
+    "order": 85,
     "image": "assets/screenshots/pantry-meal-planner.webp",
     "capture": {
       "name": "pantry-meal-planner",
@@ -2044,7 +2274,7 @@
     "url": "https://github.com/netcodermike/family-tree-builder",
     "category": "Everyday apps",
     "featured": false,
-    "order": 76,
+    "order": 86,
     "image": "assets/screenshots/family-tree-builder.webp",
     "capture": {
       "name": "family-tree-builder",
@@ -2070,7 +2300,7 @@
     "url": "https://github.com/netcodermike/interval-workout-composer",
     "category": "Everyday apps",
     "featured": false,
-    "order": 77,
+    "order": 87,
     "image": "assets/screenshots/interval-workout-composer.webp",
     "capture": {
       "name": "interval-workout-composer",
@@ -2095,7 +2325,7 @@
     "url": "https://github.com/netcodermike/menubar-break-reminder",
     "category": "Everyday apps",
     "featured": false,
-    "order": 78,
+    "order": 88,
     "image": "assets/screenshots/menubar-break-reminder.webp",
     "capture": {
       "name": "menubar-break-reminder",
@@ -2121,7 +2351,7 @@
     "url": "https://github.com/netcodermike/packing-list-companion",
     "category": "Everyday apps",
     "featured": false,
-    "order": 79,
+    "order": 89,
     "image": "assets/screenshots/packing-list-companion.webp",
     "capture": {
       "name": "packing-list-companion",
@@ -2146,7 +2376,7 @@
     "url": "https://github.com/netcodermike/procedural-planet-explorer",
     "category": "Games & learning",
     "featured": false,
-    "order": 80,
+    "order": 90,
     "image": "assets/screenshots/procedural-planet-explorer.webp",
     "capture": {
       "name": "procedural-planet-explorer",
@@ -2167,7 +2397,7 @@
     "url": "https://github.com/netcodermike/pathfinding-playground",
     "category": "Games & learning",
     "featured": false,
-    "order": 81,
+    "order": 91,
     "image": "assets/screenshots/pathfinding-playground.webp",
     "capture": {
       "name": "pathfinding-playground",
@@ -2189,7 +2419,7 @@
     "url": "https://github.com/netcodermike/multiplayer-escape-room",
     "category": "Games & learning",
     "featured": false,
-    "order": 82,
+    "order": 92,
     "image": "assets/screenshots/multiplayer-escape-room.webp",
     "capture": {
       "name": "multiplayer-escape-room",
@@ -2211,7 +2441,7 @@
     "url": "https://github.com/netcodermike/chess-tactics-trainer",
     "category": "Games & learning",
     "featured": false,
-    "order": 83,
+    "order": 93,
     "image": "assets/screenshots/chess-tactics-trainer.webp",
     "capture": {
       "name": "chess-tactics-trainer",
@@ -2239,7 +2469,7 @@
     "url": "https://github.com/netcodermike/maze-forge",
     "category": "Games & learning",
     "featured": false,
-    "order": 84,
+    "order": 94,
     "image": "assets/screenshots/maze-forge.webp",
     "capture": {
       "name": "maze-forge",
@@ -2261,7 +2491,7 @@
     "url": "https://github.com/netcodermike/sudoku-studio-desktop",
     "category": "Games & learning",
     "featured": false,
-    "order": 85,
+    "order": 95,
     "image": "assets/screenshots/sudoku-studio-desktop.webp",
     "capture": {
       "name": "sudoku-studio-desktop",
@@ -2289,7 +2519,7 @@
     "url": "https://github.com/netcodermike/round-robin-tournament-studio",
     "category": "Games & learning",
     "featured": false,
-    "order": 86,
+    "order": 96,
     "image": "assets/screenshots/round-robin-tournament-studio.webp",
     "capture": {
       "name": "round-robin-tournament-studio",
@@ -2317,7 +2547,7 @@
     "url": "https://github.com/netcodermike/spaced-repetition-adventure",
     "category": "Games & learning",
     "featured": false,
-    "order": 87,
+    "order": 97,
     "image": "assets/screenshots/spaced-repetition-adventure.webp",
     "capture": {
       "name": "spaced-repetition-adventure",
@@ -2345,7 +2575,7 @@
     "url": "https://github.com/netcodermike/linux-backup-server",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 88,
+    "order": 98,
     "image": "assets/screenshots/linux-backup-server.webp",
     "capture": {
       "name": "linux-backup-server",
@@ -2367,7 +2597,7 @@
     "url": "https://github.com/netcodermike/linux-system-dashboard",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 89,
+    "order": 99,
     "image": "assets/screenshots/linux-system-dashboard.webp",
     "capture": {
       "name": "linux-system-dashboard",
@@ -2389,7 +2619,7 @@
     "url": "https://github.com/netcodermike/linux-process-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 90,
+    "order": 100,
     "image": "assets/screenshots/linux-process-explorer.webp",
     "capture": {
       "name": "linux-process-explorer",
@@ -2411,7 +2641,7 @@
     "url": "https://github.com/netcodermike/linux-open-port-atlas",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 91,
+    "order": 101,
     "image": "assets/screenshots/linux-open-port-atlas.webp",
     "capture": {
       "name": "linux-open-port-atlas",
@@ -2433,7 +2663,7 @@
     "url": "https://github.com/netcodermike/linux-cgroup-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 92,
+    "order": 102,
     "image": "assets/screenshots/linux-cgroup-explorer.webp",
     "capture": {
       "name": "linux-cgroup-explorer",
@@ -2455,7 +2685,7 @@
     "url": "https://github.com/netcodermike/linux-config-drift-monitor",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 93,
+    "order": 103,
     "image": "assets/screenshots/linux-config-drift-monitor.webp",
     "capture": {
       "name": "linux-config-drift-monitor",
@@ -2477,7 +2707,7 @@
     "url": "https://github.com/netcodermike/linux-systemd-unit-checker",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 94,
+    "order": 104,
     "image": "assets/screenshots/linux-systemd-unit-checker.webp",
     "capture": {
       "name": "linux-systemd-unit-checker",
@@ -2499,7 +2729,7 @@
     "url": "https://github.com/netcodermike/linux-journal-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 95,
+    "order": 105,
     "image": "assets/screenshots/linux-journal-explorer.webp",
     "capture": {
       "name": "linux-journal-explorer",
@@ -2521,7 +2751,7 @@
     "url": "https://github.com/netcodermike/linux-resource-job-queue",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 96,
+    "order": 106,
     "image": "assets/screenshots/linux-resource-job-queue.webp",
     "capture": {
       "name": "linux-resource-job-queue",
@@ -2543,7 +2773,7 @@
     "url": "https://github.com/netcodermike/linux-sandbox-runner",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 97,
+    "order": 107,
     "image": "assets/screenshots/linux-sandbox-runner.webp",
     "capture": {
       "name": "linux-sandbox-runner",
@@ -2565,7 +2795,7 @@
     "url": "https://github.com/netcodermike/linux-directory-watch",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 98,
+    "order": 108,
     "image": "assets/screenshots/linux-directory-watch.webp",
     "capture": {
       "name": "linux-directory-watch",
@@ -2587,7 +2817,7 @@
     "url": "https://github.com/netcodermike/linux-unix-socket-relay",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 99,
+    "order": 109,
     "image": "assets/screenshots/linux-unix-socket-relay.webp",
     "capture": {
       "name": "linux-unix-socket-relay",
@@ -2609,7 +2839,7 @@
     "url": "https://github.com/netcodermike/linux-disk-space-sentinel",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 100,
+    "order": 110,
     "image": "assets/screenshots/linux-disk-space-sentinel.webp",
     "capture": {
       "name": "linux-disk-space-sentinel",
@@ -2631,7 +2861,7 @@
     "url": "https://github.com/netcodermike/linux-epoll-chat",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 101,
+    "order": 111,
     "image": "assets/screenshots/linux-epoll-chat.webp",
     "capture": {
       "name": "linux-epoll-chat",
@@ -2653,7 +2883,7 @@
     "url": "https://github.com/netcodermike/linux-mmap-search",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 102,
+    "order": 112,
     "image": "assets/screenshots/linux-mmap-search.webp",
     "capture": {
       "name": "linux-mmap-search",
@@ -2675,7 +2905,7 @@
     "url": "https://github.com/netcodermike/linux-mount-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 103,
+    "order": 113,
     "image": "assets/screenshots/linux-mount-explorer.webp",
     "capture": {
       "name": "linux-mount-explorer",
@@ -2697,7 +2927,7 @@
     "url": "https://github.com/netcodermike/linux-job-scheduler",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 104,
+    "order": 114,
     "image": "assets/screenshots/linux-job-scheduler.webp",
     "capture": {
       "name": "linux-job-scheduler",

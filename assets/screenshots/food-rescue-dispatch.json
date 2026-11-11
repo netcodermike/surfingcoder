@@ -1,0 +1,7 @@
+{
+  "name": "food-rescue-dispatch",
+  "kind": "terminal",
+  "caption": "Actual demo output from dispatch and eligibility using synthetic data.",
+  "capture_date": "2026-11-11T22:47:56.215390+00:00",
+  "demo_data": true
+}

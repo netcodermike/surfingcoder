@@ -1,0 +1,7 @@
+{
+  "name": "inventory-reservation-mesh",
+  "kind": "terminal",
+  "caption": "Actual demo output from orders and stock using synthetic data.",
+  "capture_date": "2026-11-11T22:47:59.499222+00:00",
+  "demo_data": true
+}
