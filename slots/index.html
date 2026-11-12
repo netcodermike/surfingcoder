@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Spin a surf-themed arcade slot machine with play credits and a saved personal best.">
+  <title>SurfingCoder Slots</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="game.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://surfingcoder.com/">SurfingCoder</a>
+    <div class="top-actions">
+      <a href="https://surfingcoder.com/pinball/">Pinball</a>
+      <button id="sound" type="button" aria-pressed="false">Sound off</button>
+    </div>
+  </header>
+  <main>
+    <div class="intro">
+      <h1>SurfingCoder <em>Slots</em></h1>
+      <p>Line up surf symbols across three reels. Play credits have no cash value.</p>
+    </div>
+    <div class="layout">
+      <section class="cabinet" aria-label="Slot machine">
+        <div class="meters">
+          <div><span>Credits</span><strong id="credits">100</strong></div>
+          <div><span>Best balance</span><strong id="best">100</strong></div>
+        </div>
+        <div class="reel-deck">
+          <div class="reels">
+            <div class="reel"><canvas width="170" height="160" role="img"></canvas><span>Wave</span></div>
+            <div class="reel"><canvas width="170" height="160" role="img"></canvas><span>Sunset</span></div>
+            <div class="reel"><canvas width="170" height="160" role="img"></canvas><span>Surfboard</span></div>
+          </div>
+        </div>
+        <p id="result" role="status">Choose your stake and spin.</p>
+        <div class="controls">
+          <label for="stake">Stake <select id="stake"><option value="1">1 credit</option><option value="5">5 credits</option><option value="10">10 credits</option></select></label>
+          <button id="spin" type="button">Spin <kbd>Space</kbd></button>
+          <button id="reset" type="button">Reset credits</button>
+        </div>
+      </section>
+      <aside class="paytable" aria-labelledby="paytable-title">
+        <h2 id="paytable-title">Paytable</h2>
+        <p>Payouts are multiples of your stake.</p>
+        <ul id="payouts"></ul>
+        <details><summary>How the reels work</summary><p>Each reel draws independently. The chance of each symbol is shown below.</p><ul id="odds"></ul></details>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
