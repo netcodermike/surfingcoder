@@ -109,7 +109,7 @@ function eightsBoard(game) {
     hand.append(cardView(card,playable ? () => change(() => moveEights(game,index,chosen)) : null,playable))
   })
   board.append(piles,element('h3','hand-label','Your hand'),hand)
-  get('score').textContent = `You ${game.player.length} · Computer ${game.computer.length}`
+  get('score').textContent = `Cards left · You ${game.player.length} · Computer ${game.computer.length}`
   if (game.status === 'won') return `You win. ${game.message}`
   if (game.status === 'lost') return `Computer wins. ${game.message}`
   if (game.status === 'tie') return `Draw. ${game.message}`
