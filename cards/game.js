@@ -15,7 +15,7 @@ const games = {
   },
 }
 const hands = { golf:newGolf(), eights:newEights() }
-let mode = 'golf'
+let mode = 'eights'
 let chosen = 'clubs'
 
 function element(tag, className, text) {

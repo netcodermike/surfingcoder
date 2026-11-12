@@ -6,7 +6,7 @@
   <meta name="description" content="Play Golf Solitaire solo or Crazy Eights against the computer at the SurfingCoder card table.">
   <title>SurfingCoder Cards</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="game.js"></script>
+  <script type="module" src="game.js?v=eights-first"></script>
 <link rel="stylesheet" href="/navigation.css?v=1f385f43c36b">
 </head>
 <body>
@@ -37,13 +37,13 @@
   <main>
     <h1>SurfingCoder <em>Cards</em></h1>
     <div class="modes" aria-label="Choose a card game" role="group">
-      <button id="golf" aria-pressed="true">Golf Solitaire</button>
-      <button id="eights" aria-pressed="false">Crazy Eights</button>
+      <button id="eights" aria-pressed="true">Crazy Eights</button>
+      <button id="golf" aria-pressed="false">Golf Solitaire</button>
       <button id="deal">New deal</button>
     </div>
     <section class="table" aria-label="Card table">
       <div class="table-head">
-        <h2 id="mode-title">Golf Solitaire</h2>
+        <h2 id="mode-title">Crazy Eights</h2>
         <strong id="score"></strong>
       </div>
       <p id="status" role="status"></p>
