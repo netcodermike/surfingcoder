@@ -1,4 +1,6 @@
 .sc-site-header {
+  position: relative;
+  z-index: 20;
   background: #18161e;
   border-bottom: 1px solid #403548;
   color: #f0e9f5;
@@ -40,7 +42,8 @@
   font: inherit;
 }
 
-.sc-site-header .sc-nav-links > a {
+.sc-site-header .sc-nav-links > a,
+.sc-site-header .sc-games > summary {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
@@ -56,6 +59,38 @@
 .sc-site-header .sc-nav-links > a[aria-current] { color: #d9a2ff; }
 .sc-site-header .sc-nav-links > a[aria-current] { border-bottom-color: #b577ed; }
 
+.sc-site-header .sc-games { position: relative; margin: 0; }
+.sc-site-header .sc-games > summary {
+  list-style: none;
+  gap: 5px;
+  cursor: pointer;
+}
+.sc-site-header .sc-games > summary::-webkit-details-marker { display: none; }
+.sc-site-header .sc-games > summary:hover,
+.sc-site-header .sc-games[open] > summary,
+.sc-site-header .sc-games:has(a[aria-current]) > summary { color: #d9a2ff; }
+.sc-site-header .sc-games:has(a[aria-current]) > summary { border-bottom-color: #b577ed; }
+.sc-site-header .sc-games-links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 132px;
+  padding: 5px;
+  border: 1px solid #5b456b;
+  border-radius: 9px;
+  background: #271f32;
+  box-shadow: 0 8px 22px #100b16a0;
+}
+.sc-site-header .sc-games-links > a {
+  display: block;
+  color: #f0e9f5;
+  padding: 8px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.sc-site-header .sc-games-links > a:hover,
+.sc-site-header .sc-games-links > a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
+
 .sc-site-header .sc-nav-links > .sc-github {
   gap: 9px;
   border: 1px solid #4d3e58;
@@ -64,7 +99,7 @@
   color: #f0e9f5;
 }
 
-.sc-site-header a:focus-visible { outline: 2px solid #dda8ff; outline-offset: 3px; }
+.sc-site-header :is(a, summary):focus-visible { outline: 2px solid #dda8ff; outline-offset: 3px; }
 
 @media (max-width: 800px) {
   .sc-site-header .sc-nav-wrap {
@@ -78,6 +113,7 @@
   .sc-site-header .sc-nav-wrap { gap: 2px 16px; }
   .sc-site-header .sc-brand { font-size: 19px; }
   .sc-site-header .sc-nav-links { font-size: 13px; gap: 1px 12px; }
-  .sc-site-header .sc-nav-links > a { min-height: 35px; padding-block: 3px; }
+  .sc-site-header .sc-nav-links > a,
+  .sc-site-header .sc-games > summary { min-height: 35px; padding-block: 3px; }
   .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }
 }

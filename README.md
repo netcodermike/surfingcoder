@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 137 projects across 13 languages. AI apps lead the collection, followed by data analysis, productivity, creative tools, music/audio, microservices, everyday apps, games, and Linux utilities. Each category opens with its strongest visual interfaces. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 138 projects across 13 languages. AI apps lead the collection, followed by data analysis, productivity, creative tools, music/audio, microservices, everyday apps, games, and Linux utilities. Each category opens with its strongest visual interfaces. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
 
 ## Run locally
 

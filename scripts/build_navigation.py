@@ -12,11 +12,14 @@ OLD_HEADER = re.compile(r'<header class="(?:site-nav|site-header)">.*?</header>'
 BODY_START = re.compile(r'<body\b[^>]*>(?:\s*<a class="skip(?:-link)?"[^>]*>[^<]*</a>)?', re.I)
 LINKS = (
     ('Projects', '/#projects', 'index.html'),
-    ('Pinball', '/pinball/', 'pinball/index.html'),
-    ('Slots', '/slots/', 'slots/index.html'),
     ('Surf report', '/surfreport/', 'surfreport/index.html'),
     ('Writing', '/articles/wsl-rankings-misleading.html', 'articles/wsl-rankings-misleading.html'),
     ('About', '/about.html', 'about.html'),
+)
+GAMES = (
+    ('Cards', '/cards/', 'cards/index.html'),
+    ('Pinball', '/pinball/', 'pinball/index.html'),
+    ('Slots', '/slots/', 'slots/index.html'),
 )
 
 
@@ -27,10 +30,21 @@ def html_pages(root=ROOT):
 
 
 def render_navigation(page):
-    links = []
-    for label, href, active_page in LINKS:
+    def link(item, indent):
+        label, href, active_page = item
         current = ' aria-current="page"' if page == active_page else ''
-        links.append(f'      <a href="{href}"{current}>{label}</a>')
+        return f'{indent}<a href="{href}"{current}>{label}</a>'
+
+    links = [
+        link(LINKS[0], '      '),
+        '      <details class="sc-games">',
+        '        <summary>Games <span aria-hidden="true">⌄</span></summary>',
+        '        <div class="sc-games-links">',
+        *(link(item, '          ') for item in GAMES),
+        '        </div>',
+        '      </details>',
+        *(link(item, '      ') for item in LINKS[1:]),
+    ]
     links.append('      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" '
                  'rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>')
     return '\n'.join([
