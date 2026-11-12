@@ -1,0 +1,7 @@
+{
+  "name": "guitar-chord-desk",
+  "kind": "runtime",
+  "caption": "Actual Electron app showing open C major chord diagram, note names, and voicing controls.",
+  "capture_date": "2026-11-12T01:28:16.006395+00:00",
+  "demo_data": true
+}

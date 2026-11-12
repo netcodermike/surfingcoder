@@ -1,0 +1,7 @@
+{
+  "name": "layered-ink-studio",
+  "kind": "runtime",
+  "caption": "Actual Electron app showing original illustrated mountain study with the two editable ink layers and brush controls.",
+  "capture_date": "2026-11-12T01:28:16.029511+00:00",
+  "demo_data": true
+}

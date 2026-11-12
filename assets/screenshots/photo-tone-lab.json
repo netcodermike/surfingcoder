@@ -1,0 +1,7 @@
+{
+  "name": "photo-tone-lab",
+  "kind": "runtime",
+  "caption": "Actual Electron app showing sample landscape with an original and edited split, RGB histogram, and tone controls.",
+  "capture_date": "2026-11-12T01:28:16.947441+00:00",
+  "demo_data": true
+}

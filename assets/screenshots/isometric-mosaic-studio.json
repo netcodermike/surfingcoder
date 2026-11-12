@@ -1,0 +1,7 @@
+{
+  "name": "isometric-mosaic-studio",
+  "kind": "runtime",
+  "caption": "Actual Electron app showing paintable geometric mosaic in the Lagoon palette.",
+  "capture_date": "2026-11-12T01:28:17.763935+00:00",
+  "demo_data": true
+}

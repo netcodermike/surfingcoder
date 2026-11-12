@@ -1,0 +1,7 @@
+{
+  "name": "crop-frame-studio",
+  "kind": "runtime",
+  "caption": "Actual Electron app showing sample landscape with a square crop, warm border, and thirds guides.",
+  "capture_date": "2026-11-12T01:28:16.900192+00:00",
+  "demo_data": true
+}
