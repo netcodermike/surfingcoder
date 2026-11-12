@@ -35,6 +35,7 @@
 }
 
 .sc-site-header .sc-nav-links {
+  --sc-link-height: 42px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -46,7 +47,8 @@
 .sc-site-header .sc-games > summary {
   display: inline-flex;
   align-items: center;
-  min-height: 42px;
+  box-sizing: border-box;
+  min-height: var(--sc-link-height);
   padding: 7px 0;
   border-bottom: 3px solid transparent;
   color: #c4b6ce;
@@ -64,6 +66,7 @@
   display: list-item;
   list-style: revert;
   list-style-position: inside;
+  padding-block: calc((var(--sc-link-height) - 3px - 1lh) / 2);
   cursor: pointer;
 }
 .sc-site-header .sc-games > summary:hover,
@@ -114,8 +117,7 @@
 @media (max-width: 530px) {
   .sc-site-header .sc-nav-wrap { gap: 2px 16px; }
   .sc-site-header .sc-brand { font-size: 19px; }
-  .sc-site-header .sc-nav-links { font-size: 13px; gap: 1px 12px; }
-  .sc-site-header .sc-nav-links > a,
-  .sc-site-header .sc-games > summary { min-height: 35px; padding-block: 3px; }
+  .sc-site-header .sc-nav-links { --sc-link-height: 35px; font-size: 13px; gap: 1px 12px; }
+  .sc-site-header .sc-nav-links > a { padding-block: 3px; }
   .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }
 }
