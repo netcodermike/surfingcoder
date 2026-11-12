@@ -18,6 +18,9 @@
 }
 
 .sc-site-header .sc-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   flex: none;
   color: #f0e9f5;
   font-size: 22px;
@@ -26,7 +29,15 @@
   text-decoration: none;
 }
 
-.sc-site-header .sc-brand span { color: #cc9aef; }
+.sc-site-header .sc-brand-mark {
+  display: block;
+  width: 48px;
+  height: auto;
+  flex: none;
+}
+
+.sc-site-header .sc-wordmark { white-space: nowrap; }
+.sc-site-header .sc-wordmark > span { color: #cc9aef; }
 
 .sc-site-header:has(a[aria-current][href="/#projects"], a[aria-current][href="/about.html"]) {
   position: sticky;
@@ -117,7 +128,8 @@
 
 @media (max-width: 530px) {
   .sc-site-header .sc-nav-wrap { gap: 2px 16px; }
-  .sc-site-header .sc-brand { font-size: 19px; }
+  .sc-site-header .sc-brand { font-size: 19px; gap: 7px; }
+  .sc-site-header .sc-brand-mark { width: 38px; }
   .sc-site-header .sc-nav-links { --sc-link-height: 35px; font-size: 13px; gap: 1px 12px; }
   .sc-site-header .sc-nav-links > a { padding-block: 3px; }
   .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }

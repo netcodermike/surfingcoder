@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CSS_VERSION = hashlib.sha256((ROOT / 'navigation.css').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
 CSS_LINK = f'<link rel="stylesheet" href="/navigation.css?v={CSS_VERSION}">'
 NAV_STYLESHEET = re.compile(r'<link rel="stylesheet" href="/navigation\.css(?:\?v=[a-f0-9]+)?">')
+FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">'
+FAVICON_TAG = re.compile(r'<link\s+rel="(?:shortcut )?icon"[^>]*>', re.I)
 START = '<!-- SITE NAVIGATION START -->'
 END = '<!-- SITE NAVIGATION END -->'
 NAV_BLOCK = re.compile(re.escape(START) + r'.*?' + re.escape(END), re.S)
@@ -54,7 +56,9 @@ def render_navigation(page):
         START,
         '<div class="sc-site-header" role="banner">',
         '  <div class="sc-nav-wrap">',
-        '    <a class="sc-brand" href="/" aria-label="SurfingCoder home">Surfing<span>Coder</span></a>',
+        '    <a class="sc-brand" href="/" aria-label="SurfingCoder home">'
+        '<img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75">'
+        '<span class="sc-wordmark">Surfing<span>Coder</span></span></a>',
         '    <nav class="sc-nav-links" aria-label="Main navigation">',
         *links,
         '    </nav>',
@@ -83,6 +87,10 @@ def update(source, page):
         updated = NAV_STYLESHEET.sub(CSS_LINK, updated, count=1)
     else:
         updated = updated.replace('</head>', CSS_LINK + '\n</head>', 1)
+    if FAVICON_TAG.search(updated):
+        updated = FAVICON_TAG.sub(FAVICON_LINK, updated, count=1)
+    else:
+        updated = updated.replace('</head>', FAVICON_LINK + '\n</head>', 1)
     return updated
 
 

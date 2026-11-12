@@ -10,7 +10,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from build_navigation import CSS_LINK, NAV_BLOCK, html_pages, render_navigation
+from build_navigation import CSS_LINK, FAVICON_LINK, FAVICON_TAG, NAV_BLOCK, html_pages, render_navigation
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -59,6 +59,8 @@ def main():
             continue
         if NAV_BLOCK.findall(source) != [render_navigation(rel)] or source.count(CSS_LINK) != 1:
             issues.append(f'{rel}: shared navigation is out of date; run scripts/build_navigation.py')
+        if FAVICON_TAG.findall(source) != [FAVICON_LINK]:
+            issues.append(f'{rel}: shared favicon is out of date; run scripts/build_navigation.py')
         page = Page()
         page.feed(source)
         pages[path] = page
