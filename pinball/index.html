@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play SurfingCoder Pinball, a surf arcade game with wave bumpers, combo scoring, and three balls.">
+  <title>SurfingCoder Pinball</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="game.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="https://surfingcoder.com/">SurfingCoder</a>
+    <div class="header-actions">
+      <button id="sound" aria-pressed="false">Sound off</button>
+      <button id="pause" aria-pressed="false">Pause</button>
+    </div>
+  </header>
+  <main>
+    <section class="intro">
+      <h1>SurfingCoder<br><em>Pinball</em></h1>
+      <p>Hit all three wave bumpers to start a 2× set. Send the ball up a lit lane to keep it going.</p>
+      <div class="scoreboard">
+        <div class="score-main"><span>Score</span><strong id="score">0</strong></div>
+        <div><span>Best</span><strong id="best">0</strong></div>
+        <div><span>Ball</span><strong id="ball-number">1 / 3</strong></div>
+      </div>
+      <div class="wave-meter">
+        <span>Wave bumpers</span>
+        <div aria-label="Wave bumper progress" role="img" id="wave-lamps"><i></i><i></i><i></i></div>
+      </div>
+      <p id="message" role="status">Hold and release Launch to serve.</p>
+      <button id="restart">New game</button>
+    </section>
+    <section class="cabinet" aria-label="Pinball table">
+      <div class="glass">
+        <canvas id="table" width="510" height="730" aria-label="SurfingCoder pinball playfield"></canvas>
+      </div>
+      <div class="controls">
+        <button id="left" aria-label="Left flipper" title="Left Arrow or A">↶ <span>Left</span></button>
+        <button id="launch" title="Hold and release Space">Launch</button>
+        <button id="right" aria-label="Right flipper" title="Right Arrow or D"><span>Right</span> ↷</button>
+      </div>
+    </section>
+    <section class="keys" aria-label="Keyboard controls">
+      <h2>Controls</h2>
+      <dl>
+        <div><dt>Flippers</dt><dd><kbd>←</kbd> <kbd>→</kbd></dd></div>
+        <div><dt>Hold and release</dt><dd><kbd>Space</kbd></dd></div>
+        <div><dt>Pause</dt><dd><kbd>P</kbd></dd></div>
+      </dl>
+    </section>
+  </main>
+</body>
+</html>

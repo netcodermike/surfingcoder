@@ -1,0 +1,7 @@
+{
+  "name": "surfingcoder-pinball",
+  "kind": "runtime",
+  "caption": "Actual browser game showing the sunset table and launch controls.",
+  "capture_date": "2026-11-12T02:49:17.187248+00:00",
+  "demo_data": true
+}

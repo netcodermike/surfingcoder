@@ -2806,6 +2806,29 @@
     "ci": "https://github.com/netcodermike/shelf-spacing-planner/actions/workflows/verify.yml"
   },
   {
+    "name": "surfingcoder-pinball",
+    "title": "SurfingCoder Pinball",
+    "description": "Play a surf-themed pinball table with wave bumpers, timed scoring combos, keyboard and touch controls, and a saved personal best.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web browser, keyboard and touch",
+    "url": "https://github.com/netcodermike/surfingcoder-pinball",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 110,
+    "image": "assets/screenshots/surfingcoder-pinball.webp",
+    "capture": {
+      "name": "surfingcoder-pinball",
+      "kind": "runtime",
+      "caption": "Actual browser game showing the sunset table and launch controls.",
+      "capture_date": "2026-11-12T02:49:17.187248+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/surfingcoder-pinball/actions/workflows/verify.yml",
+    "applicationUrl": "/pinball/"
+  },
+  {
     "name": "procedural-planet-explorer",
     "title": "Procedural Planet Explorer",
     "description": "Generate a deterministic 2D planet from a numeric seed, explore biome sectors, inspect weather and life, and export an SVG terrain map.",
@@ -2816,7 +2839,7 @@
     "url": "https://github.com/netcodermike/procedural-planet-explorer",
     "category": "Games & learning",
     "featured": false,
-    "order": 110,
+    "order": 111,
     "image": "assets/screenshots/procedural-planet-explorer.webp",
     "capture": {
       "name": "procedural-planet-explorer",
@@ -2837,7 +2860,7 @@
     "url": "https://github.com/netcodermike/pathfinding-playground",
     "category": "Games & learning",
     "featured": false,
-    "order": 111,
+    "order": 112,
     "image": "assets/screenshots/pathfinding-playground.webp",
     "capture": {
       "name": "pathfinding-playground",
@@ -2859,7 +2882,7 @@
     "url": "https://github.com/netcodermike/multiplayer-escape-room",
     "category": "Games & learning",
     "featured": false,
-    "order": 112,
+    "order": 113,
     "image": "assets/screenshots/multiplayer-escape-room.webp",
     "capture": {
       "name": "multiplayer-escape-room",
@@ -2881,7 +2904,7 @@
     "url": "https://github.com/netcodermike/chess-tactics-trainer",
     "category": "Games & learning",
     "featured": false,
-    "order": 113,
+    "order": 114,
     "image": "assets/screenshots/chess-tactics-trainer.webp",
     "capture": {
       "name": "chess-tactics-trainer",
@@ -2909,7 +2932,7 @@
     "url": "https://github.com/netcodermike/maze-forge",
     "category": "Games & learning",
     "featured": false,
-    "order": 114,
+    "order": 115,
     "image": "assets/screenshots/maze-forge.webp",
     "capture": {
       "name": "maze-forge",
@@ -2931,7 +2954,7 @@
     "url": "https://github.com/netcodermike/sudoku-studio-desktop",
     "category": "Games & learning",
     "featured": false,
-    "order": 115,
+    "order": 116,
     "image": "assets/screenshots/sudoku-studio-desktop.webp",
     "capture": {
       "name": "sudoku-studio-desktop",
@@ -2959,7 +2982,7 @@
     "url": "https://github.com/netcodermike/round-robin-tournament-studio",
     "category": "Games & learning",
     "featured": false,
-    "order": 116,
+    "order": 117,
     "image": "assets/screenshots/round-robin-tournament-studio.webp",
     "capture": {
       "name": "round-robin-tournament-studio",
@@ -2987,7 +3010,7 @@
     "url": "https://github.com/netcodermike/spaced-repetition-adventure",
     "category": "Games & learning",
     "featured": false,
-    "order": 117,
+    "order": 118,
     "image": "assets/screenshots/spaced-repetition-adventure.webp",
     "capture": {
       "name": "spaced-repetition-adventure",
@@ -3015,7 +3038,7 @@
     "url": "https://github.com/netcodermike/linux-backup-server",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 118,
+    "order": 119,
     "image": "assets/screenshots/linux-backup-server.webp",
     "capture": {
       "name": "linux-backup-server",
@@ -3037,7 +3060,7 @@
     "url": "https://github.com/netcodermike/linux-system-dashboard",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 119,
+    "order": 120,
     "image": "assets/screenshots/linux-system-dashboard.webp",
     "capture": {
       "name": "linux-system-dashboard",
@@ -3059,7 +3082,7 @@
     "url": "https://github.com/netcodermike/linux-process-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 120,
+    "order": 121,
     "image": "assets/screenshots/linux-process-explorer.webp",
     "capture": {
       "name": "linux-process-explorer",
@@ -3081,7 +3104,7 @@
     "url": "https://github.com/netcodermike/linux-open-port-atlas",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 121,
+    "order": 122,
     "image": "assets/screenshots/linux-open-port-atlas.webp",
     "capture": {
       "name": "linux-open-port-atlas",
@@ -3103,7 +3126,7 @@
     "url": "https://github.com/netcodermike/linux-cgroup-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 122,
+    "order": 123,
     "image": "assets/screenshots/linux-cgroup-explorer.webp",
     "capture": {
       "name": "linux-cgroup-explorer",
@@ -3125,7 +3148,7 @@
     "url": "https://github.com/netcodermike/linux-config-drift-monitor",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 123,
+    "order": 124,
     "image": "assets/screenshots/linux-config-drift-monitor.webp",
     "capture": {
       "name": "linux-config-drift-monitor",
@@ -3147,7 +3170,7 @@
     "url": "https://github.com/netcodermike/linux-systemd-unit-checker",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 124,
+    "order": 125,
     "image": "assets/screenshots/linux-systemd-unit-checker.webp",
     "capture": {
       "name": "linux-systemd-unit-checker",
@@ -3169,7 +3192,7 @@
     "url": "https://github.com/netcodermike/linux-journal-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 125,
+    "order": 126,
     "image": "assets/screenshots/linux-journal-explorer.webp",
     "capture": {
       "name": "linux-journal-explorer",
@@ -3191,7 +3214,7 @@
     "url": "https://github.com/netcodermike/linux-resource-job-queue",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 126,
+    "order": 127,
     "image": "assets/screenshots/linux-resource-job-queue.webp",
     "capture": {
       "name": "linux-resource-job-queue",
@@ -3213,7 +3236,7 @@
     "url": "https://github.com/netcodermike/linux-sandbox-runner",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 127,
+    "order": 128,
     "image": "assets/screenshots/linux-sandbox-runner.webp",
     "capture": {
       "name": "linux-sandbox-runner",
@@ -3235,7 +3258,7 @@
     "url": "https://github.com/netcodermike/linux-directory-watch",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 128,
+    "order": 129,
     "image": "assets/screenshots/linux-directory-watch.webp",
     "capture": {
       "name": "linux-directory-watch",
@@ -3257,7 +3280,7 @@
     "url": "https://github.com/netcodermike/linux-unix-socket-relay",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 129,
+    "order": 130,
     "image": "assets/screenshots/linux-unix-socket-relay.webp",
     "capture": {
       "name": "linux-unix-socket-relay",
@@ -3279,7 +3302,7 @@
     "url": "https://github.com/netcodermike/linux-disk-space-sentinel",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 130,
+    "order": 131,
     "image": "assets/screenshots/linux-disk-space-sentinel.webp",
     "capture": {
       "name": "linux-disk-space-sentinel",
@@ -3301,7 +3324,7 @@
     "url": "https://github.com/netcodermike/linux-epoll-chat",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 131,
+    "order": 132,
     "image": "assets/screenshots/linux-epoll-chat.webp",
     "capture": {
       "name": "linux-epoll-chat",
@@ -3323,7 +3346,7 @@
     "url": "https://github.com/netcodermike/linux-mmap-search",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 132,
+    "order": 133,
     "image": "assets/screenshots/linux-mmap-search.webp",
     "capture": {
       "name": "linux-mmap-search",
@@ -3345,7 +3368,7 @@
     "url": "https://github.com/netcodermike/linux-mount-explorer",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 133,
+    "order": 134,
     "image": "assets/screenshots/linux-mount-explorer.webp",
     "capture": {
       "name": "linux-mount-explorer",
@@ -3367,7 +3390,7 @@
     "url": "https://github.com/netcodermike/linux-job-scheduler",
     "category": "Systems & Linux",
     "featured": false,
-    "order": 134,
+    "order": 135,
     "image": "assets/screenshots/linux-job-scheduler.webp",
     "capture": {
       "name": "linux-job-scheduler",
