@@ -69,6 +69,7 @@
   padding-block: calc((var(--sc-link-height) - 3px - 1lh) / 2);
   cursor: pointer;
 }
+.sc-site-header .sc-games > summary > span[aria-hidden="true"] { display: none; }
 .sc-site-header .sc-games > summary:hover,
 .sc-site-header .sc-games[open] > summary,
 .sc-site-header .sc-games:has(a[aria-current]) > summary { color: #d9a2ff; }
@@ -86,15 +87,15 @@
   background: #271f32;
   box-shadow: 0 8px 22px #100b16a0;
 }
-.sc-site-header .sc-games-links > li > a {
+.sc-site-header .sc-games-links a {
   display: block;
   color: #f0e9f5;
   padding: 8px 10px;
   border-radius: 5px;
   text-decoration: none;
 }
-.sc-site-header .sc-games-links > li > a:hover,
-.sc-site-header .sc-games-links > li > a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
+.sc-site-header .sc-games-links a:hover,
+.sc-site-header .sc-games-links a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
 
 .sc-site-header .sc-nav-links > .sc-github {
   gap: 9px;
