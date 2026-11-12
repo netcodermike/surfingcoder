@@ -5,10 +5,10 @@ from html.parser import HTMLParser
 ROOT = Path(__file__).resolve().parents[1]
 projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))
 assert len(projects) == len({p['name'] for p in projects}), 'Duplicate repository names'
-category_order = ['AI & machine learning', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
+category_order = ['AI & machine learning', 'Mathematics', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
 assert list(dict.fromkeys(p['category'] for p in projects)) == category_order, 'Curated category priorities changed'
 assert [category_order.index(p['category']) for p in projects] == sorted(category_order.index(p['category']) for p in projects), 'Categories must stay grouped'
-leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Data & analysis': 'SvdStudio', 'Work & productivity': 'coinbase-ladder', 'Creative tools': 'fractal-render-lab', 'Music & audio': 'spectrogram-waterfall'}
+leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Mathematics': 'SvdStudio', 'Work & productivity': 'coinbase-ladder', 'Creative tools': 'fractal-render-lab', 'Music & audio': 'spectrogram-waterfall'}
 for category, name in leaders.items():
     assert next(p['name'] for p in projects if p['category']==category) == name, category+': visual lead changed'
 page = (ROOT/'index.html').read_text(encoding='utf-8')
