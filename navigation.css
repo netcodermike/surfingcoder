@@ -4,7 +4,8 @@
   background: #18161e;
   border-bottom: 1px solid #403548;
   color: #f0e9f5;
-  font: 600 14px/1.4 Manrope, Inter, "Segoe UI", sans-serif;
+  /* Use the same native font even when a page loads its own web fonts. */
+  font: 600 14px/1.4 "Segoe UI", system-ui, sans-serif;
 }
 
 .sc-site-header .sc-nav-wrap {
@@ -59,6 +60,7 @@
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
+  font: inherit;
   min-height: var(--sc-link-height);
   padding: 7px 0;
   border-bottom: 3px solid transparent;
@@ -100,6 +102,7 @@
 }
 .sc-site-header .sc-games-links a {
   display: block;
+  font: inherit;
   color: #f0e9f5;
   padding: 8px 10px;
   border-radius: 5px;
@@ -130,7 +133,7 @@
   .sc-site-header .sc-nav-wrap { gap: 2px 16px; }
   .sc-site-header .sc-brand { font-size: 19px; gap: 7px; }
   .sc-site-header .sc-brand-mark { width: 38px; }
-  .sc-site-header .sc-nav-links { --sc-link-height: 35px; font-size: 13px; gap: 1px 12px; }
+  .sc-site-header .sc-nav-links { --sc-link-height: 35px; font-size: 13px; gap: 1px clamp(6px, 1.55vw, 9px); }
   .sc-site-header .sc-nav-links > a { padding-block: 3px; }
   .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }
 }
