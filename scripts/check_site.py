@@ -10,6 +10,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from build_navigation import CSS_LINK, NAV_BLOCK, html_pages, render_navigation
+
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -43,9 +45,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--strict', action='store_true', help='Fail on unfinished draft problems.')
     args = parser.parse_args()
-    paths = sorted(p for p in ROOT.rglob('*.html') if not any(
-        part.startswith('.') or part in {'node_modules', 'work'}
-        for part in p.relative_to(ROOT).parts))
+    paths = html_pages(ROOT)
     issues = []
     pages = {}
     if ROOT / 'index.html' not in paths:
@@ -57,6 +57,8 @@ def main():
         except UnicodeError:
             issues.append(f'{rel}: file must be UTF-8')
             continue
+        if NAV_BLOCK.findall(source) != [render_navigation(rel)] or source.count(CSS_LINK) != 1:
+            issues.append(f'{rel}: shared navigation is out of date; run scripts/build_navigation.py')
         page = Page()
         page.feed(source)
         pages[path] = page

@@ -19,6 +19,8 @@ Open http://127.0.0.1:8000. Search, category/language filters, sorting, grid/lis
 1. Edit `assets/projects.json`. Array order sets the default display priority; keep AI first and projects grouped by category, with the strongest screenshots first in each group.
 2. Add a genuine screenshot as `assets/screenshots/<repository>.webp` and its capture metadata as `<repository>.json`. Use synthetic demonstration data. Describe terminal captures as terminal output rather than app interfaces.
 3. Run `python scripts/build_gallery.py` to update the static cards and embedded data.
+
+When you add an HTML page or change the main menu, run `python scripts/build_navigation.py` to update the shared navigation.
 4. Run both checks above, preview desktop and mobile layouts, and review `git diff` before publication.
 
 The JSON fields are documented in [docs/gallery.md](docs/gallery.md). Layout and behavior live in `gallery.css` and `gallery.js`. Fonts use Google Fonts with system fallbacks. There are no analytics, accounts, or backend services.

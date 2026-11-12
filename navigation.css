@@ -1,0 +1,83 @@
+.sc-site-header {
+  background: #18161e;
+  border-bottom: 1px solid #403548;
+  color: #f0e9f5;
+  font: 600 14px/1.4 Manrope, Inter, "Segoe UI", sans-serif;
+}
+
+.sc-site-header .sc-nav-wrap {
+  width: min(1392px, calc(100% - 48px));
+  min-height: 76px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+.sc-site-header .sc-brand {
+  flex: none;
+  color: #f0e9f5;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.045em;
+  text-decoration: none;
+}
+
+.sc-site-header .sc-brand span { color: #cc9aef; }
+
+.sc-site-header:has(a[aria-current][href="/#projects"], a[aria-current][href="/about.html"]) {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.sc-site-header .sc-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px clamp(10px, 2.15vw, 30px);
+  font: inherit;
+}
+
+.sc-site-header .sc-nav-links > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 7px 0;
+  border-bottom: 3px solid transparent;
+  color: #c4b6ce;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sc-site-header .sc-nav-links > a[aria-current]::after { content: none; }
+.sc-site-header .sc-nav-links > a:hover,
+.sc-site-header .sc-nav-links > a[aria-current] { color: #d9a2ff; }
+.sc-site-header .sc-nav-links > a[aria-current] { border-bottom-color: #b577ed; }
+
+.sc-site-header .sc-nav-links > .sc-github {
+  gap: 9px;
+  border: 1px solid #4d3e58;
+  border-radius: 9px;
+  padding: 7px 13px;
+  color: #f0e9f5;
+}
+
+.sc-site-header a:focus-visible { outline: 2px solid #dda8ff; outline-offset: 3px; }
+
+@media (max-width: 800px) {
+  .sc-site-header .sc-nav-wrap {
+    width: calc(100% - 28px);
+    padding-block: 8px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 530px) {
+  .sc-site-header .sc-nav-wrap { gap: 2px 16px; }
+  .sc-site-header .sc-brand { font-size: 19px; }
+  .sc-site-header .sc-nav-links { font-size: 13px; gap: 1px 12px; }
+  .sc-site-header .sc-nav-links > a { min-height: 35px; padding-block: 3px; }
+  .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }
+}

@@ -85,6 +85,7 @@ p { color: var(--muted); }
   background: #100d19;
   box-shadow: 0 0 30px #8e63c840, 0 14px 25px #100b18a0;
 }
+.sc-site-header ~ main .glass { width: min(100%, calc((100svh - 246px) * .7)); }
 canvas { display: block; width: 100%; height: auto; border-radius: 12px; background: #17132b; }
 .controls { display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 7px; width: min(100%, 380px); margin: 10px auto 0; }
 .controls button { touch-action: none; user-select: none; font-weight: 700; min-height: 43px; }
@@ -118,5 +119,6 @@ kbd { display: inline-block; border: 1px solid var(--line); border-radius: 4px; 
   #message { grid-row: 3; grid-column: 1; margin: 0; min-height: 1.5em; font-size: 12px; }
   #restart { grid-row: 1; grid-column: 2; min-height: 30px; padding: 2px 7px; font-size: 12px; }
   .glass { width: min(100%, max(235px, calc((100svh - 206px) * .7))); min-width: 0; }
+  .sc-site-header ~ main .glass { width: min(100%, max(235px, calc((100svh - 365px) * .7))); }
   .controls { margin-top: 6px; }
 }

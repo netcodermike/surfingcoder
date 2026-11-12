@@ -5,11 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Play SurfingCoder Pinball, a surf arcade game with wave bumpers, combo scoring, and three balls.">
   <title>SurfingCoder Pinball</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=shared-nav">
   <script type="module" src="game.js"></script>
+<link rel="stylesheet" href="/navigation.css">
 </head>
 <body>
-  <header class="masthead">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home">Surfing<span>Coder</span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/pinball/" aria-current="page">Pinball</a>
+      <a href="/slots/">Slots</a>
+      <a href="/surfreport/">Surf report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+  <header role="group" aria-label="Page controls" class="masthead">
     <a class="brand" href="https://surfingcoder.com/">SurfingCoder</a>
     <div class="header-actions">
       <button id="sound" aria-pressed="false">Sound off</button>
