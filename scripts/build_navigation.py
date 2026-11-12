@@ -1,4 +1,4 @@
-"""Render the shared navigation into each published HTML page."""
+"""Render the shared header and footer into each published HTML page."""
 
 import hashlib
 import re
@@ -13,6 +13,19 @@ FAVICON_TAG = re.compile(r'<link\s+rel="(?:shortcut )?icon"[^>]*>', re.I)
 START = '<!-- SITE NAVIGATION START -->'
 END = '<!-- SITE NAVIGATION END -->'
 NAV_BLOCK = re.compile(re.escape(START) + r'.*?' + re.escape(END), re.S)
+FOOTER_START = '<!-- SITE FOOTER START -->'
+FOOTER_END = '<!-- SITE FOOTER END -->'
+FOOTER_BLOCK = re.compile(re.escape(FOOTER_START) + r'.*?' + re.escape(FOOTER_END), re.S)
+FOOTER = '\n'.join([
+    FOOTER_START,
+    '<footer class="sc-site-footer">',
+    '  <div class="sc-footer-wrap">',
+    '    <a href="/">SurfingCoder / Stay curious. Build something.</a>',
+    '    <span>© 2026</span>',
+    '  </div>',
+    '</footer>',
+    FOOTER_END,
+])
 OLD_HEADER = re.compile(r'<header class="(?:site-nav|site-header)">.*?</header>', re.S)
 BODY_START = re.compile(r'<body\b[^>]*>(?:\s*<a class="skip(?:-link)?"[^>]*>[^<]*</a>)?', re.I)
 LINKS = (
@@ -91,6 +104,13 @@ def update(source, page):
         updated = FAVICON_TAG.sub(FAVICON_LINK, updated, count=1)
     else:
         updated = updated.replace('</head>', FAVICON_LINK + '\n</head>', 1)
+    if FOOTER_BLOCK.search(updated):
+        updated = FOOTER_BLOCK.sub(lambda _: FOOTER, updated, count=1)
+    else:
+        updated, count = re.subn(r'</body\s*>', lambda match: '\n' + FOOTER + '\n' + match[0],
+                                 updated, count=1, flags=re.I)
+        if count != 1:
+            raise ValueError(f'{page}: missing closing body tag')
     return updated
 
 
@@ -101,4 +121,4 @@ if __name__ == '__main__':
         updated = update(source, path.relative_to(ROOT).as_posix())
         if source != updated:
             path.write_text(updated, encoding='utf-8', newline='\n')
-    print(f'Updated shared navigation on {len(pages)} HTML pages.')
+    print(f'Updated shared header and footer on {len(pages)} HTML pages.')

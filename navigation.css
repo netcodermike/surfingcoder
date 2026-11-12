@@ -121,6 +121,32 @@
 
 .sc-site-header :is(a, summary):focus-visible { outline: 2px solid #dda8ff; outline-offset: 3px; }
 
+body > .sc-site-footer {
+  display: block;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 18px 0;
+  border-top: 1px solid #4d3e58;
+  background: #211c28;
+  color: #c4b6ce;
+  font: 14px/1.5 system-ui, sans-serif;
+}
+
+.sc-site-footer .sc-footer-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  width: min(1392px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.sc-site-footer a { color: #f0e9f5; text-decoration: none; }
+.sc-site-footer a:hover { text-decoration: underline; }
+.sc-site-footer a:focus-visible { outline: 2px solid #dda8ff; outline-offset: 3px; }
+.sc-site-footer span { white-space: nowrap; }
+
 @media (max-width: 800px) {
   .sc-site-header .sc-nav-wrap {
     width: calc(100% - 28px);
