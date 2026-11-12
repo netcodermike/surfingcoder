@@ -1,10 +1,13 @@
 """Render the shared navigation into each published HTML page."""
 
+import hashlib
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS_LINK = '<link rel="stylesheet" href="/navigation.css">'
+CSS_VERSION = hashlib.sha256((ROOT / 'navigation.css').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
+CSS_LINK = f'<link rel="stylesheet" href="/navigation.css?v={CSS_VERSION}">'
+NAV_STYLESHEET = re.compile(r'<link rel="stylesheet" href="/navigation\.css(?:\?v=[a-f0-9]+)?">')
 START = '<!-- SITE NAVIGATION START -->'
 END = '<!-- SITE NAVIGATION END -->'
 NAV_BLOCK = re.compile(re.escape(START) + r'.*?' + re.escape(END), re.S)
@@ -38,10 +41,10 @@ def render_navigation(page):
     links = [
         link(LINKS[0], '      '),
         '      <details class="sc-games">',
-        '        <summary>Games <span aria-hidden="true">⌄</span></summary>',
-        '        <div class="sc-games-links">',
-        *(link(item, '          ') for item in GAMES),
-        '        </div>',
+        '        <summary>Games</summary>',
+        '        <ul class="sc-games-links">',
+        *(f'          <li>{link(item, "")}</li>' for item in GAMES),
+        '        </ul>',
         '      </details>',
         *(link(item, '      ') for item in LINKS[1:]),
     ]
@@ -76,7 +79,9 @@ def update(source, page):
         updated = updated[:offset] + re.sub(
             r'<header(?=[\s>])', '<header role="group" aria-label="Page controls"',
             updated[offset:], count=1)
-    if CSS_LINK not in updated:
+    if NAV_STYLESHEET.search(updated):
+        updated = NAV_STYLESHEET.sub(CSS_LINK, updated, count=1)
+    else:
         updated = updated.replace('</head>', CSS_LINK + '\n</head>', 1)
     return updated
 

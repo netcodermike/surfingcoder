@@ -61,11 +61,11 @@
 
 .sc-site-header .sc-games { position: relative; margin: 0; }
 .sc-site-header .sc-games > summary {
-  list-style: none;
-  gap: 5px;
+  display: list-item;
+  list-style: revert;
+  list-style-position: inside;
   cursor: pointer;
 }
-.sc-site-header .sc-games > summary::-webkit-details-marker { display: none; }
 .sc-site-header .sc-games > summary:hover,
 .sc-site-header .sc-games[open] > summary,
 .sc-site-header .sc-games:has(a[aria-current]) > summary { color: #d9a2ff; }
@@ -75,21 +75,23 @@
   top: 100%;
   left: 0;
   min-width: 132px;
+  margin: 0;
   padding: 5px;
+  list-style: none;
   border: 1px solid #5b456b;
   border-radius: 9px;
   background: #271f32;
   box-shadow: 0 8px 22px #100b16a0;
 }
-.sc-site-header .sc-games-links > a {
+.sc-site-header .sc-games-links > li > a {
   display: block;
   color: #f0e9f5;
   padding: 8px 10px;
   border-radius: 5px;
   text-decoration: none;
 }
-.sc-site-header .sc-games-links > a:hover,
-.sc-site-header .sc-games-links > a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
+.sc-site-header .sc-games-links > li > a:hover,
+.sc-site-header .sc-games-links > li > a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
 
 .sc-site-header .sc-nav-links > .sc-github {
   gap: 9px;
