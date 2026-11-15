@@ -1,12 +1,13 @@
 import { SUITS, ranks, suitInfo, describe, newGolf, canGolf, moveGolf, drawGolf,
   newEights, canEights, moveEights, drawEights } from './rules.js'
 import { drawJoker } from './joker.js'
+import { drawSurfSuit } from './surf-art.js'
 
 const get = id => document.getElementById(id)
 const board = get('board')
 const games = {
   golf: {
-    title:'Golf Solitaire', create:newGolf,
+    title:'Surf Solitaire', create:newGolf,
     help:'Clear all seven columns. Play any exposed card one rank higher or lower than the waste. Ace and King do not connect. Draw from the stock when you need a new waste card.',
   },
   eights: {
@@ -41,7 +42,10 @@ function cardView(card, action, playable = false, label) {
     item.append(element('span','corner','JOKER'), drawJoker())
   } else {
     item.classList.toggle('red',card.suit === 'hearts' || card.suit === 'diamonds')
-    item.append(element('span','corner',ranks[card.rank]),element('span','suit',suitInfo(card.suit).mark))
+    const corner = element('span','corner rank-suit')
+    corner.append(element('span','',ranks[card.rank]),element('span','suit-pip',suitInfo(card.suit).mark))
+    corner.setAttribute('aria-hidden','true')
+    item.append(drawSurfSuit(card.suit),corner)
   }
   return item
 }
@@ -80,7 +84,7 @@ function golfBoard(game) {
   })
   board.append(piles,columns)
   get('score').textContent = `${game.moved} / 35 cleared`
-  return game.status === 'won' ? 'You cleared the table.' : game.status === 'lost'
+  return game.status === 'won' ? 'You cleared the lineup.' : game.status === 'lost'
     ? 'No moves left. Deal again to try a new table.' : 'Play an outlined card or draw from the stock.'
 }
 
