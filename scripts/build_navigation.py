@@ -43,6 +43,15 @@ GAMES = (
     ('Pinball', '/pinball/', 'pinball/index.html'),
     ('Slots', '/slots/', 'slots/index.html'),
 )
+GUITAR = (
+    ('Guitar Tuner', '/guitar-tuner/', 'guitar-tuner/index.html'),
+    ('Guitar Chord Workshop', '/guitar-chords/', 'guitar-chords/index.html'),
+    ('Blues Progression Atlas', '/apps/blues-progression-atlas/', 'apps/blues-progression-atlas/index.html'),
+    ('Chord Voicing Lab', '/apps/chord-voicing-lab/', 'apps/chord-voicing-lab/index.html'),
+    ('String Instrument Tuner', '/apps/string-instrument-tuner/', 'apps/string-instrument-tuner/index.html'),
+    ('Electric Guitar Designer (desktop)', 'https://github.com/netcodermike/electric-guitar-designer', None),
+    ('Guitar Chord Desk (desktop)', 'https://github.com/netcodermike/guitar-chord-desk', None),
+)
 
 
 def html_pages(root=ROOT):
@@ -57,14 +66,20 @@ def render_navigation(page):
         current = ' aria-current="page"' if page == active_page else ''
         return f'{indent}<a href="{href}"{current}>{label}</a>'
 
+    def dropdown(label, slug, items):
+        return [
+            f'      <details class="sc-dropdown sc-{slug}" name="surfingcoder-menu">',
+            f'        <summary>{label}</summary>',
+            f'        <ul class="sc-dropdown-links sc-{slug}-links">',
+            *(f'          <li>{link(item, "")}</li>' for item in items),
+            '        </ul>',
+            '      </details>',
+        ]
+
     links = [
         link(LINKS[0], '      '),
-        '      <details class="sc-games">',
-        '        <summary>Games</summary>',
-        '        <ul class="sc-games-links">',
-        *(f'          <li>{link(item, "")}</li>' for item in GAMES),
-        '        </ul>',
-        '      </details>',
+        *dropdown('Games', 'games', GAMES),
+        *dropdown('Guitar', 'guitar', GUITAR),
         *(link(item, '      ') for item in LINKS[1:]),
     ]
     links.append('      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" '

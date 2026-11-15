@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build guitar chords, explore chord shapes on an interactive fretboard, and play or create progressions.">
+  <title>Guitar Chord Workshop | SurfingCoder</title>
+  <link rel="stylesheet" href="/assets/guitar-tools.css">
+  <script type="module" src="./app.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=23b4b73a3789">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
+</head>
+<body>
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/slots/">Slots</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+          <li><a href="/guitar-chords/" aria-current="page">Guitar Chord Workshop</a></li>
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/apps/string-instrument-tuner/">String Instrument Tuner</a></li>
+          <li><a href="https://github.com/netcodermike/electric-guitar-designer">Electric Guitar Designer (desktop)</a></li>
+          <li><a href="https://github.com/netcodermike/guitar-chord-desk">Guitar Chord Desk (desktop)</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+  <main class="guitar-tool">
+    <div class="gt-hero">
+      <div>
+        <p class="gt-kicker">SurfingCoder Guitar</p>
+        <h1>Guitar <span>Chord Workshop</span></h1>
+        <p>Find a new voicing, shape it on the fretboard, then hear how it fits into a progression.</p>
+      </div>
+      <a href="https://github.com/netcodermike/surfingcoder-guitar-chord-workshop">View source ↗</a>
+    </div>
+    <div class="gt-tabs" role="group" aria-label="Workshop views">
+      <button type="button" data-view="builder" aria-pressed="true" aria-controls="builder">Chord builder</button>
+      <button type="button" data-view="library" aria-pressed="false" aria-controls="library">Chord list</button>
+      <button type="button" data-view="progressions" aria-pressed="false" aria-controls="progressions">Progressions</button>
+    </div>
+    <div id="builder" class="gt-workshop-layout">
+      <section class="gt-panel gt-board" aria-labelledby="fretboard-heading">
+        <div class="gt-panel-head">
+          <div>
+            <h2 id="fretboard-heading">Guitar fretboard</h2>
+            <p class="gt-meta gt-tuning">Standard tuning · E A D G B E</p>
+          </div>
+          <label for="position">Position <select id="position"></select></label>
+        </div>
+        <table id="fretboard" aria-label="Interactive standard tuning guitar fretboard"></table>
+        <p class="gt-meta">Select a fret, open string, or mute to edit the shape.</p>
+        <div class="gt-actions">
+          <button type="button" id="strum" class="gt-primary">Strum chord</button>
+          <button type="button" id="add-chord">Add to progression</button>
+        </div>
+      </section>
+      <section class="gt-panel gt-stack" aria-labelledby="chord-heading">
+        <div>
+          <h2 id="chord-heading">Chord recipe</h2>
+          <div class="gt-fields">
+            <label for="root">Root <select id="root"></select></label>
+            <label for="quality">Quality <select id="quality"></select></label>
+          </div>
+          <label for="voicing">Suggested voicing <select id="voicing"></select></label>
+        </div>
+        <div>
+          <p class="gt-kicker" id="shape-type">Selected chord</p>
+          <p id="chord-name" class="gt-chord-name"></p>
+          <ul id="chord-tones" class="gt-pitches" aria-label="Chord tones"></ul>
+          <p id="shape-info" class="gt-meta"></p>
+        </div>
+        <label id="custom-label" for="custom-name" hidden>Custom name <input id="custom-name" type="text" maxlength="40" placeholder="Optional chord label"></label>
+      </section>
+    </div>
+    <section id="library" class="gt-panel" aria-labelledby="library-heading" hidden>
+      <div class="gt-panel-head">
+        <div><h2 id="library-heading">Chord list</h2><p class="gt-meta">Select a chord to open its recipe and voicings.</p></div>
+        <label for="library-root">Root <select id="library-root"></select></label>
+      </div>
+      <div id="chord-list" class="gt-chord-grid"></div>
+    </section>
+    <section id="progressions" class="gt-workshop-layout" aria-label="Chord progressions" hidden>
+      <div class="gt-panel gt-stack">
+        <h2>Progression presets</h2>
+        <label for="pattern">Pattern <select id="pattern"></select></label>
+        <label for="key">Transpose preset to <select id="key"></select></label>
+        <p id="progression-preview" class="gt-preview"></p>
+        <button type="button" id="load-pattern">Load preset</button>
+        <p class="gt-meta">Loads the chords into your working progression. You can also add your own shapes from the builder.</p>
+      </div>
+      <div class="gt-panel">
+        <div class="gt-panel-head">
+          <div><h2>Your progression</h2><p class="gt-meta">Saved in this browser</p></div>
+          <label for="bpm">Tempo (BPM) <input type="number" id="bpm" min="40" max="220" value="100" step="1"></label>
+        </div>
+        <ol class="gt-progression" id="progression-list"></ol>
+        <p id="empty-progression" class="gt-meta" hidden>Add a chord from the builder or load a preset to start.</p>
+        <div class="gt-actions">
+          <button type="button" class="gt-primary" id="play-progression">Play progression</button>
+          <button type="button" id="stop-progression" disabled>Stop</button>
+          <button type="button" id="clear-progression">Clear</button>
+        </div>
+      </div>
+    </section>
+    <p class="gt-meta gt-message" id="status" role="status"></p>
+    <noscript><p>Turn on JavaScript to use the workshop.</p></noscript>
+  </main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

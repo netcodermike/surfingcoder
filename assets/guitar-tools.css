@@ -1,0 +1,106 @@
+:root {
+  color-scheme: dark;
+  --gt-bg: #18161e;
+  --gt-surface: #221e2b;
+  --gt-ink: #f6edf9;
+  --gt-muted: #c7bad2;
+  --gt-line: #52435e;
+  --gt-accent: #e2bcff;
+  --gt-focus: #cc98f7;
+  --gt-tuned: #9ee5ce;
+  font: 16px/1.45 "Segoe UI", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; color: var(--gt-ink); background: radial-gradient(ellipse at 79% 6%, #362642, transparent 45rem), var(--gt-bg); }
+.guitar-tool { width: min(1136px, calc(100% - 40px)); margin-inline: auto; padding-block: clamp(25px, 3.3vw, 43px) 52px; }
+.guitar-tool :focus-visible { outline: 2px solid var(--gt-focus); outline-offset: 3px; }
+.gt-hero { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 24px; }
+.gt-hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.5rem); line-height: 1.02; letter-spacing: -.058em; margin: 5px 0 9px; }
+.gt-hero h1 span { color: var(--gt-accent); background: linear-gradient(105deg, #f6deff, #bc8be9 90%); background-clip: text; -webkit-text-fill-color: transparent; }
+.gt-hero p { color: var(--gt-muted); margin: 0; }
+.gt-hero a { color: var(--gt-accent); font-size: .88rem; text-underline-offset: 4px; font-weight: 650; }
+.guitar-tool .gt-kicker { margin: 0; color: var(--gt-accent); font-size: .72rem; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+.gt-tuner-layout, .gt-workshop-layout { display: grid; gap: 16px; align-items: start; }
+.gt-tuner-layout { grid-template-columns: minmax(220px, .95fr) minmax(0, 2.55fr); }
+.gt-workshop-layout { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); }
+#progressions.gt-workshop-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); }
+.gt-stack { display: grid; gap: 14px; }
+.gt-panel { min-width: 0; padding: clamp(14px, 2vw, 22px); border: 1px solid var(--gt-line); border-radius: 16px; background: linear-gradient(140deg, #302639, var(--gt-surface) 63%); box-shadow: inset 0 1px 0 #f0cfff12, 0 12px 30px #0c081633; }
+.gt-panel h2 { margin: 0; font-size: 1.12rem; }
+.gt-panel-head { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 12px; }
+.gt-meta { color: var(--gt-muted); font-size: .89rem; margin: 8px 0 0; }
+.gt-stack > .gt-meta, .gt-panel-head .gt-meta { margin: 0; }
+.gt-message { min-height: 1.3em; }
+.guitar-tool label { display: block; color: var(--gt-muted); font-size: .83rem; font-weight: 650; }
+.gt-setup label { margin-top: 14px; }
+.guitar-tool select, .guitar-tool input { width: 100%; margin: 4px 0 0; min-height: 40px; padding: 6px 9px; background: #1b1723; color: var(--gt-ink); font: inherit; border: 1px solid var(--gt-line); border-radius: 8px; }
+.gt-panel-head select, .gt-panel-head input { width: auto; }
+.gt-panel-head input { max-width: 6rem; }
+.gt-panel-head label { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.gt-panel-head label > :is(select, input) { margin: 0; }
+.guitar-tool button { min-height: 40px; font: inherit; font-weight: 650; color: var(--gt-ink); background: #332940; padding: 7px 12px; border: 1px solid var(--gt-line); border-radius: 8px; cursor: pointer; }
+.guitar-tool button:hover:not(:disabled) { border-color: var(--gt-focus); background: #473457; }
+.guitar-tool button:disabled { opacity: .52; cursor: default; }
+.guitar-tool button.gt-primary, .guitar-tool button[aria-pressed="true"] { color: #231730; border-color: #d9a9ff; background: linear-gradient(130deg, #ebd0ff, #b57de4); }
+.guitar-tool button.gt-primary:hover:not(:disabled), .guitar-tool button[aria-pressed="true"]:hover:not(:disabled) { background: var(--gt-accent); }
+.gt-tabs, .gt-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.gt-tabs { margin-bottom: 14px; }
+.gt-actions { margin-top: 13px; }
+.gt-meter { position: relative; background: radial-gradient(ellipse at 50% 34%, #472e5a 0, transparent 73%), linear-gradient(145deg, #2b2135, #221b2d 80%); }
+.gt-note { text-align: center; display: grid; gap: 4px; margin-top: 10px; }
+#reading-note { display: block; color: var(--gt-accent); font-size: clamp(3.5rem, 8vw, 4.8rem); font-weight: 800; line-height: .95; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+#reading-hz { color: var(--gt-muted); font-size: .88rem; font-variant-numeric: tabular-nums; }
+.gt-scale { margin: 16px auto 0; max-width: 550px; padding-inline: 6px; }
+.gt-ticks { position: relative; height: 28px; border-radius: 5px; background: repeating-linear-gradient(90deg,#b7a4cc64 0 1px, transparent 1px 5%), linear-gradient(90deg, #593d78, #2f2441 42%, #62478a 50%, #2f2441 58%, #593d78); }
+.gt-ticks::after { content: ""; position: absolute; left: 50%; top: -4px; width: 2px; height: 36px; background: #f3caffaa; transform: translateX(-50%); }
+.gt-ticks span { z-index: 1; position: absolute; top: -6px; height: 40px; width: 4px; border-radius: 4px; background: #f4c4ff; transform: translateX(-50%); box-shadow: 0 0 11px #e698fd; }
+.gt-scale-labels { display: flex; justify-content: space-between; color: var(--gt-muted); font-size: .73rem; margin-top: 7px; }
+.gt-tuning-state { text-align: center; margin: 14px 0 4px; font-weight: 700; }
+.gt-centered :is(.gt-tuning-state, #reading-note) { color: var(--gt-tuned); }
+.gt-centered .gt-ticks span { background: var(--gt-tuned); box-shadow: 0 0 11px #9ff0ce; }
+.gt-targets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 78px), 1fr)); gap: 6px; }
+.gt-targets button { display: grid; gap: 2px; padding: 6px; }
+.gt-targets span { font-size: .75rem; }
+.gt-targets strong { font-size: 1.24rem; }
+.gt-targets[data-paired] { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.gt-targets[data-paired] > div { display: grid; gap: 4px; }
+.gt-targets[data-paired] > div > span { text-align: center; color: var(--gt-muted); font-weight: 650; }
+.gt-targets[data-paired] button { gap: 0; padding: 3px; }
+#reference-tone { margin-top: 10px; }
+.gt-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px; margin-block: 9px; }
+.gt-chord-name { color: var(--gt-accent); font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.06; letter-spacing: -.035em; overflow-wrap: anywhere; font-weight: 750; margin: 4px 0 9px; }
+.gt-pitches { display: flex; gap: 5px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
+.gt-pitches li { border: 1px solid #654c78; color: var(--gt-accent); font-size: .84rem; padding: 4px 8px; border-radius: 999px; background: #322641; }
+#fretboard { border-collapse: separate; border-spacing: 3px; table-layout: fixed; width: 100%; }
+#fretboard th { color: var(--gt-muted); font-size: .8rem; }
+#fretboard th:first-child { width: 46px; }
+#fretboard td { padding: 0; background: linear-gradient(90deg, transparent calc(50% - .5px), #b297c467 calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)); }
+#fretboard button { width: 100%; min-height: 35px; padding: 3px; background: #211a2cce; color: #bda2d0; }
+#fretboard button[aria-pressed="true"] { color: #211529; background: linear-gradient(120deg, #f4d8ff, #b17ce4); }
+.gt-chord-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 124px), 1fr)); gap: 9px; }
+.gt-chord-grid button { text-align: left; min-height: 60px; display: grid; }
+.gt-chord-grid button > strong { color: var(--gt-accent); font-size: 1.18rem; }
+.gt-chord-grid button > span { font-size: .79rem; font-weight: 500; color: var(--gt-muted); }
+.gt-preview { margin: 0; color: var(--gt-accent); font-size: 1.1rem; font-weight: 650; }
+.gt-progression { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 142px), 1fr)); gap: 7px; padding: 0; margin: 0; list-style: none; }
+.gt-progression li { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.gt-progression li > :first-child { border-radius: 8px 0 0 8px; text-align: left; overflow-wrap: anywhere; }
+.gt-progression li > :last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }
+
+@media (max-width: 720px) {
+  .guitar-tool { width: calc(100% - 24px); }
+  .gt-tuner-layout, .gt-workshop-layout, #progressions.gt-workshop-layout { grid-template-columns: minmax(0, 1fr); }
+  .gt-setup { display: grid; grid-template-columns: 1fr 1.65fr; align-items: center; gap: 6px 10px; }
+  .gt-setup :is(h2, p) { grid-column: 1 / -1; }
+  .gt-setup label, .gt-setup select, .gt-setup input { margin: 0; }
+  .gt-targets[data-paired] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 390px) {
+  .gt-panel { padding: 12px; }
+  #fretboard th:first-child { width: 31px; }
+  #fretboard { border-spacing: 2px; }
+  #fretboard button { min-height: 39px; }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "surfingcoder-guitar-tuner",
+  "kind": "runtime",
+  "caption": "The twelve-string tuner showing the first course in tune with a synthetic E2 input.",
+  "capture_date": "2026-11-15T20:29:47.540986+00:00",
+  "demo_data": true
+}

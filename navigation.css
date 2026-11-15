@@ -56,7 +56,7 @@
 }
 
 .sc-site-header .sc-nav-links > a,
-.sc-site-header .sc-games > summary {
+.sc-site-header .sc-dropdown > summary {
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
@@ -74,20 +74,20 @@
 .sc-site-header .sc-nav-links > a[aria-current] { color: #d9a2ff; }
 .sc-site-header .sc-nav-links > a[aria-current] { border-bottom-color: #b577ed; }
 
-.sc-site-header .sc-games { position: relative; margin: 0; }
-.sc-site-header .sc-games > summary {
+.sc-site-header .sc-dropdown { position: relative; margin: 0; }
+.sc-site-header .sc-dropdown > summary {
   display: list-item;
   list-style: revert;
   list-style-position: inside;
   padding-block: calc((var(--sc-link-height) - 3px - 1lh) / 2);
   cursor: pointer;
 }
-.sc-site-header .sc-games > summary > span[aria-hidden="true"] { display: none; }
-.sc-site-header .sc-games > summary:hover,
-.sc-site-header .sc-games[open] > summary,
-.sc-site-header .sc-games:has(a[aria-current]) > summary { color: #d9a2ff; }
-.sc-site-header .sc-games:has(a[aria-current]) > summary { border-bottom-color: #b577ed; }
-.sc-site-header .sc-games-links {
+.sc-site-header .sc-dropdown > summary > span[aria-hidden="true"] { display: none; }
+.sc-site-header .sc-dropdown > summary:hover,
+.sc-site-header .sc-dropdown[open] > summary,
+.sc-site-header .sc-dropdown:has(a[aria-current]) > summary { color: #d9a2ff; }
+.sc-site-header .sc-dropdown:has(a[aria-current]) > summary { border-bottom-color: #b577ed; }
+.sc-site-header .sc-dropdown-links {
   position: absolute;
   top: 100%;
   left: 0;
@@ -100,7 +100,7 @@
   background: #271f32;
   box-shadow: 0 8px 22px #100b16a0;
 }
-.sc-site-header .sc-games-links a {
+.sc-site-header .sc-dropdown-links a {
   display: block;
   font: inherit;
   color: #f0e9f5;
@@ -108,8 +108,8 @@
   border-radius: 5px;
   text-decoration: none;
 }
-.sc-site-header .sc-games-links a:hover,
-.sc-site-header .sc-games-links a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
+.sc-site-header .sc-dropdown-links a:hover,
+.sc-site-header .sc-dropdown-links a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
 
 .sc-site-header .sc-nav-links > .sc-github {
   gap: 9px;
@@ -162,4 +162,10 @@ body > .sc-site-footer {
   .sc-site-header .sc-nav-links { --sc-link-height: 35px; font-size: 13px; gap: 1px clamp(6px, 1.55vw, 9px); }
   .sc-site-header .sc-nav-links > a { padding-block: 3px; }
   .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }
+}
+
+.sc-site-header .sc-guitar-links { width: max-content; max-width: min(238px, calc(100vw - 28px)); }
+
+@media (max-width: 530px) {
+  .sc-site-header .sc-guitar-links { left: 50%; transform: translateX(-50%); }
 }
