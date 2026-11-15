@@ -44,13 +44,11 @@ GAMES = (
     ('Slots', '/slots/', 'slots/index.html'),
 )
 GUITAR = (
-    ('Guitar Tuner', '/guitar-tuner/', 'guitar-tuner/index.html'),
-    ('Guitar Chord Workshop', '/guitar-chords/', 'guitar-chords/index.html'),
     ('Blues Progression Atlas', '/apps/blues-progression-atlas/', 'apps/blues-progression-atlas/index.html'),
     ('Chord Voicing Lab', '/apps/chord-voicing-lab/', 'apps/chord-voicing-lab/index.html'),
+    ('Guitar Chord Workshop', '/guitar-chords/', 'guitar-chords/index.html'),
+    ('Guitar Tuner', '/guitar-tuner/', 'guitar-tuner/index.html'),
     ('String Instrument Tuner', '/apps/string-instrument-tuner/', 'apps/string-instrument-tuner/index.html'),
-    ('Electric Guitar Designer (desktop)', 'https://github.com/netcodermike/electric-guitar-designer', None),
-    ('Guitar Chord Desk (desktop)', 'https://github.com/netcodermike/guitar-chord-desk', None),
 )
 
 
