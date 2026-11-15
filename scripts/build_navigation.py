@@ -48,7 +48,6 @@ GUITAR = (
     ('Chord Voicing Lab', '/apps/chord-voicing-lab/', 'apps/chord-voicing-lab/index.html'),
     ('Guitar Chord Workshop', '/guitar-chords/', 'guitar-chords/index.html'),
     ('Guitar Tuner', '/guitar-tuner/', 'guitar-tuner/index.html'),
-    ('String Instrument Tuner', '/apps/string-instrument-tuner/', 'apps/string-instrument-tuner/index.html'),
 )
 
 
