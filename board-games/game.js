@@ -19,8 +19,8 @@ const games = {
     'Race all ten marbles to the opposite point. Move one space or hop over adjacent marbles of either color. Select a highlighted landing to take its hop route. Once a marble enters its destination triangle it stays inside.'),
   'chess':standard(createChess,chessMoves,playChess,chooseChess,
     'Checkmate the opposing king. Sea Glass plays White. Select a piece to see legal moves. Castling, en passant, underpromotion and automatic draw detection are supported.'),
-  'reversi':standard(createReversi,reversiMoves,playReversi,chooseReversi,
-    'Place a disc to trap one or more opposing discs in a straight line. Trapped discs flip to your color. A side with no move passes. The most discs wins when neither side can move.'),
+  'othello':standard(createReversi,reversiMoves,playReversi,chooseReversi,
+    'Sea Glass moves first. Place a disc to trap one or more opposing discs in a straight line. Trapped discs flip to your color. A side with no legal move passes. The side with more discs wins when neither side can move.'),
   'four-in-a-row':standard(createFour,fourMoves,playFour,chooseFour,
     'Choose a column to drop a disc into its lowest open spot. The first side to connect four horizontally, vertically or diagonally wins.'),
 }
@@ -44,6 +44,7 @@ function isComputer() {
 }
 function gameId() {
   const key = location.hash.slice(1)
+  if (key === 'reversi') return 'othello'
   return Object.hasOwn(games,key) ? key : 'checkers'
 }
 function reset(opponent) {
@@ -133,7 +134,7 @@ function decorateCell(button,id,piece,state,cols,rows) {
     button.style.setProperty('--x',(30+30*x)/780*100+'%')
     button.style.setProperty('--y',(33+39*y)/690*100+'%')
     if (camp) classes.push(camp === 1 ? 'camp-sea' : 'camp-sun')
-  } else if (active === 'reversi') {
+  } else if (active === 'othello') {
     if ([18,21,42,45].includes(id)) classes.push('grid-dot')
   } else if (active !== 'four-in-a-row') {
     classes.push((row+col)%2 ? 'dark-square' : 'light-square')
@@ -207,9 +208,9 @@ function render(focus) {
   if (active === 'chinese-checkers') {
     const finished = side => pieces.filter((piece,id) => piece === side && holes[id].camp === -side).length
     counts = 'Home · '+finished(1)+'/10 : '+finished(-1)+'/10'
-  } else if (active === 'checkers' || active === 'reversi') {
+  } else if (active === 'checkers' || active === 'othello') {
     const remaining = side => pieces.filter(piece => Math.sign(piece) === side).length
-    counts = (active === 'reversi' ? 'Discs' : 'Pieces left')+' · '+remaining(1)+' : '+remaining(-1)
+    counts = (active === 'othello' ? 'Discs' : 'Pieces left')+' · '+remaining(1)+' : '+remaining(-1)
   } else if (state.notation) counts = 'Last move · '+state.notation
   get('score').textContent = counts
   if (focus != null) board.querySelector('[data-cell="'+focus+'"]')?.focus({preventScroll:true})

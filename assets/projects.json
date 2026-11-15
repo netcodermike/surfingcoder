@@ -4150,7 +4150,7 @@
   {
     "name": "surfingcoder-board-games",
     "title": "SurfingCoder Board Games",
-    "description": "Play Checkers, Chinese Checkers, Chess, Reversi and Four in a Row against the computer or a friend.",
+    "description": "Play Checkers, Chinese Checkers, Chess, Othello and Four in a Row against the computer or a friend.",
     "languages": [
       "JavaScript"
     ],

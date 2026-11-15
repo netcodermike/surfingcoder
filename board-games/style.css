@@ -48,7 +48,7 @@ button, select, summary { cursor: pointer; }
 #board { display: grid; position: relative; border-radius: 10px; border: 2px solid #6c587c; background: #251c33; }
 #board:not(.chinese-checkers) { grid-template-columns: repeat(8,minmax(0,1fr)); }
 #board.four-in-a-row { grid-template-columns: repeat(7,minmax(0,1fr)); padding: 5px; gap: 2px; background: #3a3060; }
-#board.reversi { background: #1b393f; padding: 2px; border-color: #477875; }
+#board.othello { background: #1b393f; padding: 2px; border-color: #477875; }
 #board.chinese-checkers {
   display: block; aspect-ratio: 780 / 690; border-color: #5a486c;
   background: radial-gradient(ellipse at 50% 52%, #392b50,#211a31 78%);
@@ -63,7 +63,7 @@ button, select, summary { cursor: pointer; }
 .cell[aria-disabled="true"] { cursor: default; }
 .cell.light-square { background: #807095; }
 .cell.dark-square { background: #352746; }
-.reversi .cell { background: #2e5b60; border: 1px solid #243f48; }
+.othello .cell { background: #2e5b60; border: 1px solid #243f48; }
 .four-in-a-row .cell { border-radius: 9px; background: #524477; }
 .four-in-a-row .cell::before {
   content: ""; position: absolute; width: 74%; aspect-ratio: 1; border-radius: 50%;
