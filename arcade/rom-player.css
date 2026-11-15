@@ -1,0 +1,4 @@
+:root { color-scheme: dark; font: 14px/1.4 "Segoe UI",system-ui,sans-serif; background: #110c20; color: #decce8; }
+body { margin: 0; padding: 0 0 3px; }
+#game { width: 100%; height: min(74vh,610px); min-height: 250px; }
+#notice { padding: 0 10px; }

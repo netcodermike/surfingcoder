@@ -35,10 +35,11 @@ LINKS = (
     ('About', '/about.html', 'about.html'),
 )
 GAMES = (
+    ('Arcade', '/arcade/', 'arcade/index.html'),
+    ('Board Games', '/board-games/', 'board-games/index.html'),
     ('Cards', '/cards/', 'cards/index.html'),
     ('Pinball', '/pinball/', 'pinball/index.html'),
     ('Slots', '/slots/', 'slots/index.html'),
-    ('Board Games', '/board-games/', 'board-games/index.html'),
 )
 
 
