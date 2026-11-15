@@ -38,6 +38,7 @@ GAMES = (
     ('Cards', '/cards/', 'cards/index.html'),
     ('Pinball', '/pinball/', 'pinball/index.html'),
     ('Slots', '/slots/', 'slots/index.html'),
+    ('Board Games', '/board-games/', 'board-games/index.html'),
 )
 
 

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Checkers, Chinese Checkers, Chess, Reversi and Four in a Row against the computer or a friend.">
+  <title>SurfingCoder Board Games</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./game.js"></script>
+<link rel="stylesheet" href="/navigation.css?v=8e4342cc3a3c">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
+</head>
+<body>
+  <a class="skip-link" href="#games">Skip to the games</a>
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-games">
+        <summary>Games</summary>
+        <ul class="sc-games-links">
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/board-games/" aria-current="page">Board Games</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+  <main id="games">
+    <header role="group" aria-label="Page controls" class="game-heading">
+      <h1>SurfingCoder <span>Board Games</span></h1>
+    </header>
+    <nav id="game-picker" class="game-picker" aria-label="Choose a board game">
+      <a id="checkers" href="#checkers" aria-current="true">Checkers</a>
+      <a id="chinese-checkers" href="#chinese-checkers">Chinese Checkers</a>
+      <a id="chess" href="#chess">Chess</a>
+      <a id="reversi" href="#reversi">Reversi</a>
+      <a id="four-in-a-row" href="#four-in-a-row">Four in a Row</a>
+    </nav>
+    <section class="game-table" aria-labelledby="game-name">
+      <div class="play-area">
+        <div class="board-frame">
+          <div id="board" role="group" aria-label="Game board"></div>
+        </div>
+      </div>
+      <aside class="game-panel" aria-label="Game controls">
+        <h2 id="game-name">Checkers</h2>
+        <div class="sides" aria-label="Players">
+          <span id="first-side"><i class="sample sea"></i><span></span></span>
+          <span id="second-side"><i class="sample sun"></i><span></span></span>
+        </div>
+        <p id="status" role="status"></p>
+        <p id="score"></p>
+        <div class="game-options">
+          <label for="opponent">Opponent</label>
+          <select id="opponent">
+            <option value="computer">Computer</option>
+            <option value="local">Two players</option>
+          </select>
+          <button id="restart" type="button">New game</button>
+        </div>
+        <details class="rules" open>
+          <summary>How to play</summary>
+          <p id="rules"></p>
+        </details>
+        <a class="source-link" href="https://github.com/netcodermike/surfingcoder-board-games">Game source ↗</a>
+      </aside>
+    </section>
+    <dialog id="promotion">
+      <form method="dialog">
+        <h2>Promote your pawn</h2>
+        <div class="promotion-choices">
+          <button value="q">Queen</button>
+          <button value="r">Rook</button>
+          <button value="b">Bishop</button>
+          <button value="n">Knight</button>
+        </div>
+      </form>
+    </dialog>
+    <noscript>Enable JavaScript to play the board games.</noscript>
+  </main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>
