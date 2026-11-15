@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ride the number swell. Combine four tiles using arithmetic to hit the target.">
+  <title>Number Swell | SurfingCoder Games</title>
+  <link rel="stylesheet" href="/assets/puzzle-games.css">
+  <script type="module" src="./play.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=8e4342cc3a3c">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
+</head>
+<body class="number-swell">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-games">
+        <summary>Games</summary>
+        <ul class="sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/number-swell/" aria-current="page">Number Swell</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/slots/">Slots</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+  <main class="puzzle">
+    <div class="puzzle-hero">
+      <div>
+        <p class="eyebrow">SurfingCoder Games</p>
+        <h1>Number <span>Swell</span></h1>
+        <p>Four number tiles. One target. Find an expression that uses them all.</p>
+      </div>
+      <a class="source-link" href="https://github.com/netcodermike/surfingcoder-number-swell">Game source ↗</a>
+    </div>
+    <div class="puzzle-grid">
+      <section class="game-board" aria-label="Number Swell game">
+        <div class="board-meta">
+          <span>Arithmetic challenge</span>
+          <span><strong id="moves-count">0</strong> / 3 moves</span>
+        </div>
+        <div class="prompt-card target-card">
+          <div class="wave-art" aria-hidden="true"></div>
+          <div class="prompt-content">
+            <p class="eyebrow">Target number</p>
+            <h2 id="target" tabindex="-1">72</h2>
+          </div>
+        </div>
+        <h2 class="control-label" id="tile-label">Number tiles</h2>
+        <div id="tiles" class="tiles" role="group" aria-labelledby="tile-label"></div>
+        <h2 class="control-label" id="operator-label">Operations</h2>
+        <div class="button-row operators" id="operations" role="group" aria-labelledby="operator-label">
+          <button type="button" data-operator="+" aria-label="Add" aria-pressed="false">+</button>
+          <button type="button" data-operator="−" aria-label="Subtract" aria-pressed="false">−</button>
+          <button type="button" data-operator="×" aria-label="Multiply" aria-pressed="false">×</button>
+          <button type="button" data-operator="÷" aria-label="Divide" aria-pressed="false">÷</button>
+        </div>
+        <p class="move-status" id="status" role="status">Select your first number tile.</p>
+        <div class="secondary-actions">
+          <button type="button" id="hint">Hint</button>
+          <button type="button" id="undo">Undo move</button>
+          <button type="button" id="reset">Reset puzzle</button>
+          <button type="button" id="next">New puzzle</button>
+        </div>
+        <noscript><p>Turn on JavaScript to play.</p></noscript>
+      </section>
+      <aside class="puzzle-sidebar" aria-label="Puzzle information">
+        <section class="side-panel">
+          <h2>How to play</h2>
+          <ol class="rules">
+            <li>Pick a number, an operation, then another number.</li>
+            <li>Each move combines two tiles into one. Results must be positive whole numbers.</li>
+            <li>Use all four starting tiles to finish with the target.</li>
+          </ol>
+        </section>
+        <section class="side-panel">
+          <h2>Your moves</h2>
+          <p id="empty-log">Your calculations will appear here.</p>
+          <ol class="clue-log" id="log"></ol>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

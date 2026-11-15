@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Think of something familiar and see if SurfingCoder can guess it in 20 questions.">
+  <title>20 Questions | SurfingCoder Games</title>
+  <link rel="stylesheet" href="/assets/puzzle-games.css">
+  <script type="module" src="./play.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=8e4342cc3a3c">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
+</head>
+<body>
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-games">
+        <summary>Games</summary>
+        <ul class="sc-games-links">
+          <li><a href="/20-questions/" aria-current="page">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/slots/">Slots</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+  <main class="puzzle">
+    <div class="puzzle-hero">
+      <div>
+        <p class="eyebrow">SurfingCoder Games</p>
+        <h1>20 <span>Questions</span></h1>
+        <p>Think of something. Can the computer guess it before question 20 is over?</p>
+      </div>
+      <a class="source-link" href="https://github.com/netcodermike/surfingcoder-20-questions">Game source ↗</a>
+    </div>
+    <div class="puzzle-grid">
+      <section class="game-board" aria-label="20 Questions game">
+        <div class="board-meta">
+          <span id="turn-label">Ready to play</span>
+          <span><strong id="used">0</strong> / 20 used</span>
+        </div>
+        <progress id="progress" value="0" max="20" aria-label="Questions used"></progress>
+        <div class="prompt-card">
+          <div class="wave-art" aria-hidden="true"></div>
+          <div class="prompt-content">
+            <h2 id="prompt" tabindex="-1">Pick something familiar.</h2>
+            <p id="detail">Think of an animal, everyday object, food, place, or something you’d find by the ocean. Keep it to yourself.</p>
+          </div>
+        </div>
+        <div id="answers" class="button-row">
+          <button type="button" class="primary" id="start">Start round</button>
+          <button type="button" class="primary" data-answer="yes" hidden>Yes</button>
+          <button type="button" data-answer="no" hidden>No</button>
+          <button type="button" data-answer="skip" hidden>Not sure</button>
+        </div>
+        <div class="secondary-actions" id="actions" hidden>
+          <button type="button" id="undo">Undo answer</button>
+          <button type="button" id="restart">New round</button>
+        </div>
+        <noscript><p>Turn on JavaScript to play.</p></noscript>
+      </section>
+      <aside class="puzzle-sidebar" aria-label="Round information">
+        <section class="side-panel">
+          <h2>Clue log</h2>
+          <p id="empty-log">Your answers will appear here.</p>
+          <ol id="log" class="clue-log" reversed></ol>
+        </section>
+        <section class="side-panel">
+          <h2>Possible answers</h2>
+          <p>The computer guesses from a catalog. Pick a listed answer if you want to be sure it knows yours.</p>
+          <details id="catalog">
+            <summary>Browse the catalog</summary>
+            <div class="answer-list" id="catalog-list"></div>
+          </details>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

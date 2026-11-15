@@ -1,0 +1,7 @@
+{
+  "name": "surfingcoder-number-swell",
+  "kind": "runtime",
+  "caption": "An arithmetic puzzle in progress showing a hint and the move log.",
+  "capture_date": "2026-11-15T18:21:24.578559+00:00",
+  "demo_data": true
+}
