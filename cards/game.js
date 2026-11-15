@@ -11,7 +11,7 @@ const games = {
     help:'Clear all seven columns. Play any exposed card one rank higher or lower than the waste. Ace and King do not connect. Draw from the stock when you need a new waste card.',
   },
   eights: {
-    title:'Crazy Eights', create:newEights,
+    title:'Gnarly Eights', create:newEights,
     help:'Empty your hand before the computer. Match the top rank or active suit. Eights and the two surfer Jokers are wild. Choose a suit before playing one. If you have no move, draw once. The computer takes its turn if your new card cannot play.',
   },
 }
