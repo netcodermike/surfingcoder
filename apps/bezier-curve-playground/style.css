@@ -1,0 +1,48 @@
+:root { color-scheme: dark; font-family: "Segoe UI", system-ui, sans-serif; color: #f7edfb; background: #18161f; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 78% 8%, #362742, transparent 44rem), #18161f; }
+main { width: min(1120px, calc(100% - 40px)); margin: auto; padding: clamp(25px, 5vw, 56px) 0 42px; }
+.heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 10px 25px; margin-bottom: 20px; }
+h1 { font-size: clamp(2rem, 6vw, 4.1rem); letter-spacing: -.06em; line-height: 1.04; margin: 0 0 10px; color: #e9c8ff; }
+p { line-height: 1.55; }
+.heading p, .controls p { margin: 0; color: #cec0d8; }
+.heading a { color: #e0b6ff; font-weight: 650; text-underline-offset: .25em; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1.95fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.panel { padding: clamp(14px, 2.5vw, 24px); border-radius: 16px; border: 1px solid #594866; background: linear-gradient(145deg, #302639, #241e2e 65%); box-shadow: 0 12px 26px #0c071533; }
+.controls, .controls form { display: grid; gap: 12px; }
+.stage { min-width: 0; }
+canvas { display: block; width: 100%; height: auto; border: 1px solid #5a456c; border-radius: 12px; background: #1d1729; }
+canvas[tabindex] { touch-action: none; cursor: grab; }
+label { display: block; color: #decce8; font-size: .87rem; font-weight: 650; }
+output { float: right; color: #ffcfbc; font-variant-numeric: tabular-nums; }
+input, select, button { font: inherit; }
+input, select { display: block; width: 100%; min-width: 0; margin-top: 4px; }
+input[type="range"] { accent-color: #cf9af5; margin-inline: 0; }
+select, input:not([type="range"]) { padding: 6px 8px; border: 1px solid #665375; border-radius: 7px; background: #1d1728; color: #faeefb; min-height: 35px; }
+button { background: #392b49; color: #f7edfb; border: 1px solid #665375; border-radius: 8px; min-height: 42px; padding: 6px 12px; cursor: pointer; font-weight: 650; }
+button:hover:not(:disabled) { border-color: #e3b8ff; }
+button:disabled { opacity: .56; cursor: default; }
+:focus-visible { outline: 2px solid #e6b9ff; outline-offset: 3px; }
+#reading { margin: 13px 0 0; font-weight: 700; color: #ffe2bc; }
+.pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+fieldset { margin: 0; min-inline-size: 0; padding: 8px; border: 1px solid #665375; border-radius: 8px; }
+legend { color: #e9c4ff; font-size: .84rem; font-weight: 700; }
+fieldset .pair { margin-top: 8px; }
+.actions, .colors { display: flex; flex-wrap: wrap; gap: 8px; }
+.ruler { display: flex; justify-content: space-between; color: #d1bddc; font-size: .78rem; font-variant-numeric: tabular-nums; }
+.track { position: relative; height: 38px; border: 1px solid #6b557f; border-radius: 6px; background: repeating-linear-gradient(90deg, #65557940 0 1px, transparent 1px 6.25%), #20182d; overflow: hidden; }
+.timeline p { margin: 14px 0 4px; color: #eddbf0; font-weight: 650; }
+.track span { display: block; position: absolute; height: 100%; background: linear-gradient(100deg, #a473dc, #d3a3e8); }
+.track.second span { background: linear-gradient(100deg, #d48887, #f8bea5); }
+.track.shared span { background: linear-gradient(100deg, #d9ae66, #ffe49f); }
+#overlap-list { padding-left: 20px; color: #e9d9f2; }
+.island { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: clamp(3px, .9vw, 8px); width: min(100%, 465px); margin-inline: auto; }
+.tile { aspect-ratio: 1; display: grid; place-items: center; border-radius: 9px; font-weight: 800; font-size: clamp(.7rem, 2vw, 1.4rem); }
+.tile.connected { outline: 2px solid #fff5ff; outline-offset: -3px; }
+.hue-0 { background: #c99ff2; color: #220e39; }
+.hue-1 { background: #ffc2a5; color: #3c1d18; }
+.hue-2 { background: #9cdbcf; color: #083633; }
+.hue-3 { background: #ffdb8c; color: #4a3101; }
+.hue-4 { background: #ea9fbe; color: #42162b; }
+.colors [aria-pressed="true"] { outline: 2px solid #fff7ff; outline-offset: 2px; }
+@media (max-width: 730px) { main { width: calc(100% - 24px); } .workspace { grid-template-columns: 1fr; } }
