@@ -9,5 +9,10 @@
 @media(max-width:700px){.collection-head{padding:23px 0 20px}.collection-head h1{font-size:29px}.collection-head h1 span{display:inline}.featured-card-heading{padding:17px 20px 12px}.project-grid.list .featured-card-heading{padding:13px 14px 0}.project-grid.list .featured .card-body{padding-top:8px}}
 
 .project-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}.card-footer{gap:12px;flex-wrap:wrap}.chips{row-gap:7px}
+.play-now{display:inline-flex;align-self:flex-start;align-items:center;justify-content:center;min-height:38px;padding:6px 14px;border:1px solid #d5adef;border-radius:8px;background:linear-gradient(135deg,#e9cbff,#bc86ec);color:#24172f;font-size:.84rem;font-weight:800}
+.play-now:hover{background:#edd5ff;color:#24172f}
+.play-now[hidden]{display:none}
+.card-body>.description:has(+.play-now){margin-bottom:12px}
+.card-body>.play-now{margin-bottom:16px}
 
 @media(max-width:700px){nav>a[href^="articles/"],nav>a[href="about.html"]{display:none}.site-nav{height:auto}.nav-wrap{min-height:69px;flex-wrap:wrap;gap:0 16px;padding-block:6px}nav{gap:11px;flex-wrap:wrap}nav a{padding:7px 0}nav a[aria-current]:after{bottom:0}.brand{font-size:18px;gap:7px}.nav-github{padding:8px}}

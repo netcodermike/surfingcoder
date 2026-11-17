@@ -1,7 +1,9 @@
 """Render the shared header and footer into each published HTML page."""
 
 import hashlib
+import json
 import re
+from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,15 +36,22 @@ LINKS = (
     ('Writing', '/articles/wsl-rankings-misleading.html', 'articles/wsl-rankings-misleading.html'),
     ('About', '/about.html', 'about.html'),
 )
-GAMES = (
-    ('20 Questions', '/20-questions/', '20-questions/index.html'),
-    ('Arcade', '/arcade/', 'arcade/index.html'),
-    ('Board Games', '/board-games/', 'board-games/index.html'),
-    ('Cards', '/cards/', 'cards/index.html'),
-    ('Number Swell', '/number-swell/', 'number-swell/index.html'),
-    ('Pinball', '/pinball/', 'pinball/index.html'),
-    ('Slots', '/slots/', 'slots/index.html'),
-)
+def game_links():
+    projects = json.loads((ROOT / 'assets/projects.json').read_text(encoding='utf-8'))
+    links = []
+    for project in projects:
+        if not (label := project.get('gameMenuLabel')):
+            continue
+        href = project['applicationUrl']
+        if not href.startswith('/') or not href.endswith('/') or href.startswith('//'):
+            raise ValueError(f'{label}: game links must use a local directory URL')
+        links.append((label, href, href.lstrip('/') + 'index.html'))
+    if len({href for _, href, _ in links}) != len(links):
+        raise ValueError('Duplicate game links')
+    return tuple(sorted(links, key=lambda item: item[0].casefold()))
+
+
+GAMES = game_links()
 GUITAR = (
     ('Blues Progression Atlas', '/apps/blues-progression-atlas/', 'apps/blues-progression-atlas/index.html'),
     ('Chord Voicing Lab', '/apps/chord-voicing-lab/', 'apps/chord-voicing-lab/index.html'),
@@ -61,7 +70,7 @@ def render_navigation(page):
     def link(item, indent):
         label, href, active_page = item
         current = ' aria-current="page"' if page == active_page else ''
-        return f'{indent}<a href="{href}"{current}>{label}</a>'
+        return f'{indent}<a href="{escape(href)}"{current}>{escape(label)}</a>'
 
     def dropdown(label, slug, items):
         return [

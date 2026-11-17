@@ -440,7 +440,8 @@
       "demo_data": true
     },
     "applicationUrl": "/apps/sixteen-card-square/",
-    "ci": "https://github.com/netcodermike/sixteen-card-square/actions/workflows/verify.yml"
+    "ci": "https://github.com/netcodermike/sixteen-card-square/actions/workflows/verify.yml",
+    "gameMenuLabel": "Sixteen Card Square"
   },
   {
     "name": "transversal-hunt",
@@ -463,7 +464,8 @@
       "demo_data": true
     },
     "applicationUrl": "/apps/transversal-hunt/",
-    "ci": "https://github.com/netcodermike/transversal-hunt/actions/workflows/verify.yml"
+    "ci": "https://github.com/netcodermike/transversal-hunt/actions/workflows/verify.yml",
+    "gameMenuLabel": "Transversal Hunt"
   },
   {
     "name": "modular-arithmetic-arcade",
@@ -486,7 +488,8 @@
       "demo_data": true
     },
     "applicationUrl": "/apps/modular-arithmetic-arcade/",
-    "ci": "https://github.com/netcodermike/modular-arithmetic-arcade/actions/workflows/verify.yml"
+    "ci": "https://github.com/netcodermike/modular-arithmetic-arcade/actions/workflows/verify.yml",
+    "gameMenuLabel": "Modular Arithmetic Arcade"
   },
   {
     "name": "surfingcoder-number-swell",
@@ -509,7 +512,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-number-swell/actions/workflows/verify.yml",
-    "applicationUrl": "/number-swell/"
+    "applicationUrl": "/number-swell/",
+    "gameMenuLabel": "Number Swell"
   },
   {
     "name": "multi-latin-square-studio",
@@ -3169,7 +3173,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-tuner/actions/workflows/verify.yml",
-    "applicationUrl": "/guitar-tuner/"
+    "applicationUrl": "/guitar-tuner/",
+    "playNow": true
   },
   {
     "name": "surfingcoder-guitar-chord-workshop",
@@ -3192,7 +3197,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-chord-workshop/actions/workflows/verify.yml",
-    "applicationUrl": "/guitar-chords/"
+    "applicationUrl": "/guitar-chords/",
+    "playNow": true
   },
   {
     "name": "electric-guitar-designer",
@@ -3356,7 +3362,8 @@
       "capture_method": "Playwright Chromium on disposable CI runner"
     },
     "ci": "https://github.com/netcodermike/chord-voicing-lab/actions",
-    "applicationUrl": "/apps/chord-voicing-lab/"
+    "applicationUrl": "/apps/chord-voicing-lab/",
+    "playNow": true
   },
   {
     "name": "blues-progression-atlas",
@@ -3386,7 +3393,8 @@
       "capture_method": "Playwright Chromium on disposable CI runner"
     },
     "ci": "https://github.com/netcodermike/blues-progression-atlas/actions",
-    "applicationUrl": "/apps/blues-progression-atlas/"
+    "applicationUrl": "/apps/blues-progression-atlas/",
+    "playNow": true
   },
   {
     "name": "string-instrument-tuner",
@@ -3417,7 +3425,8 @@
       "visible_status": "Microphone active · no audio is uploaded."
     },
     "ci": "https://github.com/netcodermike/string-instrument-tuner/actions",
-    "applicationUrl": "/apps/string-instrument-tuner/"
+    "applicationUrl": "/apps/string-instrument-tuner/",
+    "playNow": true
   },
   {
     "name": "polyrhythm-matrix",
@@ -3539,7 +3548,8 @@
       "capture_method": "Playwright Chromium on disposable CI runner"
     },
     "ci": "https://github.com/netcodermike/interval-ear-gym/actions",
-    "applicationUrl": "/apps/interval-ear-gym/"
+    "applicationUrl": "/apps/interval-ear-gym/",
+    "gameMenuLabel": "Interval Ear Gym"
   },
   {
     "name": "interactive-audio-synthesizer",
@@ -4771,7 +4781,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-arcade/actions/workflows/verify.yml",
-    "applicationUrl": "/arcade/"
+    "applicationUrl": "/arcade/",
+    "gameMenuLabel": "Arcade"
   },
   {
     "name": "surfingcoder-20-questions",
@@ -4794,7 +4805,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-20-questions/actions/workflows/verify.yml",
-    "applicationUrl": "/20-questions/"
+    "applicationUrl": "/20-questions/",
+    "gameMenuLabel": "20 Questions"
   },
   {
     "name": "surfingcoder-board-games",
@@ -4817,7 +4829,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-board-games/actions/workflows/verify.yml",
-    "applicationUrl": "/board-games/"
+    "applicationUrl": "/board-games/",
+    "gameMenuLabel": "Board Games"
   },
   {
     "name": "surfingcoder-cards",
@@ -4840,7 +4853,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-cards/actions/workflows/verify.yml",
-    "applicationUrl": "/cards/"
+    "applicationUrl": "/cards/",
+    "gameMenuLabel": "Cards"
   },
   {
     "name": "surfingcoder-pinball",
@@ -4863,7 +4877,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-pinball/actions/workflows/verify.yml",
-    "applicationUrl": "/pinball/"
+    "applicationUrl": "/pinball/",
+    "gameMenuLabel": "Pinball"
   },
   {
     "name": "surfingcoder-slots",
@@ -4886,16 +4901,17 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-slots/actions/workflows/verify.yml",
-    "applicationUrl": "/slots/"
+    "applicationUrl": "/slots/",
+    "gameMenuLabel": "Slots"
   },
   {
     "name": "procedural-planet-explorer",
     "title": "Procedural Planet Explorer",
-    "description": "Generate a deterministic 2D planet from a numeric seed, explore biome sectors, inspect weather and life, and export an SVG terrain map.",
+    "description": "Generate a planet from a seed, explore its biomes, and export a map.",
     "languages": [
       "C#"
     ],
-    "platform": "Windows, macOS, Linux",
+    "platform": "Browser edition · Windows, macOS, Linux",
     "url": "https://github.com/netcodermike/procedural-planet-explorer",
     "category": "Games & learning",
     "featured": false,
@@ -4904,19 +4920,24 @@
     "capture": {
       "name": "procedural-planet-explorer",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
+      "capture_date": "2026-11-17T03:25:56.620043+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/procedural-planet-explorer/actions"
+    "ci": "https://github.com/netcodermike/procedural-planet-explorer/actions",
+    "gameMenuLabel": "Procedural Planet Explorer",
+    "applicationUrl": "/apps/procedural-planet-explorer/"
   },
   {
     "name": "pathfinding-playground",
     "title": "Pathfinding Playground",
-    "description": "Paint a weighted map and compare breadth-first search, Dijkstra, and A* through animated exploration.",
+    "description": "Build a map with walls and mud, then compare routes found by A*, Dijkstra, and breadth-first search.",
     "languages": [
       "TypeScript"
     ],
-    "platform": "Windows, macOS, Linux",
+    "platform": "Browser edition · Windows, macOS, Linux",
     "url": "https://github.com/netcodermike/pathfinding-playground",
     "category": "Games & learning",
     "featured": false,
@@ -4925,20 +4946,24 @@
     "capture": {
       "name": "pathfinding-playground",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:21.400853+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T03:25:56.620466+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/pathfinding-playground/actions/runs/42198834987"
+    "ci": "https://github.com/netcodermike/pathfinding-playground/actions/runs/42198834987",
+    "gameMenuLabel": "Pathfinding Playground",
+    "applicationUrl": "/apps/pathfinding-playground/"
   },
   {
     "name": "multiplayer-escape-room",
     "title": "The Last Door — Multiplayer Escape Room",
-    "description": "A cooperative browser puzzle game with shared inventory, server-authoritative answers, live room updates, invitation links, and a JSON room editor.",
+    "description": "Solve three locks in the browser’s solo edition. The source repository includes shared rooms for a Node server.",
     "languages": [
       "TypeScript"
     ],
-    "platform": "Windows, macOS, Linux",
+    "platform": "Browser edition · Windows, macOS, Linux",
     "url": "https://github.com/netcodermike/multiplayer-escape-room",
     "category": "Games & learning",
     "featured": false,
@@ -4947,20 +4972,24 @@
     "capture": {
       "name": "multiplayer-escape-room",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:28:50.417547+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T03:25:56.620785+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/multiplayer-escape-room/actions"
+    "ci": "https://github.com/netcodermike/multiplayer-escape-room/actions",
+    "gameMenuLabel": "The Last Door (Solo)",
+    "applicationUrl": "/apps/multiplayer-escape-room/"
   },
   {
     "name": "chess-tactics-trainer",
     "title": "Chess Tactics Trainer",
-    "description": "Practice a small curated set of coordinate-move checking exercises on a desktop chessboard.",
+    "description": "Find three checking moves by selecting squares or entering chess coordinates.",
     "languages": [
       "Java"
     ],
-    "platform": "Windows, macOS, Linux",
+    "platform": "Browser edition · Windows, macOS, Linux",
     "url": "https://github.com/netcodermike/chess-tactics-trainer",
     "category": "Games & learning",
     "featured": false,
@@ -4969,26 +4998,24 @@
     "capture": {
       "name": "chess-tactics-trainer",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:54.571725+00:00",
+      "capture_date": "2026-11-17T03:25:56.621103+00:00",
       "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "App"
-      ]
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/chess-tactics-trainer/actions/runs/42207308725"
+    "ci": "https://github.com/netcodermike/chess-tactics-trainer/actions/runs/42207308725",
+    "gameMenuLabel": "Chess Tactics Trainer",
+    "applicationUrl": "/apps/chess-tactics-trainer/"
   },
   {
     "name": "maze-forge",
     "title": "Maze Forge",
-    "description": "Generate a seeded perfect maze in C++ and export a self-contained browser game with movement controls and a route reveal.",
+    "description": "Navigate a maze built from a seed. Try three sizes, then use the route hint if you get stuck.",
     "languages": [
       "C++"
     ],
-    "platform": "Windows, macOS, Linux",
+    "platform": "Browser edition · Windows, macOS, Linux",
     "url": "https://github.com/netcodermike/maze-forge",
     "category": "Games & learning",
     "featured": false,
@@ -4997,20 +5024,24 @@
     "capture": {
       "name": "maze-forge",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:29:25.412372+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T03:25:56.621433+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/maze-forge/actions/runs/42198904194"
+    "ci": "https://github.com/netcodermike/maze-forge/actions/runs/42198904194",
+    "gameMenuLabel": "Maze Forge",
+    "applicationUrl": "/apps/maze-forge/"
   },
   {
     "name": "sudoku-studio-desktop",
     "title": "Sudoku Studio Desktop",
-    "description": "Generate uniquely solvable Sudoku boards, validate entries, and reveal solutions.",
+    "description": "Generate uniquely solvable Sudoku puzzles with three clue settings. Play the browser edition using the keyboard or number pad.",
     "languages": [
       "Java"
     ],
-    "platform": "Windows, macOS, Linux",
+    "platform": "Browser edition · Windows, macOS, Linux",
     "url": "https://github.com/netcodermike/sudoku-studio-desktop",
     "category": "Games & learning",
     "featured": false,
@@ -5019,17 +5050,15 @@
     "capture": {
       "name": "sudoku-studio-desktop",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:47.264247+00:00",
+      "capture_date": "2026-11-17T03:25:56.621838+00:00",
       "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "App"
-      ]
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/sudoku-studio-desktop/actions/runs/42205416920"
+    "ci": "https://github.com/netcodermike/sudoku-studio-desktop/actions/runs/42205416920",
+    "gameMenuLabel": "Sudoku Studio",
+    "applicationUrl": "/apps/sudoku-studio-desktop/"
   },
   {
     "name": "round-robin-tournament-studio",
@@ -5062,11 +5091,11 @@
   {
     "name": "spaced-repetition-adventure",
     "title": "Recall Quest — Spaced Repetition Adventure",
-    "description": "Study flashcards in a desktop adventure where successful recall earns XP, unlocks equipment, and advances through locations while a scheduler controls when cards return.",
+    "description": "Review flashcards to earn XP and unlock gear. Import your own deck and keep progress in your browser.",
     "languages": [
       "Java"
     ],
-    "platform": "Windows, macOS, Linux with a graphical  ",
+    "platform": "Browser edition · Windows, macOS, Linux with a graphical  ",
     "url": "https://github.com/netcodermike/spaced-repetition-adventure",
     "category": "Games & learning",
     "featured": false,
@@ -5075,17 +5104,15 @@
     "capture": {
       "name": "spaced-repetition-adventure",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration data.",
-      "capture_date": "2026-11-06T11:21:35.204499+00:00",
+      "capture_date": "2026-11-17T03:25:56.622238+00:00",
       "demo_data": true,
-      "command": [
-        "java",
-        "-cp",
-        "build",
-        "Adventure"
-      ]
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/spaced-repetition-adventure/actions"
+    "ci": "https://github.com/netcodermike/spaced-repetition-adventure/actions",
+    "gameMenuLabel": "Recall Quest",
+    "applicationUrl": "/apps/spaced-repetition-adventure/"
   },
   {
     "name": "swim-lane-seeding",
@@ -5178,11 +5205,11 @@
   {
     "name": "nonogram-line-enumerator",
     "title": "Nonogram Line Enumerator",
-    "description": "Find all consistent patterns for one nonogram row and identify forced cells.",
+    "description": "Fill runs to match the clues and reveal cells that every valid arrangement has in common.",
     "languages": [
       "JavaScript"
     ],
-    "platform": "Cross-platform CLI",
+    "platform": "Browser edition · Cross-platform CLI",
     "url": "https://github.com/netcodermike/nonogram-line-enumerator",
     "category": "Games & learning",
     "featured": false,
@@ -5190,12 +5217,16 @@
     "image": "assets/screenshots/nonogram-line-enumerator.webp",
     "capture": {
       "name": "nonogram-line-enumerator",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic data.",
-      "capture_date": "2026-11-15T02:32:13.628077+00:00",
-      "demo_data": true
+      "kind": "runtime",
+      "capture_date": "2026-11-17T03:25:56.622582+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/nonogram-line-enumerator/actions/workflows/verify.yml"
+    "ci": "https://github.com/netcodermike/nonogram-line-enumerator/actions/workflows/verify.yml",
+    "gameMenuLabel": "Nonogram Line Puzzle",
+    "applicationUrl": "/apps/nonogram-line-enumerator/"
   },
   {
     "name": "braille-cell-converter",
@@ -5222,11 +5253,11 @@
   {
     "name": "word-ladder-generator",
     "title": "Word Ladder Generator",
-    "description": "Find a shortest word ladder in a custom dictionary with one letter changed per step.",
+    "description": "Change one letter at a time to reach the target word. Choose from three challenges and get hints along the way.",
     "languages": [
       "C#"
     ],
-    "platform": "Cross-platform CLI",
+    "platform": "Browser edition · Cross-platform CLI",
     "url": "https://github.com/netcodermike/word-ladder-generator",
     "category": "Games & learning",
     "featured": false,
@@ -5234,12 +5265,16 @@
     "image": "assets/screenshots/word-ladder-generator.webp",
     "capture": {
       "name": "word-ladder-generator",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic inputs.",
-      "capture_date": "2026-11-16T02:35:58.446850+00:00",
-      "demo_data": true
+      "kind": "runtime",
+      "capture_date": "2026-11-17T03:25:56.622895+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/word-ladder-generator/actions/workflows/verify.yml"
+    "ci": "https://github.com/netcodermike/word-ladder-generator/actions/workflows/verify.yml",
+    "gameMenuLabel": "Word Ladder",
+    "applicationUrl": "/apps/word-ladder-generator/"
   },
   {
     "name": "island-flood-puzzle",
@@ -5262,7 +5297,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/island-flood-puzzle/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/island-flood-puzzle/"
+    "applicationUrl": "/apps/island-flood-puzzle/",
+    "gameMenuLabel": "Island Flood Puzzle"
   },
   {
     "name": "hamming-code-trainer",
@@ -5289,11 +5325,11 @@
   {
     "name": "robot-grid-command-replay",
     "title": "Robot Grid Command Replay",
-    "description": "Replay turn and forward commands on a grid, and report each blocked step and final position.",
+    "description": "Program a robot to reach the goal with forward, left, and right commands. Run or step through the sequence.",
     "languages": [
       "Python"
     ],
-    "platform": "Cross-platform CLI",
+    "platform": "Browser edition · Cross-platform CLI",
     "url": "https://github.com/netcodermike/robot-grid-command-replay",
     "category": "Games & learning",
     "featured": false,
@@ -5301,12 +5337,16 @@
     "image": "assets/screenshots/robot-grid-command-replay.webp",
     "capture": {
       "name": "robot-grid-command-replay",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic inputs.",
-      "capture_date": "2026-11-17T02:35:24.004635+00:00",
-      "demo_data": true
+      "kind": "runtime",
+      "capture_date": "2026-11-17T03:25:56.623286+00:00",
+      "demo_data": true,
+      "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "validation_passed": true
     },
-    "ci": "https://github.com/netcodermike/robot-grid-command-replay/actions/workflows/verify.yml"
+    "ci": "https://github.com/netcodermike/robot-grid-command-replay/actions/workflows/verify.yml",
+    "gameMenuLabel": "Robot Grid Challenge",
+    "applicationUrl": "/apps/robot-grid-command-replay/"
   },
   {
     "name": "karnaugh-map-simplifier",
@@ -5329,7 +5369,8 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/karnaugh-map-simplifier/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/karnaugh-map-simplifier/"
+    "applicationUrl": "/apps/karnaugh-map-simplifier/",
+    "gameMenuLabel": "Karnaugh Map Simplifier"
   },
   {
     "name": "linux-backup-server",

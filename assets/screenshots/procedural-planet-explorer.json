@@ -1,6 +1,9 @@
 {
   "name": "procedural-planet-explorer",
   "kind": "runtime",
-  "caption": "Actual application interface with synthetic demo data.",
-  "platform": "Windows"
+  "capture_date": "2026-11-17T03:25:56.620043+00:00",
+  "demo_data": true,
+  "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+  "capture_method": "Headless Chrome on the local GitHub Pages preview",
+  "validation_passed": true
 }

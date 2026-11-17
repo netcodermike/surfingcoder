@@ -1,13 +1,9 @@
 {
   "name": "spaced-repetition-adventure",
   "kind": "runtime",
-  "caption": "Actual application interface with synthetic demonstration data.",
-  "capture_date": "2026-11-06T11:21:35.204499+00:00",
+  "capture_date": "2026-11-17T03:25:56.622238+00:00",
   "demo_data": true,
-  "command": [
-    "java",
-    "-cp",
-    "build",
-    "Adventure"
-  ]
+  "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+  "capture_method": "Headless Chrome on the local GitHub Pages preview",
+  "validation_passed": true
 }

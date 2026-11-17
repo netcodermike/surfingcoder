@@ -1,7 +1,9 @@
 {
   "name": "nonogram-line-enumerator",
-  "kind": "terminal",
-  "caption": "Excerpt from actual sample command output using synthetic data.",
-  "capture_date": "2026-11-15T02:32:13.628077+00:00",
-  "demo_data": true
+  "kind": "runtime",
+  "capture_date": "2026-11-17T03:25:56.622582+00:00",
+  "demo_data": true,
+  "caption": "Playable SurfingCoder browser edition shown during a sample game.",
+  "capture_method": "Headless Chrome on the local GitHub Pages preview",
+  "validation_passed": true
 }
