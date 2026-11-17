@@ -2,27 +2,12 @@
 const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#83cbd5','windWavePeriod','windWaveDirection']];
 let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave']),selected=-1;
 let graphWidth = 1000;
+let periodSeriesKey = 'swell';
 const ns='http://www.w3.org/2000/svg';
 function svg(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!=null)e.textContent=text;return e;}
 const val=(v,suffix)=>Number.isFinite(v)?v.toFixed(1)+suffix:'—';
 const bearing=d=>Number.isFinite(d)?['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(((d%360)+360)%360/22.5)%16]:'—';
-const periodRadius = seconds => 2.8 + Math.max(0, Math.min(12, seconds - 5)) * .35;
-
-function periodKey() {
- const key = document.createElement('div');
- key.className = 'week-period-key';
- const title = document.createElement('strong');
- title.textContent = 'Circle size shows period';
- key.append(title);
- for (const [period, text] of [[5, '≤5 s'], [11, '11 s'], [17, '≥17 s']]) {
-  const item = document.createElement('span');
-  const icon = svg('svg', {width:20,height:20,viewBox:'0 0 20 20','aria-hidden':'true'});
-  icon.append(svg('circle', {cx:10,cy:10,r:periodRadius(period),fill:'none',stroke:'currentColor','stroke-width':1.6}));
-  item.append(icon, text);
-  key.append(item);
- }
- return key;
-}
+const hasPeriod = value => Number.isFinite(value) && value > 0;
 
 export function weekly(rows,{zone,units}){
  const root = document.getElementById('weekly');
@@ -30,8 +15,6 @@ export function weekly(rows,{zone,units}){
  if (root.clientWidth) graphWidth = Math.max(260, root.clientWidth);
  const compact = graphWidth < 520;
  const plotLeft = compact ? 42 : 65;
- const plotRight = graphWidth - (compact ? 8 : 20);
- const plotWidth = plotRight - plotLeft;
  const axisFont = compact ? 10 : 13;
  const fmt=(t,opt)=>new Intl.DateTimeFormat('en-US',{timeZone:zone,...opt}).format(new Date(t*1000));
  const scale=units==='imperial'?3.28084:1,heightUnit=units==='imperial'?' ft':' m',unit=mode==='height'?heightUnit:' s';
@@ -41,14 +24,34 @@ export function weekly(rows,{zone,units}){
  const legend=document.createElement('div');legend.className='week-legend';root.append(legend);
  const series=components.map(([key,name,color,period,direction])=>({key,name,color,period,direction,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}));
  for(const s of series){const l=document.createElement('label'),check=document.createElement('input'),swatch=document.createElement('i');check.type='checkbox';check.checked=enabled.has(s.key)&&s.available;check.disabled=!s.available;check.setAttribute('aria-label',s.name);check.onchange=()=>{check.checked?enabled.add(s.key):enabled.delete(s.key);weekly(rows,{zone,units});};swatch.style.background=s.color;l.append(check,swatch,document.createTextNode(s.name+(s.available?'':' · unavailable')));legend.append(l);}
- const graph=svg('svg',{viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':`Seven-day ${mode} forecast in ${unit.trim()}, in location time. Use the hourly slider and data table for exact values.`,class:'week-chart'});
- const shown=series.filter(s=>s.available&&enabled.has(s.key));const max=Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
- for(let i=0;i<5;i++){const y=260-i*55;graph.append(svg('line',{x1:plotLeft,y1:y,x2:plotRight,y2:y,stroke:'#44394f'}),svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont},(max*i/4).toFixed(1)+unit));}
+ const shown = series.filter(s => s.available && enabled.has(s.key));
+ const periodOptions = mode === 'height' ? shown.filter(s => rows.some(row => hasPeriod(row[s.period]))) : [];
+ const periodSeries = periodOptions.find(s => s.key === periodSeriesKey) ?? periodOptions[0];
+ const plotRight = graphWidth - (periodSeries ? (compact ? 42 : 64) : (compact ? 8 : 20));
+ const plotWidth = plotRight - plotLeft;
+ const description = 'Seven-day ' + mode + ' forecast in ' + unit.trim() + ', in location time.' +
+  (periodSeries ? ' Blue dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
+  ' Use the hourly slider and data table for exact values.';
+ const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':description,class:'week-chart'});
+ const max = Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
+ const periods = periodSeries ? rows.map(row => row[periodSeries.period]).filter(hasPeriod) : [];
+ const periodMax = 4 * Math.ceil(Math.max(20, ...periods)/4);
+ const periodAxis = svg('g', {class:'week-period-axis','font-size':axisFont,'text-anchor':'end'});
+ const rightLabelX = graphWidth - (compact ? 5 : 12);
+ for (let i=0;i<5;i++) {
+  const y=260-i*55;
+  graph.append(svg('line',{x1:plotLeft,y1:y,x2:plotRight,y2:y,stroke:'#44394f'}),
+   svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont},(max*i/4).toFixed(1)+unit));
+  if (periodSeries) periodAxis.append(svg('text', {x:rightLabelX,y:y+4}, periodMax*i/4 + ' s'));
+ }
+ if (periodSeries) {
+  graph.append(svg('text', {x:6,y:18,fill:'#b5a9c2','font-size':axisFont}, 'Height'));
+  periodAxis.append(svg('text', {x:rightLabelX,y:18}, 'Period'));
+  graph.append(periodAxis);
+ }
  const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
  const days=new Map();rows.forEach(r=>{const d=fmt(r.time,{year:'numeric',month:'2-digit',day:'2-digit'});if(!days.has(d))days.set(d,[]);days.get(d).push(r);});
  [...days.values()].forEach(day=>{const xx=x(day[0].time);const label=fmt(day[0].time,{weekday:compact?'narrow':'short',day:'numeric'});graph.append(svg('line',{x1:xx,y1:20,x2:xx,y2:260,stroke:'#44394f','stroke-dasharray':'3 5'}),svg('text',{x:Math.min(xx+3,graphWidth-(compact?25:48)),y:289,fill:'#b5a9c2','font-size':axisFont},label));});
- const markers = svg('g', {class:'week-period-dots',fill:'none','aria-hidden':'true'});
- const markerStep = compact ? 24 : 12;
  for (const s of shown) {
   let path = '', active = false;
   s.values.forEach((value, i) => {
@@ -56,16 +59,35 @@ export function weekly(rows,{zone,units}){
    const row = rows[i], xx = x(row.time), yy = 260-value/max*220;
    path += (active ? 'L' : 'M') + xx.toFixed(2) + ',' + yy.toFixed(2) + ' ';
    active = true;
-   const period = row[s.period];
-   if (mode === 'height' && i % markerStep === 0 && Number.isFinite(period) && period > 0) {
-    markers.append(svg('circle', {cx:xx,cy:yy,r:periodRadius(period),stroke:s.color,'stroke-width':1.6}));
-   }
   });
   graph.append(svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'}));
  }
- if (markers.childElementCount) {
+ if (periodSeries) {
+  const markers = svg('g', {class:'week-period-dots','aria-hidden':'true'});
+  let lastX = -Infinity;
+  for (const row of rows) {
+   const xx = x(row.time), period = row[periodSeries.period];
+   if (!hasPeriod(period) || xx-lastX < 12) continue;
+   markers.append(svg('circle', {cx:xx,cy:260-period/periodMax*220,r:3.3}));
+   lastX = xx;
+  }
   graph.append(markers);
-  root.append(periodKey());
+  const picker = document.createElement('div');
+  picker.className = 'week-period-options';
+  const periodLabel = document.createElement('label');
+  periodLabel.htmlFor = 'week-period-series';
+  periodLabel.textContent = 'Period dots';
+  const periodSelect = document.createElement('select');
+  periodSelect.id = periodLabel.htmlFor;
+  for (const item of periodOptions) periodSelect.append(new Option(item.name, item.key));
+  periodSelect.value = periodSeries.key;
+  periodSelect.onchange = () => {
+   periodSeriesKey = periodSelect.value;
+   weekly(rows,{zone,units});
+   document.getElementById('week-period-series').focus({preventScroll:true});
+  };
+  picker.append(periodLabel,periodSelect);
+  root.append(picker);
  }
  if(selected<0||selected>=rows.length)selected=Math.max(0,rows.findIndex(r=>r.time>=Date.now()/1000));
  const cursor=svg('line',{x1:x(rows[selected].time),y1:20,x2:x(rows[selected].time),y2:260,stroke:'#f0eaf6','stroke-dasharray':'4 4'});graph.append(cursor);

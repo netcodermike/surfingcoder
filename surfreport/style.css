@@ -72,10 +72,12 @@
 .week-legend label { min-height: 30px; margin: 0; gap: 7px; color: var(--ink); font-size: .92rem; }
 .week-legend input { width: 17px; height: 17px; margin: 0; flex: none; }
 .week-legend i { width: 22px; height: 4px; border-radius: 2px; flex: none; }
-.week-period-key { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: -3px 0 9px; color: var(--muted); font-size: .82rem; }
-.week-period-key strong { color: var(--text-secondary); font-weight: 650; }
-.week-period-key span { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
-.week-period-key svg { color: var(--accent-light); }
+.week-period-options { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: -3px 0 10px; }
+.week-period-options label { display: inline-flex; align-items: center; gap: 7px; margin: 0; color: #8ecaff; font-size: .88rem; font-weight: 700; }
+.week-period-options label::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: #79bdff; }
+.week-period-options select { width: auto; max-width: 100%; padding: 6px 8px; font-size: .86rem; }
+.week-period-axis { fill: #8ecaff; }
+.week-period-dots { fill: #79bdff; }
 .week-readout { font-size: .93rem; line-height: 1.45; gap: 8px 14px; }
 .week-readout > strong { font-size: 1rem; color: var(--ink); }
 .week-reading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; color: var(--ink); }

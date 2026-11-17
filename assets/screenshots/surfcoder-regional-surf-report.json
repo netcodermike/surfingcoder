@@ -1,8 +1,8 @@
 {
   "name": "surfcoder-regional-surf-report",
   "kind": "runtime",
-  "caption": "Seven-day Indian Beach wave height forecast with period encoded by the size of hollow circles along the height series.",
-  "capture_date": "2026-11-17T05:38:33.153653+00:00",
+  "caption": "Seven-day Indian Beach forecast with height on the left axis and blue swell-period dots on the right seconds axis.",
+  "capture_date": "2026-11-17T06:33:31.080779+00:00",
   "demo_data": false,
   "validation_passed": true,
   "capture_method": "Headless Chrome running the app interface without the shared site navigation"
