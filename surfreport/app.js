@@ -1,5 +1,5 @@
 import { setupBuoyView } from './src/buoys.js?v=20261117-buoy-observations';
-import { weekly } from './weekly.js?v=20261117-buoy-observations';
+import { weekly } from './weekly.js?v=20261117-daylight';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-tides-wind';
 import { loadTides } from './src/tides.js';
@@ -26,11 +26,12 @@ let zone = 'UTC';
 let active;
 let controller;
 let tide;
+let daylight;
 
 const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
 
 function drawWeek() {
-  weekly(rows, { zone, units: $('units').value, tide });
+  weekly(rows, { zone, units: $('units').value, tide, daylight });
 }
 
 function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
@@ -128,6 +129,7 @@ async function load(lat, lon, label) {
   controller = request;
   rows = [];
   tide = undefined;
+  daylight = undefined;
   $('summary').replaceChildren();
   $('output').replaceChildren();
   $('hourly').hidden = true;
@@ -145,7 +147,7 @@ async function load(lat, lon, label) {
         if (!response.ok) throw Error(data.reason || 'Marine request failed');
         return data;
       }),
-      fetch('https://api.open-meteo.com/v1/forecast?' + common + '&hourly=wind_speed_10m,wind_direction_10m', signals).then(response => {
+      fetch('https://api.open-meteo.com/v1/forecast?' + common + '&hourly=wind_speed_10m,wind_direction_10m&daily=sunrise,sunset', signals).then(response => {
         if (!response.ok) throw Error('Wind request failed');
         return response.json();
       }),
@@ -153,7 +155,9 @@ async function load(lat, lon, label) {
     if (request !== controller) return;
     if (marine.status !== 'fulfilled') throw marine.reason;
     zone = marine.value.timezone || 'UTC';
-    rows = core.align(marine.value, weather.status === 'fulfilled' ? weather.value : null).sort((a, b) => a.time - b.time);
+    const weatherData = weather.status === 'fulfilled' ? weather.value : null;
+    daylight = weatherData?.daily;
+    rows = core.align(marine.value, weatherData).sort((a, b) => a.time - b.time);
     draw();
     $('status').textContent = '';
     updateTides(active, request, rows[0].time, rows.at(-1).time);

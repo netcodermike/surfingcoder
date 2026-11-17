@@ -1,4 +1,4 @@
-import { tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js';
+import { tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js?v=20261117-daylight';
 import { compass } from './src/core.js?v=20261117-tides-wind';
 
 const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#83cbd5','windWavePeriod','windWaveDirection']];
@@ -12,7 +12,7 @@ const bearing=d=>Number.isFinite(d)?compass(d):'—';
 const hasPeriod = value => Number.isFinite(value) && value > 0;
 
 export function weekly(rows,options){
- const {zone,units,tide}=options;
+ const {zone,units,tide,daylight}=options;
  const root = document.getElementById('weekly');
  const active = document.activeElement;
  const focusId = root.contains(active) ? active.id : '';
@@ -36,10 +36,35 @@ export function weekly(rows,options){
  const periodSeries = periodOptions.find(s => s.key === periodSeriesKey) ?? periodOptions[0];
  const plotRight = graphWidth - (periodSeries ? (compact ? 42 : 64) : (compact ? 8 : 20));
  const plotWidth = plotRight - plotLeft;
+ const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
+ const dateFormat = new Intl.DateTimeFormat('en-US', { timeZone:zone, year:'numeric', month:'2-digit', day:'2-digit' });
+ const clockFormat = new Intl.DateTimeFormat('en-US', { timeZone:zone, hour:'numeric', minute:'2-digit' });
+ const dayKey = time => dateFormat.format(time * 1000);
+ const daylightByDay = new Map();
+ for (const [i, sunrise] of (daylight?.sunrise ?? []).entries()) {
+  const sunset = daylight.sunset?.[i];
+  if (!Number.isFinite(sunrise) || !Number.isFinite(sunset) || sunset <= sunrise || sunset <= start || sunrise >= end) continue;
+  daylightByDay.set(dayKey(sunrise), { sunrise, sunset });
+ }
+ if (daylightByDay.size) {
+  const key = document.createElement('span');
+  key.className = 'week-daylight-key';
+  key.textContent = 'Daylight shading · sunrise to sunset';
+  legend.append(key);
+ }
+ function shadeDaylight(chart, top, bottom) {
+  for (const {sunrise, sunset} of daylightByDay.values()) {
+   const left = x(Math.max(start, sunrise));
+   const right = x(Math.min(end, sunset));
+   chart.append(svg('rect', { x:left, y:top, width:right-left, height:bottom-top, class:'week-daylight-band', 'aria-hidden':'true' }));
+  }
+ }
  const description = 'Seven-day ' + mode + ' forecast in ' + unit.trim() + ', in location time.' +
   (periodSeries ? ' Blue dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
+  (daylightByDay.size ? ' Darker bands mark daylight.' : '') +
   ' Use the hourly slider and data table for exact values.';
  const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':description,class:'week-chart'});
+ shadeDaylight(graph, 20, 260);
  const max = Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
  const periods = periodSeries ? rows.map(row => row[periodSeries.period]).filter(hasPeriod) : [];
  const periodMax = 4 * Math.ceil(Math.max(20, ...periods)/4);
@@ -56,10 +81,9 @@ export function weekly(rows,options){
   periodAxis.append(svg('text', {x:rightLabelX,y:18}, 'Period'));
   graph.append(periodAxis);
  }
- const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
  const dates = new Map();
  for (const row of rows) {
-  const day = fmt(row.time, { year:'numeric', month:'2-digit', day:'2-digit' });
+  const day = dayKey(row.time);
   if (!dates.has(day)) dates.set(day, { x:x(row.time), text:fmt(row.time, { weekday:compact?'narrow':'short', day:'numeric' }) });
  }
  function dayMarks(chart, top, bottom, labelY) {
@@ -109,7 +133,7 @@ export function weekly(rows,options){
  if(selected<0||selected>=rows.length)selected=Math.max(0,rows.findIndex(r=>r.time>=Date.now()/1000));
  const charts = [];
  mountChart(root, { graph, top:20, bottom:260 }, (panel, row) => renderReadings(panel, row, waveReadings(row, shown)));
- const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, dayMarks, axisFont, compact };
+ const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, dayMarks, shadeDaylight, axisFont, compact };
  const tides = tidePanel(root, tide, timeline, { units, heightUnit, scale });
  const wind = windPanel(root, rows, timeline, { speedUnit, speedScale });
  const extraReadings = [];
@@ -146,6 +170,13 @@ export function weekly(rows,options){
    value.textContent = item.text;
    line.append(label, value);
    panel.append(line);
+  }
+  const sun = daylightByDay.get(dayKey(row.time));
+  if (sun) {
+   const times = document.createElement('span');
+   times.className = 'week-daylight-times';
+   times.textContent = `Sunrise ${clockFormat.format(sun.sunrise * 1000)} · Sunset ${clockFormat.format(sun.sunset * 1000)}`;
+   panel.append(times);
   }
  }
  function position(line, xx) {

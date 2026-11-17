@@ -18,12 +18,13 @@ function panel(root, name, title) {
 }
 
 function seriesChart({ values, unit, color, gap, label, arrows }, timeline) {
-  const { svg, width, left, right, x, dayMarks, axisFont, compact } = timeline;
+  const { svg, width, left, right, x, dayMarks, shadeDaylight, axisFont, compact } = timeline;
   const top = arrows ? 28 : 12;
   const bottom = 119;
   const graph = svg('svg', {
     viewBox: `0 0 ${width} 147`, role: 'img', 'aria-label': label, class: 'week-support-chart',
   });
+  shadeDaylight(graph, top, bottom);
   const data = values.map(sample => sample.value).filter(Number.isFinite);
   const min = Math.min(0, ...data);
   const max = Math.max(0, ...data);
