@@ -1,0 +1,7 @@
+{
+  "name": "robot-grid-command-replay",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-17T02:35:24.004635+00:00",
+  "demo_data": true
+}

@@ -34,6 +34,13 @@ def build():
     page = re.sub(r'(All projects <span>)\d+', lambda m: m[1]+total, page)
     page = re.sub(r'(id="result-count" aria-live="polite"><strong>)\d+', lambda m: m[1]+total, page)
     page = re.sub(r'Explore \d+ software projects', 'Explore '+total+' software projects', page)
+    languages = sorted({language for project in projects for language in project['languages']}, key=str.casefold)
+    options = '<option value="all">All languages</option>' + ''.join(
+        f'<option value="{esc(language)}">{esc(language)}</option>' for language in languages)
+    page, count = re.subn(r'(<select id="language">).*?(</select>)',
+                          lambda match: match[1] + options + match[2], page, flags=re.S)
+    assert count == 1, 'Missing language filter'
+    page = re.sub(r'(public repositories<br>)\d+( languages)', lambda match: f'{match[1]}{len(languages)}{match[2]}', page)
     page = '\n'.join(line.rstrip() for line in page.splitlines())+'\n'
     (ROOT/'index.html').write_bytes(page.encode('utf-8'))
     print(f'Rendered {len(projects)} repositories from assets/projects.json')

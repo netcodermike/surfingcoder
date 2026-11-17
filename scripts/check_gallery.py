@@ -42,6 +42,8 @@ assert all(p['languages'] for p in projects), 'Every project needs a language'
 language_select=re.search(r'<select id="language">(.*?)</select>',page,re.S)[1]
 options={html.unescape(v) for v in re.findall(r'<option value="([^"]+)"',language_select) if v!='all'}
 assert options=={language for p in projects for language in p['languages']}, 'Language filters out of sync'
+language_count = re.search(r'public repositories<br>(\d+) languages', page)
+assert language_count and int(language_count[1]) == len(options), 'Language count out of sync'
 for p in projects:
     if p.get('applicationUrl'):
         path=(ROOT/p['applicationUrl'].lstrip('/')/'index.html').resolve()
