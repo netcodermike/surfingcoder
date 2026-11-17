@@ -1,5 +1,5 @@
 import { setupBuoyView } from './src/buoys.js?v=20261117-buoy-observations';
-import { weekly } from './weekly.js?v=20261117-air-temp';
+import { weekly } from './weekly.js?v=20261117-wind-chart-style';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-air-temp';
 import { loadTides } from './src/tides.js';

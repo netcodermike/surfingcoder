@@ -1,4 +1,4 @@
-import { temperatureColor, tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js?v=20261117-air-temp';
+import { temperatureColor, tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js?v=20261117-wind-chart-style';
 import { compass } from './src/core.js?v=20261117-air-temp';
 
 const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#b9de82','windWavePeriod','windWaveDirection']];
