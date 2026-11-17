@@ -1,5 +1,5 @@
-import { setupBuoyView } from './src/buoys.js?v=20261117-tides-wind';
-import { weekly } from './weekly.js?v=20261117-tides-wind';
+import { setupBuoyView } from './src/buoys.js?v=20261117-buoy-observations';
+import { weekly } from './weekly.js?v=20261117-buoy-observations';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-tides-wind';
 import { loadTides } from './src/tides.js';
@@ -25,8 +25,6 @@ let rows = [];
 let zone = 'UTC';
 let active;
 let controller;
-let fetched;
-let windAvailable = false;
 let tide;
 
 const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
@@ -97,9 +95,6 @@ function draw() {
   });
   drawWeek();
   renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor);
-  $('status').textContent = 'Fetched ' + fetched +
-    '. Offshore model forecast. Missing values show —.' +
-    (windAvailable ? '' : ' Wind unavailable.');
 }
 
 const marineFields = [
@@ -159,11 +154,8 @@ async function load(lat, lon, label) {
     if (marine.status !== 'fulfilled') throw marine.reason;
     zone = marine.value.timezone || 'UTC';
     rows = core.align(marine.value, weather.status === 'fulfilled' ? weather.value : null).sort((a, b) => a.time - b.time);
-    windAvailable = rows.some(row => Number.isFinite(row.speed));
-    fetched = new Intl.DateTimeFormat('en-US', {
-      timeZone: zone, hour: 'numeric', minute: '2-digit', month: 'short', day: 'numeric', timeZoneName: 'short',
-    }).format(new Date());
     draw();
+    $('status').textContent = '';
     updateTides(active, request, rows[0].time, rows.at(-1).time);
   } catch (error) {
     if (request !== controller) return;

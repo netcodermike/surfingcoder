@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SurfingCoder Regional Surf Report · SurfingCoder</title><meta name="description" content="Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261117-tides-wind"><script type="module" src="app.js?v=20261117-tides-wind"></script><link rel="stylesheet" href="../theme.css"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SurfingCoder Regional Surf Report · SurfingCoder</title><meta name="description" content="Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261117-buoy-observations"><script type="module" src="app.js?v=20261117-buoy-observations"></script><link rel="stylesheet" href="../theme.css"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
 </head><body>
 <!-- SITE NAVIGATION START -->
@@ -54,19 +54,15 @@
 </div>
 <!-- SITE NAVIGATION END -->
 <main class="surf-report"><h1>SurfingCoder Regional Surf Report</h1><p>Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys.</p><div class="workspace"><section class="panel" aria-label="Controls" id="controls"></section><section class="panel" aria-label="Results"><div class="report-heading"><h2 id="result-title">Explore the details</h2><div class="result-views" role="group" aria-label="Surf report view">
-  <button id="show-forecast" type="button" aria-controls="forecast-view" aria-pressed="true">Forecast</button>
+  <button id="show-forecast" type="button" aria-controls="forecast-view forecast-hours" aria-pressed="true">Forecast</button>
   <button id="show-buoys" type="button" aria-controls="buoy-view" aria-pressed="false">Nearby buoys</button>
 </div></div>
 <div id="forecast-view">
   <div class="forecast-summary"><div id="metric" class="metric"></div><div id="summary" class="chips"></div></div>
   <section id="weekly" aria-label="Seven-day swell explorer"></section>
   <div id="status" class="status" role="status"></div>
-  <details id="hourly" hidden>
-    <summary>Hourly forecast</summary>
-    <div id="output" tabindex="0" role="region" aria-label="Hourly forecast, earliest time first"></div>
-  </details>
 </div>
-<section id="buoy-view" hidden aria-labelledby="buoy-heading">
+<section id="buoy-view" aria-labelledby="buoy-heading">
   <h3 id="buoy-heading">Recent buoy observations</h3>
   <p class="buoy-intro">Offshore measurements from NOAA-listed wave buoys.</p>
   <div id="buoy-picker" hidden>
@@ -81,7 +77,13 @@
     <a id="buoy-data-link" href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html" target="_blank" rel="noopener noreferrer" hidden>Observation data source ↗</a>
     <a id="buoy-search-link" target="_blank" rel="noopener noreferrer" href="https://www.ndbc.noaa.gov/radial_search.php">Search nearby on NOAA ↗</a>
   </div>
-</section></section></div></main><footer><a href="https://open-meteo.com/">Weather data by Open-Meteo</a> · <a href="https://open-meteo.com/en/docs/marine-weather-api">Marine API and data sources</a><br>Built for discovery. Offshore grid forecasts do not resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.<br>Local files stay in your browser unless the interface explicitly describes a request.</footer>
+</section>
+<div id="forecast-hours">
+  <details id="hourly" hidden>
+    <summary>Hourly forecast</summary>
+    <div id="output" tabindex="0" role="region" aria-label="Hourly forecast, earliest time first"></div>
+  </details>
+</div></section></div></main><footer><a href="https://open-meteo.com/">Weather data by Open-Meteo</a> · <a href="https://open-meteo.com/en/docs/marine-weather-api">Marine API and data sources</a><br>Built for discovery. Offshore grid forecasts do not resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.<br>Local files stay in your browser unless the interface explicitly describes a request.</footer>
 <!-- SITE FOOTER START -->
 <footer class="sc-site-footer">
   <div class="sc-footer-wrap">

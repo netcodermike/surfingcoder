@@ -16,7 +16,6 @@ export function weekly(rows,options){
  const root = document.getElementById('weekly');
  const active = document.activeElement;
  const focusId = root.contains(active) ? active.id : '';
- const dailyOpen = root.querySelector('details')?.open ?? false;
  root.replaceChildren();if(!rows.length){root.textContent='Load a forecast to explore the week.';return;}
  if (root.clientWidth) graphWidth = Math.max(260, root.clientWidth);
  const compact = graphWidth < 520;
@@ -58,10 +57,13 @@ export function weekly(rows,options){
   graph.append(periodAxis);
  }
  const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
- const days=new Map();rows.forEach(r=>{const d=fmt(r.time,{year:'numeric',month:'2-digit',day:'2-digit'});if(!days.has(d))days.set(d,[]);days.get(d).push(r);});
- const dates = [...days.values()].map(([row]) => ({ x: x(row.time), text: fmt(row.time, { weekday: compact ? 'narrow' : 'short', day: 'numeric' }) }));
+ const dates = new Map();
+ for (const row of rows) {
+  const day = fmt(row.time, { year:'numeric', month:'2-digit', day:'2-digit' });
+  if (!dates.has(day)) dates.set(day, { x:x(row.time), text:fmt(row.time, { weekday:compact?'narrow':'short', day:'numeric' }) });
+ }
  function dayMarks(chart, top, bottom, labelY) {
-  for (const day of dates) chart.append(
+  for (const day of dates.values()) chart.append(
    svg('line', { x1:day.x, x2:day.x, y1:top, y2:bottom, class:'week-grid', 'stroke-dasharray':'3 5' }),
    svg('text', { x:Math.min(day.x+3,graphWidth-(compact?25:48)), y:labelY, class:'week-axis-label', 'font-size':axisFont }, day.text)
   );
@@ -226,8 +228,6 @@ export function weekly(rows,options){
  }
  slider.oninput = () => inspect(Number(slider.value));
  inspect(selected);
- const note=document.createElement('p');note.className='small';note.textContent='Combined sea includes wind waves and swell; heights are not added arithmetically. Missing data creates gaps. Swell partitions are model components, not tracked named storms, and may change order over time. Secondary/tertiary availability depends on the provider model. Tap the chart or use the hourly slider.';root.append(note);
- const details=document.createElement('details'),summary=document.createElement('summary');details.open=dailyOpen;summary.textContent='Daily maximum heights · accessible data table';details.append(summary);
- const wrap=document.createElement('div');wrap.className='week-table';const table=document.createElement('table'),thead=document.createElement('thead'),tr=document.createElement('tr');for(const text of ['Date',...components.map(c=>c[1]+heightUnit)]){const th=document.createElement('th');th.scope='col';th.textContent=text;tr.append(th);}thead.append(tr);table.append(thead);const tbody=document.createElement('tbody');for(const day of days.values()){const tr=document.createElement('tr');for(const text of [fmt(day[0].time,{weekday:'short',month:'short',day:'numeric'}),...components.map(([k])=>{const data=day.map(r=>r[k]).filter(Number.isFinite);return data.length?val(Math.max(...data)*scale,''):'—';})]){const td=document.createElement('td');td.textContent=text;tr.append(td);}tbody.append(tr);}table.append(tbody);wrap.append(table);details.append(wrap);root.append(details);
+ const note=document.createElement('p');note.className='small';note.textContent='Combined sea includes wind waves and swell; heights are not added arithmetically. Missing data creates gaps. Swell partitions are model components, not tracked named storms, and may change order over time. Secondary/tertiary availability depends on the provider model. Tap a chart or use the hourly slider.';root.append(note);
  if (focusId) document.getElementById(focusId)?.focus({preventScroll:true});
 }

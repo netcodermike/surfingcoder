@@ -90,7 +90,7 @@ async function readObservations(stationId, signal) {
 export function setupBuoyView(getUnits) {
   const get = id => document.getElementById(id);
   const forecast = get('forecast-view');
-  const buoys = get('buoy-view');
+  const forecastHours = get('forecast-hours');
   const forecastButton = get('show-forecast');
   const buoyButton = get('show-buoys');
   const picker = get('buoy-station');
@@ -212,7 +212,7 @@ export function setupBuoyView(getUnits) {
   }
 
   function render() {
-    if (!location || buoys.hidden) return;
+    if (!location) return;
     const url = new URL('/radial_search.php', NDBC);
     url.search = new URLSearchParams({
       lat1: location.lat, lon1: location.lon, uom: 'M', dist: String(RADIUS_KM), ot: 'B', time: '6',
@@ -249,7 +249,7 @@ export function setupBuoyView(getUnits) {
 
   function selectView(showBuoys) {
     forecast.hidden = showBuoys;
-    buoys.hidden = !showBuoys;
+    forecastHours.hidden = showBuoys;
     forecastButton.setAttribute('aria-pressed', String(!showBuoys));
     buoyButton.setAttribute('aria-pressed', String(showBuoys));
     if (showBuoys) {
@@ -268,6 +268,7 @@ export function setupBuoyView(getUnits) {
         picker.value = '';
       }
       location = next;
+      loadCatalog();
       render();
     },
     updateUnits: render,
