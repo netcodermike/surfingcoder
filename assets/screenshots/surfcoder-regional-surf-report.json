@@ -1,14 +1,9 @@
 {
   "name": "surfcoder-regional-surf-report",
   "kind": "runtime",
-  "caption": "Actual surf-report interface showing North Topsail Beach, NC, with live Open-Meteo forecasts and the expanded North Carolina location selector.",
-  "capture_date": "2026-11-06T12:51:31.207261+00:00",
+  "caption": "Full-width seven-day swell forecast for Indian Beach, with the region and location controls above the chart.",
+  "capture_date": "2026-11-17T04:42:34.973004+00:00",
   "demo_data": false,
   "validation_passed": true,
-  "source_commit": "d26763a10a8883ae0e55df5f4da1864ac5f30e25",
-  "capture_method": "Browser verification of local source with live public forecasts",
-  "validation_commands": [
-    "node --test tests/core.test.js",
-    "node --check app.js"
-  ]
+  "capture_method": "Headless Chrome running the published app interface without the shared site navigation"
 }

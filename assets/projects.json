@@ -296,7 +296,7 @@
     "image": "assets/screenshots/wave-pool-lab.webp",
     "capture": {
       "name": "wave-pool-lab",
-      "capture_date": "2026-11-17T03:37:41.038374+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "validation_passed": true,
       "source_commit": "4f4cd302bbfd92d5a02198f2e7f1f468278177dc",
@@ -306,7 +306,7 @@
       ],
       "kind": "runtime",
       "caption": "A simulated wave packet crossing the sloped basin, with a reflecting-basin comparison on the gauge chart.",
-      "capture_method": "Headless Chrome using local page, live simulation, and built-in presets"
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation"
     },
     "ci": "https://github.com/netcodermike/wave-pool-lab/actions",
     "applicationUrl": "/apps/wave-pool-lab/",
@@ -540,8 +540,10 @@
       "name": "surfingcoder-number-swell",
       "kind": "runtime",
       "caption": "An arithmetic puzzle in progress showing a hint and the move log.",
-      "capture_date": "2026-11-15T18:21:24.578559+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-number-swell/actions/workflows/verify.yml",
     "applicationUrl": "/number-swell/",
@@ -3201,8 +3203,10 @@
       "name": "surfingcoder-guitar-tuner",
       "kind": "runtime",
       "caption": "The twelve-string tuner showing the first course in tune with a synthetic E2 input.",
-      "capture_date": "2026-11-15T20:29:47.540986+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-tuner/actions/workflows/verify.yml",
     "applicationUrl": "/guitar-tuner/"
@@ -3224,8 +3228,10 @@
       "name": "surfingcoder-guitar-chord-workshop",
       "kind": "runtime",
       "caption": "An open C major shape with its recipe and chord tones.",
-      "capture_date": "2026-11-15T20:29:47.769853+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-chord-workshop/actions/workflows/verify.yml",
     "applicationUrl": "/guitar-chords/"
@@ -4291,16 +4297,11 @@
     "capture": {
       "name": "surfcoder-regional-surf-report",
       "kind": "runtime",
-      "caption": "Actual surf-report interface showing North Topsail Beach, NC, with live Open-Meteo forecasts and the expanded North Carolina location selector.",
-      "capture_date": "2026-11-06T12:51:31.207261+00:00",
+      "caption": "Full-width seven-day swell forecast for Indian Beach, with the region and location controls above the chart.",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": false,
       "validation_passed": true,
-      "source_commit": "d26763a10a8883ae0e55df5f4da1864ac5f30e25",
-      "capture_method": "Browser verification of local source with live public forecasts",
-      "validation_commands": [
-        "node --test tests/core.test.js",
-        "node --check app.js"
-      ]
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation"
     },
     "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
     "applicationUrl": "/surfreport/"
@@ -4804,8 +4805,10 @@
       "name": "surfingcoder-arcade",
       "kind": "runtime",
       "caption": "Barrel Patrol in play with enemy formations, shots, and the wave scoreboard.",
-      "capture_date": "2026-11-15T07:56:14.862167+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-arcade/actions/workflows/verify.yml",
     "applicationUrl": "/arcade/",
@@ -4829,8 +4832,10 @@
       "name": "surfingcoder-20-questions",
       "kind": "runtime",
       "caption": "A round in progress with three answers in the clue log.",
-      "capture_date": "2026-11-15T18:21:24.378736+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-20-questions/actions/workflows/verify.yml",
     "applicationUrl": "/20-questions/",
@@ -4853,8 +4858,10 @@
       "name": "surfingcoder-board-games",
       "kind": "runtime",
       "caption": "Chinese Checkers during a demo round on the amethyst star board.",
-      "capture_date": "2026-11-15T03:03:49.888808+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-board-games/actions/workflows/verify.yml",
     "applicationUrl": "/board-games/",
@@ -4877,8 +4884,10 @@
       "name": "surfingcoder-cards",
       "kind": "runtime",
       "caption": "Surf Solitaire with illustrated wave, fin, surfboard and sunset cards.",
-      "capture_date": "2026-11-15T08:04:34.672670+00:00",
-      "demo_data": true
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-cards/actions/workflows/verify.yml",
     "applicationUrl": "/cards/",
@@ -4948,10 +4957,10 @@
     "capture": {
       "name": "procedural-planet-explorer",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.620043+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/procedural-planet-explorer/actions",
@@ -4974,10 +4983,10 @@
     "capture": {
       "name": "pathfinding-playground",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.620466+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/pathfinding-playground/actions/runs/42198834987",
@@ -5000,10 +5009,10 @@
     "capture": {
       "name": "multiplayer-escape-room",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.620785+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/multiplayer-escape-room/actions",
@@ -5026,10 +5035,10 @@
     "capture": {
       "name": "chess-tactics-trainer",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.621103+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/chess-tactics-trainer/actions/runs/42207308725",
@@ -5052,10 +5061,10 @@
     "capture": {
       "name": "maze-forge",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.621433+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/maze-forge/actions/runs/42198904194",
@@ -5078,10 +5087,10 @@
     "capture": {
       "name": "sudoku-studio-desktop",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.621838+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/sudoku-studio-desktop/actions/runs/42205416920",
@@ -5132,10 +5141,10 @@
     "capture": {
       "name": "spaced-repetition-adventure",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.622238+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/spaced-repetition-adventure/actions",
@@ -5246,10 +5255,10 @@
     "capture": {
       "name": "nonogram-line-enumerator",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.622582+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/nonogram-line-enumerator/actions/workflows/verify.yml",
@@ -5294,10 +5303,10 @@
     "capture": {
       "name": "word-ladder-generator",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.622895+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/word-ladder-generator/actions/workflows/verify.yml",
@@ -5366,10 +5375,10 @@
     "capture": {
       "name": "robot-grid-command-replay",
       "kind": "runtime",
-      "capture_date": "2026-11-17T03:25:56.623286+00:00",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
       "demo_data": true,
       "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-      "capture_method": "Headless Chrome on the local GitHub Pages preview",
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
       "validation_passed": true
     },
     "ci": "https://github.com/netcodermike/robot-grid-command-replay/actions/workflows/verify.yml",

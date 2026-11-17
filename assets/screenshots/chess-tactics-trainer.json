@@ -1,9 +1,9 @@
 {
   "name": "chess-tactics-trainer",
   "kind": "runtime",
-  "capture_date": "2026-11-17T03:25:56.621103+00:00",
+  "capture_date": "2026-11-17T04:42:34.973004+00:00",
   "demo_data": true,
   "caption": "Playable SurfingCoder browser edition shown during a sample game.",
-  "capture_method": "Headless Chrome on the local GitHub Pages preview",
+  "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
   "validation_passed": true
 }

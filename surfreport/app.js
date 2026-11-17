@@ -1,26 +1,235 @@
 import { setupBuoyView } from './src/buoys.js?v=20261116';
-import { weekly } from './weekly.js';
-import { $,field,select,area,button,on,show,download,audio,tone,plot,theme,notes,hz,note,microphone } from './ui.js';
+import { weekly } from './weekly.js?v=20261116-full-week';
+import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261109';
 
 const defaultLocation = 'Indian Beach, NC';
 const [, defaultLat, defaultLon] = core.presetForLabel(defaultLocation).point;
-$('controls').innerHTML=select('Your region','region',Object.keys(core.regions))+select('Forecast location','spot',core.regions['North Carolina'].map((x,i)=>[i,x[0]]))+select('Display units','units',[['imperial','Feet · mph'],['metric','Metres · km/h']])+field('Custom latitude','lat','number',defaultLat,'step=".0001" min="-85" max="85"')+field('Custom longitude','lon','number',defaultLon,'step=".0001" min="-180" max="180"')+button('Update forecast','refresh')+button('Use custom coordinates','custom')+button('Save this location','save')+button('Download forecast CSV','csv')+'<p><a href="https://open-meteo.com/en/docs/marine-weather-api">Forecast data: Open-Meteo ↗</a></p>';
+const storageKey = 'surfcoder-surf-location';
+
+$('controls').innerHTML =
+  '<div class="location-fields">' +
+  '<div>' + select('Your region', 'region', Object.keys(core.regions)) + '</div>' +
+  '<div>' + select('Forecast location', 'spot', []) + '</div>' +
+  '<div>' + select('Display units', 'units', [['imperial', 'Feet · mph'], ['metric', 'Metres · km/h']]) + '</div>' +
+  '</div><div class="location-actions">' +
+  button('Update forecast', 'refresh') + button('Save this location', 'save') + button('Download forecast CSV', 'csv') +
+  '</div><details class="coordinate-controls"><summary>Custom coordinates</summary><div class="coordinate-fields">' +
+  '<div>' + field('Latitude', 'lat', 'number', defaultLat, 'step=".0001" min="-85" max="85"') + '</div>' +
+  '<div>' + field('Longitude', 'lon', 'number', defaultLon, 'step=".0001" min="-180" max="180"') + '</div>' +
+  button('Use custom coordinates', 'custom') + '</div></details>';
+
 const buoyView = setupBuoyView(() => $('units').value);
-let rows=[],zone='UTC',selected='',fetched='',sequence=0,active=null,controller;
-$('visual').innerHTML='<div id="summary" class="chips"></div><label for="day">Forecast day · location time</label><select id="day"></select>';
-$('output').replaceWith(Object.assign(document.createElement('div'),{id:'output'}));
-function date(t){return new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(t*1000))}
-function time(t){return new Intl.DateTimeFormat('en-US',{timeZone:zone,hour:'numeric',minute:'2-digit'}).format(new Date(t*1000))}
-function value(v,suffix='',digits=1){return v==null||!Number.isFinite(v)?'—':v.toFixed(digits)+suffix}
-function cell(text){const td=document.createElement('td');td.textContent=text;return td}
-function draw(){if(!rows.length)return;const imperial=$('units').value==='imperial',unit=imperial?' ft':' m',speedUnit=imperial?' mph':' km/h',day=$('day').value,visible=rows.filter(r=>date(r.time)===day),current=rows.find(r=>r.time>=Date.now()/1000)||rows[0];$('metric').textContent=value(core.height(current.wave,$('units').value),unit);$('result-title').textContent=selected;const summary=$('summary');summary.replaceChildren();for(const [name,v]of [['Wave period',value(current.period,' s')],['Swell period',value(current.swellPeriod,' s')],['Wave from',core.compass(current.direction)],['Wind',value(current.speed==null?null:current.speed*(imperial?.621371:1),speedUnit)]]){const box=document.createElement('div');box.className='chip';const b=document.createElement('b');b.textContent=v;box.append(b,document.createTextNode(name));summary.append(box)}
-const table=document.createElement('table'),head=document.createElement('tr');['Time','Waves'+unit,'Period','Swell'+unit,'Wave from','Wind'+speedUnit,'Wind from'].forEach(x=>{const th=document.createElement('th');th.scope='col';th.textContent=x;head.append(th)});const thead=document.createElement('thead');thead.append(head);table.append(thead);const tbody=document.createElement('tbody');visible.forEach(r=>{const tr=document.createElement('tr');[time(r.time),value(core.height(r.wave,$('units').value)),value(r.period,' s'),value(core.height(r.swell,$('units').value)),core.compass(r.direction),value(r.speed==null?null:r.speed*(imperial?.621371:1)),core.compass(r.wind_direction??r.directionWind)].forEach(x=>tr.append(cell(x)));tbody.append(tr)});table.append(tbody);$('output').replaceChildren(table);chart(visible,unit);weekly(rows,{zone,units:$('units').value});$('status').textContent=`Fetched ${fetched} · times in ${zone}. Offshore model forecast, not a beach observation. Missing values show —.`}
-function chart(data,unit){const c=$('canvas'),ctx=c.getContext('2d');ctx.fillStyle=theme('canvas-bg');ctx.fillRect(0,0,1000,360);const values=data.map(r=>core.height(r.wave,$('units').value)),max=Math.max(1,...values.filter(v=>v!=null))*1.2;ctx.font='14px system-ui';ctx.fillStyle=theme('muted');for(let n=0;n<5;n++){const y=320-n*70;ctx.fillText((max*n/4).toFixed(1)+unit,8,y);ctx.strokeStyle=theme('chart-grid');ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(980,y);ctx.stroke()}ctx.strokeStyle=theme('accent');ctx.lineWidth=4;let started=false;ctx.beginPath();values.forEach((v,i)=>{if(v==null){started=false;return}const x=80+i/(values.length-1||1)*900,y=320-v/max*280;started?ctx.lineTo(x,y):ctx.moveTo(x,y);started=true});ctx.stroke();ctx.fillStyle=theme('muted');for(let i=0;i<data.length;i+=6)ctx.fillText(time(data[i].time),80+i/(data.length-1||1)*850,350)}
-async function load(lat,lon,label){const coords=core.coordinates(lat,lon);active={...coords,label};buoyView.setLocation(active);selected=label;controller?.abort();controller=new AbortController();const request=++sequence;rows=[];$('summary').replaceChildren();$('output').replaceChildren();$('metric').textContent='…';$('result-title').textContent=label;$('status').textContent='Requesting live marine and wind forecasts…';plot([]);weekly([],{zone,units:$('units').value});const thisController=controller,timeout=setTimeout(()=>thisController.abort(),20000);try{const common=`latitude=${coords.lat}&longitude=${coords.lon}&timezone=auto&timeformat=unixtime&forecast_days=7`;const results=await Promise.allSettled([fetch('https://marine-api.open-meteo.com/v1/marine?'+common+'&cell_selection=sea&hourly=wave_height,wave_period,wave_direction,swell_wave_height,swell_wave_period,swell_wave_direction,secondary_swell_wave_height,secondary_swell_wave_period,secondary_swell_wave_direction,tertiary_swell_wave_height,tertiary_swell_wave_period,tertiary_swell_wave_direction,wind_wave_height,wind_wave_period,wind_wave_direction',{signal:controller.signal}).then(async r=>{const d=await r.json();if(!r.ok)throw Error(d.reason||'Marine request failed');return d}),fetch('https://api.open-meteo.com/v1/forecast?'+common+'&hourly=wind_speed_10m,wind_direction_10m',{signal:controller.signal}).then(async r=>{if(!r.ok)throw Error('Wind request failed');return r.json()})]);if(request!==sequence)return;if(results[0].status!=='fulfilled')throw results[0].reason;const marine=results[0].value,weather=results[1].status==='fulfilled'?results[1].value:null;zone=marine.timezone||'UTC';rows=core.align(marine,weather);fetched=new Intl.DateTimeFormat('en-US',{timeZone:zone,hour:'numeric',minute:'2-digit',month:'short',day:'numeric'}).format(new Date());$('day').replaceChildren(...[...new Set(rows.map(r=>date(r.time)))].map(day=>{const o=document.createElement('option');o.value=day;o.textContent=day;return o}));draw();if(!weather)$('status').textContent+=' Wind unavailable; marine forecast remains available.'}catch(e){if(request!==sequence)return;$('metric').textContent='Unavailable';$('status').textContent='Could not load live data. Check your connection, try another coastal point, or retry. '+(e.name==='AbortError'?'Request timed out.':e.message)}finally{clearTimeout(timeout)}}
-function populateSpots(){const selector=$('spot');selector.replaceChildren();const region=$('region').value;if(region==='North Carolina'){const groups=new Map();core.ncBeaches.forEach((beach,i)=>{let group=groups.get(beach.area);if(!group){group=document.createElement('optgroup');group.label=beach.area;groups.set(beach.area,group);selector.append(group)}const option=document.createElement('option');option.value=i;option.textContent=beach.name;group.append(option)});}else{core.regions[region].forEach((point,i)=>{const option=document.createElement('option');option.value=i;option.textContent=point[0];selector.append(option)})}}
-function choose(){const point=core.regions[$('region').value][+$('spot').value];$('lat').value=point[1];$('lon').value=point[2];return load(point[1],point[2],point[0])}
-function selectPreset(label){const preset=core.presetForLabel(label);if(!preset)return false;$('region').value=preset.region;populateSpots();$('spot').value=preset.index;return true}
-$('region').onchange=()=>{populateSpots();choose()};$('spot').onchange=choose;$('day').onchange=draw;$('units').onchange=()=>{draw();buoyView.updateUnits()};on('refresh',()=>active?load(active.lat,active.lon,active.label):choose());on('custom',()=>{if(!$('lat').value.trim()||!$('lon').value.trim())throw Error('Enter both coordinates');const {lat,lon}=core.coordinates($('lat').value,$('lon').value);return load(lat,lon,`Custom coastal point ${lat}, ${lon}`)});on('save',()=>{if(!active)throw Error('Choose a location first');localStorage.setItem('surfcoder-surf-location',JSON.stringify(active));$('status').textContent='Saved on this device.'});on('csv',()=>{if(!rows.length)throw Error('Load a forecast first');download('surf-forecast.csv','time_utc,wave_m,period_s,swell_m,wind_kmh,wind_from_degrees\n'+rows.map(r=>[new Date(r.time*1000).toISOString(),r.wave??'',r.period??'',r.swell??'',r.speed??'',r.wind_direction??''].join(',')).join('\n'),'text/csv')});
+let rows = [];
+let zone = 'UTC';
+let active;
+let controller;
+let fetched;
+let windAvailable = false;
+
+const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
+
+function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
+  const table = document.createElement('table');
+  const headings = table.createTHead().insertRow();
+  for (const title of ['Time', 'Waves' + heightUnit, 'Period', 'Swell' + heightUnit, 'Wave from', 'Wind' + speedUnit, 'Wind from']) {
+    const header = document.createElement('th');
+    header.scope = 'col';
+    header.textContent = title;
+    if (title === 'Time') header.setAttribute('aria-sort', 'descending');
+    headings.append(header);
+  }
+  const body = table.createTBody();
+  for (const row of rows.slice().reverse()) {
+    const tr = body.insertRow();
+    const date = new Date(row.time * 1000);
+    const stamp = document.createElement('time');
+    stamp.dateTime = date.toISOString();
+    stamp.textContent = timeFormat.format(date);
+    tr.insertCell().append(stamp);
+    const fields = [
+      value(core.height(row.wave, units)),
+      value(row.period, ' s'),
+      value(core.height(row.swell, units)),
+      core.compass(row.direction),
+      value(Number.isFinite(row.speed) ? row.speed * speedFactor : null),
+      core.compass(row.wind_direction),
+    ];
+    for (const field of fields) tr.insertCell().textContent = field;
+  }
+  $('output').replaceChildren(table);
+  $('output').scrollTop = 0;
+  $('hourly').hidden = false;
+}
+
+function draw() {
+  if (!rows.length) return;
+  const units = $('units').value;
+  const imperial = units === 'imperial';
+  const heightUnit = imperial ? ' ft' : ' m';
+  const speedUnit = imperial ? ' mph' : ' km/h';
+  const speedFactor = imperial ? .621371 : 1;
+  const current = rows.find(row => row.time >= Date.now() / 1000) ?? rows.at(-1);
+  $('metric').textContent = value(core.height(current.wave, units), heightUnit);
+  const summary = $('summary');
+  summary.replaceChildren();
+  for (const [name, reading] of [
+    ['Wave period', value(current.period, ' s')],
+    ['Swell period', value(current.swellPeriod, ' s')],
+    ['Wave from', core.compass(current.direction)],
+    ['Wind', value(Number.isFinite(current.speed) ? current.speed * speedFactor : null, speedUnit)],
+  ]) {
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    const metric = document.createElement('b');
+    metric.textContent = reading;
+    chip.append(metric, name);
+    summary.append(chip);
+  }
+  const timeFormat = new Intl.DateTimeFormat('en-US', {
+    timeZone: zone, weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+  });
+  weekly(rows, { zone, units });
+  renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor);
+  $('status').textContent = 'Fetched ' + fetched + ' · ' + zone +
+    '. Offshore model forecast. Missing values show —.' +
+    (windAvailable ? '' : ' Wind unavailable.');
+}
+
+const marineFields = [
+  'wave_height', 'wave_period', 'wave_direction',
+  'swell_wave_height', 'swell_wave_period', 'swell_wave_direction',
+  'secondary_swell_wave_height', 'secondary_swell_wave_period', 'secondary_swell_wave_direction',
+  'tertiary_swell_wave_height', 'tertiary_swell_wave_period', 'tertiary_swell_wave_direction',
+  'wind_wave_height', 'wind_wave_period', 'wind_wave_direction',
+].join(',');
+
+async function load(lat, lon, label) {
+  const coords = core.coordinates(lat, lon);
+  active = { ...coords, label };
+  buoyView.setLocation(active);
+  controller?.abort();
+  const request = new AbortController();
+  controller = request;
+  rows = [];
+  $('summary').replaceChildren();
+  $('output').replaceChildren();
+  $('hourly').hidden = true;
+  $('metric').textContent = '…';
+  $('result-title').textContent = label;
+  $('status').textContent = 'Requesting the seven-day forecast…';
+  weekly([], { zone, units: $('units').value });
+  const timeout = setTimeout(() => request.abort(), 20000);
+  try {
+    const common = 'latitude=' + coords.lat + '&longitude=' + coords.lon + '&timezone=auto&timeformat=unixtime&forecast_days=7';
+    const signals = { signal: request.signal };
+    const [marine, weather] = await Promise.allSettled([
+      fetch('https://marine-api.open-meteo.com/v1/marine?' + common + '&cell_selection=sea&hourly=' + marineFields, signals).then(async response => {
+        const data = await response.json();
+        if (!response.ok) throw Error(data.reason || 'Marine request failed');
+        return data;
+      }),
+      fetch('https://api.open-meteo.com/v1/forecast?' + common + '&hourly=wind_speed_10m,wind_direction_10m', signals).then(response => {
+        if (!response.ok) throw Error('Wind request failed');
+        return response.json();
+      }),
+    ]);
+    if (request !== controller) return;
+    if (marine.status !== 'fulfilled') throw marine.reason;
+    zone = marine.value.timezone || 'UTC';
+    windAvailable = weather.status === 'fulfilled';
+    rows = core.align(marine.value, windAvailable ? weather.value : null).sort((a, b) => a.time - b.time);
+    fetched = new Intl.DateTimeFormat('en-US', {
+      timeZone: zone, hour: 'numeric', minute: '2-digit', month: 'short', day: 'numeric',
+    }).format(new Date());
+    draw();
+  } catch (error) {
+    if (request !== controller) return;
+    $('metric').textContent = 'Unavailable';
+    $('status').textContent = 'Could not load the forecast. ' + (error.name === 'AbortError' ? 'Request timed out.' : error.message);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function populateSpots() {
+  const selector = $('spot');
+  selector.replaceChildren();
+  const region = $('region').value;
+  if (region !== 'North Carolina') {
+    core.regions[region].forEach(([name], i) => selector.append(new Option(name, i)));
+    return;
+  }
+  const groups = new Map();
+  core.ncBeaches.forEach((beach, i) => {
+    if (!groups.has(beach.area)) {
+      const group = document.createElement('optgroup');
+      group.label = beach.area;
+      groups.set(beach.area, group);
+      selector.append(group);
+    }
+    groups.get(beach.area).append(new Option(beach.name, i));
+  });
+}
+
+function choose() {
+  const [label, lat, lon] = core.regions[$('region').value][Number($('spot').value)];
+  $('lat').value = lat;
+  $('lon').value = lon;
+  return load(lat, lon, label);
+}
+
+function selectPreset(label) {
+  const preset = core.presetForLabel(label);
+  if (!preset) return false;
+  $('region').value = preset.region;
+  populateSpots();
+  $('spot').value = preset.index;
+  return true;
+}
+
+$('region').onchange = () => { populateSpots(); choose(); };
+$('spot').onchange = choose;
+$('units').onchange = () => { draw(); buoyView.updateUnits(); };
+on('refresh', () => active ? load(active.lat, active.lon, active.label) : choose());
+on('custom', () => {
+  if (!$('lat').value.trim() || !$('lon').value.trim()) throw Error('Enter both coordinates');
+  const { lat, lon } = core.coordinates($('lat').value, $('lon').value);
+  return load(lat, lon, 'Custom coastal point ' + lat + ', ' + lon);
+});
+on('save', () => {
+  if (!active) throw Error('Choose a location first');
+  localStorage.setItem(storageKey, JSON.stringify(active));
+  $('status').textContent = 'Saved on this device.';
+});
+on('csv', () => {
+  if (!rows.length) throw Error('Load a forecast first');
+  const csv = rows.map(row => [
+    new Date(row.time * 1000).toISOString(), row.wave ?? '', row.period ?? '',
+    row.swell ?? '', row.speed ?? '', row.wind_direction ?? '',
+  ].join(',')).join('\n');
+  download('surf-forecast.csv', 'time_utc,wave_m,period_s,swell_m,wind_kmh,wind_from_degrees\n' + csv, 'text/csv');
+});
+
 selectPreset(defaultLocation);
-try{const saved=JSON.parse(localStorage.getItem('surfcoder-surf-location'));if(saved){if(saved.label==='Outer Banks, NC'){choose()}else{core.coordinates(saved.lat,saved.lon);if(selectPreset(saved.label)){choose()}else{$('lat').value=saved.lat;$('lon').value=saved.lon;load(saved.lat,saved.lon,String(saved.label||'Saved coastal point'))}}}else choose()}catch{choose()}
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey));
+  if (!saved || saved.label === 'Outer Banks, NC' || selectPreset(saved.label)) {
+    choose();
+  } else {
+    const { lat, lon } = core.coordinates(saved.lat, saved.lon);
+    $('lat').value = lat;
+    $('lon').value = lon;
+    load(lat, lon, String(saved.label || 'Saved coastal point'));
+  }
+} catch {
+  choose();
+}
+
+let chartWidth;
+new ResizeObserver(([entry]) => {
+  const width = entry.contentRect.width;
+  if (!width || width === chartWidth) return;
+  chartWidth = width;
+  if (rows.length) weekly(rows, { zone, units: $('units').value });
+}).observe($('weekly'));

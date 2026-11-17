@@ -2,6 +2,8 @@
   "name": "surfingcoder-20-questions",
   "kind": "runtime",
   "caption": "A round in progress with three answers in the clue log.",
-  "capture_date": "2026-11-15T18:21:24.378736+00:00",
-  "demo_data": true
+  "capture_date": "2026-11-17T04:42:34.973004+00:00",
+  "demo_data": true,
+  "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+  "validation_passed": true
 }

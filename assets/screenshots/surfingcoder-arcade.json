@@ -2,6 +2,8 @@
   "name": "surfingcoder-arcade",
   "kind": "runtime",
   "caption": "Barrel Patrol in play with enemy formations, shots, and the wave scoreboard.",
-  "capture_date": "2026-11-15T07:56:14.862167+00:00",
-  "demo_data": true
+  "capture_date": "2026-11-17T04:42:34.973004+00:00",
+  "demo_data": true,
+  "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+  "validation_passed": true
 }

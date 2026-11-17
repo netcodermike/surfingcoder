@@ -1,6 +1,6 @@
 {
   "name": "wave-pool-lab",
-  "capture_date": "2026-11-17T03:37:41.038374+00:00",
+  "capture_date": "2026-11-17T04:42:34.973004+00:00",
   "demo_data": true,
   "validation_passed": true,
   "source_commit": "4f4cd302bbfd92d5a02198f2e7f1f468278177dc",
@@ -10,5 +10,5 @@
   ],
   "kind": "runtime",
   "caption": "A simulated wave packet crossing the sloped basin, with a reflecting-basin comparison on the gauge chart.",
-  "capture_method": "Headless Chrome using local page, live simulation, and built-in presets"
+  "capture_method": "Headless Chrome running the published app interface without the shared site navigation"
 }
