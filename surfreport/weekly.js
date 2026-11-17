@@ -49,7 +49,7 @@ export function weekly(rows,options){
  if (daylightByDay.size) {
   const key = document.createElement('span');
   key.className = 'week-daylight-key';
-  key.textContent = 'Daylight shading · sunrise to sunset';
+  key.textContent = 'Lighter daylight · Darker night';
   legend.append(key);
  }
  function shadeDaylight(chart, top, bottom) {
@@ -61,7 +61,7 @@ export function weekly(rows,options){
  }
  const description = 'Seven-day ' + mode + ' forecast in ' + unit.trim() + ', in location time.' +
   (periodSeries ? ' Blue dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
-  (daylightByDay.size ? ' Darker bands mark daylight.' : '') +
+  (daylightByDay.size ? ' Lighter bands mark daylight and darker bands mark night.' : '') +
   ' Use the hourly slider and data table for exact values.';
  const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':description,class:'week-chart'});
  shadeDaylight(graph, 20, 260);

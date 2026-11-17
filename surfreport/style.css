@@ -84,9 +84,10 @@
 .week-legend label { min-height: 30px; margin: 0; gap: 7px; color: var(--ink); font-size: .92rem; }
 .week-legend input { width: 17px; height: 17px; margin: 0; flex: none; }
 .week-legend i { width: 22px; height: 4px; border-radius: 2px; flex: none; }
-.week-daylight-band { fill: #120f19; }
+#weekly { --daylight-fill: #282331; }
+.week-daylight-band { fill: var(--daylight-fill); }
 .week-daylight-key { display: inline-flex; align-items: center; gap: 7px; color: var(--text-secondary); font-size: .84rem; }
-.week-daylight-key::before { content: ''; width: 24px; height: 10px; border: 1px solid var(--border-strong); border-radius: 2px; background: linear-gradient(90deg, var(--canvas-bg) 25%, #120f19 25% 75%, var(--canvas-bg) 75%); }
+.week-daylight-key::before { content: ''; width: 24px; height: 10px; border: 1px solid var(--border-strong); border-radius: 2px; background: linear-gradient(90deg, var(--canvas-bg) 25%, var(--daylight-fill) 25% 75%, var(--canvas-bg) 75%); }
 .week-daylight-times { display: block; color: var(--text-secondary); font-size: .84rem; grid-column: 1 / -1; }
 .week-tooltip .week-daylight-times { margin-top: 5px; }
 .week-period-options { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: -3px 0 10px; }
