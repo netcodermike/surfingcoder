@@ -72,6 +72,10 @@
 .week-legend label { min-height: 30px; margin: 0; gap: 7px; color: var(--ink); font-size: .92rem; }
 .week-legend input { width: 17px; height: 17px; margin: 0; flex: none; }
 .week-legend i { width: 22px; height: 4px; border-radius: 2px; flex: none; }
+.week-period-key { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: -3px 0 9px; color: var(--muted); font-size: .82rem; }
+.week-period-key strong { color: var(--text-secondary); font-weight: 650; }
+.week-period-key span { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
+.week-period-key svg { color: var(--accent-light); }
 .week-readout { font-size: .93rem; line-height: 1.45; gap: 8px 14px; }
 .week-readout > strong { font-size: 1rem; color: var(--ink); }
 .week-reading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; color: var(--ink); }

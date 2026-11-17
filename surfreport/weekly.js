@@ -6,6 +6,24 @@ const ns='http://www.w3.org/2000/svg';
 function svg(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!=null)e.textContent=text;return e;}
 const val=(v,suffix)=>Number.isFinite(v)?v.toFixed(1)+suffix:'—';
 const bearing=d=>Number.isFinite(d)?['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(((d%360)+360)%360/22.5)%16]:'—';
+const periodRadius = seconds => 2.8 + Math.max(0, Math.min(12, seconds - 5)) * .35;
+
+function periodKey() {
+ const key = document.createElement('div');
+ key.className = 'week-period-key';
+ const title = document.createElement('strong');
+ title.textContent = 'Circle size shows period';
+ key.append(title);
+ for (const [period, text] of [[5, '≤5 s'], [11, '11 s'], [17, '≥17 s']]) {
+  const item = document.createElement('span');
+  const icon = svg('svg', {width:20,height:20,viewBox:'0 0 20 20','aria-hidden':'true'});
+  icon.append(svg('circle', {cx:10,cy:10,r:periodRadius(period),fill:'none',stroke:'currentColor','stroke-width':1.6}));
+  item.append(icon, text);
+  key.append(item);
+ }
+ return key;
+}
+
 export function weekly(rows,{zone,units}){
  const root = document.getElementById('weekly');
  root.replaceChildren();if(!rows.length){root.textContent='Load a forecast to explore the week.';return;}
@@ -29,7 +47,26 @@ export function weekly(rows,{zone,units}){
  const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
  const days=new Map();rows.forEach(r=>{const d=fmt(r.time,{year:'numeric',month:'2-digit',day:'2-digit'});if(!days.has(d))days.set(d,[]);days.get(d).push(r);});
  [...days.values()].forEach(day=>{const xx=x(day[0].time);const label=fmt(day[0].time,{weekday:compact?'narrow':'short',day:'numeric'});graph.append(svg('line',{x1:xx,y1:20,x2:xx,y2:260,stroke:'#44394f','stroke-dasharray':'3 5'}),svg('text',{x:Math.min(xx+3,graphWidth-(compact?25:48)),y:289,fill:'#b5a9c2','font-size':axisFont},label));});
- for(const s of shown){let path='',active=false;s.values.forEach((v,i)=>{if(!Number.isFinite(v)){active=false;return;}path+=`${active?'L':'M'}${x(rows[i].time).toFixed(2)},${(260-v/max*220).toFixed(2)} `;active=true;});graph.append(svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'}));}
+ const markers = svg('g', {class:'week-period-dots',fill:'none','aria-hidden':'true'});
+ const markerStep = compact ? 24 : 12;
+ for (const s of shown) {
+  let path = '', active = false;
+  s.values.forEach((value, i) => {
+   if (!Number.isFinite(value)) { active = false; return; }
+   const row = rows[i], xx = x(row.time), yy = 260-value/max*220;
+   path += (active ? 'L' : 'M') + xx.toFixed(2) + ',' + yy.toFixed(2) + ' ';
+   active = true;
+   const period = row[s.period];
+   if (mode === 'height' && i % markerStep === 0 && Number.isFinite(period) && period > 0) {
+    markers.append(svg('circle', {cx:xx,cy:yy,r:periodRadius(period),stroke:s.color,'stroke-width':1.6}));
+   }
+  });
+  graph.append(svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'}));
+ }
+ if (markers.childElementCount) {
+  graph.append(markers);
+  root.append(periodKey());
+ }
  if(selected<0||selected>=rows.length)selected=Math.max(0,rows.findIndex(r=>r.time>=Date.now()/1000));
  const cursor=svg('line',{x1:x(rows[selected].time),y1:20,x2:x(rows[selected].time),y2:260,stroke:'#f0eaf6','stroke-dasharray':'4 4'});graph.append(cursor);
  const hoverCursor = svg('line', {y1:20, y2:260, stroke:'#d7b9f5', 'stroke-width':1, visibility:'hidden'});
