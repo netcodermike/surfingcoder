@@ -1619,7 +1619,7 @@
     "platform": "Windows · WPF",
     "url": "https://github.com/netcodermike/WpfDigitalClockAlarm",
     "category": "Work & productivity",
-    "featured": false,
+    "featured": true,
     "order": 68,
     "image": "assets/screenshots/WpfDigitalClockAlarm.webp",
     "capture": {
@@ -3205,8 +3205,7 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-tuner/actions/workflows/verify.yml",
-    "applicationUrl": "/guitar-tuner/",
-    "playNow": true
+    "applicationUrl": "/guitar-tuner/"
   },
   {
     "name": "surfingcoder-guitar-chord-workshop",
@@ -3229,8 +3228,7 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-chord-workshop/actions/workflows/verify.yml",
-    "applicationUrl": "/guitar-chords/",
-    "playNow": true
+    "applicationUrl": "/guitar-chords/"
   },
   {
     "name": "electric-guitar-designer",
@@ -3394,8 +3392,7 @@
       "capture_method": "Playwright Chromium on disposable CI runner"
     },
     "ci": "https://github.com/netcodermike/chord-voicing-lab/actions",
-    "applicationUrl": "/apps/chord-voicing-lab/",
-    "playNow": true
+    "applicationUrl": "/apps/chord-voicing-lab/"
   },
   {
     "name": "blues-progression-atlas",
@@ -3425,8 +3422,7 @@
       "capture_method": "Playwright Chromium on disposable CI runner"
     },
     "ci": "https://github.com/netcodermike/blues-progression-atlas/actions",
-    "applicationUrl": "/apps/blues-progression-atlas/",
-    "playNow": true
+    "applicationUrl": "/apps/blues-progression-atlas/"
   },
   {
     "name": "string-instrument-tuner",
@@ -3457,8 +3453,7 @@
       "visible_status": "Microphone active · no audio is uploaded."
     },
     "ci": "https://github.com/netcodermike/string-instrument-tuner/actions",
-    "applicationUrl": "/apps/string-instrument-tuner/",
-    "playNow": true
+    "applicationUrl": "/apps/string-instrument-tuner/"
   },
   {
     "name": "polyrhythm-matrix",
