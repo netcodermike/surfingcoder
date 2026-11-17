@@ -2,7 +2,7 @@
   "name": "surfcoder-regional-surf-report",
   "kind": "runtime",
   "caption": "Aligned seven-day swell, tide, and wind charts for Indian Beach with lighter daylight bands and darker nighttime bands.",
-  "capture_date": "2026-11-17T07:22:23.633262+00:00",
+  "capture_date": "2026-11-17T07:27:55.308332+00:00",
   "demo_data": false,
   "validation_passed": true,
   "capture_method": "Headless Chrome with live forecast data, cropped to the charts without the shared site navigation"

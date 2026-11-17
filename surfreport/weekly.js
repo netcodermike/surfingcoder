@@ -1,7 +1,7 @@
 import { tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js?v=20261117-daylight';
 import { compass } from './src/core.js?v=20261117-tides-wind';
 
-const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#83cbd5','windWavePeriod','windWaveDirection']];
+const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#b9de82','windWavePeriod','windWaveDirection']];
 let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave']),selected=-1;
 let graphWidth = 1000;
 let periodSeriesKey = 'wave';
