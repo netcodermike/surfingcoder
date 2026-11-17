@@ -282,29 +282,6 @@
     "ci": "https://github.com/netcodermike/SvdStudio/actions"
   },
   {
-    "name": "pde-wave-and-heat-explorer",
-    "title": "PDE Wave and Heat Explorer",
-    "description": "Animate how a temperature profile diffuses or a wave travels and reflects.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web browser",
-    "url": "https://github.com/netcodermike/pde-wave-and-heat-explorer",
-    "category": "Mathematics",
-    "featured": true,
-    "order": 10,
-    "image": "assets/screenshots/pde-wave-and-heat-explorer.webp",
-    "capture": {
-      "name": "pde-wave-and-heat-explorer",
-      "kind": "runtime",
-      "caption": "Browser screenshot of the app running with its built-in sample.",
-      "capture_date": "2026-11-12T05:49:46.399966+00:00",
-      "demo_data": true
-    },
-    "applicationUrl": "/apps/pde-wave-and-heat-explorer/",
-    "ci": "https://github.com/netcodermike/pde-wave-and-heat-explorer/actions/workflows/verify.yml"
-  },
-  {
     "name": "wave-pool-lab",
     "title": "Wave Pool Lab",
     "description": "Send a wave set through a virtual pool, shape the beach, and compare two designs using live gauge plots.",
@@ -314,8 +291,8 @@
     "platform": "Browser",
     "url": "https://github.com/netcodermike/wave-pool-lab",
     "category": "Mathematics",
-    "featured": false,
-    "order": 11,
+    "featured": true,
+    "order": 10,
     "image": "assets/screenshots/wave-pool-lab.webp",
     "capture": {
       "name": "wave-pool-lab",
@@ -332,7 +309,31 @@
       "capture_method": "Headless Chrome using local page, live simulation, and built-in presets"
     },
     "ci": "https://github.com/netcodermike/wave-pool-lab/actions",
-    "applicationUrl": "/apps/wave-pool-lab/"
+    "applicationUrl": "/apps/wave-pool-lab/",
+    "gameMenuLabel": "Wave Pool Lab"
+  },
+  {
+    "name": "pde-wave-and-heat-explorer",
+    "title": "PDE Wave and Heat Explorer",
+    "description": "Animate how a temperature profile diffuses or a wave travels and reflects.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web browser",
+    "url": "https://github.com/netcodermike/pde-wave-and-heat-explorer",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 11,
+    "image": "assets/screenshots/pde-wave-and-heat-explorer.webp",
+    "capture": {
+      "name": "pde-wave-and-heat-explorer",
+      "kind": "runtime",
+      "caption": "Browser screenshot of the app running with its built-in sample.",
+      "capture_date": "2026-11-12T05:49:46.399966+00:00",
+      "demo_data": true
+    },
+    "applicationUrl": "/apps/pde-wave-and-heat-explorer/",
+    "ci": "https://github.com/netcodermike/pde-wave-and-heat-explorer/actions/workflows/verify.yml"
   },
   {
     "name": "fourier-sketchpad",
