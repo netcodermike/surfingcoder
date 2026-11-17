@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare wave-pool profiles and wavemaker settings in a browser-based shallow-water simulator.">
+  <title>Wave Pool Lab | SurfingCoder</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
+</head>
+<body>
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+<main class="lab">
+  <div class="intro">
+    <div>
+      <h1>Wave Pool <span>Lab</span></h1>
+      <p>Shape a basin, send a set through it, and measure how the waves change as they reach the beach.</p>
+    </div>
+    <a class="source" href="https://github.com/netcodermike/wave-pool-lab">View source <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="workspace">
+    <div class="visuals">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Basin cross-section</h2>
+          <div class="controls" aria-label="Simulation playback">
+            <button class="primary" id="play" type="button">Play</button>
+            <button id="reset" type="button">Reset</button>
+            <label class="visually-hidden" for="rate">Playback speed</label>
+            <select id="rate"><option value="1">1×</option><option value="3" selected>3×</option><option value="6">6×</option></select>
+          </div>
+        </div>
+        <canvas id="section" width="920" height="340" role="img" aria-label="A cross-section showing the wave surface, basin floor, and gauge position."></canvas>
+        <div class="panel-foot">
+          <div class="legend"><span><i></i> Surface</span><span><i></i> Floor</span><span><i></i> Gauge</span></div>
+          <span id="magnification"></span>
+        </div>
+      </section>
+      <div class="metrics" aria-label="Basin estimates">
+        <div><span>Wave speed at inlet</span><strong id="celerity"></strong></div>
+        <div><span>Beach slope</span><strong id="slope"></strong></div>
+        <div><span>Travel to gauge</span><strong id="arrival"></strong></div>
+        <div><span>Gauge crest-to-trough</span><strong id="range"></strong></div>
+      </div>
+      <section class="panel history">
+        <div class="panel-head">
+          <div><h2>Gauge history</h2><p id="gauge-info"></p></div>
+          <button id="download" type="button">Export CSV</button>
+        </div>
+        <canvas id="chart" width="920" height="245" role="img" aria-label="Chart of surface elevation over time at the gauge."></canvas>
+        <div class="panel-foot"><div class="legend"><span><i></i> Current</span><span id="baseline-key" hidden><i></i> Comparison</span></div><span id="elapsed"></span></div>
+      </section>
+    </div>
+    <aside class="panel inputs" aria-label="Wave pool design settings">
+      <h2>Basin setup</h2>
+      <div id="presets" class="presets" aria-label="Design presets"></div>
+      <form id="settings">
+        <fieldset>
+          <legend>Pool profile</legend>
+          <label>Basin length <span><input name="length" type="number" min="24" max="160" step="1" required> m</span></label>
+          <label>Deep-end depth <span><input name="depth" type="number" min=".5" max="4" step=".05" required> m</span></label>
+          <label>Shallow-end depth <span><input name="endDepth" type="number" min=".25" max="4" step=".05" required> m</span></label>
+          <label>Beach starts at <span><input name="beachStart" type="number" min="25" max="88" step="1" required> %</span></label>
+          <label for="boundary">Far end <select id="boundary" name="boundary"><option value="open">Open</option><option value="wall">Reflecting wall</option></select></label>
+        </fieldset>
+        <fieldset>
+          <legend>Wavemaker and gauge</legend>
+          <label>Input amplitude <span><input name="amplitude" type="number" min="0" max=".4" step=".01" required> m</span></label>
+          <label>Wave period <span><input name="period" type="number" min="3" max="15" step=".1" required> s</span></label>
+          <label>Waves per set <span><input name="cycles" type="number" min="1" max="10" step="1" required></span></label>
+          <label>Gauge position <span><input name="gauge" type="number" min="10" max="94" step="1" required> %</span></label>
+        </fieldset>
+        <button class="primary" type="submit">Apply settings</button>
+      </form>
+      <div class="comparison">
+        <button id="baseline" type="button">Save as comparison</button>
+        <button id="clear-baseline" type="button" hidden>Clear comparison</button>
+        <p id="comparison-note">Save this design, then change settings to compare both gauge traces.</p>
+      </div>
+      <section class="validity" aria-labelledby="model-title">
+        <h2 id="model-title">Model limits</h2>
+        <p id="warning" role="status"></p>
+        <details>
+          <summary>How it works</summary>
+          <p>The 1D linear shallow-water model uses a fixed, submerged bed. It represents small waves over long wavelengths. Pool entry is a prescribed incoming wave, and the open end approximates outgoing flow.</p>
+          <p>Breaking, dry-beach run-up, and sideways effects are outside the model. Use it for concept comparisons before engineering design.</p>
+        </details>
+      </section>
+    </aside>
+  </div>
+  <p id="announcement" class="visually-hidden" role="status"></p>
+</main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>
