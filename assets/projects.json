@@ -291,7 +291,7 @@
     "platform": "Web browser",
     "url": "https://github.com/netcodermike/pde-wave-and-heat-explorer",
     "category": "Mathematics",
-    "featured": false,
+    "featured": true,
     "order": 10,
     "image": "assets/screenshots/pde-wave-and-heat-explorer.webp",
     "capture": {
