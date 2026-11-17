@@ -1,9 +1,9 @@
 {
   "name": "surfcoder-regional-surf-report",
   "kind": "runtime",
-  "caption": "Full-width seven-day swell forecast for Indian Beach, with the region and location controls above the chart.",
-  "capture_date": "2026-11-17T04:42:34.973004+00:00",
+  "caption": "Full-width seven-day Indian Beach forecast with the SurfingCoder name and larger chart legend.",
+  "capture_date": "2026-11-17T05:30:19.458975+00:00",
   "demo_data": false,
   "validation_passed": true,
-  "capture_method": "Headless Chrome running the published app interface without the shared site navigation"
+  "capture_method": "Headless Chrome running the app interface without the shared site navigation"
 }

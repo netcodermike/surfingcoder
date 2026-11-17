@@ -13,7 +13,7 @@ Completed November 6, 2026. Forty separate public repositories under netcodermik
 | --- | --- | --- | --- |
 | String Instrument Tuner | TypeScript | [string-instrument-tuner](https://github.com/netcodermike/string-instrument-tuner) | [Launch](https://surfingcoder.com/apps/string-instrument-tuner/) |
 | Blues Progression Atlas | JavaScript | [blues-progression-atlas](https://github.com/netcodermike/blues-progression-atlas) | [Launch](https://surfingcoder.com/apps/blues-progression-atlas/) |
-| SurfCoder Boombox | TypeScript | [surfcoder-boombox](https://github.com/netcodermike/surfcoder-boombox) | [Launch](https://surfingcoder.com/apps/surfcoder-boombox/) |
+| SurfingCoder Boombox | TypeScript | [surfcoder-boombox](https://github.com/netcodermike/surfcoder-boombox) | [Launch](https://surfingcoder.com/apps/surfcoder-boombox/) |
 | Polyrhythm Matrix | JavaScript | [polyrhythm-matrix](https://github.com/netcodermike/polyrhythm-matrix) | [Launch](https://surfingcoder.com/apps/polyrhythm-matrix/) |
 | Interval Ear Gym | TypeScript | [interval-ear-gym](https://github.com/netcodermike/interval-ear-gym) | [Launch](https://surfingcoder.com/apps/interval-ear-gym/) |
 | Chord Voicing Lab | TypeScript | [chord-voicing-lab](https://github.com/netcodermike/chord-voicing-lab) | [Launch](https://surfingcoder.com/apps/chord-voicing-lab/) |
@@ -40,7 +40,7 @@ Completed November 6, 2026. Forty separate public repositories under netcodermik
 | Local Model Chat Desk | Python | [local-model-chat-desk](https://github.com/netcodermike/local-model-chat-desk) | Run locally; see README |
 | AI Dataset Quality Auditor | Python | [ai-dataset-quality-auditor](https://github.com/netcodermike/ai-dataset-quality-auditor) | Run locally; see README |
 | Decision Tree Workbench | JavaScript | [decision-tree-workbench](https://github.com/netcodermike/decision-tree-workbench) | [Launch](https://surfingcoder.com/apps/decision-tree-workbench/) |
-| SurfCoder Regional Surf Report | JavaScript | [surfcoder-regional-surf-report](https://github.com/netcodermike/surfcoder-regional-surf-report) | [Launch](https://surfingcoder.com/surfreport/) |
+| SurfingCoder Regional Surf Report | JavaScript | [surfcoder-regional-surf-report](https://github.com/netcodermike/surfcoder-regional-surf-report) | [Launch](https://surfingcoder.com/surfreport/) |
 | Home Energy Scenario Lab | TypeScript | [home-energy-scenario-lab](https://github.com/netcodermike/home-energy-scenario-lab) | [Launch](https://surfingcoder.com/apps/home-energy-scenario-lab/) |
 | Offline Recipe Scaling Kit | Swift | [offline-recipe-scaling-kit](https://github.com/netcodermike/offline-recipe-scaling-kit) | Run locally; see README |
 | Network Subnet Workbench | Go | [network-subnet-workbench](https://github.com/netcodermike/network-subnet-workbench) | Run locally; see README |

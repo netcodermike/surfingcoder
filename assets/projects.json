@@ -3341,7 +3341,7 @@
   },
   {
     "name": "surfcoder-boombox",
-    "title": "SurfCoder Boombox",
+    "title": "SurfingCoder Boombox",
     "description": "A virtual boombox for local audio queues and user-supplied radio streams, with spectrum meters.",
     "languages": [
       "TypeScript"
@@ -3354,7 +3354,7 @@
     "image": "assets/screenshots/surfcoder-boombox.webp",
     "capture": {
       "name": "surfcoder-boombox",
-      "capture_date": "2026-11-06T12:08:45.201767+00:00",
+      "capture_date": "2026-11-17T05:30:19.458975+00:00",
       "demo_data": true,
       "validation_passed": true,
       "source_commit": "a9d964d644465700bfda0db8e69e6aa959f211d1",
@@ -3363,8 +3363,8 @@
         "npm test"
       ],
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
+      "caption": "SurfingCoder Boombox with a generated tone in the local audio queue.",
+      "capture_method": "Headless Chrome running the app interface without the shared site navigation",
       "visible_status": "Playing"
     },
     "ci": "https://github.com/netcodermike/surfcoder-boombox/actions",
@@ -4283,7 +4283,7 @@
   },
   {
     "name": "surfcoder-regional-surf-report",
-    "title": "SurfCoder Regional Surf Report",
+    "title": "SurfingCoder Regional Surf Report",
     "description": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
     "languages": [
       "JavaScript"
@@ -4297,11 +4297,11 @@
     "capture": {
       "name": "surfcoder-regional-surf-report",
       "kind": "runtime",
-      "caption": "Full-width seven-day swell forecast for Indian Beach, with the region and location controls above the chart.",
-      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "caption": "Full-width seven-day Indian Beach forecast with the SurfingCoder name and larger chart legend.",
+      "capture_date": "2026-11-17T05:30:19.458975+00:00",
       "demo_data": false,
       "validation_passed": true,
-      "capture_method": "Headless Chrome running the published app interface without the shared site navigation"
+      "capture_method": "Headless Chrome running the app interface without the shared site navigation"
     },
     "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
     "applicationUrl": "/surfreport/"

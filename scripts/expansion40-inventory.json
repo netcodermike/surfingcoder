@@ -43,7 +43,7 @@
   },
   {
     "name": "surfcoder-boombox",
-    "title": "SurfCoder Boombox",
+    "title": "SurfingCoder Boombox",
     "language": "TypeScript",
     "group": "music",
     "summary": "A virtual boombox for local audio queues and user-supplied radio streams, with spectrum meters.",
@@ -673,7 +673,7 @@
   },
   {
     "name": "surfcoder-regional-surf-report",
-    "title": "SurfCoder Regional Surf Report",
+    "title": "SurfingCoder Regional Surf Report",
     "language": "JavaScript",
     "group": "surf",
     "summary": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
