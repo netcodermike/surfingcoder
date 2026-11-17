@@ -4,6 +4,7 @@ const EARTH_KM = 6371.0088;
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
 const COASTWATCH = 'https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet';
+const ONSLOW_DATASET = 'https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b';
 const fields = ['station', 'time', 'WVHT', 'DPD', 'MWD', 'WTMP'];
 const radians = degrees => degrees * Math.PI / 180;
 
@@ -71,6 +72,29 @@ function readStation(stationId, signal) {
   });
 }
 
+async function readObservations(stationId, signal) {
+  if (stationId === '41159') {
+    const variables = [
+      'time', 'sea_surface_wave_significant_height', 'sea_surface_wave_period_at_variance_spectral_density_maximum',
+      'sea_surface_wave_from_direction_at_variance_spectral_density_maximum', 'sea_water_temperature',
+    ];
+    try {
+      const response = await fetch(ONSLOW_DATASET + '.json?' + variables.join(',') + '&time%3Enow-36hours', {
+        signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]),
+      });
+      if (!response.ok) throw Error('Onslow Bay data unavailable');
+      const { table } = await response.json();
+      const indexes = variables.map(variable => table.columnNames.indexOf(variable));
+      const rows = table.rows.map(row => [stationId, ...indexes.map(index => row[index])]);
+      const readings = parseReadings({ table: { columnNames: fields, rows } }, stationId);
+      if (readings.length) return { readings, source: ONSLOW_DATASET + '.html' };
+    } catch {
+      signal.throwIfAborted();
+    }
+  }
+  return { readings: await readStation(stationId, signal), source: COASTWATCH + '.html' };
+}
+
 export function setupBuoyView(getUnits) {
   const get = id => document.getElementById(id);
   const forecast = get('forecast-view');
@@ -133,23 +157,32 @@ export function setupBuoyView(getUnits) {
       summary.append(card);
     }
     observation.append(observed, summary);
-    if (readings.length < 2) return;
-    const history = node('details', '', 'buoy-history');
+    const history = node('section', '', 'buoy-history');
+    const title = node('h4', 'Recent readings');
+    title.id = 'buoy-history-heading';
+    history.setAttribute('aria-labelledby', title.id);
     const scroll = node('div', '', 'buoy-table-scroll');
+    scroll.tabIndex = 0;
+    scroll.setAttribute('role', 'region');
+    scroll.setAttribute('aria-label', 'Buoy observations, newest first');
     const table = document.createElement('table');
     const headingsRow = table.createTHead().insertRow();
     for (const label of ['Observed', ...headings]) {
       const header = node('th', label);
       header.scope = 'col';
+      if (label === 'Observed') header.setAttribute('aria-sort', 'descending');
       headingsRow.append(header);
     }
     const body = table.createTBody();
-    for (const item of readings.slice(0, 8)) {
+    for (const item of readings) {
       const tr = body.insertRow();
-      for (const value of [date.format(item.time), ...values(item)]) tr.append(node('td', value));
+      const stamp = node('time', date.format(item.time));
+      stamp.dateTime = new Date(item.time).toISOString();
+      tr.insertCell().append(stamp);
+      for (const value of values(item)) tr.append(node('td', value));
     }
     scroll.append(table);
-    history.append(node('summary', 'Recent readings'), scroll);
+    history.append(title, scroll);
     observation.append(history);
   }
 
@@ -172,10 +205,12 @@ export function setupBuoyView(getUnits) {
     request = controller;
     displayedStation = buoy.id;
     readings = undefined;
+    dataLink.href = COASTWATCH + '.html';
     drawReadings();
-    readStation(buoy.id, controller.signal).then(rows => {
+    readObservations(buoy.id, controller.signal).then(result => {
       if (controller.signal.aborted) return;
-      readings = rows;
+      readings = result.readings;
+      dataLink.href = result.source;
       drawReadings();
     }).catch(() => {
       if (controller.signal.aborted) return;

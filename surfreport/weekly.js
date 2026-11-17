@@ -23,7 +23,7 @@ export function weekly(rows,{zone,units}){
  const legend=document.createElement('div');legend.className='week-legend';root.append(legend);
  const series=components.map(([key,name,color,period,direction])=>({key,name,color,period,direction,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}));
  for(const s of series){const l=document.createElement('label'),check=document.createElement('input'),swatch=document.createElement('i');check.type='checkbox';check.checked=enabled.has(s.key)&&s.available;check.disabled=!s.available;check.setAttribute('aria-label',s.name);check.onchange=()=>{check.checked?enabled.add(s.key):enabled.delete(s.key);weekly(rows,{zone,units});};swatch.style.background=s.color;l.append(check,swatch,document.createTextNode(s.name+(s.available?'':' · unavailable')));legend.append(l);}
- const graph=svg('svg',{viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':`Seven-day ${mode} forecast in ${unit.trim()}, ${zone}. Use the hourly slider and data table for exact values.`,class:'week-chart'});
+ const graph=svg('svg',{viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':`Seven-day ${mode} forecast in ${unit.trim()}, in location time. Use the hourly slider and data table for exact values.`,class:'week-chart'});
  const shown=series.filter(s=>s.available&&enabled.has(s.key));const max=Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
  for(let i=0;i<5;i++){const y=260-i*55;graph.append(svg('line',{x1:plotLeft,y1:y,x2:plotRight,y2:y,stroke:'#44394f'}),svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont},(max*i/4).toFixed(1)+unit));}
  const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
@@ -31,11 +31,81 @@ export function weekly(rows,{zone,units}){
  [...days.values()].forEach(day=>{const xx=x(day[0].time);const label=fmt(day[0].time,{weekday:compact?'narrow':'short',day:'numeric'});graph.append(svg('line',{x1:xx,y1:20,x2:xx,y2:260,stroke:'#44394f','stroke-dasharray':'3 5'}),svg('text',{x:Math.min(xx+3,graphWidth-(compact?25:48)),y:289,fill:'#b5a9c2','font-size':axisFont},label));});
  for(const s of shown){let path='',active=false;s.values.forEach((v,i)=>{if(!Number.isFinite(v)){active=false;return;}path+=`${active?'L':'M'}${x(rows[i].time).toFixed(2)},${(260-v/max*220).toFixed(2)} `;active=true;});graph.append(svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'}));}
  if(selected<0||selected>=rows.length)selected=Math.max(0,rows.findIndex(r=>r.time>=Date.now()/1000));
- const cursor=svg('line',{x1:x(rows[selected].time),y1:20,x2:x(rows[selected].time),y2:260,stroke:'#f0eaf6','stroke-dasharray':'4 4'});graph.append(cursor);root.append(graph);
+ const cursor=svg('line',{x1:x(rows[selected].time),y1:20,x2:x(rows[selected].time),y2:260,stroke:'#f0eaf6','stroke-dasharray':'4 4'});graph.append(cursor);
+ const hoverCursor = svg('line', {y1:20, y2:260, stroke:'#d7b9f5', 'stroke-width':1, visibility:'hidden'});
+ graph.append(hoverCursor);
+ const plot = document.createElement('div');
+ plot.className = 'week-plot';
+ const tooltip = document.createElement('div');
+ tooltip.className = 'week-tooltip';
+ tooltip.hidden = true;
+ tooltip.setAttribute('aria-hidden', 'true');
+ plot.append(graph, tooltip);
+ root.append(plot);
  const sliderLabel=document.createElement('label');sliderLabel.htmlFor='week-hour';sliderLabel.textContent='Inspect forecast hour · local time';const slider=document.createElement('input');slider.type='range';slider.id='week-hour';slider.min=0;slider.max=rows.length-1;slider.step=1;slider.value=selected;root.append(sliderLabel,slider);
  const readout=document.createElement('div');readout.className='week-readout';readout.setAttribute('aria-live','polite');root.append(readout);
- function inspect(i){selected=Math.max(0,Math.min(rows.length-1,i));slider.value=selected;const r=rows[selected];cursor.setAttribute('x1',x(r.time));cursor.setAttribute('x2',x(r.time));readout.replaceChildren();const t=document.createElement('strong');t.textContent=fmt(r.time,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' · '+zone;readout.append(t);for(const s of series){const p=document.createElement('span');p.textContent=`${s.name}: ${val(Number.isFinite(r[s.key])?r[s.key]*scale:null,heightUnit)} / ${val(r[s.period],' s')} / from ${bearing(r[s.direction])}`;readout.append(p);}}
- slider.oninput=()=>inspect(+slider.value);graph.onpointerdown=e=>{const bounds=graph.getBoundingClientRect();inspect(Math.round((((e.clientX-bounds.left)/bounds.width*graphWidth)-plotLeft)/plotWidth*(rows.length-1)));};inspect(selected);
+ function renderReadings(panel, row, items) {
+  const heading = document.createElement('strong');
+  heading.textContent = fmt(row.time,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+  panel.replaceChildren(heading);
+  for (const item of items) {
+   const line = document.createElement('span');
+   line.className = 'week-reading';
+   line.style.setProperty('--series-color', item.color);
+   const label = document.createElement('span');
+   label.className = 'week-reading-label';
+   label.textContent = item.name + ':';
+   const value = document.createElement('span');
+   value.textContent = val(Number.isFinite(row[item.key]) ? row[item.key]*scale : null,heightUnit) +
+     ' · ' + val(row[item.period],' s') + ' · from ' + bearing(row[item.direction]);
+   line.append(label, value);
+   panel.append(line);
+  }
+ }
+ function inspect(i) {
+  selected = Math.max(0, Math.min(rows.length-1, i));
+  slider.value = selected;
+  const row = rows[selected];
+  cursor.setAttribute('x1', x(row.time));
+  cursor.setAttribute('x2', x(row.time));
+  renderReadings(readout, row, series);
+ }
+ function hourAt(clientX) {
+  const bounds = graph.getBoundingClientRect();
+  const fraction = ((clientX-bounds.left)/bounds.width*graphWidth-plotLeft)/plotWidth;
+  const instant = start + span*fraction;
+  const next = rows.findIndex(row => row.time >= instant);
+  if (next === -1) return rows.length-1;
+  return next > 0 && instant-rows[next-1].time <= rows[next].time-instant ? next-1 : next;
+ }
+ let hovered = -1;
+ graph.onpointermove = event => {
+  if (event.pointerType === 'touch') return;
+  const index = hourAt(event.clientX);
+  const row = rows[index];
+  if (hovered !== index) {
+   hovered = index;
+   renderReadings(tooltip, row, shown);
+   hoverCursor.setAttribute('x1', x(row.time));
+   hoverCursor.setAttribute('x2', x(row.time));
+   hoverCursor.setAttribute('visibility', 'visible');
+  }
+  tooltip.hidden = false;
+  const bounds = plot.getBoundingClientRect();
+  const px = event.clientX-bounds.left, py = event.clientY-bounds.top;
+  const left = px+14+tooltip.offsetWidth <= bounds.width ? px+14 : px-14-tooltip.offsetWidth;
+  const top = py+14+tooltip.offsetHeight <= bounds.height ? py+14 : py-14-tooltip.offsetHeight;
+  tooltip.style.left = Math.max(6, Math.min(left, bounds.width-tooltip.offsetWidth-6)) + 'px';
+  tooltip.style.top = Math.max(6, Math.min(top, bounds.height-tooltip.offsetHeight-6)) + 'px';
+ };
+ graph.onpointerleave = graph.onpointercancel = () => {
+  hovered = -1;
+  tooltip.hidden = true;
+  hoverCursor.setAttribute('visibility', 'hidden');
+ };
+ graph.onpointerdown = event => inspect(hourAt(event.clientX));
+ slider.oninput = () => inspect(Number(slider.value));
+ inspect(selected);
  const note=document.createElement('p');note.className='small';note.textContent='Combined sea includes wind waves and swell; heights are not added arithmetically. Missing data creates gaps. Swell partitions are model components, not tracked named storms, and may change order over time. Secondary/tertiary availability depends on the provider model. Tap the chart or use the hourly slider.';root.append(note);
  const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Daily maximum heights · accessible data table';details.append(summary);
  const wrap=document.createElement('div');wrap.className='week-table';const table=document.createElement('table'),thead=document.createElement('thead'),tr=document.createElement('tr');for(const text of ['Date',...components.map(c=>c[1]+heightUnit)]){const th=document.createElement('th');th.scope='col';th.textContent=text;tr.append(th);}thead.append(tr);table.append(thead);const tbody=document.createElement('tbody');for(const day of days.values()){const tr=document.createElement('tr');for(const text of [fmt(day[0].time,{weekday:'short',month:'short',day:'numeric'}),...components.map(([k])=>{const data=day.map(r=>r[k]).filter(Number.isFinite);return data.length?val(Math.max(...data)*scale,''):'—';})]){const td=document.createElement('td');td.textContent=text;tr.append(td);}tbody.append(tr);}table.append(tbody);wrap.append(table);details.append(wrap);root.append(details);

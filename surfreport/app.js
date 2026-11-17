@@ -1,5 +1,5 @@
-import { setupBuoyView } from './src/buoys.js?v=20261116';
-import { weekly } from './weekly.js?v=20261116-full-week';
+import { setupBuoyView } from './src/buoys.js?v=20261117-history';
+import { weekly } from './weekly.js?v=20261117-history';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261109';
 
@@ -36,11 +36,11 @@ function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
     const header = document.createElement('th');
     header.scope = 'col';
     header.textContent = title;
-    if (title === 'Time') header.setAttribute('aria-sort', 'descending');
+    if (title === 'Time') header.setAttribute('aria-sort', 'ascending');
     headings.append(header);
   }
   const body = table.createTBody();
-  for (const row of rows.slice().reverse()) {
+  for (const row of rows) {
     const tr = body.insertRow();
     const date = new Date(row.time * 1000);
     const stamp = document.createElement('time');
@@ -91,7 +91,7 @@ function draw() {
   });
   weekly(rows, { zone, units });
   renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor);
-  $('status').textContent = 'Fetched ' + fetched + ' · ' + zone +
+  $('status').textContent = 'Fetched ' + fetched +
     '. Offshore model forecast. Missing values show —.' +
     (windAvailable ? '' : ' Wind unavailable.');
 }
@@ -140,7 +140,7 @@ async function load(lat, lon, label) {
     windAvailable = weather.status === 'fulfilled';
     rows = core.align(marine.value, windAvailable ? weather.value : null).sort((a, b) => a.time - b.time);
     fetched = new Intl.DateTimeFormat('en-US', {
-      timeZone: zone, hour: 'numeric', minute: '2-digit', month: 'short', day: 'numeric',
+      timeZone: zone, hour: 'numeric', minute: '2-digit', month: 'short', day: 'numeric', timeZoneName: 'short',
     }).format(new Date());
     draw();
   } catch (error) {

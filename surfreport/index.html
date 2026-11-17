@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SurfCoder Regional Surf Report · SurfingCoder</title><meta name="description" content="Compare marine forecasts, swell and wind, and recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261116-full-week"><script type="module" src="app.js?v=20261116-full-week"></script><link rel="stylesheet" href="../theme.css"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SurfCoder Regional Surf Report · SurfingCoder</title><meta name="description" content="Compare marine forecasts, swell and wind, and recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261117-history"><script type="module" src="app.js?v=20261117-history"></script><link rel="stylesheet" href="../theme.css"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
 </head><body>
 <!-- SITE NAVIGATION START -->
@@ -61,24 +61,24 @@
   <div class="forecast-summary"><div id="metric" class="metric"></div><div id="summary" class="chips"></div></div>
   <section id="weekly" aria-label="Seven-day swell explorer"></section>
   <div id="status" class="status" role="status"></div>
-  <section id="hourly" aria-labelledby="hourly-heading" hidden>
-    <h3 id="hourly-heading">Hourly forecast</h3>
-    <div id="output" tabindex="0" role="region" aria-label="Hourly forecast, latest time first"></div>
-  </section>
+  <details id="hourly" hidden>
+    <summary>Hourly forecast</summary>
+    <div id="output" tabindex="0" role="region" aria-label="Hourly forecast, earliest time first"></div>
+  </details>
 </div>
 <section id="buoy-view" hidden aria-labelledby="buoy-heading">
   <h3 id="buoy-heading">Recent buoy observations</h3>
-  <p class="buoy-intro">Measured offshore conditions from NOAA’s National Data Buoy Center.</p>
+  <p class="buoy-intro">Offshore measurements from NOAA-listed wave buoys.</p>
   <div id="buoy-picker" hidden>
     <label for="buoy-station">Nearby wave buoy</label>
     <select id="buoy-station"></select>
   </div>
   <p id="buoy-note" role="status"></p>
-  <div id="buoy-readings" aria-live="polite"></div>
+  <div id="buoy-readings"></div>
   <div class="buoy-actions">
     <button id="reload-buoy" class="secondary" type="button" disabled>Refresh buoy data</button>
     <a id="buoy-station-link" target="_blank" rel="noopener noreferrer" hidden>Station and recent history ↗</a>
-    <a id="buoy-data-link" href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html" target="_blank" rel="noopener noreferrer" hidden>NOAA data source ↗</a>
+    <a id="buoy-data-link" href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html" target="_blank" rel="noopener noreferrer" hidden>Observation data source ↗</a>
     <a id="buoy-search-link" target="_blank" rel="noopener noreferrer" href="https://www.ndbc.noaa.gov/radial_search.php">Search nearby on NOAA ↗</a>
   </div>
 </section></section></div></main><footer><a href="https://open-meteo.com/">Weather data by Open-Meteo</a> · <a href="https://open-meteo.com/en/docs/marine-weather-api">Marine API and data sources</a><br>Built for discovery. Offshore grid forecasts do not resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.<br>Local files stay in your browser unless the interface explicitly describes a request.</footer>
