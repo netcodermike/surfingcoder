@@ -2,7 +2,7 @@
 const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#83cbd5','windWavePeriod','windWaveDirection']];
 let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave']),selected=-1;
 let graphWidth = 1000;
-let periodSeriesKey = 'swell';
+let periodSeriesKey = 'wave';
 const ns='http://www.w3.org/2000/svg';
 function svg(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!=null)e.textContent=text;return e;}
 const val=(v,suffix)=>Number.isFinite(v)?v.toFixed(1)+suffix:'—';
