@@ -32,7 +32,7 @@ OLD_HEADER = re.compile(r'<header class="(?:site-nav|site-header)">.*?</header>'
 BODY_START = re.compile(r'<body\b[^>]*>(?:\s*<a class="skip(?:-link)?"[^>]*>[^<]*</a>)?', re.I)
 LINKS = (
     ('Projects', '/#projects', 'index.html'),
-    ('Surf report', '/surfreport/', 'surfreport/index.html'),
+    ('Surf Report', '/surfreport/', 'surfreport/index.html'),
     ('Writing', '/articles/wsl-rankings-misleading.html', 'articles/wsl-rankings-misleading.html'),
     ('About', '/about.html', 'about.html'),
 )
