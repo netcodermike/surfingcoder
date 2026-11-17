@@ -1,7 +1,7 @@
 import { setupBuoyView } from './src/buoys.js?v=20261117-buoy-observations';
-import { weekly } from './weekly.js?v=20261117-wind-waves';
+import { weekly } from './weekly.js?v=20261117-air-temp';
 import { $, field, select, button, on, download } from './ui.js';
-import * as core from './src/core.js?v=20261117-tides-wind';
+import * as core from './src/core.js?v=20261117-air-temp';
 import { loadTides } from './src/tides.js';
 
 const defaultLocation = 'Indian Beach, NC';
@@ -147,7 +147,7 @@ async function load(lat, lon, label) {
         if (!response.ok) throw Error(data.reason || 'Marine request failed');
         return data;
       }),
-      fetch('https://api.open-meteo.com/v1/forecast?' + common + '&hourly=wind_speed_10m,wind_direction_10m&daily=sunrise,sunset', signals).then(response => {
+      fetch('https://api.open-meteo.com/v1/forecast?' + common + '&hourly=wind_speed_10m,wind_direction_10m,temperature_2m&temperature_unit=fahrenheit&daily=sunrise,sunset', signals).then(response => {
         if (!response.ok) throw Error('Wind request failed');
         return response.json();
       }),

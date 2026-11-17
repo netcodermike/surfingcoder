@@ -79,6 +79,9 @@
 .week-grid { stroke: #44394f; }
 .week-zero { stroke: #71627e; }
 .week-axis-label { fill: #b5a9c2; }
+.week-temperature-axis { fill: var(--air-temperature-color); }
+.week-temperature-key { display: inline-flex; align-items: center; gap: 7px; color: var(--air-temperature-color); white-space: nowrap; }
+.week-temperature-key::before { content: ''; width: 18px; border-top: 2px dashed currentColor; }
 .week-support-point { stroke: var(--canvas-bg); stroke-width: 1.5; }
 .week-legend { gap: 7px 20px; }
 .week-legend label { min-height: 30px; margin: 0; gap: 7px; color: var(--ink); font-size: .92rem; }

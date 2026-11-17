@@ -2,6 +2,7 @@ import { tideAt } from './src/tides.js';
 
 export const tideColor = '#78c7ff';
 export const windColor = '#f2c486';
+export const temperatureColor = '#ff9e92';
 
 function panel(root, name, title) {
   const section = document.createElement('section');
@@ -17,35 +18,24 @@ function panel(root, name, title) {
   return { section, caption };
 }
 
-function seriesChart({ values, unit, color, gap, label, arrows }, timeline) {
-  const { svg, width, left, right, x, dayMarks, shadeDaylight, axisFont, compact } = timeline;
-  const top = arrows ? 28 : 12;
-  const bottom = 119;
-  const graph = svg('svg', {
-    viewBox: `0 0 ${width} 147`, role: 'img', 'aria-label': label, class: 'week-support-chart',
-  });
-  shadeDaylight(graph, top, bottom);
+function seriesScale(values, top, bottom, includeZero) {
   const data = values.map(sample => sample.value).filter(Number.isFinite);
-  const min = Math.min(0, ...data);
-  const max = Math.max(0, ...data);
+  const min = includeZero ? Math.min(0, ...data) : Math.min(...data) - 1;
+  const max = includeZero ? Math.max(0, ...data) : Math.max(...data) + 1;
   const rawStep = (max - min || 1) / 3;
   const magnitude = 10 ** Math.floor(Math.log10(rawStep));
   const step = [1, 2, 2.5, 5, 10].map(multiplier => multiplier * magnitude).find(value => value >= rawStep);
   const lowTick = Math.floor(min / step);
-  const highTick = Math.max(1, Math.ceil(max / step));
+  const highTick = Math.max(includeZero ? 1 : lowTick + 1, Math.ceil(max / step));
   const y = value => bottom - (value / step - lowTick) / (highTick - lowTick) * (bottom - top);
+  const ticks = Array.from({ length: highTick - lowTick + 1 }, (_, i) => (i + lowTick) * step);
+  return { y, ticks };
+}
 
-  for (let i = lowTick; i <= highTick; i++) {
-    const height = y(i * step);
-    graph.append(svg('line', { x1: left, x2: right, y1: height, y2: height, class: i ? 'week-grid' : 'week-grid week-zero' }),
-      svg('text', { x: 5, y: height + 4, 'font-size': axisFont, class: 'week-axis-label' },
-        Number((i * step).toPrecision(4)) + unit));
-  }
-  dayMarks(graph, top, bottom, 138);
-
+function drawSeries(graph, { values, color, gap, reading, dashed }, { svg, x }, y, bottom) {
   let trace = '', fill = '', previous;
   function finishFill() {
-    if (previous) fill += `L${x(previous.time).toFixed(2)},${bottom}Z`;
+    if (previous && !dashed) fill += `L${x(previous.time).toFixed(2)},${bottom}Z`;
     previous = undefined;
   }
   for (const sample of values) {
@@ -54,15 +44,53 @@ function seriesChart({ values, unit, color, gap, label, arrows }, timeline) {
     const xx = x(sample.time).toFixed(2);
     const point = `${xx},${y(sample.value).toFixed(2)}`;
     trace += (previous ? 'L' : 'M') + point;
-    fill += previous ? 'L' + point : `M${xx},${bottom}L${point}`;
+    if (!dashed) fill += previous ? 'L' + point : `M${xx},${bottom}L${point}`;
     previous = sample;
   }
   finishFill();
-  graph.append(svg('path', { d: fill, fill: color, 'fill-opacity': '.19' }),
-    svg('path', { d: trace, fill: 'none', stroke: color, 'stroke-width': '2', 'stroke-linejoin': 'round' }));
+  if (!dashed) graph.append(svg('path', { d: fill, fill: color, 'fill-opacity': '.19' }));
+  const line = svg('path', { d: trace, fill: 'none', stroke: color, 'stroke-width': '2', 'stroke-linejoin': 'round' });
+  if (dashed) line.setAttribute('stroke-dasharray', '5 4');
+  graph.append(line);
+  const point = svg('circle', { r: 4, fill: color, class: 'week-support-point' });
+  return { point, reading, y };
+}
+
+function seriesChart(primary, timeline, { label, arrows, temperature } = {}) {
+  const { svg, width, left, right, x, dayMarks, shadeDaylight, axisFont, compact } = timeline;
+  const top = arrows ? 28 : 12;
+  const bottom = 119;
+  const graph = svg('svg', {
+    viewBox: `0 0 ${width} 147`, role: 'img', 'aria-label': label, class: 'week-support-chart',
+  });
+  shadeDaylight(graph, top, bottom);
+  const primaryScale = primary && seriesScale(primary.values, top, bottom, true);
+  const tempScale = temperature && seriesScale(temperature.values, top, bottom, false);
+
+  function drawAxis(scale, unit, onRight) {
+    for (const tick of scale.ticks) {
+      const height = scale.y(tick);
+      if (!onRight || !primaryScale) {
+        graph.append(svg('line', { x1: left, x2: right, y1: height, y2: height, class: tick ? 'week-grid' : 'week-grid week-zero' }));
+      } else {
+        graph.append(svg('line', { x1: right, x2: right + 4, y1: height, y2: height, stroke: temperatureColor }));
+      }
+      graph.append(svg('text', {
+        x: onRight ? width - (compact ? 5 : 12) : 5, y: height + 4, 'font-size': axisFont,
+        'text-anchor': onRight ? 'end' : 'start', class: onRight ? 'week-temperature-axis' : 'week-axis-label',
+      }, Number(tick.toPrecision(4)) + unit));
+    }
+  }
+  if (primaryScale) drawAxis(primaryScale, primary.unit, false);
+  if (tempScale) drawAxis(tempScale, temperature.unit, true);
+  dayMarks(graph, top, bottom, 138);
+
+  const markers = [];
+  if (primaryScale) markers.push(drawSeries(graph, primary, timeline, primaryScale.y, bottom));
+  if (tempScale) markers.push(drawSeries(graph, temperature, timeline, tempScale.y, bottom));
 
   if (arrows) {
-    const marks = svg('g', { 'aria-hidden': 'true', fill: 'none', stroke: color, class: 'week-wind-arrows' });
+    const marks = svg('g', { 'aria-hidden': 'true', fill: 'none', stroke: windColor, class: 'week-wind-arrows' });
     let lastX = -Infinity;
     for (const row of arrows) {
       const xx = x(row.time);
@@ -75,8 +103,7 @@ function seriesChart({ values, unit, color, gap, label, arrows }, timeline) {
     }
     graph.append(marks);
   }
-  const point = svg('circle', { r: 4, fill: color, class: 'week-support-point' });
-  return { graph, top, bottom, point, y };
+  return { graph, top, bottom, markers };
 }
 
 export function tidePanel(root, tide, timeline, { units, heightUnit, scale }) {
@@ -103,21 +130,40 @@ export function tidePanel(root, tide, timeline, { units, heightUnit, scale }) {
       .map(row => ({ time: row.time, value: row.value * scale })),
     { time: end, value: reading({ time: end }) },
   ];
-  const chart = seriesChart({ values, unit: heightUnit, color: tideColor, gap: 360,
-    label: 'Seven-day NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water.' }, timeline);
+  const chart = seriesChart({ values, unit: heightUnit, color: tideColor, gap: 360, reading }, timeline,
+    { label: 'Seven-day NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water.' });
   return { section, ...chart, reading };
 }
 
-export function windPanel(root, rows, timeline, { speedUnit, speedScale }) {
-  const { section, caption } = panel(root, 'wind', 'Wind forecast');
+export function windPanel(root, rows, timeline, { speedUnit, speedScale, hasTemperature }) {
   const reading = row => Number.isFinite(row.speed) ? row.speed * speedScale : null;
   const values = rows.map(row => ({ time: row.time, value: reading(row) }));
-  if (!values.some(row => Number.isFinite(row.value))) {
+  const hasWind = values.some(row => Number.isFinite(row.value));
+  const title = hasTemperature ? (hasWind ? 'Wind and air temperature' : 'Air temperature') : 'Wind forecast';
+  const { section, caption } = panel(root, 'wind', title);
+  if (!hasWind && !hasTemperature) {
     caption.textContent = 'Wind forecast unavailable for this location.';
     return null;
   }
-  caption.textContent = '10 m wind speed · Arrows point downwind';
-  const chart = seriesChart({ values, unit: speedUnit, color: windColor, gap: 3600, arrows: rows,
-    label: 'Seven-day wind speed in ' + speedUnit.trim() + '. Arrows show the direction the wind is blowing toward.' }, timeline);
-  return { section, ...chart, reading };
+  const wind = hasWind ? { values, unit: speedUnit, color: windColor, gap: 3600, reading } : null;
+  const temperature = hasTemperature ? {
+    values: rows.map(row => ({ time: row.time, value: row.airTemperatureF })),
+    unit: ' °F', color: temperatureColor, gap: 3600, reading: row => row.airTemperatureF, dashed: true,
+  } : null;
+  const descriptions = [];
+  if (hasWind) {
+    caption.append('10 m wind speed · Arrows point downwind');
+    descriptions.push('Seven-day wind speed in ' + speedUnit.trim() + ' on the left axis. Arrows point downwind.');
+  }
+  if (temperature) {
+    section.style.setProperty('--air-temperature-color', temperatureColor);
+    const legend = document.createElement('span');
+    legend.className = 'week-temperature-key';
+    legend.textContent = 'Air temperature (°F)';
+    if (hasWind) caption.append(' · ');
+    caption.append(legend);
+    descriptions.push('Dashed line shows air temperature in degrees Fahrenheit on the right axis.');
+  }
+  const chart = seriesChart(wind, timeline, { label: descriptions.join(' '), arrows: hasWind ? rows : null, temperature });
+  return { section, ...chart, reading: hasWind ? reading : null };
 }

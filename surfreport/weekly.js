@@ -1,5 +1,5 @@
-import { tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js?v=20261117-daylight';
-import { compass } from './src/core.js?v=20261117-tides-wind';
+import { temperatureColor, tideColor, tidePanel, windColor, windPanel } from './forecast-panels.js?v=20261117-air-temp';
+import { compass } from './src/core.js?v=20261117-air-temp';
 
 const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#b9de82','windWavePeriod','windWaveDirection']];
 let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave']),selected=-1;
@@ -34,7 +34,8 @@ export function weekly(rows,options){
  const shown = series.filter(s => s.available && enabled.has(s.key));
  const periodOptions = mode === 'height' ? shown.filter(s => rows.some(row => hasPeriod(row[s.period]))) : [];
  const periodSeries = periodOptions.find(s => s.key === periodSeriesKey) ?? periodOptions[0];
- const plotRight = graphWidth - (periodSeries ? (compact ? 42 : 64) : (compact ? 8 : 20));
+ const hasTemperature = rows.some(row => Number.isFinite(row.airTemperatureF));
+ const plotRight = graphWidth - (periodSeries || hasTemperature ? (compact ? 46 : 64) : (compact ? 8 : 20));
  const plotWidth = plotRight - plotLeft;
  const start=rows[0].time,end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
  const dateFormat = new Intl.DateTimeFormat('en-US', { timeZone:zone, year:'numeric', month:'2-digit', day:'2-digit' });
@@ -135,7 +136,7 @@ export function weekly(rows,options){
  mountChart(root, { graph, top:20, bottom:260 }, (panel, row) => renderReadings(panel, row, waveReadings(row, shown)));
  const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, dayMarks, shadeDaylight, axisFont, compact };
  const tides = tidePanel(root, tide, timeline, { units, heightUnit, scale });
- const wind = windPanel(root, rows, timeline, { speedUnit, speedScale });
+ const wind = windPanel(root, rows, timeline, { speedUnit, speedScale, hasTemperature });
  const extraReadings = [];
  if (tides) {
   const tideReading = row => ({ name:'Tide', color:tideColor, text:val(tides.reading(row), heightUnit) });
@@ -143,10 +144,12 @@ export function weekly(rows,options){
   mountChart(tides.section, tides, (panel, row) => renderReadings(panel, row, [tideReading(row)]));
  }
  if (wind) {
-  const windReading = row => ({ name:'Wind', color:windColor, text:val(wind.reading(row), speedUnit) +
-   (row.speed === 0 ? ' · Calm' : Number.isFinite(row.wind_direction) ? ' · from ' + bearing(row.wind_direction) : '') });
-  extraReadings.push(windReading);
-  mountChart(wind.section, wind, (panel, row) => renderReadings(panel, row, [windReading(row)]));
+  const readings = [];
+  if (wind.reading) readings.push(row => ({ name:'Wind', color:windColor, text:val(wind.reading(row), speedUnit) +
+   (row.speed === 0 ? ' · Calm' : Number.isFinite(row.wind_direction) ? ' · from ' + bearing(row.wind_direction) : '') }));
+  if (hasTemperature) readings.push(row => ({ name:'Air temperature', color:temperatureColor, text:val(row.airTemperatureF, ' °F') }));
+  extraReadings.push(...readings);
+  mountChart(wind.section, wind, (panel, row) => renderReadings(panel, row, readings.map(reading => reading(row))));
  }
  const sliderLabel=document.createElement('label');sliderLabel.htmlFor='week-hour';sliderLabel.textContent='Inspect forecast hour · local time';const slider=document.createElement('input');slider.type='range';slider.id='week-hour';slider.min=0;slider.max=rows.length-1;slider.step=1;slider.value=selected;root.append(sliderLabel,slider);
  const readout=document.createElement('div');readout.className='week-readout';readout.setAttribute('aria-live','polite');root.append(readout);
@@ -184,12 +187,13 @@ export function weekly(rows,options){
   line.setAttribute('x2', xx);
  }
  function mark(chart, row) {
-  if (!chart.point) return;
-  const value = chart.reading(row);
-  chart.point.setAttribute('visibility', Number.isFinite(value) ? 'visible' : 'hidden');
-  if (!Number.isFinite(value)) return;
-  chart.point.setAttribute('cx', x(row.time));
-  chart.point.setAttribute('cy', chart.y(value));
+  for (const { point, reading, y } of chart.markers ?? []) {
+   const value = reading(row);
+   point.setAttribute('visibility', Number.isFinite(value) ? 'visible' : 'hidden');
+   if (!Number.isFinite(value)) continue;
+   point.setAttribute('cx', x(row.time));
+   point.setAttribute('cy', y(value));
+  }
  }
  function inspect(i) {
   selected = Math.max(0, Math.min(rows.length-1, i));
@@ -210,11 +214,11 @@ export function weekly(rows,options){
   return next > 0 && instant-rows[next-1].time <= rows[next].time-instant ? next-1 : next;
  }
  function mountChart(parent, chart, render) {
-  const { graph, top, bottom, point } = chart;
+  const { graph, top, bottom, markers } = chart;
   const cursor = svg('line', { y1:top, y2:bottom, stroke:'#f0eaf6', 'stroke-dasharray':'4 4', class:'week-selected-cursor' });
   const hoverCursor = svg('line', { y1:top, y2:bottom, stroke:'#d7b9f5', visibility:'hidden', class:'week-hover-cursor' });
   graph.append(cursor, hoverCursor);
-  if (point) graph.append(point);
+  if (markers) graph.append(...markers.map(marker => marker.point));
   charts.push({ ...chart, cursor, hoverCursor });
   const plot = document.createElement('div');
   plot.className = 'week-plot';
