@@ -24,6 +24,7 @@ export function align(marine, weather) {
     speed: air.wind_speed_10m?.[i],
     wind_direction: air.wind_direction_10m?.[i],
     airTemperatureF: air.temperature_2m?.[i],
+    rainChance: air.precipitation_probability?.[i],
   }]));
   return sea.time.map((time, i) => ({
     time,
