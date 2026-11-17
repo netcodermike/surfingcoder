@@ -310,7 +310,8 @@
     },
     "ci": "https://github.com/netcodermike/wave-pool-lab/actions",
     "applicationUrl": "/apps/wave-pool-lab/",
-    "gameMenuLabel": "Wave Pool Lab"
+    "gameMenuLabel": "Wave Pool Lab",
+    "gamesOrder": 1
   },
   {
     "name": "pde-wave-and-heat-explorer",
@@ -4801,7 +4802,7 @@
     "platform": "Web browser, keyboard and touch",
     "url": "https://github.com/netcodermike/surfingcoder-arcade",
     "category": "Games & learning",
-    "featured": false,
+    "featured": true,
     "order": 198,
     "image": "assets/screenshots/surfingcoder-arcade.webp",
     "capture": {
@@ -4813,7 +4814,8 @@
     },
     "ci": "https://github.com/netcodermike/surfingcoder-arcade/actions/workflows/verify.yml",
     "applicationUrl": "/arcade/",
-    "gameMenuLabel": "Arcade"
+    "gameMenuLabel": "Arcade",
+    "gamesOrder": 0
   },
   {
     "name": "surfingcoder-20-questions",
