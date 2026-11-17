@@ -1,7 +1,8 @@
-import { setupBuoyView } from './src/buoys.js?v=20261117-history';
-import { weekly } from './weekly.js?v=20261117-combined-sea';
+import { setupBuoyView } from './src/buoys.js?v=20261117-tides-wind';
+import { weekly } from './weekly.js?v=20261117-tides-wind';
 import { $, field, select, button, on, download } from './ui.js';
-import * as core from './src/core.js?v=20261109';
+import * as core from './src/core.js?v=20261117-tides-wind';
+import { loadTides } from './src/tides.js';
 
 const defaultLocation = 'Indian Beach, NC';
 const [, defaultLat, defaultLon] = core.presetForLabel(defaultLocation).point;
@@ -26,8 +27,13 @@ let active;
 let controller;
 let fetched;
 let windAvailable = false;
+let tide;
 
 const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
+
+function drawWeek() {
+  weekly(rows, { zone, units: $('units').value, tide });
+}
 
 function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
   const table = document.createElement('table');
@@ -89,7 +95,7 @@ function draw() {
   const timeFormat = new Intl.DateTimeFormat('en-US', {
     timeZone: zone, weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
   });
-  weekly(rows, { zone, units });
+  drawWeek();
   renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor);
   $('status').textContent = 'Fetched ' + fetched +
     '. Offshore model forecast. Missing values show —.' +
@@ -104,6 +110,20 @@ const marineFields = [
   'wind_wave_height', 'wind_wave_period', 'wind_wave_direction',
 ].join(',');
 
+async function updateTides(location, request, start, end) {
+  const signal = AbortSignal.any([request.signal, AbortSignal.timeout(20000)]);
+  let result;
+  try {
+    result = await loadTides(location, start, end, signal) ??
+      { message: 'No NOAA tide prediction station within 80 km (50 mi).' };
+  } catch {
+    result = { message: 'NOAA tide predictions are currently unavailable.' };
+  }
+  if (request !== controller) return;
+  tide = result;
+  drawWeek();
+}
+
 async function load(lat, lon, label) {
   const coords = core.coordinates(lat, lon);
   active = { ...coords, label };
@@ -112,13 +132,14 @@ async function load(lat, lon, label) {
   const request = new AbortController();
   controller = request;
   rows = [];
+  tide = undefined;
   $('summary').replaceChildren();
   $('output').replaceChildren();
   $('hourly').hidden = true;
   $('metric').textContent = '…';
   $('result-title').textContent = label;
   $('status').textContent = 'Requesting the seven-day forecast…';
-  weekly([], { zone, units: $('units').value });
+  drawWeek();
   const timeout = setTimeout(() => request.abort(), 20000);
   try {
     const common = 'latitude=' + coords.lat + '&longitude=' + coords.lon + '&timezone=auto&timeformat=unixtime&forecast_days=7';
@@ -137,12 +158,13 @@ async function load(lat, lon, label) {
     if (request !== controller) return;
     if (marine.status !== 'fulfilled') throw marine.reason;
     zone = marine.value.timezone || 'UTC';
-    windAvailable = weather.status === 'fulfilled';
-    rows = core.align(marine.value, windAvailable ? weather.value : null).sort((a, b) => a.time - b.time);
+    rows = core.align(marine.value, weather.status === 'fulfilled' ? weather.value : null).sort((a, b) => a.time - b.time);
+    windAvailable = rows.some(row => Number.isFinite(row.speed));
     fetched = new Intl.DateTimeFormat('en-US', {
       timeZone: zone, hour: 'numeric', minute: '2-digit', month: 'short', day: 'numeric', timeZoneName: 'short',
     }).format(new Date());
     draw();
+    updateTides(active, request, rows[0].time, rows.at(-1).time);
   } catch (error) {
     if (request !== controller) return;
     $('metric').textContent = 'Unavailable';
@@ -231,5 +253,5 @@ new ResizeObserver(([entry]) => {
   const width = entry.contentRect.width;
   if (!width || width === chartWidth) return;
   chartWidth = width;
-  if (rows.length) weekly(rows, { zone, units: $('units').value });
+  if (rows.length) drawWeek();
 }).observe($('weekly'));

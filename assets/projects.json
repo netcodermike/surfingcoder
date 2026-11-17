@@ -4284,7 +4284,7 @@
   {
     "name": "surfcoder-regional-surf-report",
     "title": "SurfingCoder Regional Surf Report",
-    "description": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",
+    "description": "Compare seven days of swell, tides, and wind alongside recent observations from nearby wave buoys.",
     "languages": [
       "JavaScript"
     ],
@@ -4297,11 +4297,11 @@
     "capture": {
       "name": "surfcoder-regional-surf-report",
       "kind": "runtime",
-      "caption": "Seven-day Indian Beach forecast with height on the left axis and blue Combined sea period dots on the right seconds axis.",
-      "capture_date": "2026-11-17T06:39:04.657803+00:00",
+      "caption": "Seven-day Indian Beach forecast showing aligned swell, NOAA tide predictions, and wind speed and direction.",
+      "capture_date": "2026-11-17T06:59:10.340766+00:00",
       "demo_data": false,
       "validation_passed": true,
-      "capture_method": "Headless Chrome running the app interface without the shared site navigation"
+      "capture_method": "Headless Chrome with live forecast data, cropped to the charts without the shared site navigation"
     },
     "ci": "https://github.com/netcodermike/surfcoder-regional-surf-report/actions",
     "applicationUrl": "/surfreport/"

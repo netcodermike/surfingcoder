@@ -1,22 +1,14 @@
-import { compass, height } from './core.js?v=20261109';
+import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
 
-const EARTH_KM = 6371.0088;
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
 const COASTWATCH = 'https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet';
 const ONSLOW_DATASET = 'https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b';
 const fields = ['station', 'time', 'WVHT', 'DPD', 'MWD', 'WTMP'];
-const radians = degrees => degrees * Math.PI / 180;
 
 export function nearestBuoys(stations, location) {
-  const latitude = radians(location.lat);
-  return stations.map(station => {
-    const stationLatitude = radians(station.lat);
-    const dLat = stationLatitude - latitude;
-    const dLon = radians(station.lon - location.lon);
-    const a = Math.sin(dLat / 2) ** 2 + Math.cos(latitude) * Math.cos(stationLatitude) * Math.sin(dLon / 2) ** 2;
-    return { ...station, km: EARTH_KM * 2 * Math.asin(Math.sqrt(Math.min(1, a))) };
-  }).filter(station => station.km <= RADIUS_KM)
+  return stations.map(station => ({ ...station, km: distanceKm(location, station) }))
+    .filter(station => station.km <= RADIUS_KM)
     .sort((first, second) => first.km - second.km)
     .slice(0, 3);
 }

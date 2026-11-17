@@ -19,3 +19,12 @@ export function height(m,units){return m==null?null:m*(units==='imperial'?3.2808
 export function align(marine,weather){if(!marine?.hourly?.time?.length)throw Error('No marine forecast returned for this location');const wind=new Map((weather?.hourly?.time||[]).map((t,i)=>[t,{speed:weather.hourly.wind_speed_10m?.[i],wind_direction:weather.hourly.wind_direction_10m?.[i]}]));return marine.hourly.time.map((time,i)=>({time,wave:marine.hourly.wave_height?.[i]??null,period:marine.hourly.wave_period?.[i]??null,direction:marine.hourly.wave_direction?.[i]??null,swell:marine.hourly.swell_wave_height?.[i]??null,swellPeriod:marine.hourly.swell_wave_period?.[i]??null,swellDirection:marine.hourly.swell_wave_direction?.[i]??null,secondary:marine.hourly.secondary_swell_wave_height?.[i]??null,secondaryPeriod:marine.hourly.secondary_swell_wave_period?.[i]??null,secondaryDirection:marine.hourly.secondary_swell_wave_direction?.[i]??null,tertiary:marine.hourly.tertiary_swell_wave_height?.[i]??null,tertiaryPeriod:marine.hourly.tertiary_swell_wave_period?.[i]??null,tertiaryDirection:marine.hourly.tertiary_swell_wave_direction?.[i]??null,windWave:marine.hourly.wind_wave_height?.[i]??null,windWavePeriod:marine.hourly.wind_wave_period?.[i]??null,windWaveDirection:marine.hourly.wind_wave_direction?.[i]??null,...(wind.get(time)||{})}))}
 
 export function presetForLabel(label){for(const [region,spots]of Object.entries(regions)){const index=spots.findIndex(p=>p[0]===label);if(index>=0)return {region,index,point:spots[index]}}return null}
+
+export function distanceKm(first, second) {
+  const radians = degrees => degrees * Math.PI / 180;
+  const latitude = radians(first.lat);
+  const otherLatitude = radians(second.lat);
+  const halfChord = Math.sin((otherLatitude - latitude) / 2) ** 2 +
+    Math.cos(latitude) * Math.cos(otherLatitude) * Math.sin(radians(second.lon - first.lon) / 2) ** 2;
+  return 6371.0088 * 2 * Math.asin(Math.sqrt(Math.min(1, halfChord)));
+}
