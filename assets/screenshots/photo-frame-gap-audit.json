@@ -1,0 +1,7 @@
+{
+  "name": "photo-frame-gap-audit",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-18T14:55:07.335622+00:00",
+  "demo_data": true
+}

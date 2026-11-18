@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lay out a repeatable motif grid inside a round embroidery hoop and check its stitch clearance.">
+  <title>Embroidery Hoop Layout</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png">
+</head>
+<body>
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+<main>
+  <div class="heading">
+    <div><h1>Embroidery Hoop Layout</h1><p>Lay out a repeatable motif grid inside a round embroidery hoop and check its stitch clearance.</p></div>
+    <a href="https://github.com/netcodermike/embroidery-hoop-layout">Project source ↗</a>
+  </div>
+  <div class="workspace">
+    <section class="panel stage" aria-label="Project workspace">
+      <canvas width="760" height="416" aria-label="Embroidery hoop, usable stitch boundary, and centered rectangular motifs"></canvas><p id="footprint" class="extra"></p>
+      <p id="reading" role="status"></p>
+    </section>
+    <section class="panel controls" aria-label="Controls">
+      <form id="settings"><label for="diameter">Hoop diameter (mm)<output id="diameter-value" for="diameter"></output><input id="diameter" type="range" min="80" max="300" step="5" value="160"></label><label for="margin">Edge margin (mm)<output id="margin-value" for="margin"></output><input id="margin" type="range" min="2" max="28" step="1" value="11"></label><label for="width">Motif width (mm)<output id="width-value" for="width"></output><input id="width" type="range" min="5" max="60" step="1" value="25"></label><label for="height">Motif height (mm)<output id="height-value" for="height"></output><input id="height" type="range" min="5" max="60" step="1" value="28"></label><label for="columns">Columns<output id="columns-value" for="columns"></output><input id="columns" type="range" min="1" max="8" step="1" value="3"></label><label for="rows">Rows<output id="rows-value" for="rows"></output><input id="rows" type="range" min="1" max="8" step="1" value="3"></label><label for="gap">Spacing (mm)<output id="gap-value" for="gap"></output><input id="gap" type="range" min="0" max="30" step="1" value="5"></label></form>
+    </section>
+  </div>
+</main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>
