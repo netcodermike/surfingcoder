@@ -90,6 +90,7 @@ button, select, summary { cursor: pointer; }
 }
 .cell.destination:has(.token)::after { width: 86%; background: transparent; border: 2px solid #e5c4ff; }
 .cell.origin .token { filter: brightness(1.12); }
+.checkers .cell.capture-origin .token { outline: 2px solid #ffe39a; outline-offset: 3px; }
 .cell.winning { outline: 2px solid var(--sea); outline-offset: -3px; }
 .token {
   position: relative; width: 75%; aspect-ratio: 1; display: grid; place-items: center;

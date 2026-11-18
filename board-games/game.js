@@ -26,6 +26,8 @@ const games = {
 }
 const sessions = new Map()
 let active, selected = null, last = [], legal = [], timer, ticket = 0, awaitingPromotion
+let moveNotice = ''
+const checkersCoordinate = id => 'abcdefgh'[id % 8] + (8 - Math.floor(id / 8))
 
 function cancelTurn() {
   clearTimeout(timer)
@@ -49,6 +51,7 @@ function gameId() {
 }
 function reset(opponent) {
   cancelTurn()
+  moveNotice = ''
   sessions.set(active,{state:games[active].create(),opponent,last:[]})
   selected = null
   last = []
@@ -58,6 +61,7 @@ function selectGame() {
   const next = gameId()
   if (next === active) return
   cancelTurn()
+  moveNotice = ''
   active = next
   if (!sessions.has(active)) sessions.set(active,{state:games[active].create(),opponent:'computer',last:[]})
   selected = session().state.forced ?? null
@@ -72,6 +76,7 @@ function selectGame() {
 }
 
 function apply(move, focus = move?.to) {
+  moveNotice = ''
   const current = session(), rules = games[active]
   current.state = rules.play(current.state,move)
   current.last = last = move?.path ?? [move?.from,move?.to].filter(id => id !== undefined)
@@ -102,7 +107,8 @@ function cellLabel(id, piece, state, cols, rows) {
   }
   const choice = !state.result && !isComputer() && legal.some(move =>
     active === 'four-in-a-row' ? move.col === id % cols : move.to === id && move.from === (selected ?? undefined))
-  return coordinate+', '+occupant+(choice ? ', legal destination' : '')
+  const required = active === 'checkers' && !isComputer() && legal.some(move => move.from === id && move.capture !== undefined)
+  return coordinate+', '+occupant+(choice ? ', legal destination' : '')+(required ? ', required capture piece' : '')
 }
 
 function addStar() {
@@ -147,6 +153,7 @@ function decorateCell(button,id,piece,state,cols,rows) {
     }
   }
   if (from && !isComputer()) classes.push('origin')
+  if (active === 'checkers' && !isComputer() && legal.some(move => move.from === id && move.capture !== undefined)) classes.push('capture-origin')
   if (to && !isComputer()) classes.push('destination')
   if (selected === id) classes.push('selected')
   if (last.includes(id)) classes.push('last')
@@ -171,6 +178,9 @@ function render(focus) {
   legal = games[active].moves(state)
   const computer = isComputer()
   const result = state.result
+  const captureRequired = active === 'checkers' && legal.some(move => move.capture !== undefined)
+  const captureOrigins = captureRequired ? [...new Set(legal.map(move => move.from))] : []
+  if (captureRequired && !computer && captureOrigins.length === 1) selected = captureOrigins[0]
   const cols = active === 'four-in-a-row' ? 7 : 8
   const rows = active === 'four-in-a-row' ? 6 : 8
   const pieces = active === 'chess' ? state.engine.board().flat() : state.board
@@ -200,9 +210,16 @@ function render(focus) {
   if (result) status = (result.winner === 0 ? 'Draw.' : name(result.winner)+(name(result.winner)==='You' ? ' win.' : ' wins.'))+' '+result.reason
   else if (active === 'chess' && state.engine.isCheck()) status += ' Check.'
   else if (state.forced != null) status += ' Continue the jump.'
+  else if (captureRequired) status += ' Capture required.'
   else if (state.pass != null) status = name(state.pass)+' passes. '+status
   else if (!legal.length && active === 'chinese-checkers') status = name(state.turn)+' passes.'
-  get('status').textContent = status
+  if (captureRequired && !computer) {
+    const destinations = legal.filter(move => move.from === selected).map(move => checkersCoordinate(move.to))
+    status += destinations.length
+      ? ' Jump '+checkersCoordinate(selected)+' to '+destinations.join(' or ')+'.'
+      : ' Choose a gold-ringed piece to jump.'
+  }
+  get('status').textContent = (moveNotice ? moveNotice+' ' : '')+status
 
   let counts = ''
   if (active === 'chinese-checkers') {
@@ -230,7 +247,29 @@ board.addEventListener('click', event => {
     return
   }
   if (cellMoves.length) return apply(cellMoves[0])
+  if (active === 'checkers') {
+    const state = session().state
+    const movable = legal.some(move => move.from === id)
+    if (state.forced != null) {
+      moveNotice = 'Keep jumping with '+checkersCoordinate(state.forced)+'.'
+      render(id)
+      return
+    }
+    if (Math.sign(state.board[id]) === state.turn && !movable) {
+      moveNotice = legal.some(move => move.capture !== undefined)
+        ? 'Complete the required jump before moving '+checkersCoordinate(id)+'.'
+        : checkersCoordinate(id)+' is blocked. Select a highlighted piece.'
+      render(id)
+      return
+    }
+    if (selected !== null && !movable && !state.board[id]) {
+      moveNotice = 'Choose a marked landing square for '+checkersCoordinate(selected)+'.'
+      render(id)
+      return
+    }
+  }
   if (session().state.forced !== null && session().state.forced !== undefined) return
+  moveNotice = ''
   selected = legal.some(move => move.from === id) && selected !== id ? id : null
   render(id)
 })
