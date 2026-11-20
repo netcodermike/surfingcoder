@@ -1,10 +1,12 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
+import { drawBuoyChart } from './buoy-chart.js';
 
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
 const COASTWATCH = 'https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet';
 const ONSLOW_DATASET = 'https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b';
 const fields = ['station', 'time', 'WVHT', 'DPD', 'MWD', 'WTMP'];
+const WAVES = 'https://raw.githubusercontent.com/netcodermike/surfingcoder/buoy-data/waves/';
 
 export function nearestBuoys(stations, location) {
   return stations.map(station => ({ ...station, km: distanceKm(location, station) }))
@@ -21,19 +23,20 @@ export function parseReadings(data, stationId) {
   const { columnNames, rows } = data?.table ?? {};
   if (!Array.isArray(columnNames) || !Array.isArray(rows)) return [];
   const indexes = fields.map(field => columnNames.indexOf(field));
+  const averageIndex = columnNames.indexOf('APD');
   if (indexes.some(index => index < 0)) return [];
   return rows.flatMap(row => {
     if (!Array.isArray(row)) return [];
     const [id, iso, wave, period, direction, temperature] = indexes.map(index => row[index]);
     const time = Date.parse(iso);
     return id === stationId && Number.isFinite(time) && Number.isFinite(wave) && wave >= 0
-      ? [{ time, wave, period, direction, temperature }] : [];
+      ? [{ time, wave, period, direction, temperature, averagePeriod: row[averageIndex] }] : [];
   }).sort((a, b) => b.time - a.time);
 }
 
 function readStation(stationId, signal) {
   // NOAA supports JSONP for browsers. The sandbox keeps its script away from the site’s DOM and storage.
-  const query = fields.join(',') + '&station=' + encodeURIComponent('"' + stationId + '"') +
+  const query = [...fields, 'APD'].join(',') + '&station=' + encodeURIComponent('"' + stationId + '"') +
     '&time%3Enow-36hours&.jsonp=receiveBuoyData';
   const url = (COASTWATCH + '.json?' + query).replaceAll('&', '&amp;');
   return new Promise((resolve, reject) => {
@@ -87,6 +90,30 @@ async function readObservations(stationId, signal) {
   return { readings: await readStation(stationId, signal), source: COASTWATCH + '.html' };
 }
 
+async function readDetailedWaves(stationId, signal) {
+  const response = await fetch(WAVES + encodeURIComponent(stationId) + '.json', {
+    signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]), cache: 'no-cache',
+  });
+  if (!response.ok) return [];
+  const rows = await response.json();
+  const cutoff = Date.now() - 36 * 3600000;
+  return Array.isArray(rows) ? rows.filter(row => row.time >= cutoff) : [];
+}
+
+export function mergeWaveReadings(standard, detailed) {
+  const unmatched = new Set(standard);
+  const readings = detailed.map(row => {
+    let closest, distance = 5 * 60000 + 1;
+    for (const candidate of unmatched) {
+      const delta = Math.abs(candidate.time - row.time);
+      if (delta < distance) { closest = candidate; distance = delta; }
+    }
+    unmatched.delete(closest);
+    return { ...closest, ...row };
+  });
+  return [...readings, ...unmatched].sort((a, b) => b.time - a.time);
+}
+
 export function setupBuoyView(getUnits) {
   const get = id => document.getElementById(id);
   const forecast = get('forecast-view');
@@ -104,6 +131,8 @@ export function setupBuoyView(getUnits) {
   let displayedStation;
   let request;
   let readings;
+  let chartWidth = 0;
+  let chart;
   const date = new Intl.DateTimeFormat('en-US', {
     month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
   });
@@ -116,39 +145,50 @@ export function setupBuoyView(getUnits) {
     return value;
   }
 
+  function measurementValues(item) {
+    const units = getUnits(), metric = units === 'metric';
+    const format = (value, unit) => Number.isFinite(value) ? value.toFixed(1) + unit : '—';
+    const size = value => format(height(value, units), metric ? ' m' : ' ft');
+    const seconds = value => format(value, ' s');
+    const direction = value => Number.isFinite(value) ? compass(value) : value || '—';
+    const temperature = Number.isFinite(item.temperature) && !metric ? item.temperature * 1.8 + 32 : item.temperature;
+    return [
+      ['Significant height', size(item.wave)], ['Peak period', seconds(item.period)],
+      ['Average period', seconds(item.averagePeriod)], ['Wave from', direction(item.direction)],
+      ['Swell height', size(item.swell)], ['Swell period', seconds(item.swellPeriod)], ['Swell from', direction(item.swellDirection)],
+      ['Wind wave height', size(item.windWave)], ['Wind wave period', seconds(item.windWavePeriod)],
+      ['Wind waves from', direction(item.windWaveDirection)], ['Steepness', item.steepness ?? '—'],
+      ['Water temperature', format(temperature, metric ? ' °C' : ' °F')],
+    ];
+  }
+
+  function makeChart() {
+    chartWidth = observation.clientWidth;
+    return drawBuoyChart(readings, getUnits(), chartWidth || 320, date, measurementValues);
+  }
+
+  new ResizeObserver(() => {
+    if (!chart?.isConnected || !observation.clientWidth || chartWidth === observation.clientWidth) return;
+    const replacement = makeChart();
+    chart.replaceWith(replacement);
+    chart = replacement;
+  }).observe(observation);
+
   function drawReadings() {
     observation.replaceChildren();
+    chart = undefined;
     if (!displayedStation) return;
     if (!readings?.length) {
       observation.append(node('p', readings ? 'No recent readings are available. Try another buoy or open NOAA’s station history.' :
         'Loading wave observations…', 'buoy-reading-status'));
       return;
     }
-    const metric = getUnits() === 'metric';
-    const format = (value, unit, digits = 1) => Number.isFinite(value) ? value.toFixed(digits) + unit : '—';
-    const values = item => {
-      const temperature = Number.isFinite(item.temperature) && !metric ? item.temperature * 1.8 + 32 : item.temperature;
-      return [
-        format(height(item.wave, getUnits()), metric ? ' m' : ' ft'),
-        format(item.period, ' s', 0),
-        Number.isFinite(item.direction) ? compass(item.direction) : '—',
-        format(temperature, metric ? ' °C' : ' °F'),
-      ];
-    };
-    const latest = readings[0];
-    const observed = node('p', 'Observed ', 'buoy-reading-time');
-    const time = node('time', date.format(latest.time));
-    time.dateTime = new Date(latest.time).toISOString();
-    observed.append(time);
-    if (Date.now() - latest.time > 3 * 3600_000) observed.append(' · over 3 hours old');
-    const headings = ['Wave height', 'Peak period', 'Wave from', 'Water temperature'];
-    const summary = node('div', '', 'chips');
-    for (const [index, value] of values(latest).entries()) {
-      const card = node('div', '', 'chip');
-      card.append(node('b', value), headings[index]);
-      summary.append(card);
+    chart = makeChart();
+    observation.append(chart);
+    if (Date.now() - readings[0].time > 3 * 3600_000) {
+      observation.append(node('p', 'The latest reading is over 3 hours old.', 'buoy-reading-status'));
     }
-    observation.append(observed, summary);
+    const headings = measurementValues(readings[0]).map(([label]) => label);
     const history = node('section', '', 'buoy-history');
     const title = node('h4', 'Recent readings');
     title.id = 'buoy-history-heading';
@@ -171,7 +211,7 @@ export function setupBuoyView(getUnits) {
       const stamp = node('time', date.format(item.time));
       stamp.dateTime = new Date(item.time).toISOString();
       tr.insertCell().append(stamp);
-      for (const value of values(item)) tr.append(node('td', value));
+      for (const [, value] of measurementValues(item)) tr.append(node('td', value));
     }
     scroll.append(table);
     history.append(title, scroll);
@@ -199,10 +239,12 @@ export function setupBuoyView(getUnits) {
     readings = undefined;
     dataLink.href = COASTWATCH + '.html';
     drawReadings();
-    readObservations(buoy.id, controller.signal).then(result => {
+    Promise.allSettled([readObservations(buoy.id, controller.signal), readDetailedWaves(buoy.id, controller.signal)]).then(([standard, detailed]) => {
       if (controller.signal.aborted) return;
-      readings = result.readings;
-      dataLink.href = result.source;
+      const extra = detailed.status === 'fulfilled' ? detailed.value : [];
+      const base = standard.status === 'fulfilled' ? standard.value : { readings: [], source: COASTWATCH + '.html' };
+      readings = mergeWaveReadings(base.readings, extra);
+      dataLink.href = extra.length ? NDBC + '/data/realtime2/' + encodeURIComponent(buoy.id) + '.spec' : base.source;
       drawReadings();
     }).catch(() => {
       if (controller.signal.aborted) return;

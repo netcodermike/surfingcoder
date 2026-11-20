@@ -55,17 +55,21 @@
 #buoy-view h3 { margin: 0 0 4px; }
 .buoy-intro, #buoy-note { margin: 0 0 9px; font-size: .84rem; }
 #buoy-note { margin-top: 9px; }
-.buoy-reading-time, .buoy-reading-status { margin: 11px 0 9px; font-size: .84rem; }
-.buoy-reading-time time { color: var(--accent-light); font-weight: 650; }
+.buoy-reading-status { margin: 11px 0 9px; font-size: .84rem; }
+.buoy-wave-chart h4 { margin: 12px 0 6px; }
+.buoy-chart-legend { display: flex; flex-wrap: wrap; gap: 5px 15px; margin: 0 0 9px; font-size: .84rem; }
+.buoy-chart-legend span::before { content: '● '; }
+.buoy-wave-tooltip { top: 8px; max-width: calc(100% - 12px); }
+.buoy-wave-tooltip:not([hidden]) { display: grid; grid-template-columns: repeat(2, auto); gap: 3px 12px; }
+.buoy-wave-tooltip strong { grid-column: 1 / -1; }
+.buoy-wave-chart input[type="range"] { width: 100%; }
 .buoy-history { margin: 12px 0 7px; }
 .buoy-history h4 { margin: 0 0 8px; }
 .buoy-table-scroll { max-height: min(60vh, 32rem); overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
-.buoy-table-scroll table { min-width: 500px; }
+.buoy-table-scroll table { min-width: 1200px; }
 .buoy-table-scroll thead th { position: sticky; top: 0; background: var(--surface-raised); z-index: 1; }
 .buoy-table-scroll time { white-space: nowrap; }
-#buoy-readings .chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 #buoy-data-link[hidden] { display: none; }
-@media (max-width: 760px) { #buoy-readings .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .buoy-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 13px; margin-top: 11px; }
 .buoy-actions button { margin: 0; }
 .buoy-actions a { font-size: .82rem; line-height: 1.5; text-underline-offset: 3px; }

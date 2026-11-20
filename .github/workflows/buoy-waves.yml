@@ -1,0 +1,33 @@
+name: Refresh NOAA buoy observations
+on:
+  schedule:
+    - cron: '12,42 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: buoy-waves
+jobs:
+  refresh:
+    if: github.repository == 'netcodermike/surfingcoder' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: buoy-data
+          path: buoy-data
+      - name: Refresh data branch
+        run: |
+          python scripts/update-buoy-waves.py buoy-data/waves
+          cd buoy-data
+          git remote set-url --push origin https://github.com/netcodermike/surfingcoder.git
+          git config --local user.name 'netcodermike'
+          git config --local user.email '157421386+netcodermike@users.noreply.github.com'
+          test "$(git remote get-url --push origin)" = 'https://github.com/netcodermike/surfingcoder.git'
+          git add waves
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh NOAA buoy observations'
+            git push origin HEAD:refs/heads/buoy-data
+          fi
