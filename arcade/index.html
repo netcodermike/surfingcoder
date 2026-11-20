@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Play Barrel Patrol, an original SurfingCoder space shooter, or open a compatible MAME arcade ROM ZIP locally.">
+  <meta name="description" content="Play Barrel Patrol, a surf arcade game with tandem and co-op rides, or open a compatible MAME arcade ROM ZIP locally.">
   <title>SurfingCoder Arcade</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./arcade.js"></script>
+  <link rel="stylesheet" href="./style.css?v=20261120-surf">
+  <script type="module" src="./arcade.js?v=20261120-surf"></script>
 <link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
 </head>
@@ -74,38 +74,74 @@
           <h2 id="game-title">Barrel Patrol</h2>
           <button type="button" id="sound" aria-pressed="false">Sound off</button>
         </div>
+        <div class="ride-mode">
+          <label for="ride">Ride mode</label>
+          <select id="ride" aria-describedby="ride-help">
+            <option value="solo">Solo</option>
+            <option value="tandem">Tandem · One player, two surfers</option>
+            <option value="coop">Local co-op · Two players</option>
+          </select>
+        </div>
         <div class="scoreboard" aria-label="Game statistics">
           <div><span>Score</span><strong id="score">000000</strong></div>
           <div><span>Best</span><strong id="best">000000</strong></div>
-          <div><span>Wave</span><strong id="wave">01</strong></div>
+          <div><span>Set</span><strong id="wave">01</strong></div>
           <div><span>Lives</span><strong id="lives">3</strong></div>
         </div>
         <div class="screen">
-          <canvas id="playfield" width="480" height="550" aria-label="Barrel Patrol playfield"></canvas>
+          <div class="stage-line" id="stage-line">
+            <span id="stage-title">Outer Reef</span>
+            <span id="stage-objective">Reef break</span>
+          </div>
+          <canvas id="playfield" width="480" height="550" tabindex="-1" aria-label="Barrel Patrol playfield"></canvas>
           <div class="overlay" id="overlay">
-            <p id="prompt" role="status">Ready to launch?</p>
-            <button type="button" class="primary" id="launch">Play Barrel Patrol</button>
+            <div class="overlay-card">
+              <p id="prompt" role="status">Sets are rolling in</p>
+              <button type="button" class="primary" id="launch">Play Barrel Patrol</button>
+            </div>
           </div>
         </div>
-        <div class="controls">
-          <div class="direction">
-            <button type="button" data-hold="left" aria-label="Move left">←</button>
-            <button type="button" data-hold="right" aria-label="Move right">→</button>
+        <div class="controls" role="group" aria-label="Surf controls">
+          <div class="control-row">
+            <span class="rider-tag" data-coop hidden>Surfer 1</span>
+            <div class="direction">
+              <button type="button" data-hold="1-left" aria-label="Steer surfer 1 left">←</button>
+              <button type="button" data-hold="1-right" aria-label="Steer surfer 1 right">→</button>
+            </div>
+            <button type="button" class="throw" data-hold="1-throw" aria-label="Throw boards with surfer 1">Throw</button>
+          </div>
+          <div class="control-row coral" data-coop hidden>
+            <span class="rider-tag">Surfer 2</span>
+            <div class="direction">
+              <button type="button" data-hold="2-left" aria-label="Steer surfer 2 left">←</button>
+              <button type="button" data-hold="2-right" aria-label="Steer surfer 2 right">→</button>
+            </div>
+            <button type="button" class="throw" data-hold="2-throw" aria-label="Throw boards with surfer 2">Throw</button>
           </div>
           <button type="button" id="pause" disabled>Pause</button>
-          <button type="button" class="fire" data-hold="fire">Fire</button>
         </div>
       </section>
       <aside class="side">
-        <section class="panel">
-          <h2>How to play</h2>
-          <p>Ride the swell, clear enemy formations and dodge diving craft. You get three lives. Clear the board to face the next wave.</p>
-          <dl class="keys">
+        <section class="panel rules">
+          <h2>How to ride</h2>
+          <p>Carve the swell and hurl boards at diving mantas, squid, puffers, and reef fish. Dodge creatures and their stinging bubbles. Three wipeouts end the ride.</p>
+          <p id="ride-help">One surfer. Steer with the arrows or A and D.</p>
+          <dl class="keys" data-shared-controls>
             <div><dt>Steer</dt><dd><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd></dd></div>
-            <div><dt>Fire</dt><dd><kbd>Space</kbd></dd></div>
+            <div><dt>Throw boards</dt><dd><kbd>Space</kbd></dd></div>
+          </dl>
+          <dl class="keys" data-coop hidden>
+            <div><dt>Surfer 1</dt><dd><kbd>A</kbd> <kbd>D</kbd> · <kbd>F</kbd> or <kbd>Space</kbd></dd></div>
+            <div><dt>Surfer 2</dt><dd><kbd>←</kbd> <kbd>→</kbd> · <kbd>/</kbd> or <kbd>Num 0</kbd></dd></div>
+          </dl>
+          <dl class="keys">
             <div><dt>Pause</dt><dd><kbd>P</kbd> or <kbd>Esc</kbd></dd></div>
           </dl>
-          <p>On touchscreens, hold the buttons below the playfield.</p>
+          <p>On touchscreens, hold the controls below the break.</p>
+        </section>
+        <section class="panel bonus-guide">
+          <h2>Bonus sets</h2>
+          <p>Every third set is <strong>Shell Run</strong> or <strong>Glass Barrel</strong>. Hit passing shells with your boards. Catch all 21 for 2,100 extra points, with no chance of a wipeout during the bonus.</p>
         </section>
         <section class="panel" aria-labelledby="rom-title">
           <h2 id="rom-title">Open an arcade ROM</h2>

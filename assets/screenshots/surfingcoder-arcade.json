@@ -1,9 +1,10 @@
 {
   "name": "surfingcoder-arcade",
   "kind": "runtime",
-  "caption": "Barrel Patrol in play with enemy formations, shots, and the wave scoreboard.",
-  "capture_date": "2026-11-17T04:42:34.973004+00:00",
+  "caption": "Tandem surfers riding sunset swells and throwing boards at reef creatures in Barrel Patrol.",
+  "capture_date": "2026-11-20T06:07:46.686300+00:00",
   "demo_data": true,
-  "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
-  "validation_passed": true
+  "capture_method": "Headless Chrome capture of real tandem gameplay without the site navigation",
+  "validation_passed": true,
+  "source_commit": "c270d7c3fa5de8ec8badb5678604d1269004588f"
 }
