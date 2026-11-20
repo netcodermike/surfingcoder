@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261120-observed-peak';
+import { drawBuoyChart } from './buoy-chart.js?v=20261120-peak-label';
 
 const HOUR = 3600000;
 const RADIUS_KM = 250;
@@ -171,7 +171,7 @@ export function setupBuoyView(getUnits) {
     const temperature = Number.isFinite(item.temperature) && !metric ? item.temperature * 1.8 + 32 : item.temperature;
     return [
       ['Significant height', size(item.wave)],
-      [chart ? 'Combined sea peak period' : 'Peak period', seconds(item.period)],
+      ['Peak period', seconds(item.period)],
       ['Wave from', direction(item.direction)],
       ['Swell height', size(item.swell)], ['Swell period', seconds(item.swellPeriod)], ['Swell from', direction(item.swellDirection)],
       ['Wind wave height', size(item.windWave)],
