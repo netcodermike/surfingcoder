@@ -1,0 +1,5 @@
+
+export function validate(items        )       {if(!Array.isArray(items)||items.length>2000)throw Error('Use at most 2000 items');const ids=new Set();for(const i of items){if(!i||!/^\d{1,16}$/.test(i.sku)||ids.has(i.sku)||typeof i.name!=='string'||!i.name.trim()||i.name.length>100||![i.qty,i.minimum].every(n=>Number.isInteger(n)&&n>=0&&n<=1000000))throw Error('Invalid or duplicate stock item');ids.add(i.sku);}return structuredClone(items);}
+const digit=['101000111011101','111010001010111','101110001010111','111011100010101','101000111010111','111010001110101','101110001110101','101000101110111','111010001011101','101110001011101'];
+export function barcode(sku       )       {if(!/^\d{1,16}$/.test(sku))throw Error('Numeric SKU required');const edge='100010111011101';return '0000000000'+[edge,...sku.split('').map(d=>digit[+d]),edge].join('0')+'0000000000';}
+export function adjust(items       ,sku       ,delta       )       {const next=structuredClone(items),item=next.find(i=>i.sku===sku);if(!item)throw Error('Unknown SKU');item.qty+=delta;return validate(next);}

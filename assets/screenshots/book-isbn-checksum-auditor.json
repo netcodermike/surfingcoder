@@ -1,0 +1,7 @@
+{
+  "name": "book-isbn-checksum-auditor",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-20T02:38:44.035702+00:00",
+  "demo_data": true
+}
