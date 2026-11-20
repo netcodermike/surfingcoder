@@ -111,19 +111,24 @@ export function drawBuoyChart(readings, units, width, date, details) {
     const stamp = document.createElement('strong');
     stamp.textContent = date.format(row.time);
     popup.replaceChildren(stamp);
-    const values = details(row);
-    for (const [label, value] of values) {
-      const line = document.createElement('span');
-      line.textContent = label + ' · ' + value;
+    const groups = details(row);
+    for (const [label, metrics] of groups) {
+      const line = document.createElement('div');
+      line.className = 'buoy-wave-row';
+      const name = document.createElement('b');
+      name.textContent = label;
+      line.append(name, ' · ' + metrics.map(([, value]) => value).join(' / '));
       popup.append(line);
     }
     popup.hidden = false;
-    popup.style.left = Math.max(6, Math.min(xx + 9, width - popup.offsetWidth - 6)) + 'px';
+    const plotWidth = plot.clientWidth;
+    const anchor = xx * plotWidth / width;
+    popup.style.left = Math.max(6, Math.min(anchor + 9, plotWidth - popup.offsetWidth - 6)) + 'px';
     cursor.setAttribute('x1', xx);
     cursor.setAttribute('x2', xx);
     cursor.setAttribute('visibility', 'visible');
     slider.value = index;
-    slider.setAttribute('aria-valuetext', [stamp.textContent, ...values.map(pair => pair.join(' '))].join(', '));
+    slider.setAttribute('aria-valuetext', [stamp.textContent, ...groups.map(([label, metrics]) => [label, ...metrics.map(pair => pair.join(' '))].join(', '))].join(', '));
   }
   function inspect(event) {
     const rect = chart.getBoundingClientRect();

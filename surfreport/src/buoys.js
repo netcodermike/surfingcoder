@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261120-peak-label';
+import { drawBuoyChart } from './buoy-chart.js?v=20261120-wave-rows';
 
 const HOUR = 3600000;
 const RADIUS_KM = 250;
@@ -162,28 +162,40 @@ export function setupBuoyView(getUnits) {
     return value;
   }
 
-  function measurementValues(item, chart = false) {
+  function measurements(item) {
     const units = getUnits(), metric = units === 'metric';
     const format = (value, unit) => Number.isFinite(value) ? value.toFixed(1) + unit : '—';
     const size = value => format(height(value, units), metric ? ' m' : ' ft');
     const seconds = value => format(value, ' s');
     const direction = value => Number.isFinite(value) ? compass(value) : value || '—';
     const temperature = Number.isFinite(item.temperature) && !metric ? item.temperature * 1.8 + 32 : item.temperature;
-    return [
-      ['Significant height', size(item.wave)],
-      ['Peak period', seconds(item.period)],
-      ['Wave from', direction(item.direction)],
-      ['Swell height', size(item.swell)], ['Swell period', seconds(item.swellPeriod)], ['Swell from', direction(item.swellDirection)],
-      ['Wind wave height', size(item.windWave)],
-      ...(chart ? [] : [['Wind wave period', seconds(item.windWavePeriod)]]),
-      ['Wind waves from', direction(item.windWaveDirection)], ['Steepness', item.steepness ?? '—'],
+    const waves = [
+      ['Combined sea', [
+        ['Significant height', size(item.wave)], ['Peak period', seconds(item.period)], ['Wave from', direction(item.direction)],
+      ]],
+      ['Swell', [
+        ['Swell height', size(item.swell)], ['Swell period', seconds(item.swellPeriod)], ['Swell from', direction(item.swellDirection)],
+      ]],
+      ['Wind waves', [
+        ['Wind wave height', size(item.windWave)], ['Wind wave period', seconds(item.windWavePeriod)],
+        ['Wind waves from', direction(item.windWaveDirection)],
+      ]],
+    ];
+    const other = [
+      ['Steepness', item.steepness ?? '—'],
       ['Water temperature', format(temperature, metric ? ' °C' : ' °F')],
     ];
+    return { waves, other };
+  }
+
+  function tableMeasurements(item) {
+    const { waves, other } = measurements(item);
+    return [...waves.flatMap(([, values]) => values), ...other];
   }
 
   function makeChart() {
     chartWidth = observation.clientWidth;
-    return drawBuoyChart(readings, getUnits(), chartWidth || 320, date, item => measurementValues(item, true));
+    return drawBuoyChart(readings, getUnits(), chartWidth || 320, date, item => measurements(item).waves);
   }
 
   new ResizeObserver(() => {
@@ -212,7 +224,7 @@ export function setupBuoyView(getUnits) {
     }
     chart = makeChart();
     observation.append(chart);
-    const headings = measurementValues(readings[0]).map(([label]) => label);
+    const headings = tableMeasurements(readings[0]).map(([label]) => label);
     const history = node('section', '', 'buoy-history');
     const title = node('h4', 'Recent readings');
     title.id = 'buoy-history-heading';
@@ -235,7 +247,7 @@ export function setupBuoyView(getUnits) {
       const stamp = node('time', date.format(item.time));
       stamp.dateTime = new Date(item.time).toISOString();
       tr.insertCell().append(stamp);
-      for (const [, value] of measurementValues(item)) tr.append(node('td', value));
+      for (const [, value] of tableMeasurements(item)) tr.append(node('td', value));
     }
     scroll.append(table);
     history.append(title, scroll);
