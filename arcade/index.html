@@ -1,12 +1,6 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Play Barrel Patrol, a surf arcade game with tandem and co-op rides, or open a compatible MAME arcade ROM ZIP locally.">
-  <title>SurfingCoder Arcade</title>
-  <link rel="stylesheet" href="./style.css?v=20261120-surf">
-  <script type="module" src="./arcade.js?v=20261120-reef"></script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#18161e"><meta name="description" content="Catch a wave through the reef. An original surfing maze chase from SurfingCoder."><title>Surf Break · SurfingCoder Arcade</title><link rel="stylesheet" href="./surf-break/style.css?v=20261120-surf-break">
+<link rel="stylesheet" href="./arcade-lobby.css?v=20261120-surf-break">
 <link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
 </head>
@@ -64,105 +58,46 @@
 </div>
 <!-- SITE NAVIGATION END -->
 
-  <main class="arcade" id="arcade">
-    <header role="group" aria-label="Page controls" class="arcade-heading">
-      <h1>SurfingCoder <span>Arcade</span></h1>
-    </header>
-    <div class="workspace">
-      <section class="cabinet" aria-labelledby="game-title">
-        <div class="marquee">
-          <h2 id="game-title">Barrel Patrol</h2>
-          <button type="button" id="sound" aria-pressed="false">Sound off</button>
-        </div>
-        <div class="ride-mode">
-          <label for="ride">Ride mode</label>
-          <select id="ride" aria-describedby="ride-help">
-            <option value="solo">Solo</option>
-            <option value="tandem">Tandem · One player, two surfers</option>
-            <option value="coop">Local co-op · Two players</option>
-          </select>
-        </div>
-        <div class="scoreboard" aria-label="Game statistics">
-          <div><span>Score</span><strong id="score">000000</strong></div>
-          <div><span>Best</span><strong id="best">000000</strong></div>
-          <div><span>Set</span><strong id="wave">01</strong></div>
-          <div><span>Lives</span><strong id="lives">3</strong></div>
-        </div>
-        <div class="screen">
-          <div class="stage-line" id="stage-line">
-            <span id="stage-title">Outer Reef</span>
-            <span id="stage-objective">Reef break</span>
-          </div>
-          <canvas id="playfield" width="480" height="550" tabindex="-1" aria-label="Barrel Patrol playfield"></canvas>
-          <div class="overlay" id="overlay">
-            <div class="overlay-card">
-              <p id="prompt" role="status">Sets are rolling in</p>
-              <button type="button" class="primary" id="launch">Play Barrel Patrol</button>
-            </div>
-          </div>
-        </div>
-        <div class="controls" role="group" aria-label="Surf controls">
-          <div class="control-row">
-            <span class="rider-tag" data-coop hidden>Surfer 1</span>
-            <div class="direction">
-              <button type="button" data-hold="1-left" aria-label="Steer surfer 1 left">←</button>
-              <button type="button" data-hold="1-right" aria-label="Steer surfer 1 right">→</button>
-            </div>
-            <button type="button" class="throw" data-hold="1-throw" aria-label="Throw boards with surfer 1">Throw</button>
-          </div>
-          <div class="control-row coral" data-coop hidden>
-            <span class="rider-tag">Surfer 2</span>
-            <div class="direction">
-              <button type="button" data-hold="2-left" aria-label="Steer surfer 2 left">←</button>
-              <button type="button" data-hold="2-right" aria-label="Steer surfer 2 right">→</button>
-            </div>
-            <button type="button" class="throw" data-hold="2-throw" aria-label="Throw boards with surfer 2">Throw</button>
-          </div>
-          <button type="button" id="pause" disabled>Pause</button>
-        </div>
-      </section>
-      <aside class="side">
-        <section class="panel rules">
-          <h2>How to ride</h2>
-          <p>Carve the swell and hurl boards at diving mantas, squid, clawed crabs, and sharks. Dodge creatures and their stinging bubbles. Three wipeouts end the ride.</p>
-          <p id="ride-help">One surfer. Steer with the arrows or A and D.</p>
-          <dl class="keys" data-shared-controls>
-            <div><dt>Steer</dt><dd><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd></dd></div>
-            <div><dt>Throw boards</dt><dd><kbd>Space</kbd></dd></div>
-          </dl>
-          <dl class="keys" data-coop hidden>
-            <div><dt>Surfer 1</dt><dd><kbd>A</kbd> <kbd>D</kbd> · <kbd>F</kbd> or <kbd>Space</kbd></dd></div>
-            <div><dt>Surfer 2</dt><dd><kbd>←</kbd> <kbd>→</kbd> · <kbd>/</kbd> or <kbd>Num 0</kbd></dd></div>
-          </dl>
-          <dl class="keys">
-            <div><dt>Pause</dt><dd><kbd>P</kbd> or <kbd>Esc</kbd></dd></div>
-          </dl>
-          <p>On touchscreens, hold the controls below the break.</p>
-        </section>
-        <section class="panel bonus-guide">
-          <h2>Bonus sets</h2>
-          <p>Every third set is <strong>Shell Run</strong> or <strong>Glass Barrel</strong>. Hit passing shells with your boards. Catch all 21 for 2,100 extra points, with no chance of a wipeout during the bonus.</p>
-        </section>
-        <section class="panel" aria-labelledby="rom-title">
-          <h2 id="rom-title">Open an arcade ROM</h2>
-          <p>Choose a ZIP that matches MAME 2003-Plus. Play runs in your browser and the file stays on your device.</p>
-          <label class="file-button" for="rom-file" tabindex="0">Open ROM ZIP</label>
-          <input id="rom-file" type="file" accept=".zip,application/zip" hidden>
-          <p id="rom-error" role="status"></p>
-          <p><a href="https://www.mamedev.org/roms/">Official noncommercial ROM downloads</a></p>
-        </section>
-        <a class="source" href="https://github.com/netcodermike/surfingcoder-arcade">Arcade source ↗</a>
-      </aside>
+<main class="shell">
+  <header role="group" aria-label="Page controls" class="arcade-lobby">
+  <nav class="arcade-choices" aria-label="Arcade games">
+    <a href="./" aria-current="page">Surf Break</a>
+    <a href="./barrel-patrol/">Barrel Patrol</a>
+  </nav>
+  <div class="arcade-actions">
+    <button type="button" id="rom-open" class="arcade-rom-open" aria-haspopup="dialog">Open ROM ZIP</button>
+    <input id="rom-file" type="file" accept=".zip,application/zip" hidden>
+    <button id="sound" class="icon-button" aria-pressed="true" title="Toggle surf sounds">♫ <span>Sound on</span></button><button id="help" class="icon-button" aria-label="How to play">?</button>
+  </div>
+  <p id="rom-error" role="status"></p>
+</header>
+  <section id="game" class="game-layout" aria-label="Surf Break game">
+    <aside class="intro"><div class="eyebrow"><span></span> A LITTLE SALTWATER ESCAPE</div><h1>Surf<br><em>Break.</em></h1><p class="tagline">Find your line.<br> Outride the wild.</p><div class="intro-rule"></div><p class="intro-copy">A maze of reefs. A pocketful of pearls. And a few locals who don’t like sharing the break.</p><div class="legend"><div><span class="legend-dot pearl"></span><span>Gather every pearl<small>10 points each</small></span></div><div><span class="legend-dot swell">≈</span><span>Catch a super swell<small>Turn the chase around</small></span></div><div><span class="legend-dot fruit">✦</span><span>Find the golden pineapple<small>A little tropical bonus</small></span></div></div><div class="credit">AN ORIGINAL SURFINGCODER GAME<span>Made for one more ride.</span></div></aside>
+    <div class="cabinet"><div class="scorebar"><div><span>SCORE</span><strong id="score">000000</strong></div><div class="best"><span>PERSONAL BEST</span><strong id="best">000000</strong></div><div class="level"><span>BREAK</span><strong id="level">01</strong></div></div>
+      <div class="ocean-frame"><canvas id="ocean" width="552" height="600" tabindex="0" aria-label="Surfing maze. Use arrow keys or W A S D to steer." aria-describedby="instructions"></canvas><div class="scene-label"><span id="lagoon">CORAL COVE</span><span id="remaining">0 pearls left</span></div><div id="overlay" class="overlay"><div class="overlay-card"><div class="wave-mark" aria-hidden="true">≈</div><p id="overlay-kicker">THE TIDE IS RIGHT</p><h2 id="overlay-title">Your wave<br>is waiting.</h2><p id="overlay-description">Collect the pearls. Dodge the sea life.<br>Ride a super swell to chase them back.</p><button id="play" class="play-button">Catch a wave <span>▶</span></button><span id="overlay-hint">ARROW KEYS / WASD TO STEER</span></div></div></div><div class="power-slot"><span class="power-idle">CATCH A SWELL. TURN THE TIDE.</span><div class="power-strip" id="power-strip" hidden><span>SUPER SWELL</span><div><i id="power-meter"></i></div><strong id="power-seconds">8s</strong></div></div>
+      <div class="statusbar"><div class="lives" id="lives" aria-label="3 boards left"></div><div class="status" id="status" role="status" aria-live="polite">The ocean is calling.</div><button id="pause" class="pause-button" disabled title="Pause (P)">Ⅱ <span>Pause</span></button></div>
+      <div class="touch-controls" aria-label="Touch steering controls"><button data-dir="left" aria-label="Steer left">←</button><div><button data-dir="up" aria-label="Steer up">↑</button><button data-dir="down" aria-label="Steer down">↓</button></div><button data-dir="right" aria-label="Steer right">→</button></div>
     </div>
-    <dialog id="rom-dialog" aria-labelledby="rom-filename">
-      <div class="dialog-head">
-        <h2 id="rom-filename">Arcade ROM</h2>
-        <button type="button" id="close-rom">Close</button>
-      </div>
-      <div id="rom-screen"></div>
-    </dialog>
-    <noscript>Enable JavaScript to play the arcade.</noscript>
-  </main>
+    <aside class="ride-notes"><div class="session-tag" title="New reef mazes keep rolling in after every cleared round."><span class="sun"></span> ENDLESS SUMMER MODE</div><div class="locals"><span class="section-label">MEET THE LOCALS</span><div class="local"><canvas class="portrait" data-kind="0" width="72" height="64" aria-hidden="true"></canvas><div><strong>Reef shark</strong><p>Always on your tail.</p></div></div><div class="local"><canvas class="portrait" data-kind="1" width="72" height="64" aria-hidden="true"></canvas><div><strong>Jelly drifter</strong><p>Go with a different flow.</p></div></div><div class="local"><canvas class="portrait" data-kind="2" width="72" height="64" aria-hidden="true"></canvas><div><strong>Crabby local</strong><p>Unpredictably territorial.</p></div></div><div class="local"><canvas class="portrait" data-kind="3" width="72" height="64" aria-hidden="true"></canvas><div><strong>Manta ray</strong><p>Quietly closing in.</p></div></div></div><div class="controls-note" id="instructions"><span class="section-label">FIND YOUR FLOW</span><div class="keycaps"><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd></div><p>Arrow keys or WASD to steer.<br>Queue your next turn early.</p><p><kbd>P</kbd> pause · <kbd>M</kbd> sound</p><p class="small-note">On a phone? Swipe the water<br>or use the buttons below.</p></div></aside>
+  </section>
+  <footer class="session-footer"><button id="restart" class="text-button">Start a fresh session</button></footer>
+</main>
+<dialog id="help-dialog"><button id="close-help" aria-label="Close instructions">×</button><span class="eyebrow">WELCOME TO THE BREAK</span><h2>Ride the reef.</h2><p>Steer your surfer through the channels and collect every pearl to discover a new break. You have three boards—colliding with sea life costs one.</p><p>Big turquoise swells give you a few seconds to chase sea creatures for bonus points. Grab the pineapple before it drifts away, and use the side channel to wrap around the lagoon.</p><p><strong>Steer:</strong> arrows, WASD, swipe, or touch buttons.<br><strong>Pause:</strong> P or Escape. <strong>Sound:</strong> M.</p><button id="help-done" class="play-button">Let’s surf</button></dialog>
+<dialog id="restart-dialog"><span class="eyebrow">A NEW SESSION</span><h2>Start fresh?</h2><p>Your current score and progress will reset. Your personal best stays saved.</p><div class="dialog-actions"><button id="confirm-restart" class="play-button">Start fresh</button><button id="cancel-restart" class="text-button">Keep this session</button></div></dialog>
+<audio id="wipeout-audio" src="./surf-break/assets/sad-trombone.mp3" preload="none" hidden></audio>
+<audio id="swell-music" src="./surf-break/assets/super-swell.wav" preload="none" hidden></audio>
+<dialog id="rom-dialog" aria-labelledby="rom-filename">
+  <div class="rom-dialog-head">
+    <h2 id="rom-filename">Arcade ROM</h2>
+    <button type="button" id="close-rom">Close</button>
+  </div>
+  <p class="rom-note">Use a MAME 2003-Plus ZIP. The file stays on your device.
+    <a href="https://www.mamedev.org/roms/">Official noncommercial ROM downloads</a>
+  </p>
+  <div id="rom-screen"></div>
+</dialog>
+<script type="module" src="./surf-break/app.mjs?v=20261120-surf-break"></script>
+<script type="module" src="./rom-launcher.js?v=20261120-surf-break"></script>
 
 <!-- SITE FOOTER START -->
 <footer class="sc-site-footer">
@@ -172,5 +107,4 @@
   </div>
 </footer>
 <!-- SITE FOOTER END -->
-</body>
-</html>
+</body></html>

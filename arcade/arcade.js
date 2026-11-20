@@ -14,7 +14,7 @@ const sounds = {throw: [630, 310, .08], hit: [180, 105, .095],
   damage: [150, 52, .25], wave: [420, 780, .3], shell: [760, 1150, .14]}
 const reduced = matchMedia('(prefers-reduced-motion: reduce)')
 const bestScores = new Map()
-let game = createGame(), mode = 'ready', audio, sound = false
+let game = createGame(), mode = 'ready', audio, sound = true
 let previous = 0, accumulator = 0
 
 function scoreKey() {
@@ -176,53 +176,10 @@ for (const control of document.querySelectorAll('[data-hold]')) {
   control.addEventListener('blur', () => buttons.delete(control.dataset.hold))
 }
 
-const dialog = $('rom-dialog')
-const fileInput = $('rom-file')
-let frame, requested = 0
-const parentOrigin = location.origin
-document.querySelector('[for="rom-file"]').addEventListener('keydown',event => {
-  if (!['Space','Enter'].includes(event.code)) return
-  event.preventDefault()
-  fileInput.click()
+document.addEventListener('arcade:open-rom', () => {
+  if (mode === 'playing') setMode('paused')
 })
-fileInput.addEventListener('change',async () => {
-  const file = fileInput.files[0], selection = ++requested
-  fileInput.value = ''
-  if (!file) return
-  $('rom-error').textContent = ''
-  try {
-    if (!/^[^/\\]+\.zip$/i.test(file.name) || file.size > 64*1024*1024 || file.size<22) {
-      throw new Error('Choose an arcade ROM ZIP up to 64 MB.')
-    }
-    const signature = new Uint8Array(await file.slice(0,4).arrayBuffer())
-    if (selection !== requested) return
-    if (signature.join(',') !== '80,75,3,4') throw new Error('This file does not contain a ZIP archive.')
-    if (mode === 'playing') setMode('paused')
-    $('rom-filename').textContent = file.name
-    frame = document.createElement('iframe')
-    frame.title = 'MAME browser player'
-    frame.allow = 'autoplay; fullscreen'
-    const player = frame
-    player.srcdoc = `<!doctype html><html lang="en"><head>
-      <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>MAME Browser Player</title><link rel="stylesheet" href="./rom-player.css">
-      <script src="./rom-player.js" defer></script></head><body>
-      <main id="game" aria-label="Arcade emulator"></main>
-      <p id="notice" role="status">Opening the emulator…</p></body></html>`
-    player.addEventListener('load',() => {
-      if (frame === player) player.contentWindow.postMessage({type:'play-local-rom',file},parentOrigin)
-    },{once:true})
-    $('rom-screen').replaceChildren(frame)
-    dialog.showModal()
-  } catch (error) {
-    if (selection === requested) $('rom-error').textContent = error.message
-  }
-})
-$('close-rom').addEventListener('click',() => dialog.close())
-dialog.addEventListener('close',() => {
-  frame?.remove();frame = null
-  document.querySelector('[for="rom-file"]').focus()
-})
+
 selectRide()
 drawPatrol(ctx, game, reduced.matches)
 requestAnimationFrame(loop)

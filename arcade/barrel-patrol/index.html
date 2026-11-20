@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Barrel Patrol, a surf arcade game with tandem and co-op rides, or open a compatible MAME arcade ROM ZIP locally.">
+  <title>Barrel Patrol · SurfingCoder Arcade</title>
+  <link rel="stylesheet" href="../style.css?v=20261120-surf-break">
+  <script type="module" src="../arcade.js?v=20261120-surf-break"></script>
+  <link rel="stylesheet" href="../arcade-lobby.css?v=20261120-surf-break">
+  <script type="module" src="../rom-launcher.js?v=20261120-surf-break"></script>
+<link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+</head>
+<body>
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/" aria-current="page">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Report</a>
+      <a href="/articles/wsl-rankings-misleading.html">Writing</a>
+      <a href="/about.html">About</a>
+      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
+<!-- SITE NAVIGATION END -->
+
+  <main class="arcade" id="arcade">
+    <header role="group" aria-label="Page controls" class="arcade-lobby">
+  <nav class="arcade-choices" aria-label="Arcade games">
+    <a href="../">Surf Break</a>
+    <a href="../barrel-patrol/" aria-current="page">Barrel Patrol</a>
+  </nav>
+  <div class="arcade-actions">
+    <button type="button" id="rom-open" class="arcade-rom-open" aria-haspopup="dialog">Open ROM ZIP</button>
+    <input id="rom-file" type="file" accept=".zip,application/zip" hidden>
+    <button type="button" id="sound" aria-pressed="true">Sound on</button>
+  </div>
+  <p id="rom-error" role="status"></p>
+</header>
+    <div class="workspace">
+      <aside class="patrol-intro">
+        <h1>Barrel<br><em>Patrol.</em></h1>
+        <p>Carve the swell.<br>Clear the reef.</p>
+        <p class="patrol-summary">Throw surfboards at diving sea creatures, solo or with a second surfer.</p>
+      </aside>
+      <section class="cabinet" aria-labelledby="game-title">
+        <div class="marquee">
+          <h2 id="game-title">Barrel Patrol</h2>
+        </div>
+        <div class="ride-mode">
+          <label for="ride">Ride mode</label>
+          <select id="ride" aria-describedby="ride-help">
+            <option value="solo">Solo</option>
+            <option value="tandem">Tandem · One player, two surfers</option>
+            <option value="coop">Local co-op · Two players</option>
+          </select>
+        </div>
+        <div class="scoreboard" aria-label="Game statistics">
+          <div><span>Score</span><strong id="score">000000</strong></div>
+          <div><span>Best</span><strong id="best">000000</strong></div>
+          <div><span>Set</span><strong id="wave">01</strong></div>
+          <div><span>Lives</span><strong id="lives">3</strong></div>
+        </div>
+        <div class="screen">
+          <div class="stage-line" id="stage-line">
+            <span id="stage-title">Outer Reef</span>
+            <span id="stage-objective">Reef break</span>
+          </div>
+          <canvas id="playfield" width="480" height="550" tabindex="-1" aria-label="Barrel Patrol playfield"></canvas>
+          <div class="overlay" id="overlay">
+            <div class="overlay-card">
+              <p id="prompt" role="status">Sets are rolling in</p>
+              <button type="button" class="primary" id="launch">Play Barrel Patrol</button>
+            </div>
+          </div>
+        </div>
+        <div class="controls" role="group" aria-label="Surf controls">
+          <div class="control-row">
+            <span class="rider-tag" data-coop hidden>Surfer 1</span>
+            <div class="direction">
+              <button type="button" data-hold="1-left" aria-label="Steer surfer 1 left">←</button>
+              <button type="button" data-hold="1-right" aria-label="Steer surfer 1 right">→</button>
+            </div>
+            <button type="button" class="throw" data-hold="1-throw" aria-label="Throw boards with surfer 1">Throw</button>
+          </div>
+          <div class="control-row coral" data-coop hidden>
+            <span class="rider-tag">Surfer 2</span>
+            <div class="direction">
+              <button type="button" data-hold="2-left" aria-label="Steer surfer 2 left">←</button>
+              <button type="button" data-hold="2-right" aria-label="Steer surfer 2 right">→</button>
+            </div>
+            <button type="button" class="throw" data-hold="2-throw" aria-label="Throw boards with surfer 2">Throw</button>
+          </div>
+          <button type="button" id="pause" disabled>Pause</button>
+        </div>
+      </section>
+      <aside class="side">
+        <section class="panel rules">
+          <h2>How to ride</h2>
+          <p>Carve the swell and hurl boards at diving mantas, squid, clawed crabs, and sharks. Dodge creatures and their stinging bubbles. Three wipeouts end the ride.</p>
+          <p id="ride-help">One surfer. Steer with the arrows or A and D.</p>
+          <dl class="keys" data-shared-controls>
+            <div><dt>Steer</dt><dd><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd></dd></div>
+            <div><dt>Throw boards</dt><dd><kbd>Space</kbd></dd></div>
+          </dl>
+          <dl class="keys" data-coop hidden>
+            <div><dt>Surfer 1</dt><dd><kbd>A</kbd> <kbd>D</kbd> · <kbd>F</kbd> or <kbd>Space</kbd></dd></div>
+            <div><dt>Surfer 2</dt><dd><kbd>←</kbd> <kbd>→</kbd> · <kbd>/</kbd> or <kbd>Num 0</kbd></dd></div>
+          </dl>
+          <dl class="keys">
+            <div><dt>Pause</dt><dd><kbd>P</kbd> or <kbd>Esc</kbd></dd></div>
+          </dl>
+          <p>On touchscreens, hold the controls below the break.</p>
+        </section>
+        <section class="panel bonus-guide">
+          <h2>Bonus sets</h2>
+          <p>Every third set is <strong>Shell Run</strong> or <strong>Glass Barrel</strong>. Hit passing shells with your boards. Catch all 21 for 2,100 extra points, with no chance of a wipeout during the bonus.</p>
+        </section>
+        <a class="source" href="https://github.com/netcodermike/surfingcoder-arcade">Arcade source ↗</a>
+      </aside>
+    </div>
+<dialog id="rom-dialog" aria-labelledby="rom-filename">
+  <div class="rom-dialog-head">
+    <h2 id="rom-filename">Arcade ROM</h2>
+    <button type="button" id="close-rom">Close</button>
+  </div>
+  <p class="rom-note">Use a MAME 2003-Plus ZIP. The file stays on your device.
+    <a href="https://www.mamedev.org/roms/">Official noncommercial ROM downloads</a>
+  </p>
+  <div id="rom-screen"></div>
+</dialog>
+    <noscript>Enable JavaScript to play the arcade.</noscript>
+  </main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

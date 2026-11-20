@@ -13,10 +13,6 @@
 [hidden] { display: none !important }
 body { margin: 0; min-height: 100vh; color: var(--text); background: radial-gradient(ellipse at 22% 0%,#382848,var(--ground) 65%) }
 a { color: var(--amethyst); text-underline-offset: 3px }
-.arcade { width: min(956px,calc(100% - 40px)); margin: 27px auto 56px }
-.arcade-heading h1 { margin: 0 0 16px; font-size: clamp(2.1rem,6vw,3.45rem); letter-spacing: -.058em; line-height: 1.08 }
-.arcade-heading span { color: var(--amethyst) }
-.workspace { display: grid; grid-template-columns: minmax(0,1fr) minmax(235px,340px); gap: 20px; align-items: start }
 .cabinet {
   display: grid; justify-items: center; gap: 10px; min-width: 0; padding: 14px 19px;
   background: linear-gradient(150deg,#30253e,#241d34 60%,#2c2441);
@@ -26,11 +22,11 @@ a { color: var(--amethyst); text-underline-offset: 3px }
 
 .marquee { display: flex; align-items: center; justify-content: space-between; gap: 8px }
 .marquee h2 { color: #ffcda4; font-size: clamp(1.25rem,4vw,1.7rem); letter-spacing: -.04em; margin: 0; line-height: 1.1 }
-button, .file-button {
+button {
   font: inherit; font-size: .87rem; font-weight: 650; color: var(--text);
   background: #2a2138; border: 1px solid #765e8a; border-radius: 8px; padding: 6px 10px; cursor: pointer;
 }
-button:enabled:hover, .file-button:hover { border-color: #e1baff }
+button:enabled:hover { border-color: #e1baff }
 button:disabled { opacity: .53; cursor: default }
 :focus-visible { outline: 2px solid #a5f4e1; outline-offset: 3px }
 .scoreboard {
@@ -57,15 +53,7 @@ canvas { display: block; width: 100%; height: auto; outline: none }
 .keys > div { display: flex; justify-content: space-between; gap: 6px }
 .keys dd { margin: 0; text-align: right }
 kbd { display: inline-block; padding: 1px 4px; border: 1px solid #584167; border-radius: 4px; background: #1b142a; color: #eddbff }
-.file-button { display: inline-block; margin-bottom: 9px }
-#rom-error:empty { display: none }
-#rom-error { color: var(--sun) }
 .source { padding-left: 4px; font-size: .84rem }
-#rom-dialog { width: min(800px, calc(100% - 16px)); max-height: 90dvh; padding: 12px; border: 1px solid #765b91; border-radius: 13px; background: #21182d; color: var(--text) }
-#rom-dialog::backdrop { background: #110b1bbc }
-.dialog-head { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 10px }
-.dialog-head h2 { margin: 0; overflow-wrap: anywhere; font-size: 1rem }
-#rom-screen iframe { display: block; width: 100%; height: min(72vh,650px); border: 0; border-radius: 8px }
 .ride-mode, .marquee, .scoreboard, .screen, .controls { width: min(100%,450px) }
 .ride-mode {
   display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 8px;
@@ -105,7 +93,46 @@ kbd { display: inline-block; padding: 1px 4px; border: 1px solid #584167; border
 #pause { margin-left: auto }
 .rules p#ride-help { color: var(--sea) }
 @media (max-width: 710px) {
-  .arcade { width: calc(100% - 22px); margin-top: 19px }
-  .workspace { grid-template-columns: minmax(0,1fr); gap: 13px }
   .cabinet { padding: 10px; gap: 8px }
+}
+.arcade {
+  width: min(1442px, calc(100% - 88px));
+  margin: 25px auto 56px;
+}
+.workspace {
+  display: grid; align-items: start;
+  grid-template-columns: minmax(175px, 1fr) minmax(0, 552px) minmax(190px, .86fr);
+  gap: clamp(20px, 3.8vw, 65px); margin-top: 30px;
+}
+.patrol-intro { padding-top: 28px }
+.patrol-intro h1 {
+  margin: 0 0 24px; font: 400 clamp(56px, 6.8vw, 100px)/.89 Georgia, "Times New Roman", serif;
+  letter-spacing: -.055em; color: #f0eaf6;
+}
+.patrol-intro em { font-weight: 400; color: #d9c4f5 }
+.patrol-intro p { margin: 0; font-size: 19px; line-height: 1.55; color: #d0c4da }
+.patrol-intro .patrol-summary {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid #44394f;
+  max-width: 240px; font-size: 14px; line-height: 1.8;
+}
+.cabinet { background: linear-gradient(145deg,#302739,#27222f 42%,#24202c); border-color: #79618e }
+.panel { background: #231e2a; border-color: #44394f }
+.arcade-lobby #sound {
+  min-height: 39px; padding-inline: 14px; border-radius: 30px; background: transparent; font-size: 12px;
+}
+@media (max-width: 1100px) and (min-width: 701px) {
+  .arcade { width: calc(100% - 50px) }
+  .workspace { grid-template-columns: minmax(210px, 1fr) minmax(0, 525px); gap: 24px }
+  .cabinet { grid-area: 1 / 2 / span 2 }
+  .side { grid-column: 1 }
+}
+@media (max-width: 700px) {
+  .arcade { width: calc(100% - 28px); margin-top: 13px }
+  .workspace { grid-template-columns: minmax(0, 1fr); margin-top: 13px; gap: 13px }
+  .patrol-intro { padding: 0 3px }
+  .patrol-intro h1 { font-size: 34px; line-height: 1; margin: 0 }
+  .patrol-intro h1 br { display: none }
+  .patrol-intro h1 em { margin-left: 5px }
+  .patrol-intro p { display: none }
+  .arcade-lobby #sound { min-height: 36px; padding-inline: 10px }
 }

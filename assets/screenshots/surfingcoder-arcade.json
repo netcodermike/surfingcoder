@@ -1,10 +1,10 @@
 {
   "name": "surfingcoder-arcade",
   "kind": "runtime",
-  "caption": "Two surfers throw boards at formations of mantas, squid, crabs, and sharks in Barrel Patrol.",
-  "capture_date": "2026-11-20T07:00:38.340425+00:00",
+  "caption": "Surf Break in play with the reef maze, pearl counter, and Arcade game selector.",
+  "capture_date": "2026-11-20T07:17:50.934323+00:00",
   "demo_data": true,
-  "capture_method": "Headless Chrome capture of real tandem gameplay without the site navigation",
+  "capture_method": "Headless Chrome capture of Surf Break gameplay without the site navigation",
   "validation_passed": true,
-  "source_commit": "71c25e38f6a260ce2aa929fe5089cb75bdb20db5"
+  "source_commit": "d42b1eb3b68b3301e77b0b28b9562035be5a868c"
 }

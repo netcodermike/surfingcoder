@@ -69,7 +69,8 @@ def html_pages(root=ROOT):
 def render_navigation(page):
     def link(item, indent):
         label, href, active_page = item
-        current = ' aria-current="page"' if page == active_page else ''
+        active = page == active_page or (active_page == 'arcade/index.html' and page.startswith('arcade/'))
+        current = ' aria-current="page"' if active else ''
         return f'{indent}<a href="{escape(href)}"{current}>{escape(label)}</a>'
 
     def dropdown(label, slug, items):

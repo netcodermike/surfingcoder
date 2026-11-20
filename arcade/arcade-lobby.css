@@ -1,0 +1,38 @@
+.arcade-lobby {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 10px 18px; padding-bottom: 17px; border-bottom: 1px solid #44394f;
+}
+.arcade-lobby .arcade-choices, .arcade-lobby .arcade-actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+}
+.arcade-lobby .arcade-choices a, .arcade-lobby .arcade-rom-open {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 39px;
+  padding: 6px 14px; border: 1px solid #68547c; border-radius: 9px;
+  color: #e4d5ed; background: #231e2c; font: 650 13px/1.25 "Segoe UI", system-ui, sans-serif;
+  text-decoration: none; white-space: nowrap;
+}
+.arcade-lobby .arcade-choices a:hover, .arcade-lobby .arcade-rom-open:hover { border-color: #d9b5f3 }
+.arcade-lobby .arcade-choices a[aria-current="page"] {
+  border-color: #c49ce9; color: #1e142a; background: linear-gradient(125deg,#a879e8,#d9c4f5 46%,#b98be8);
+}
+.arcade-lobby .arcade-rom-open { background: transparent }
+.arcade-lobby .icon-button { flex: none }
+#rom-error { flex-basis: 100%; margin: 0; color: #ffc690; font-size: .86rem }
+#rom-error:empty { display: none }
+#rom-dialog {
+  width: min(800px, calc(100% - 16px)); max-width: none; max-height: 90dvh; padding: 12px;
+  border: 1px solid #79618e; border-radius: 13px; background: #21182d; color: #f0eaf6;
+}
+#rom-dialog::backdrop { background: #110b1bbc }
+#rom-dialog .rom-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 10px }
+#rom-dialog .rom-dialog-head h2 { font: 700 1rem/1.4 "Segoe UI", system-ui, sans-serif; margin: 0; overflow-wrap: anywhere }
+#rom-dialog .rom-dialog-head button {
+  padding: 6px 12px; border: 1px solid #79618e; border-radius: 7px; color: inherit; background: #302839;
+}
+#rom-dialog .rom-note { margin: 6px 0 10px; font-size: 12px; line-height: 1.6; color: #cdbfd8 }
+#rom-dialog .rom-note a { color: #d9b9f2; text-decoration: underline }
+#rom-screen iframe { display: block; width: 100%; height: min(67vh, 620px); border: 0; border-radius: 8px }
+@media (max-width: 700px) {
+  .arcade-lobby { padding-bottom: 11px; column-gap: 7px }
+  .arcade-lobby .arcade-choices a, .arcade-lobby .arcade-rom-open { min-height: 36px; padding: 6px 9px; font-size: .76rem }
+}
