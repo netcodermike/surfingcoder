@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261120-observed-legend';
+import { drawBuoyChart } from './buoy-chart.js?v=20261120-wind-wave-periods';
 
 const HOUR = 3600000;
 const RADIUS_KM = 250;
@@ -150,7 +150,7 @@ export function setupBuoyView(getUnits) {
   let mirrored = [];
   let chartWidth = 0;
   let chart;
-  const hiddenLayers = new Set();
+  const hiddenLayers = new Set(['windWave']);
   const date = new Intl.DateTimeFormat('en-US', {
     month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
   });

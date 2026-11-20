@@ -2,7 +2,7 @@ import { height } from './core.js?v=20261117-tides-wind';
 
 const HOUR = 3600000;
 const SERIES = [
-  { label: 'Wind waves', color: '#b9de82', heightKey: 'windWave' },
+  { label: 'Wind waves', color: '#b9de82', heightKey: 'windWave', periodKey: 'windWavePeriod' },
   { label: 'Swell', color: '#a879e8', heightKey: 'swell', periodKey: 'swellPeriod' },
   { label: 'Combined sea', color: '#d9c4f5', heightKey: 'wave', periodKey: 'period', dash: '6 4' },
 ];
@@ -111,7 +111,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   popup.hidden = true;
   const hint = document.createElement('p');
   hint.className = 'buoy-reading-status';
-  hint.textContent = 'Times are local. Lines show heights. Circles show peak period and swell period.';
+  hint.textContent = 'Times are local. Lines show heights. Matching circles show periods.';
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
