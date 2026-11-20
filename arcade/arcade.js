@@ -1,5 +1,5 @@
 import {createGame, stageName, update} from './patrol.js?v=20261120-surf'
-import {drawPatrol} from './patrol-art.js?v=20261120-surf'
+import {drawPatrol} from './patrol-art.js?v=20261120-reef'
 
 const $ = id => document.getElementById(id)
 const ctx = $('playfield').getContext('2d')
