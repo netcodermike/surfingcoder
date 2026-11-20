@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id),canvas=$('ocean'),ctx=canvas.getContext(
 const TILE=24,W=COLS*TILE,H=ROWS*TILE,TAU=Math.PI*2;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const names=['CORAL COVE','TURTLE BAY','SUNSET REEF','MOONLIT LAGOON','HIDDEN BREAK'];
-let game=createGame(),best=0,lastTime=0,accumulator=0,overlayState='',lastLives=-1,announcementUntil=0;
+let game=createGame(),best=0,lastTime=0,accumulator=0,ridePanelState='',lastLives=-1,announcementUntil=0;
 let muted=false,restartWasPlaying=false;
 try{best=Number(localStorage.getItem('surf-break-best'))||0;}catch{}
 
@@ -175,12 +175,13 @@ function draw(now){
     ctx.beginPath();ctx.moveTo(px-5,py+2);ctx.bezierCurveTo(px-1,py+3,px-1,py-5,px+3,py-3);ctx.bezierCurveTo(px+6,py-1,px+2,py+2,px+1,py);ctx.strokeStyle='#bcffe9';ctx.lineWidth=2;ctx.stroke();
   }
   if(game.bonus&&(game.bonus.time>4||Math.floor(time*5)%2))pineapple(ctx,(game.bonus.x+.5)*TILE,(game.bonus.y+.5)*TILE,time);
+  const riding=['playing','wipeout'].includes(game.state);
   for(const e of game.enemies){
-    const p=position(e);ctx.globalAlpha=e.rest>0?.3:1;
+    const p=position(e);ctx.globalAlpha=riding&&e.rest>0?.3:1;
     for(const offset of [0,-W,W])enemy(ctx,e.kind,(p.x+.5)*TILE+offset,(p.y+.5)*TILE,time,game.power>0&&e.rest<=0,1,e.dir);
   }
   ctx.globalAlpha=1;
-  const p=position(game.player),alpha=game.state==='wipeout'?Math.max(0,game.wipeout/1.5):game.safe>0&&Math.floor(time*8)%2?.5:1;
+  const p=position(game.player),alpha=game.state==='wipeout'?Math.max(0,game.wipeout/1.5):riding&&game.safe>0&&Math.floor(time*8)%2?.5:1;
   for(const offset of [0,-W,W])surfer(ctx,(p.x+.5)*TILE+offset,(p.y+.5)*TILE,game.player.dir,time,game.power>0,alpha);
   if(game.state==='wipeout'){
     const age=1.5-game.wipeout;ctx.beginPath();ctx.arc((p.x+.5)*TILE,(p.y+.5)*TILE,age*34+6,0,TAU);ctx.strokeStyle=`rgba(215,245,232,${Math.max(0,1-age)})`;ctx.lineWidth=2;ctx.stroke();
@@ -199,20 +200,23 @@ function sync(){
   $('pause').disabled=!['playing','countdown','paused'].includes(game.state);$('pause').innerHTML=game.state==='paused'?'▶ <span>Resume</span>':'Ⅱ <span>Pause</span>';
   $('power-strip').hidden=game.power<=0||game.state!=='playing';$('power-meter').style.width=`${Math.min(100,game.power/8.25*100)}%`;$('power-seconds').textContent=`${Math.ceil(game.power)}s`;
   if(game.state==='playing'&&game.time>announcementUntil)$('status').textContent=!game.player.dir?'Choose a direction to catch your wave.':game.power>0?'Ride the swell. Chase them back!':'Find your line. Gather the pearls.';
-  const needs=['ready','countdown','paused','over','cleared'].includes(game.state);
-  $('overlay').hidden=!needs;
-  $('overlay').classList.toggle('is-countdown',game.state==='countdown');
-  const overlayKey=game.state==='countdown'?`countdown:${Math.ceil(game.countdownRemaining)}`:game.state;
-  if(overlayState!==overlayKey){
-    overlayState=overlayKey;
+  const rideState=game.state==='countdown'? `countdown:${Math.ceil(game.countdownRemaining)}`:game.state;
+  if(ridePanelState!==rideState){
+    ridePanelState=rideState;
     const states={
-      ready:game.level===1?['THE TIDE IS RIGHT','Your wave<br>is waiting.','Collect the pearls. Dodge the sea life.<br>Ride a super swell to chase them back.','Catch a wave']:['A FRESH STRETCH OF COAST',`${names[(game.level-1)%names.length].toLowerCase().replace(/\b\w/g,c=>c.toUpperCase())}.`,'New reef. Faster locals.<br>Same beautiful ocean.','Ride the next break'],
-      paused:['TAKE A BREATHER','Between<br>the waves.','Your session is right here.<br>Ready when you are.','Keep riding'],
-      countdown:['THE NEXT SET IS ROLLING IN',`<span class="countdown-number">${Math.ceil(game.countdownRemaining)}</span>`,'Find your line.<br>The horn means it’s time to ride.','Get ready…'],
-      over:['THAT WAS A GOOD RIDE','Until the<br>next swell.',`${game.score.toLocaleString()} points · ${game.level} ${game.level===1?'break':'breaks'} explored<br>There’s always another wave.`,'Surf again'],
-      cleared:['EVERY PEARL. EVERY CHANNEL.','Clean<br>sweep!',`Break ${game.level} complete.<br>+${1000*game.level} bonus points`,'Next break is rolling in…']
+      ready:game.level===1?['Your wave is waiting.','Catch a wave']:['A new reef is ready.','Ride the next break'],
+      countdown:[`Starting in ${Math.ceil(game.countdownRemaining)}…`],
+      playing:['Collect every pearl.'],
+      paused:['Between the waves.','Keep riding'],
+      wipeout:['Wipeout!'],
+      over:[`Ride complete · ${game.score.toLocaleString()} points`,'Surf again'],
+      cleared:[`Break ${game.level} cleared · +${1000*game.level}`]
     };
-    if(states[game.state]){const [k,t,d,b]=states[game.state];$('overlay-kicker').textContent=k;$('overlay-title').innerHTML=t;$('overlay-description').innerHTML=d;$('play').textContent=b;$('play').disabled=['cleared','countdown'].includes(game.state);$('overlay-hint').textContent=game.state==='paused'?'PRESS P TO RESUME':'ARROW KEYS / WASD TO STEER';}
+    const [message,action]=states[game.state];
+    $('ride-status').textContent=message;
+    const playButton=$('play');
+    playButton.hidden=!action;
+    if(action)playButton.textContent=action;
   }
 }
 function play(){
