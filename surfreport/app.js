@@ -1,4 +1,4 @@
-import { setupBuoyView } from './src/buoys.js?v=20261120-wave-rows';
+import { setupBuoyView } from './src/buoys.js?v=20261120-observed-legend';
 import { weekly } from './weekly.js?v=20261119-wind-arrows';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-rain-chance';

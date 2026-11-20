@@ -13,7 +13,7 @@ const svg = (name, attrs, label) => {
   return element;
 };
 
-export function drawBuoyChart(readings, units, width, date, details) {
+export function drawBuoyChart(readings, units, width, date, details, hiddenLayers) {
   const section = document.createElement('section');
   section.className = 'buoy-wave-chart';
   const title = document.createElement('h4');
@@ -34,20 +34,20 @@ export function drawBuoyChart(readings, units, width, date, details) {
   const x = time => left + (right - left) * (time - start) / (end - start);
   const plot = document.createElement('div');
   plot.className = 'week-plot';
-  const chart = svg('svg', { viewBox: `0 0 ${width} 258`, class: 'week-chart', role: 'img',
-    'aria-label': 'Measured wave heights on the left axis. Peak period and swell period are on the right axis.' });
-  const legend = document.createElement('p');
-  legend.className = 'buoy-chart-legend';
+  const chart = svg('svg', { viewBox: `0 0 ${width} 272`, class: 'week-chart', role: 'img',
+    'aria-label': 'Measured wave heights on the left, periods on the right, and local dates and times along the bottom.' });
+  const legend = document.createElement('div');
+  legend.className = 'week-legend';
+  legend.setAttribute('role', 'group');
+  legend.setAttribute('aria-label', 'Observed wave layers');
+  const availableLayers = new Set();
   let heightMax = 1, periodMax = 4;
   for (const series of SERIES) {
     const heights = rows.map(row => row[series.heightKey]).filter(Number.isFinite);
     const periods = series.periodKey ? rows.map(row => row[series.periodKey]).filter(Number.isFinite) : [];
     heightMax = Math.max(heightMax, ...heights.map(value => height(value, units)));
     periodMax = Math.max(periodMax, ...periods);
-    const key = document.createElement('span');
-    key.style.color = series.color;
-    key.textContent = series.label + (heights.length || periods.length ? '' : ' unavailable');
-    legend.append(key);
+    if (heights.length || periods.length) availableLayers.add(series.heightKey);
   }
   heightMax = Math.ceil(heightMax * 1.05);
   periodMax = Math.ceil(periodMax / 4) * 4;
@@ -61,15 +61,28 @@ export function drawBuoyChart(readings, units, width, date, details) {
       axis(6, yy + 4, String(Number((heightMax * tick / 4).toFixed(2)))),
       axis(width - 6, yy + 4, String(periodMax * tick / 4), 'end'));
   }
-  const clock = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' });
-  const ticks = width < 490 ? 3 : 6;
+  const { timeZone } = date.resolvedOptions();
+  const calendar = new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'short', month: 'short', day: 'numeric' });
+  const clock = new Intl.DateTimeFormat('en-US', { timeZone, hour: 'numeric', minute: '2-digit' });
+  const observationTime = new Intl.DateTimeFormat('en-US', {
+    timeZone, weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+  });
+  const ticks = width < 370 ? 2 : width < 640 ? 3 : 6;
   for (let tick = 0; tick <= ticks; tick++) {
     const time = start + tick * (end - start) / ticks;
     const xx = x(time);
-    chart.append(svg('line', { x1: xx, x2: xx, y1: top, y2: bottom, class: 'week-grid' }),
-      axis(xx, bottom + 19, clock.format(time), 'middle'));
+    const day = axis(xx, bottom + 18, calendar.format(time), 'middle');
+    const hour = axis(xx, bottom + 35, clock.format(time), 'middle');
+    day.classList.add('buoy-axis-date');
+    hour.classList.add('buoy-axis-time');
+    chart.append(svg('line', { x1: xx, x2: xx, y1: top, y2: bottom, class: 'week-grid' }), day, hour);
   }
+  const layers = new Map();
+  const isVisible = key => availableLayers.has(key) && !hiddenLayers.has(key);
   for (const series of SERIES) {
+    const layer = svg('g', { 'data-observed-layer': series.heightKey });
+    if (!isVisible(series.heightKey)) layer.style.display = 'none';
+    layers.set(series.heightKey, layer);
     let path = '', previous = -Infinity;
     for (const row of rows) {
       const value = row[series.heightKey];
@@ -80,16 +93,16 @@ export function drawBuoyChart(readings, units, width, date, details) {
     }
     const trace = svg('path', { d: path, fill: 'none', stroke: series.color, 'stroke-width': 2 });
     if (series.dash) trace.setAttribute('stroke-dasharray', series.dash);
-    chart.append(trace);
-  }
-  for (const series of SERIES) {
-    if (!series.periodKey) continue;
-    for (const row of rows) {
-      const period = row[series.periodKey];
-      if (!Number.isFinite(period)) continue;
-      chart.append(svg('circle', { cx: x(row.time), cy: y(period, periodMax), r: 2.6,
-        fill: series.color, stroke: series.color }));
+    layer.append(trace);
+    if (series.periodKey) {
+      for (const row of rows) {
+        const period = row[series.periodKey];
+        if (!Number.isFinite(period)) continue;
+        layer.append(svg('circle', { cx: x(row.time), cy: y(period, periodMax), r: 2.6,
+          fill: series.color, stroke: series.color }));
+      }
     }
+    chart.append(layer);
   }
   const cursor = svg('line', { y1: top, y2: bottom, stroke: '#fff', opacity: .65, visibility: 'hidden' });
   chart.append(cursor);
@@ -98,7 +111,7 @@ export function drawBuoyChart(readings, units, width, date, details) {
   popup.hidden = true;
   const hint = document.createElement('p');
   hint.className = 'buoy-reading-status';
-  hint.textContent = 'Lines show heights. Circles show peak period and swell period.';
+  hint.textContent = 'Times are local. Lines show heights. Circles show peak period and swell period.';
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
@@ -106,12 +119,36 @@ export function drawBuoyChart(readings, units, width, date, details) {
   slider.value = slider.max;
   slider.setAttribute('aria-label', 'Inspect buoy observation');
 
+  for (const series of [...SERIES].reverse()) {
+    const key = series.heightKey;
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = isVisible(key);
+    checkbox.disabled = !availableLayers.has(key);
+    const swatch = document.createElement('i');
+    swatch.setAttribute('aria-hidden', 'true');
+    swatch.style.background = series.dash
+      ? `repeating-linear-gradient(to right, ${series.color} 0 6px, transparent 6px 9px)`
+      : series.color;
+    label.append(checkbox, swatch, series.label + (checkbox.disabled ? ' · unavailable' : ''));
+    legend.append(label);
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) hiddenLayers.delete(key);
+      else hiddenLayers.add(key);
+      layers.get(key).style.display = checkbox.checked ? '' : 'none';
+      if (!popup.hidden) show(Number(slider.value));
+      else slider.removeAttribute('aria-valuetext');
+    });
+  }
+
   function show(index) {
     const row = rows[index], xx = x(row.time);
     const stamp = document.createElement('strong');
-    stamp.textContent = date.format(row.time);
+    stamp.textContent = observationTime.format(row.time);
     popup.replaceChildren(stamp);
-    const groups = details(row);
+    const visibleLabels = new Set(SERIES.filter(series => isVisible(series.heightKey)).map(series => series.label));
+    const groups = details(row).filter(([label]) => visibleLabels.has(label));
     for (const [label, metrics] of groups) {
       const line = document.createElement('div');
       line.className = 'buoy-wave-row';

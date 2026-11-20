@@ -39,8 +39,6 @@
 #buoy-note { margin-top: 9px; }
 .buoy-reading-status { margin: 11px 0 9px; font-size: .84rem; }
 .buoy-wave-chart h4 { margin: 12px 0 6px; }
-.buoy-chart-legend { display: flex; flex-wrap: wrap; gap: 5px 15px; margin: 0 0 9px; font-size: .84rem; }
-.buoy-chart-legend span::before { content: '● '; }
 .week-tooltip.buoy-wave-tooltip { top: 8px; max-width: calc(100% - 12px); }
 .buoy-wave-row { white-space: nowrap; }
 .buoy-wave-row + .buoy-wave-row { margin-top: 3px; }
@@ -113,3 +111,5 @@
   .week-readout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .week-readout strong { grid-column: 1 / -1; }
 }
+.week-axis-label.buoy-axis-date { fill: var(--ink); font-weight: 700; }
+.week-axis-label.buoy-axis-time { fill: var(--text-secondary); font-size: 12px; }
