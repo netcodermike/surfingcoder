@@ -1,7 +1,13 @@
 import { temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261119-wind-arrows';
 import { compass } from './src/core.js?v=20261117-rain-chance';
 
-const components=[['wave','Combined sea','#d9c4f5','period','direction'],['swell','Swell','#a879e8','swellPeriod','swellDirection'],['secondary','Secondary swell','#e8bd78','secondaryPeriod','secondaryDirection'],['tertiary','Tertiary swell','#e190b9','tertiaryPeriod','tertiaryDirection'],['windWave','Wind waves','#b9de82','windWavePeriod','windWaveDirection']];
+const components = [
+ ['wave', 'Combined sea', '#79bfff', 'period', 'direction'],
+ ['swell', 'Swell', '#a879e8', 'swellPeriod', 'swellDirection'],
+ ['secondary', 'Secondary swell', '#e8bd78', 'secondaryPeriod', 'secondaryDirection'],
+ ['tertiary', 'Tertiary swell', '#e190b9', 'tertiaryPeriod', 'tertiaryDirection'],
+ ['windWave', 'Wind waves', '#d9c4f5', 'windWavePeriod', 'windWaveDirection', '6 4'],
+];
 let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave']),selected=-1;
 let graphWidth = 1000;
 let periodSeriesKey = 'wave';
@@ -35,8 +41,27 @@ export function weekly(rows,options){
  const controls=document.createElement('div');controls.className='week-controls';
  const label=document.createElement('label');label.htmlFor='week-mode';label.textContent='Graph';const select=document.createElement('select');select.id='week-mode';for(const [v,t]of [['height','Wave / swell height'],['period','Wave / swell period']]){const o=document.createElement('option');o.value=v;o.textContent=t;select.append(o);}select.value=mode;select.onchange=()=>{mode=select.value;weekly(rows,options);};controls.append(label,select);toolbar.append(controls);
  const legend=document.createElement('div');legend.className='week-legend';root.append(legend);
- const series=components.map(([key,name,color,period,direction])=>({key,name,color,period,direction,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}));
- for(const s of series){const l=document.createElement('label'),check=document.createElement('input'),swatch=document.createElement('i');check.type='checkbox';check.id='week-show-'+s.key;check.checked=enabled.has(s.key)&&s.available;check.disabled=!s.available;check.setAttribute('aria-label',s.name);check.onchange=()=>{check.checked?enabled.add(s.key):enabled.delete(s.key);weekly(rows,options);};swatch.style.background=s.color;l.append(check,swatch,document.createTextNode(s.name+(s.available?'':' · unavailable')));legend.append(l);}
+ const series=components.map(([key,name,color,period,direction,dash])=>({key,name,color,period,direction,dash,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}));
+ for (const s of series) {
+  const label = document.createElement('label');
+  const check = document.createElement('input');
+  const swatch = document.createElement('i');
+  check.type = 'checkbox';
+  check.id = 'week-show-' + s.key;
+  check.checked = enabled.has(s.key) && s.available;
+  check.disabled = !s.available;
+  check.setAttribute('aria-label', s.name);
+  check.onchange = () => {
+   if (check.checked) enabled.add(s.key);
+   else enabled.delete(s.key);
+   weekly(rows, options);
+  };
+  swatch.style.background = s.dash
+   ? `repeating-linear-gradient(to right, ${s.color} 0 6px, transparent 6px 9px)`
+   : s.color;
+  label.append(check, swatch, document.createTextNode(s.name + (s.available ? '' : ' · unavailable')));
+  legend.append(label);
+ }
  const shown = series.filter(s => s.available && enabled.has(s.key));
  const periodOptions = mode === 'height' ? shown.filter(s => rows.some(row => hasPeriod(row[s.period]))) : [];
  const periodSeries = periodOptions.find(s => s.key === periodSeriesKey) ?? periodOptions[0];
@@ -67,7 +92,7 @@ export function weekly(rows,options){
   }
  }
  const description = 'Seven-day ' + mode + ' forecast in ' + unit.trim() + ', in location time.' +
-  (periodSeries ? ' Blue dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
+  (periodSeries ? ' Dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
   (daylightByDay.size ? ' Lighter bands mark daylight and darker bands mark night.' : '') +
   ' Use the hourly slider and data table for exact values.';
  const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':description,class:'week-chart'});
@@ -84,6 +109,7 @@ export function weekly(rows,options){
   if (periodSeries) periodAxis.append(svg('text', {x:rightLabelX,y:y+4}, periodMax*i/4 + ' s'));
  }
  if (periodSeries) {
+  periodAxis.setAttribute('fill', periodSeries.color);
   graph.append(svg('text', {x:6,y:18,fill:'#b5a9c2','font-size':axisFont}, 'Height'));
   periodAxis.append(svg('text', {x:rightLabelX,y:18}, 'Period'));
   graph.append(periodAxis);
@@ -108,10 +134,12 @@ export function weekly(rows,options){
    path += (active ? 'L' : 'M') + xx.toFixed(2) + ',' + yy.toFixed(2) + ' ';
    active = true;
   });
-  graph.append(svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'}));
+  const trace = svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'});
+  if (s.dash) trace.setAttribute('stroke-dasharray', s.dash);
+  graph.append(trace);
  }
  if (periodSeries) {
-  const markers = svg('g', {class:'week-period-dots','aria-hidden':'true'});
+  const markers = svg('g', {class:'week-period-dots',fill:periodSeries.color,'aria-hidden':'true'});
   let lastX = -Infinity;
   for (const row of rows) {
    const xx = x(row.time), period = row[periodSeries.period];
@@ -125,6 +153,7 @@ export function weekly(rows,options){
   const periodLabel = document.createElement('label');
   periodLabel.htmlFor = 'week-period-series';
   periodLabel.textContent = 'Period dots';
+  periodLabel.style.color = periodSeries.color;
   const periodSelect = document.createElement('select');
   periodSelect.id = periodLabel.htmlFor;
   for (const item of periodOptions) periodSelect.append(new Option(item.name, item.key));
