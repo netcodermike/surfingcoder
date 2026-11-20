@@ -12,11 +12,18 @@ const bearing=d=>Number.isFinite(d)?compass(d):'—';
 const hasPeriod = value => Number.isFinite(value) && value > 0;
 
 export function weekly(rows,options){
- const {zone,units,tide,daylight}=options;
+ const {zone,units,tide,daylight,location}=options;
  const root = document.getElementById('weekly');
  const active = document.activeElement;
  const focusId = root.contains(active) ? active.id : '';
- root.replaceChildren();if(!rows.length){root.textContent='Load a forecast to explore the week.';return;}
+ const heading = document.createElement('h2');
+ heading.id = 'swell-heading';
+ heading.textContent = location ? location + ' · Seven-day swell explorer' : 'Seven-day swell explorer';
+ const toolbar = document.createElement('div');
+ toolbar.className = 'week-toolbar';
+ toolbar.append(heading);
+ root.replaceChildren(toolbar);
+ if (!rows.length) return;
  if (root.clientWidth) graphWidth = Math.max(260, root.clientWidth);
  const compact = graphWidth < 520;
  const plotLeft = compact ? 49 : 65;
@@ -25,7 +32,6 @@ export function weekly(rows,options){
  const imperial = units === 'imperial';
  const scale=imperial?3.28084:1,heightUnit=imperial?' ft':' m',unit=mode==='height'?heightUnit:' s';
  const speedScale = imperial ? .621371 : 1, speedUnit = imperial ? ' mph' : ' km/h';
- const heading=document.createElement('h3');heading.textContent='Seven-day swell explorer';const toolbar=document.createElement('div');toolbar.className='week-toolbar';toolbar.append(heading);root.append(toolbar);
  const controls=document.createElement('div');controls.className='week-controls';
  const label=document.createElement('label');label.htmlFor='week-mode';label.textContent='Graph';const select=document.createElement('select');select.id='week-mode';for(const [v,t]of [['height','Wave / swell height'],['period','Wave / swell period']]){const o=document.createElement('option');o.value=v;o.textContent=t;select.append(o);}select.value=mode;select.onchange=()=>{mode=select.value;weekly(rows,options);};controls.append(label,select);toolbar.append(controls);
  const legend=document.createElement('div');legend.className='week-legend';root.append(legend);

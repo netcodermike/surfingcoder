@@ -1,5 +1,5 @@
-import { setupBuoyView } from './src/buoys.js?v=20261119-observed-waves';
-import { weekly } from './weekly.js?v=20261117-rain-chance';
+import { setupBuoyView } from './src/buoys.js?v=20261119-forecast-view';
+import { weekly } from './weekly.js?v=20261119-forecast-view';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-rain-chance';
 import { loadTides } from './src/tides.js';
@@ -31,7 +31,7 @@ let daylight;
 const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
 
 function drawWeek() {
-  weekly(rows, { zone, units: $('units').value, tide, daylight });
+  weekly(rows, { zone, units: $('units').value, tide, daylight, location: active?.label });
 }
 
 function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
@@ -74,23 +74,6 @@ function draw() {
   const heightUnit = imperial ? ' ft' : ' m';
   const speedUnit = imperial ? ' mph' : ' km/h';
   const speedFactor = imperial ? .621371 : 1;
-  const current = rows.find(row => row.time >= Date.now() / 1000) ?? rows.at(-1);
-  $('metric').textContent = value(core.height(current.wave, units), heightUnit);
-  const summary = $('summary');
-  summary.replaceChildren();
-  for (const [name, reading] of [
-    ['Wave period', value(current.period, ' s')],
-    ['Swell period', value(current.swellPeriod, ' s')],
-    ['Wave from', core.compass(current.direction)],
-    ['Wind', value(Number.isFinite(current.speed) ? current.speed * speedFactor : null, speedUnit)],
-  ]) {
-    const chip = document.createElement('div');
-    chip.className = 'chip';
-    const metric = document.createElement('b');
-    metric.textContent = reading;
-    chip.append(metric, name);
-    summary.append(chip);
-  }
   const timeFormat = new Intl.DateTimeFormat('en-US', {
     timeZone: zone, weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
   });
@@ -130,11 +113,8 @@ async function load(lat, lon, label) {
   rows = [];
   tide = undefined;
   daylight = undefined;
-  $('summary').replaceChildren();
   $('output').replaceChildren();
   $('hourly').hidden = true;
-  $('metric').textContent = '…';
-  $('result-title').textContent = label;
   $('status').textContent = 'Requesting the seven-day forecast…';
   drawWeek();
   const timeout = setTimeout(() => request.abort(), 20000);
@@ -163,7 +143,6 @@ async function load(lat, lon, label) {
     updateTides(active, request, rows[0].time, rows.at(-1).time);
   } catch (error) {
     if (request !== controller) return;
-    $('metric').textContent = 'Unavailable';
     $('status').textContent = 'Could not load the forecast. ' + (error.name === 'AbortError' ? 'Request timed out.' : error.message);
   } finally {
     clearTimeout(timeout);

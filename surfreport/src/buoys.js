@@ -116,10 +116,6 @@ export function mergeWaveReadings(standard, detailed) {
 
 export function setupBuoyView(getUnits) {
   const get = id => document.getElementById(id);
-  const forecast = get('forecast-view');
-  const forecastHours = get('forecast-hours');
-  const forecastButton = get('show-forecast');
-  const buoyButton = get('show-buoys');
   const picker = get('buoy-station');
   const observation = get('buoy-readings');
   const note = get('buoy-note');
@@ -289,19 +285,6 @@ export function setupBuoyView(getUnits) {
     });
   }
 
-  function selectView(showBuoys) {
-    forecast.hidden = showBuoys;
-    forecastHours.hidden = showBuoys;
-    forecastButton.setAttribute('aria-pressed', String(!showBuoys));
-    buoyButton.setAttribute('aria-pressed', String(showBuoys));
-    if (showBuoys) {
-      loadCatalog();
-      render();
-    }
-  }
-
-  forecastButton.onclick = () => selectView(false);
-  buoyButton.onclick = () => selectView(true);
   picker.onchange = () => showStation();
   get('reload-buoy').onclick = () => showStation(true);
   return {

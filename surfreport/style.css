@@ -2,17 +2,10 @@
 .surf-report { max-width: 1440px; }
 .surf-report h1 { font-size: clamp(30px, 4vw, 44px); margin: 0; }
 .surf-report h1 + p { margin: 5px 0 0; }
-.report-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 12px; }
-.report-heading h2 { margin: 0; }
-.report-heading .result-views { margin: 0; }
-.forecast-summary { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; }
-.forecast-summary .metric { min-width: 120px; }
+
 .week-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 18px; }
-.week-toolbar h3 { margin: 0; }
+.week-toolbar h2 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.45rem); }
 .week-toolbar .week-controls label { margin: 0; }
-@media (max-width: 650px) {
-  .forecast-summary { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-}
 .surf-report .workspace { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 20px; }
 .location-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, .8fr); gap: 12px; }
 .location-fields label, .coordinate-fields label { margin-top: 0; }
@@ -22,9 +15,7 @@
 .coordinate-controls summary { cursor: pointer; color: var(--accent-light); font-size: .86rem; }
 .coordinate-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; align-items: end; gap: 10px; margin-top: 10px; }
 .coordinate-fields button { min-height: 44px; }
-.chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.chip { padding: 12px; }
-.chip b { font-size: 19px; }
+
 #hourly { margin: 15px 0 8px; }
 #hourly summary { cursor: pointer; color: var(--accent-light); font-weight: 650; }
 #hourly[open] summary { margin-bottom: 8px; }
@@ -36,21 +27,12 @@
 @media (max-width: 650px) {
   .location-fields, .coordinate-fields { grid-template-columns: minmax(0, 1fr); gap: 9px; }
   .coordinate-fields button { justify-self: start; }
-  .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-#weekly{border-top:1px solid var(--border);margin-top:16px;padding-top:12px}.week-controls{display:flex;align-items:center;gap:16px}.week-controls select{max-width:250px}.week-legend{display:flex;flex-wrap:wrap;gap:5px 18px;margin:12px 0}.week-legend label{display:flex;align-items:center;gap:6px;font-size:11px;margin:5px 0}.week-legend input{width:auto}.week-legend i{width:15px;height:3px}.week-chart{display:block;width:100%;height:auto;background:var(--canvas-bg);border-radius:8px;touch-action:pan-y}.week-readout{display:grid;gap:6px;font-size:12px;color:var(--text-secondary);padding:15px;background:var(--surface);border-radius:8px;margin-top:10px}.week-readout strong{color:var(--accent-light)}#week-hour{padding:0}#weekly .small{font-size:11px;color:var(--muted);line-height:1.8}
+.week-controls{display:flex;align-items:center;gap:16px}.week-controls select{max-width:250px}.week-legend{display:flex;flex-wrap:wrap;gap:5px 18px;margin:12px 0}.week-legend label{display:flex;align-items:center;gap:6px;font-size:11px;margin:5px 0}.week-legend input{width:auto}.week-legend i{width:15px;height:3px}.week-chart{display:block;width:100%;height:auto;background:var(--canvas-bg);border-radius:8px;touch-action:pan-y}.week-readout{display:grid;gap:6px;font-size:12px;color:var(--text-secondary);padding:15px;background:var(--surface);border-radius:8px;margin-top:10px}.week-readout strong{color:var(--accent-light)}#week-hour{padding:0}#weekly .small{font-size:11px;color:var(--muted);line-height:1.8}
 
-.result-views { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
-.result-views button { margin: 0; }
-.result-views button[aria-pressed="false"] {
-  color: var(--text-secondary);
-  background: var(--surface);
-  border-color: var(--border-strong);
-  box-shadow: none;
-}
-#forecast-view[hidden], #forecast-hours[hidden], #buoy-picker[hidden], #buoy-station-link[hidden] { display: none; }
-#forecast-view:not([hidden]) + #buoy-view { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+#buoy-picker[hidden], #buoy-station-link[hidden] { display: none; }
+#buoy-view { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
 #status:empty { margin: 0; padding: 0; }
 #buoy-view h3 { margin: 0 0 4px; }
 .buoy-intro, #buoy-note { margin: 0 0 9px; font-size: .84rem; }
