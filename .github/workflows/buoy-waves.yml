@@ -1,7 +1,7 @@
 name: Refresh NOAA buoy observations
 on:
   schedule:
-    - cron: '12,42 * * * *'
+    - cron: '13,28,43,58 * * * *'
   workflow_dispatch:
 permissions:
   contents: write

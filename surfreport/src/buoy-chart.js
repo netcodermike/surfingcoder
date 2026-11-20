@@ -2,9 +2,9 @@ import { height } from './core.js?v=20261117-tides-wind';
 
 const HOUR = 3600000;
 const SERIES = [
-  { label: 'Wind waves', color: '#b9de82', heightKey: 'windWave', periods: ['windWavePeriod'] },
-  { label: 'Swell', color: '#a879e8', heightKey: 'swell', periods: ['swellPeriod'] },
-  { label: 'Combined sea', color: '#d9c4f5', heightKey: 'wave', periods: ['period', 'averagePeriod'], dash: '6 4' },
+  { label: 'Wind waves', color: '#b9de82', heightKey: 'windWave' },
+  { label: 'Swell', color: '#a879e8', heightKey: 'swell', periodKey: 'swellPeriod' },
+  { label: 'Combined sea', color: '#d9c4f5', heightKey: 'wave', periodKey: 'averagePeriod', dash: '6 4' },
 ];
 const svg = (name, attrs, label) => {
   const element = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -35,13 +35,13 @@ export function drawBuoyChart(readings, units, width, date, details) {
   const plot = document.createElement('div');
   plot.className = 'week-plot';
   const chart = svg('svg', { viewBox: `0 0 ${width} 258`, class: 'week-chart', role: 'img',
-    'aria-label': 'Measured wave heights on the left axis. All available periods are circles on the right axis.' });
+    'aria-label': 'Measured wave heights on the left axis. Combined sea average period and swell period are on the right axis.' });
   const legend = document.createElement('p');
   legend.className = 'buoy-chart-legend';
   let heightMax = 1, periodMax = 4;
   for (const series of SERIES) {
     const heights = rows.map(row => row[series.heightKey]).filter(Number.isFinite);
-    const periods = rows.flatMap(row => series.periods.map(key => row[key])).filter(Number.isFinite);
+    const periods = series.periodKey ? rows.map(row => row[series.periodKey]).filter(Number.isFinite) : [];
     heightMax = Math.max(heightMax, ...heights.map(value => height(value, units)));
     periodMax = Math.max(periodMax, ...periods);
     const key = document.createElement('span');
@@ -83,13 +83,12 @@ export function drawBuoyChart(readings, units, width, date, details) {
     chart.append(trace);
   }
   for (const series of SERIES) {
+    if (!series.periodKey) continue;
     for (const row of rows) {
-      for (const key of series.periods) {
-        if (!Number.isFinite(row[key])) continue;
-        const average = key === 'averagePeriod';
-        chart.append(svg('circle', { cx: x(row.time), cy: y(row[key], periodMax), r: average ? 3.4 : 2.6,
-          fill: average ? 'none' : series.color, stroke: series.color }));
-      }
+      const period = row[series.periodKey];
+      if (!Number.isFinite(period)) continue;
+      chart.append(svg('circle', { cx: x(row.time), cy: y(period, periodMax), r: 2.6,
+        fill: series.color, stroke: series.color }));
     }
   }
   const cursor = svg('line', { y1: top, y2: bottom, stroke: '#fff', opacity: .65, visibility: 'hidden' });
@@ -99,7 +98,7 @@ export function drawBuoyChart(readings, units, width, date, details) {
   popup.hidden = true;
   const hint = document.createElement('p');
   hint.className = 'buoy-reading-status';
-  hint.textContent = 'Lines show heights. Circles show periods. Hollow circles show average period.';
+  hint.textContent = 'Lines show heights. Circles show combined sea average period and swell period.';
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
