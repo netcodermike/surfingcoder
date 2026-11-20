@@ -76,7 +76,7 @@ function drawSeries(graph, { values, color, gap, reading, filled = false }, { sv
 
 function seriesChart(primary, timeline, { label, arrows, secondary }) {
   const { svg, width, left, right, x, dayMarks, shadeDaylight, axisFont, compact } = timeline;
-  const top = arrows ? 28 : 12;
+  const top = 12;
   const bottom = 119;
   const graph = svg('svg', {
     viewBox: `0 0 ${width} 147`, role: 'img', 'aria-label': label, class: 'week-support-chart',
@@ -115,8 +115,8 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
       const xx = x(row.time);
       if (row.speed <= 0 || !Number.isFinite(row.speed) || !Number.isFinite(row.wind_direction) || xx - lastX < (compact ? 26 : 38)) continue;
       marks.append(svg('path', {
-        d: 'M0 6V-6 M-3.5 -2.5L0 -6L3.5 -2.5',
-        transform: `translate(${xx} 14) rotate(${row.wind_direction + 180})`,
+        d: 'M0 0V-10 M-3.5 -6.5L0 -10L3.5 -6.5',
+        transform: `translate(${xx} ${secondaryScale.y(secondary.reading(row))}) rotate(${row.wind_direction + 180})`,
       }));
       lastX = xx;
     }
