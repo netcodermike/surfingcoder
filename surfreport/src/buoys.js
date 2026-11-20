@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261120-wind-wave-periods';
+import { drawBuoyChart } from './buoy-chart.js?v=20261120-observed-wave-styles';
 
 const HOUR = 3600000;
 const RADIUS_KM = 250;

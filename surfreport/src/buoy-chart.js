@@ -2,9 +2,9 @@ import { height } from './core.js?v=20261117-tides-wind';
 
 const HOUR = 3600000;
 const SERIES = [
-  { label: 'Wind waves', color: '#b9de82', heightKey: 'windWave', periodKey: 'windWavePeriod' },
+  { label: 'Combined sea', color: '#b9de82', heightKey: 'wave', periodKey: 'period' },
   { label: 'Swell', color: '#a879e8', heightKey: 'swell', periodKey: 'swellPeriod' },
-  { label: 'Combined sea', color: '#d9c4f5', heightKey: 'wave', periodKey: 'period', dash: '6 4' },
+  { label: 'Wind waves', color: '#79bfff', heightKey: 'windWave', periodKey: 'windWavePeriod', dash: '6 4' },
 ];
 const svg = (name, attrs, label) => {
   const element = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -119,7 +119,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   slider.value = slider.max;
   slider.setAttribute('aria-label', 'Inspect buoy observation');
 
-  for (const series of [...SERIES].reverse()) {
+  for (const series of SERIES) {
     const key = series.heightKey;
     const label = document.createElement('label');
     const checkbox = document.createElement('input');
