@@ -41,7 +41,6 @@
 .buoy-wave-chart h4 { margin: 12px 0 6px; }
 .week-tooltip.buoy-wave-tooltip { top: 8px; max-width: calc(100% - 12px); }
 .buoy-wave-row { white-space: nowrap; }
-.buoy-wave-row + .buoy-wave-row { margin-top: 3px; }
 @media (max-width: 480px) {
   .week-tooltip.buoy-wave-tooltip { padding: 7px 8px; font-size: .72rem; }
 }

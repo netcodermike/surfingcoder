@@ -147,14 +147,21 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     const stamp = document.createElement('strong');
     stamp.textContent = observationTime.format(row.time);
     popup.replaceChildren(stamp);
-    const visibleLabels = new Set(SERIES.filter(series => isVisible(series.heightKey)).map(series => series.label));
-    const groups = details(row).filter(([label]) => visibleLabels.has(label));
+    const visibleColors = new Map(SERIES.filter(series => isVisible(series.heightKey))
+      .map(series => [series.label, series.color]));
+    const groups = details(row).filter(([label]) => visibleColors.has(label));
     for (const [label, metrics] of groups) {
-      const line = document.createElement('div');
-      line.className = 'buoy-wave-row';
-      const name = document.createElement('b');
-      name.textContent = label;
-      line.append(name, ' · ' + metrics.map(([, value]) => value).join(' / '));
+      const line = document.createElement('span');
+      line.className = 'week-reading buoy-wave-row';
+      line.style.setProperty('--series-color', visibleColors.get(label));
+      const name = document.createElement('span');
+      name.className = 'week-reading-label';
+      name.textContent = label + ':';
+      const values = document.createElement('span');
+      const [[, waveHeight], [, period], [, direction]] = metrics;
+      const bearing = direction === '—' ? direction : 'from ' + direction;
+      values.textContent = [waveHeight, period, bearing].join(' · ');
+      line.append(name, values);
       popup.append(line);
     }
     popup.hidden = false;
