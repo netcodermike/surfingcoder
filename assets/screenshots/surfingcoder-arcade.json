@@ -1,10 +1,10 @@
 {
   "name": "surfingcoder-arcade",
   "kind": "runtime",
-  "caption": "Surf Break\u2019s ready screen with the full reef maze, surfer, four sea creatures, and start button above the playfield.",
-  "capture_date": "2026-11-20T07:29:32.576826+00:00",
+  "caption": "Surf Break ready to play with the start button above the scores, reef name and pearl count, and the full maze visible.",
+  "capture_date": "2026-11-20T07:35:27.048843+00:00",
   "demo_data": true,
   "capture_method": "Headless Chrome capture of Surf Break\u2019s ready screen without the site navigation",
   "validation_passed": true,
-  "source_commit": "b44e44df7fc6e22378452ca15ff5a6c637d67d28"
+  "source_commit": "766fe6c3f44fbb9c14ff8c36e44437181f8764f1"
 }

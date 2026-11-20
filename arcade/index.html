@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#18161e"><meta name="description" content="Catch a wave through the reef. An original surfing maze chase from SurfingCoder."><title>Surf Break · SurfingCoder Arcade</title><link rel="stylesheet" href="./surf-break/style.css?v=20261120-clear-playfield">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#18161e"><meta name="description" content="Catch a wave through the reef. An original surfing maze chase from SurfingCoder."><title>Surf Break · SurfingCoder Arcade</title><link rel="stylesheet" href="./surf-break/style.css?v=20261120-score-layout">
 <link rel="stylesheet" href="./arcade-lobby.css?v=20261120-wordmark">
 <link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
@@ -74,14 +74,24 @@
 </header>
   <section id="game" class="game-layout" aria-label="Surf Break game">
     <aside class="intro"><div class="eyebrow"><span></span> A LITTLE SALTWATER ESCAPE</div><h1>Surf<br><em>Break.</em></h1><p class="tagline">Find your line.<br> Outride the wild.</p><div class="intro-rule"></div><p class="intro-copy">A maze of reefs. A pocketful of pearls. And a few locals who don’t like sharing the break.</p><div class="legend"><div><span class="legend-dot pearl"></span><span>Gather every pearl<small>10 points each</small></span></div><div><span class="legend-dot swell">≈</span><span>Catch a super swell<small>Turn the chase around</small></span></div><div><span class="legend-dot fruit">✦</span><span>Find the golden pineapple<small>A little tropical bonus</small></span></div></div><div class="credit">AN ORIGINAL SURFINGCODER GAME<span>Made for one more ride.</span></div></aside>
-    <div class="cabinet"><div class="scorebar"><div><span>SCORE</span><strong id="score">000000</strong></div><div class="best"><span>PERSONAL BEST</span><strong id="best">000000</strong></div><div class="level"><span>BREAK</span><strong id="level">01</strong></div></div>
+    <div class="cabinet">
       <div class="ride-panel">
         <p id="ride-status" role="status">Your wave is waiting.</p>
         <button type="button" id="play" class="play-button">Catch a wave</button>
       </div>
+      <div class="scorebar">
+        <div class="score-totals" role="group" aria-label="Game scores">
+          <div><span>SCORE</span><strong id="score">000000</strong></div>
+          <div class="best"><span>PERSONAL BEST</span><strong id="best">000000</strong></div>
+          <div class="level"><span>BREAK</span><strong id="level">01</strong></div>
+        </div>
+        <div class="scene-label">
+          <span id="lagoon">CORAL COVE</span>
+          <span id="remaining">0 pearls left</span>
+        </div>
+      </div>
       <div class="ocean-frame">
         <canvas id="ocean" width="552" height="600" tabindex="0" aria-label="Surfing maze. Use arrow keys or W A S D to steer." aria-describedby="instructions"></canvas>
-        <div class="scene-label"><span id="lagoon">CORAL COVE</span><span id="remaining">0 pearls left</span></div>
       </div>
       <div class="power-slot"><span class="power-idle">CATCH A SWELL. TURN THE TIDE.</span><div class="power-strip" id="power-strip" hidden><span>SUPER SWELL</span><div><i id="power-meter"></i></div><strong id="power-seconds">8s</strong></div></div>
       <div class="statusbar"><div class="lives" id="lives" aria-label="3 boards left"></div><div class="status" id="status" role="status" aria-live="polite">The ocean is calling.</div><button id="pause" class="pause-button" disabled title="Pause (P)">Ⅱ <span>Pause</span></button></div>
