@@ -1,7 +1,7 @@
-import {HEIGHT, SURF_Y, WIDTH, waterline} from './patrol.js?v=20261120-surf'
+import {HEIGHT, SURF_Y, WIDTH, waterline} from './patrol.js?v=20261120-single-surfer'
 
-const jerseys = ['#59eadc', '#ff9e80']
-const boardEdges = ['#115964', '#96384d']
+const boardColor = '#59eadc'
+const suitShadow = '#115964'
 const foam = '#d0fff2'
 const sand = '#ffcb9e'
 const outline = '#17152f'
@@ -45,8 +45,8 @@ function board(ctx, color, scale = 1) {
 }
 
 function ride(ctx, surfer, time, shield, reduced) {
-  const {x, y, lane, id, facing, lean} = surfer
-  const slope = Math.atan2(waterline(x + 7, time, lane) - waterline(x - 7, time, lane), 14)
+  const {x, y, facing, lean} = surfer
+  const slope = Math.atan2(waterline(x + 7, time) - waterline(x - 7, time), 14)
   const speed = Math.abs(lean), crouch = speed * 4
   ctx.save()
   ctx.translate(x, y)
@@ -59,29 +59,29 @@ function ride(ctx, surfer, time, shield, reduced) {
     ellipse(ctx, offset, 8 + (i % 3) * 3 - flight * .09, 2.5 - flight / wake, 1.1, i % 2 ? '#62dce0' : foam)
   }
   if (shield && (reduced || Math.floor(shield * 8) % 2 === 0)) {
-    ctx.strokeStyle = jerseys[id]
+    ctx.strokeStyle = boardColor
     ctx.lineWidth = 1.5
     ctx.beginPath()
     ctx.ellipse(0, -10, 34, 32, 0, 0, 2 * Math.PI)
     ctx.stroke()
   }
-  board(ctx, jerseys[id])
+  board(ctx, boardColor)
   const hip = [2 + speed * 3, -16 + crouch]
   const shoulder = [6 + speed * 6, -27 + crouch]
   const head = [shoulder[0] + 3, shoulder[1] - 7]
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   stroke(ctx, [[-10, 1], [-11, -11], hip, [13, -9], [9, -1]], outline, 7)
-  stroke(ctx, [[-10, 1], [-11, -11], hip, [13, -9], [9, -1]], boardEdges[id], 4)
+  stroke(ctx, [[-10, 1], [-11, -11], hip, [13, -9], [9, -1]], suitShadow, 4)
   stroke(ctx, [hip, shoulder], outline, 13)
-  stroke(ctx, [hip, shoulder], jerseys[id], 9)
+  stroke(ctx, [hip, shoulder], boardColor, 9)
   const throwing = surfer.cooldown > .16
   const hand = throwing ? [shoulder[0] + 3, shoulder[1] - 15] : [23, shoulder[1] + 4]
   stroke(ctx, [[-14, shoulder[1] + 5], [-3, shoulder[1] - 2], shoulder, [15, shoulder[1] + 2], hand], outline, 6)
   stroke(ctx, [[-14, shoulder[1] + 5], [-3, shoulder[1] - 2], shoulder, [15, shoulder[1] + 2], hand], sand, 3.3)
   const hair = 10 + 16 * speed
-  const flick = reduced ? 0 : Math.sin(time * 14 + id) * (1.2 + speed * 2.8)
-  ctx.fillStyle = id ? '#60314f' : '#3a223b'
+  const flick = reduced ? 0 : Math.sin(time * 14) * (1.2 + speed * 2.8)
+  ctx.fillStyle = '#3a223b'
   ctx.beginPath()
   ctx.moveTo(head[0] + 3, head[1] - 5)
   ctx.bezierCurveTo(head[0] - 6, head[1] - 10, head[0] - hair + 5, head[1] - 5, head[0] - hair, head[1] - 7 + flick)
@@ -342,7 +342,6 @@ export function drawPatrol(ctx, game, reduced) {
   horizon(ctx, time, bonus)
   breaker(ctx, time, SURF_Y - 35, 58)
   breaker(ctx, time, SURF_Y, 68)
-  if (game.ride === 'coop') breaker(ctx, time, SURF_Y + 26, 49)
 
   for (const foe of game.foes) {
     if (!foe.visible) continue
@@ -365,17 +364,16 @@ export function drawPatrol(ctx, game, reduced) {
     ctx.save()
     ctx.translate(shot.x, shot.y)
     ctx.rotate(-Math.PI / 2 + Math.sin(shot.age * 24) * .38)
-    board(ctx, jerseys[shot.owner], .57)
+    board(ctx, boardColor, .57)
     ctx.restore()
   }
   for (const shot of game.enemyShots) {
     ellipse(ctx, shot.x, shot.y, 4.7, 5.9, '#ffb4c7')
     ellipse(ctx, shot.x + 1, shot.y - 1.5, 1.7, 1.7, '#fff3d3')
   }
-  for (const surfer of game.surfers) {
-    const position = reduced ? {...surfer, y: waterline(surfer.x, 0, surfer.lane)} : surfer
-    ride(ctx, position, time, game.shield, reduced)
-  }
+  const {surfer} = game
+  const position = reduced ? {...surfer, y: waterline(surfer.x, 0)} : surfer
+  ride(ctx, position, time, game.shield, reduced)
   for (const spark of game.sparks) {
     ctx.globalAlpha = Math.min(1, spark.life * 3)
     ellipse(ctx, spark.x, spark.y, 2, 2, spark.color)

@@ -1,7 +1,6 @@
 export const WIDTH = 480
 export const HEIGHT = 550
 export const SURF_Y = 474
-export const RIDES = {solo: 1, tandem: 2, coop: 2}
 
 const clamp = (value, low, high) => Math.max(low, Math.min(high, value))
 const overlaps = (a, b, x, y) => Math.abs(a.x - b.x) < x && Math.abs(a.y - b.y) < y
@@ -34,15 +33,10 @@ export function startWave(game) {
       })
 }
 
-export function createGame(ride = 'solo') {
-  if (!Object.hasOwn(RIDES, ride)) throw new RangeError('Unknown ride mode')
-  const count = RIDES[ride]
-  const surfers = Array.from({length: count}, (_, id) => {
-    const x = count === 1 ? WIDTH / 2 : WIDTH / 2 + (id ? 29 : -29)
-    const lane = ride === 'coop' && id === 1 ? SURF_Y + 26 : SURF_Y
-    return {id, x, y: waterline(x, 0, lane), lane, facing: id ? -1 : 1, lean: 0, cooldown: 0}
-  })
-  const game = {ride, surfers, shots: [], enemyShots: [], sparks: [],
+export function createGame() {
+  const x = WIDTH / 2
+  const surfer = {x, y: waterline(x, 0), facing: 1, lean: 0, cooldown: 0}
+  const game = {surfer, shots: [], enemyShots: [], sparks: [],
     score: 0, lives: 3, wave: 1, shield: 0, oceanTime: 0, over: false, intermission: 0, result: ''}
   startWave(game)
   return game
@@ -55,28 +49,22 @@ function spawnSparks(game, x, y, color) {
   }
 }
 
-function guideSurfers(game, inputs, dt, events) {
-  for (const surfer of game.surfers) {
-    const action = inputs[game.ride === 'coop' ? surfer.id : 0]
-    const direction = action?.direction ?? 0
-    // Shared control keeps the boards apart at the edges as well as in open water.
-    const stagger = game.ride === 'tandem' ? (surfer.id ? 29 : -29) : 0
-    surfer.x = clamp(surfer.x + direction * 316 * dt, 31 + Math.abs(stagger) + stagger,
-      WIDTH - 31 - Math.abs(stagger) + stagger)
-    surfer.y = waterline(surfer.x, game.oceanTime, surfer.lane)
-    if (direction) surfer.facing = direction
-    surfer.lean += (direction - surfer.lean) * Math.min(1, dt * 15)
-    surfer.cooldown -= dt
-    if (action?.fire && !game.intermission && surfer.cooldown <= 0) {
-      game.shots.push({x: surfer.x, y: surfer.y - 29, owner: surfer.id, age: 0})
-      surfer.cooldown = .22
-      if (game.ride !== 'tandem' || surfer.id === 0) events.push('throw')
-    }
+function guideSurfer(game, {direction = 0, fire = false}, dt, events) {
+  const {surfer} = game
+  surfer.x = clamp(surfer.x + direction * 316 * dt, 31, WIDTH - 31)
+  surfer.y = waterline(surfer.x, game.oceanTime)
+  if (direction) surfer.facing = direction
+  surfer.lean += (direction - surfer.lean) * Math.min(1, dt * 15)
+  surfer.cooldown -= dt
+  if (fire && !game.intermission && surfer.cooldown <= 0) {
+    game.shots.push({x: surfer.x, y: surfer.y - 29, age: 0})
+    surfer.cooldown = .22
+    events.push('throw')
   }
 }
 
 function swimReef(game, random) {
-  const {clock, wave, foes, surfers} = game
+  const {clock, wave, foes, surfer} = game
   for (const foe of foes) {
     const homeX = 78 + foe.col * 54 + Math.sin(clock * (1.05 + wave * .035)) * 31
     const homeY = 102 + foe.row * 39 + Math.sin(clock * 2.2 + foe.col * .65) * 8
@@ -94,8 +82,7 @@ function swimReef(game, random) {
   if (foes.length && clock >= game.nextDive) {
     const ready = foes.filter(foe => !foe.dive)
     const foe = ready[Math.floor(random() * ready.length)]
-    const surfer = surfers[Math.floor(random() * surfers.length)]
-    if (foe) foe.dive = {start: clock, x: surfer.x, depth: surfer.lane + 20}
+    if (foe) foe.dive = {start: clock, x: surfer.x, depth: SURF_Y + 20}
     game.nextDive += Math.max(.79, 2.85 - wave * .21)
   }
   if (foes.length && clock >= game.nextShot) {
@@ -104,7 +91,6 @@ function swimReef(game, random) {
       if (!front.has(foe.col) || front.get(foe.col).y < foe.y) front.set(foe.col, foe)
     }
     const shooter = [...front.values()][Math.floor(random() * front.size)]
-    const surfer = surfers[Math.floor(random() * surfers.length)]
     game.enemyShots.push({x: shooter.x, y: shooter.y + 12, vx: clamp((surfer.x - shooter.x) * .25, -80, 80)})
     game.nextShot += Math.max(.28, 1.29 - wave * .09)
   }
@@ -143,27 +129,25 @@ function scoreHits(game, events) {
 
 function checkDamage(game, events) {
   if (game.shield || game.stage === 'bonus') return
-  for (const surfer of game.surfers) {
-    const hitShot = game.enemyShots.find(shot => overlaps(shot, surfer, 16, 18))
-    const hitFoe = game.foes.some(foe => foe.dive && overlaps(foe, surfer, 22, 21))
-    if (!hitShot && !hitFoe) continue
-    if (hitShot) game.enemyShots.splice(game.enemyShots.indexOf(hitShot), 1)
-    game.lives--
-    game.shield = 1.65
-    spawnSparks(game, surfer.x, surfer.y, '#ffbe91')
-    events.push('damage')
-    game.over = game.lives === 0
-    return
-  }
+  const {surfer} = game
+  const hitShot = game.enemyShots.find(shot => overlaps(shot, surfer, 16, 18))
+  const hitFoe = game.foes.some(foe => foe.dive && overlaps(foe, surfer, 22, 21))
+  if (!hitShot && !hitFoe) return
+  if (hitShot) game.enemyShots.splice(game.enemyShots.indexOf(hitShot), 1)
+  game.lives--
+  game.shield = 1.65
+  spawnSparks(game, surfer.x, surfer.y, '#ffbe91')
+  events.push('damage')
+  game.over = game.lives === 0
 }
 
-export function update(game, inputs, dt, random = Math.random) {
+export function update(game, input, dt, random = Math.random) {
   if (game.over) return []
   const events = []
   game.clock += dt
   game.oceanTime += dt
   game.shield = Math.max(0, game.shield - dt)
-  guideSurfers(game, inputs, dt, events)
+  guideSurfer(game, input, dt, events)
   if (game.intermission > 0) {
     game.intermission = Math.max(0, game.intermission - dt)
     if (game.intermission === 0) {

@@ -20,8 +20,6 @@ a { color: var(--amethyst); text-underline-offset: 3px }
   box-shadow: inset 0 1px #f0c9ff2c, 0 13px 28px #100b1b56;
 }
 
-.marquee { display: flex; align-items: center; justify-content: space-between; gap: 8px }
-.marquee h2 { color: #ffcda4; font-size: clamp(1.25rem,4vw,1.7rem); letter-spacing: -.04em; margin: 0; line-height: 1.1 }
 button {
   font: inherit; font-size: .87rem; font-weight: 650; color: var(--text);
   background: #2a2138; border: 1px solid #765e8a; border-radius: 8px; padding: 6px 10px; cursor: pointer;
@@ -54,17 +52,7 @@ canvas { display: block; width: 100%; height: auto; outline: none }
 .keys dd { margin: 0; text-align: right }
 kbd { display: inline-block; padding: 1px 4px; border: 1px solid #584167; border-radius: 4px; background: #1b142a; color: #eddbff }
 .source { padding-left: 4px; font-size: .84rem }
-.ride-mode, .marquee, .scoreboard, .screen, .controls { width: min(100%,450px) }
-.ride-mode {
-  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 8px;
-  font-size: .82rem; font-weight: 700; color: var(--muted);
-}
-.ride-mode select {
-  width: 100%; min-height: 38px; min-width: 0; padding: 5px 8px;
-  border: 1px solid #765e8a; border-radius: 8px; color: var(--text); background: #221a31;
-  font: inherit;
-}
-.ride-mode select:disabled { opacity: .75 }
+.scoreboard, .screen, .controls { width: min(100%,450px) }
 .stage-line {
   position: absolute; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
   min-height: 34px; gap: 8px; padding: 6px 12px;
@@ -80,18 +68,13 @@ kbd { display: inline-block; padding: 1px 4px; border: 1px solid #584167; border
 }
 .overlay p { margin: 0; font-weight: 760; color: #fff0d8; text-shadow: 0 2px 7px #110b19 }
 .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px }
-.control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; flex: 1 0 auto }
-.control-row:has(.rider-tag:not([hidden])) { flex-basis: 100% }
 .direction { display: flex; gap: 7px }
 .controls button { min-height: 42px; min-width: 44px }
 .controls [data-hold] { touch-action: none; user-select: none }
 .controls [data-hold]:active { color: #20182a; background: var(--sea) }
 .controls .throw { min-width: 70px; background: #244e57; border-color: #548785 }
-.controls .coral .throw { background: #643e54; border-color: #a16e82 }
-.rider-tag { min-width: 48px; font-size: .7rem; color: var(--sea); font-weight: 750 }
-.coral .rider-tag, .bonus-guide h2 { color: var(--sun) }
+.bonus-guide h2 { color: var(--sun) }
 #pause { margin-left: auto }
-.rules p#ride-help { color: var(--sea) }
 @media (max-width: 710px) {
   .cabinet { padding: 10px; gap: 8px }
 }

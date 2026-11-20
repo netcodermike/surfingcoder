@@ -1,5 +1,5 @@
-import {createGame, stageName, update} from './patrol.js?v=20261120-surf'
-import {drawPatrol} from './patrol-art.js?v=20261120-reef'
+import {createGame, stageName, update} from './patrol.js?v=20261120-single-surfer'
+import {drawPatrol} from './patrol-art.js?v=20261120-single-surfer'
 
 const $ = id => document.getElementById(id)
 const ctx = $('playfield').getContext('2d')
@@ -7,19 +7,16 @@ const pad = (number, length = 6) => String(number).padStart(length, '0')
 const held = new Set()
 const buttons = new Set()
 const pointer = new Map()
-const soloKeys = {ArrowLeft: '1-left', KeyA: '1-left', ArrowRight: '1-right', KeyD: '1-right', Space: '1-throw'}
-const coopKeys = {KeyA: '1-left', KeyD: '1-right', KeyF: '1-throw', Space: '1-throw',
-  ArrowLeft: '2-left', ArrowRight: '2-right', Slash: '2-throw', Numpad0: '2-throw'}
+const keys = {ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', Space: 'throw'}
 const sounds = {throw: [630, 310, .08], hit: [180, 105, .095],
   damage: [150, 52, .25], wave: [420, 780, .3], shell: [760, 1150, .14]}
 const reduced = matchMedia('(prefers-reduced-motion: reduce)')
-const bestScores = new Map()
+const scoreKey = 'barrel-patrol-best'
 let game = createGame(), mode = 'ready', audio, sound = true
 let previous = 0, accumulator = 0
 
-function scoreKey() {
-  return game.ride === 'solo' ? 'barrel-patrol-best' : 'barrel-patrol-best-' + game.ride
-}
+let best = 0
+try { best = Number(localStorage.getItem(scoreKey)) || 0 } catch {}
 
 function text(id, value) {
   const element = $(id), next = String(value)
@@ -27,18 +24,12 @@ function text(id, value) {
 }
 
 function format() {
-  const key = scoreKey()
-  if (!bestScores.has(key)) {
-    let stored = 0
-    try { stored = Number(localStorage.getItem(key)) || 0 } catch {}
-    bestScores.set(key, stored)
-  }
-  if (game.score > bestScores.get(key)) {
-    bestScores.set(key, game.score)
-    try { localStorage.setItem(key, String(game.score)) } catch {}
+  if (game.score > best) {
+    best = game.score
+    try { localStorage.setItem(scoreKey, String(best)) } catch {}
   }
   text('score', pad(game.score))
-  text('best', pad(bestScores.get(key)))
+  text('best', pad(best))
   text('wave', pad(game.wave, 2))
   text('lives', game.lives)
   text('stage-title', stageName(game.wave))
@@ -55,7 +46,6 @@ function clearInput() {
 function setMode(next) {
   mode = next
   $('overlay').hidden = next === 'playing'
-  $('ride').disabled = next === 'playing' || next === 'paused'
   $('pause').disabled = next !== 'playing' && next !== 'paused'
   $('pause').textContent = next === 'paused' ? 'Resume' : 'Pause'
   $('prompt').textContent = {ready: 'Sets are rolling in', paused: 'Paused', over: 'Wipeout · ' + pad(game.score) + ' points'}[next] ?? ''
@@ -66,7 +56,7 @@ function setMode(next) {
 }
 
 function begin() {
-  if (mode !== 'paused') game = createGame($('ride').value)
+  if (mode !== 'paused') game = createGame()
   if (sound) enableAudio()
   setMode('playing')
   format()
@@ -104,15 +94,14 @@ function loop(now) {
   previous = now
   if (mode === 'playing') {
     accumulator += dt
-    const keys = game.ride === 'coop' ? coopKeys : soloKeys
     const active = new Set([...held].map(code => keys[code]))
     for (const action of [...buttons, ...pointer.values()]) active.add(action)
-    const inputs = [1, 2].map(player => ({
-      direction: Number(active.has(player + '-right')) - Number(active.has(player + '-left')),
-      fire: active.has(player + '-throw'),
-    }))
+    const input = {
+      direction: Number(active.has('right')) - Number(active.has('left')),
+      fire: active.has('throw'),
+    }
     while (accumulator >= 1 / 120 && !game.over) {
-      update(game, inputs, 1 / 120).forEach(beep)
+      update(game, input, 1 / 120).forEach(beep)
       accumulator -= 1 / 120
     }
     format()
@@ -122,19 +111,6 @@ function loop(now) {
   requestAnimationFrame(loop)
 }
 
-function selectRide() {
-  game = createGame($('ride').value)
-  for (const section of document.querySelectorAll('[data-coop]')) section.hidden = game.ride !== 'coop'
-  for (const section of document.querySelectorAll('[data-shared-controls]')) section.hidden = game.ride === 'coop'
-  text('ride-help', {
-    solo: 'One surfer. Steer with the arrows or A and D.',
-    tandem: 'Two surfers throw together from the same controls.',
-    coop: 'Two sets of controls. Both surfers share score and lives.',
-  }[game.ride])
-  setMode('ready')
-  format()
-}
-$('ride').addEventListener('change', selectRide)
 $('launch').addEventListener('click', begin)
 $('pause').addEventListener('click', togglePause)
 $('sound').addEventListener('click', () => {
@@ -147,7 +123,6 @@ window.addEventListener('keydown', event => {
   if ($('rom-dialog').open || event.ctrlKey || event.metaKey || event.altKey) return
   if (['KeyP', 'Escape'].includes(event.code) && !event.repeat) togglePause()
   if (event.target.closest?.('select,input,a,button')) return
-  const keys = game.ride === 'coop' ? coopKeys : soloKeys
   if (mode !== 'playing' || !keys[event.code]) return
   event.preventDefault()
   held.add(event.code)
@@ -180,6 +155,7 @@ document.addEventListener('arcade:open-rom', () => {
   if (mode === 'playing') setMode('paused')
 })
 
-selectRide()
+setMode('ready')
+format()
 drawPatrol(ctx, game, reduced.matches)
 requestAnimationFrame(loop)

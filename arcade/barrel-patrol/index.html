@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Play Barrel Patrol, a surf arcade game with tandem and co-op rides, or open a compatible MAME arcade ROM ZIP locally.">
+  <meta name="description" content="Play Barrel Patrol, a single-player surf arcade game, or open a compatible MAME arcade ROM ZIP locally.">
   <title>Barrel Patrol · SurfingCoder Arcade</title>
-  <link rel="stylesheet" href="../style.css?v=20261120-surf-break">
-  <script type="module" src="../arcade.js?v=20261120-surf-break"></script>
+  <link rel="stylesheet" href="../style.css?v=20261120-single-surfer">
+  <script type="module" src="../arcade.js?v=20261120-single-surfer"></script>
   <link rel="stylesheet" href="../arcade-lobby.css?v=20261120-wordmark">
   <script type="module" src="../rom-launcher.js?v=20261120-surf-break"></script>
 <link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
@@ -82,22 +82,11 @@
 </header>
     <div class="workspace">
       <aside class="patrol-intro">
-        <h1>Barrel<br><em>Patrol.</em></h1>
+        <h1 id="barrel-title">Barrel<br><em>Patrol.</em></h1>
         <p>Carve the swell.<br>Clear the reef.</p>
-        <p class="patrol-summary">Throw surfboards at diving sea creatures, solo or with a second surfer.</p>
+        <p class="patrol-summary">Throw surfboards at diving sea creatures, while riding the moving swells.</p>
       </aside>
-      <section class="cabinet" aria-labelledby="game-title">
-        <div class="marquee">
-          <h2 id="game-title">Barrel Patrol</h2>
-        </div>
-        <div class="ride-mode">
-          <label for="ride">Ride mode</label>
-          <select id="ride" aria-describedby="ride-help">
-            <option value="solo">Solo</option>
-            <option value="tandem">Tandem · One player, two surfers</option>
-            <option value="coop">Local co-op · Two players</option>
-          </select>
-        </div>
+      <section class="cabinet" aria-labelledby="barrel-title">
         <div class="scoreboard" aria-label="Game statistics">
           <div><span>Score</span><strong id="score">000000</strong></div>
           <div><span>Best</span><strong id="best">000000</strong></div>
@@ -118,22 +107,11 @@
           </div>
         </div>
         <div class="controls" role="group" aria-label="Surf controls">
-          <div class="control-row">
-            <span class="rider-tag" data-coop hidden>Surfer 1</span>
-            <div class="direction">
-              <button type="button" data-hold="1-left" aria-label="Steer surfer 1 left">←</button>
-              <button type="button" data-hold="1-right" aria-label="Steer surfer 1 right">→</button>
-            </div>
-            <button type="button" class="throw" data-hold="1-throw" aria-label="Throw boards with surfer 1">Throw</button>
+          <div class="direction">
+            <button type="button" data-hold="left" aria-label="Steer left">←</button>
+            <button type="button" data-hold="right" aria-label="Steer right">→</button>
           </div>
-          <div class="control-row coral" data-coop hidden>
-            <span class="rider-tag">Surfer 2</span>
-            <div class="direction">
-              <button type="button" data-hold="2-left" aria-label="Steer surfer 2 left">←</button>
-              <button type="button" data-hold="2-right" aria-label="Steer surfer 2 right">→</button>
-            </div>
-            <button type="button" class="throw" data-hold="2-throw" aria-label="Throw boards with surfer 2">Throw</button>
-          </div>
+          <button type="button" class="throw" data-hold="throw" aria-label="Throw surfboards">Throw</button>
           <button type="button" id="pause" disabled>Pause</button>
         </div>
       </section>
@@ -141,16 +119,9 @@
         <section class="panel rules">
           <h2>How to ride</h2>
           <p>Carve the swell and hurl boards at diving mantas, squid, clawed crabs, and sharks. Dodge creatures and their stinging bubbles. Three wipeouts end the ride.</p>
-          <p id="ride-help">One surfer. Steer with the arrows or A and D.</p>
-          <dl class="keys" data-shared-controls>
+          <dl class="keys">
             <div><dt>Steer</dt><dd><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd></dd></div>
             <div><dt>Throw boards</dt><dd><kbd>Space</kbd></dd></div>
-          </dl>
-          <dl class="keys" data-coop hidden>
-            <div><dt>Surfer 1</dt><dd><kbd>A</kbd> <kbd>D</kbd> · <kbd>F</kbd> or <kbd>Space</kbd></dd></div>
-            <div><dt>Surfer 2</dt><dd><kbd>←</kbd> <kbd>→</kbd> · <kbd>/</kbd> or <kbd>Num 0</kbd></dd></div>
-          </dl>
-          <dl class="keys">
             <div><dt>Pause</dt><dd><kbd>P</kbd> or <kbd>Esc</kbd></dd></div>
           </dl>
           <p>On touchscreens, hold the controls below the break.</p>
