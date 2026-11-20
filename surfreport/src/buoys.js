@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261120-fresh-buoys';
+import { drawBuoyChart } from './buoy-chart.js?v=20261120-observed-peak';
 
 const HOUR = 3600000;
 const RADIUS_KM = 250;
@@ -25,20 +25,21 @@ export function parseReadings(data, stationId) {
   const { columnNames, rows } = data?.table ?? {};
   if (!Array.isArray(columnNames) || !Array.isArray(rows)) return [];
   const indexes = fields.map(field => columnNames.indexOf(field));
-  const averageIndex = columnNames.indexOf('APD');
+  const peakIndex = columnNames.indexOf('DPD');
   if (indexes.some(index => index < 0)) return [];
   return rows.flatMap(row => {
     if (!Array.isArray(row)) return [];
     const [id, iso, wave, direction, temperature] = indexes.map(index => row[index]);
-    const time = Date.parse(iso);
+    const time = Date.parse(iso), peak = row[peakIndex];
+    const period = Number.isFinite(peak) && peak > 0 && peak < 99 ? peak : undefined;
     return id === stationId && Number.isFinite(time) && Number.isFinite(wave) && wave >= 0
-      ? [{ time, wave, direction, temperature, averagePeriod: row[averageIndex] }] : [];
+      ? [{ time, wave, direction, temperature, period }] : [];
   }).sort((a, b) => b.time - a.time);
 }
 
 function readStation(stationId, signal) {
   // NOAA supports JSONP for browsers. The sandbox keeps its script away from the site’s DOM and storage.
-  const query = [...fields, 'APD'].join(',') + '&station=' + encodeURIComponent('"' + stationId + '"') +
+  const query = [...fields, 'DPD'].join(',') + '&station=' + encodeURIComponent('"' + stationId + '"') +
     '&time%3Enow-36hours&.jsonp=receiveBuoyData';
   const url = (COASTWATCH + '.json?' + query).replaceAll('&', '&amp;');
   return new Promise((resolve, reject) => {
@@ -74,6 +75,7 @@ async function readObservations(stationId, signal) {
     const variables = [
       'time', 'sea_surface_wave_significant_height',
       'sea_surface_wave_from_direction_at_variance_spectral_density_maximum', 'sea_water_temperature',
+      'sea_surface_wave_period_at_variance_spectral_density_maximum',
     ];
     try {
       const response = await fetch(ONSLOW_DATASET + '.json?' + variables.join(',') + '&time%3Enow-36hours', {
@@ -83,7 +85,7 @@ async function readObservations(stationId, signal) {
       const { table } = await response.json();
       const indexes = variables.map(variable => table.columnNames.indexOf(variable));
       const rows = table.rows.map(row => [stationId, ...indexes.map(index => row[index])]);
-      const readings = parseReadings({ table: { columnNames: fields, rows } }, stationId);
+      const readings = parseReadings({ table: { columnNames: [...fields, 'DPD'], rows } }, stationId);
       if (readings.length) return { readings, source: ONSLOW_DATASET + '.html' };
     } catch {
       signal.throwIfAborted();
@@ -124,7 +126,10 @@ export function mergeWaveReadings(standard, detailed) {
       if (delta < distance) { closest = candidate; distance = delta; }
     }
     unmatched.delete(closest);
-    return { ...closest, ...row };
+    const matched = { ...closest, ...row };
+    // Direct buoy records can retain decimal precision where NDBC's standard file rounds.
+    if (Number.isFinite(closest?.period)) matched.period = closest.period;
+    return matched;
   });
   return [...readings, ...unmatched].sort((a, b) => b.time - a.time);
 }
@@ -166,7 +171,7 @@ export function setupBuoyView(getUnits) {
     const temperature = Number.isFinite(item.temperature) && !metric ? item.temperature * 1.8 + 32 : item.temperature;
     return [
       ['Significant height', size(item.wave)],
-      [chart ? 'Combined sea average period' : 'Average period', seconds(item.averagePeriod)],
+      [chart ? 'Combined sea peak period' : 'Peak period', seconds(item.period)],
       ['Wave from', direction(item.direction)],
       ['Swell height', size(item.swell)], ['Swell period', seconds(item.swellPeriod)], ['Swell from', direction(item.swellDirection)],
       ['Wind wave height', size(item.windWave)],

@@ -4,7 +4,7 @@ const HOUR = 3600000;
 const SERIES = [
   { label: 'Wind waves', color: '#b9de82', heightKey: 'windWave' },
   { label: 'Swell', color: '#a879e8', heightKey: 'swell', periodKey: 'swellPeriod' },
-  { label: 'Combined sea', color: '#d9c4f5', heightKey: 'wave', periodKey: 'averagePeriod', dash: '6 4' },
+  { label: 'Combined sea', color: '#d9c4f5', heightKey: 'wave', periodKey: 'period', dash: '6 4' },
 ];
 const svg = (name, attrs, label) => {
   const element = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -35,7 +35,7 @@ export function drawBuoyChart(readings, units, width, date, details) {
   const plot = document.createElement('div');
   plot.className = 'week-plot';
   const chart = svg('svg', { viewBox: `0 0 ${width} 258`, class: 'week-chart', role: 'img',
-    'aria-label': 'Measured wave heights on the left axis. Combined sea average period and swell period are on the right axis.' });
+    'aria-label': 'Measured wave heights on the left axis. Combined sea peak period and swell period are on the right axis.' });
   const legend = document.createElement('p');
   legend.className = 'buoy-chart-legend';
   let heightMax = 1, periodMax = 4;
@@ -98,7 +98,7 @@ export function drawBuoyChart(readings, units, width, date, details) {
   popup.hidden = true;
   const hint = document.createElement('p');
   hint.className = 'buoy-reading-status';
-  hint.textContent = 'Lines show heights. Circles show combined sea average period and swell period.';
+  hint.textContent = 'Lines show heights. Circles show combined sea peak period and swell period.';
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;

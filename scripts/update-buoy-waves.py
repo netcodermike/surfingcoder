@@ -9,7 +9,7 @@ import sys
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-STANDARD = dict(WVHT="wave", APD="averagePeriod", MWD="direction", WTMP="temperature")
+STANDARD = dict(WVHT="wave", DPD="period", APD="averagePeriod", MWD="direction", WTMP="temperature")
 SUMMARY = dict(WVHT="wave", SwH="swell", SwP="swellPeriod", WWH="windWave",
                WWP="windWavePeriod", APD="averagePeriod", MWD="direction")
 SUMMARY_DIRECTIONS = dict(SwD="swellDirection", WWD="windWaveDirection")
@@ -29,7 +29,7 @@ def valid_number(field, text):
         return value if -5 <= value <= 50 else None
     if field == "MWD":
         return value if 0 <= value <= 360 else None
-    if field in {"APD", "SwP", "WWP"}:
+    if field in {"DPD", "APD", "SwP", "WWP"}:
         return value if 0 < value < 99 else None
     return value if 0 <= value < 99 else None
 
