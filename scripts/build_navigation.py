@@ -67,9 +67,11 @@ def html_pages(root=ROOT):
 
 
 def render_navigation(page):
+    is_arcade = page.startswith('arcade/')
+
     def link(item, indent):
         label, href, active_page = item
-        active = page == active_page or (active_page == 'arcade/index.html' and page.startswith('arcade/'))
+        active = page == active_page or (active_page == 'arcade/index.html' and is_arcade)
         current = ' aria-current="page"' if active else ''
         return f'{indent}<a href="{escape(href)}"{current}>{escape(label)}</a>'
 
@@ -97,7 +99,9 @@ def render_navigation(page):
         '  <div class="sc-nav-wrap">',
         '    <a class="sc-brand" href="/" aria-label="SurfingCoder home">'
         '<img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75">'
-        '<span class="sc-wordmark">Surfing<span>Coder</span></span></a>',
+        '<span class="sc-wordmark">Surfing<span>Coder</span>'
+        + ('<small class="sc-arcade-label">THE ARCADE</small>' if is_arcade else '')
+        + '</span></a>',
         '    <nav class="sc-nav-links" aria-label="Main navigation">',
         *links,
         '    </nav>',

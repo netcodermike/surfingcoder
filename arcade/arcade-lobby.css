@@ -1,3 +1,12 @@
+.sc-site-header .sc-wordmark .sc-arcade-label {
+  display: block;
+  margin-top: 3px;
+  color: #c6b6d7;
+  font-size: 9px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: 2.1px;
+}
 .arcade-lobby {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 10px 18px; padding-bottom: 17px; border-bottom: 1px solid #44394f;
@@ -16,6 +25,18 @@
   border-color: #c49ce9; color: #1e142a; background: linear-gradient(125deg,#a879e8,#d9c4f5 46%,#b98be8);
 }
 .arcade-lobby .arcade-rom-open { background: transparent }
+.arcade-lobby .arcade-rom-downloads {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 4px;
+  color: #d9b9f2;
+  font: 550 12px/1.25 "Segoe UI", system-ui, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.arcade-lobby .arcade-rom-downloads:hover { color: #f0defc }
 .arcade-lobby .icon-button { flex: none }
 #rom-error { flex-basis: 100%; margin: 0; color: #ffc690; font-size: .86rem }
 #rom-error:empty { display: none }

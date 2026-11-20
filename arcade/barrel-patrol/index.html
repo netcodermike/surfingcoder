@@ -7,7 +7,7 @@
   <title>Barrel Patrol · SurfingCoder Arcade</title>
   <link rel="stylesheet" href="../style.css?v=20261120-surf-break">
   <script type="module" src="../arcade.js?v=20261120-surf-break"></script>
-  <link rel="stylesheet" href="../arcade-lobby.css?v=20261120-surf-break">
+  <link rel="stylesheet" href="../arcade-lobby.css?v=20261120-wordmark">
   <script type="module" src="../rom-launcher.js?v=20261120-surf-break"></script>
 <link rel="stylesheet" href="/navigation.css?v=64b643b992f0">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
@@ -16,7 +16,7 @@
 <!-- SITE NAVIGATION START -->
 <div class="sc-site-header" role="banner">
   <div class="sc-nav-wrap">
-    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span><small class="sc-arcade-label">THE ARCADE</small></span></a>
     <nav class="sc-nav-links" aria-label="Main navigation">
       <a href="/#projects">Projects</a>
       <details class="sc-dropdown sc-games" name="surfingcoder-menu">
@@ -74,6 +74,7 @@
   </nav>
   <div class="arcade-actions">
     <button type="button" id="rom-open" class="arcade-rom-open" aria-haspopup="dialog">Open ROM ZIP</button>
+    <a class="arcade-rom-downloads" href="https://www.mamedev.org/roms/" target="_blank" rel="noopener noreferrer">ROM downloads</a>
     <input id="rom-file" type="file" accept=".zip,application/zip" hidden>
     <button type="button" id="sound" aria-pressed="true">Sound on</button>
   </div>
