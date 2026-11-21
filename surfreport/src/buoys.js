@@ -7,6 +7,7 @@ const NDBC = 'https://www.ndbc.noaa.gov';
 const COASTWATCH = 'https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet';
 const ONSLOW_DATASET = 'https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b';
 const fields = ['station', 'time', 'WVHT', 'MWD', 'WTMP'];
+const LIVE_WAVES = 'https://surfingcoder-buoy-api.dreamymanatee10.chatgpt.site/waves/';
 const WAVES_API = 'https://api.github.com/repos/netcodermike/surfingcoder/contents/waves/';
 const WAVES_RAW = 'https://raw.githubusercontent.com/netcodermike/surfingcoder/buoy-data/waves/';
 
@@ -97,19 +98,23 @@ async function readObservations(stationId, signal) {
 async function readDetailedWaves(stationId, signal) {
   const file = encodeURIComponent(stationId) + '.json';
   const cutoff = Date.now() - 36 * HOUR;
-  const timeout = AbortSignal.any([signal, AbortSignal.timeout(7500)]);
   const endpoints = [
-    [WAVES_API + file + '?ref=buoy-data', { Accept: 'application/vnd.github.raw+json' }],
-    [WAVES_RAW + file, {}],
+    { url: LIVE_WAVES + file, timeout: 6500 },
+    { url: WAVES_API + file + '?ref=buoy-data', timeout: 3750, cache: 'no-cache',
+      headers: { Accept: 'application/vnd.github.raw+json' } },
+    { url: WAVES_RAW + file, timeout: 3750, cache: 'no-cache' },
   ];
-  // The branch-named raw URL can lag behind a successful publish. Prefer the Contents API.
-  for (const [url, headers] of endpoints) {
+  for (const { url, timeout, ...options } of endpoints) {
     try {
-      const response = await fetch(url, { signal: timeout, headers, cache: 'no-cache' });
+      const response = await fetch(url, {
+        ...options, signal: AbortSignal.any([signal, AbortSignal.timeout(timeout)]),
+      });
       if (!response.ok) continue;
       const rows = await response.json();
-      if (Array.isArray(rows)) return rows.filter(row => Number.isFinite(row?.time) && row.time >= cutoff)
+      if (!Array.isArray(rows)) continue;
+      const recent = rows.filter(row => Number.isFinite(row?.time) && row.time >= cutoff)
         .sort((a, b) => b.time - a.time);
+      if (recent.length) return recent;
     } catch {
       signal.throwIfAborted();
     }
