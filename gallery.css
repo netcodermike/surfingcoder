@@ -16,3 +16,10 @@
 .card-body>.play-now{margin-bottom:16px}
 
 @media(max-width:700px){nav>a[href^="articles/"],nav>a[href="about.html"]{display:none}.site-nav{height:auto}.nav-wrap{min-height:69px;flex-wrap:wrap;gap:0 16px;padding-block:6px}nav{gap:11px;flex-wrap:wrap}nav a{padding:7px 0}nav a[aria-current]:after{bottom:0}.brand{font-size:18px;gap:7px}.nav-github{padding:8px}}
+
+.project-card[data-name="WpfDigitalClockAlarm"] .preview img {
+  position: absolute;
+  inset: 5%;
+  width: 90%;
+  height: 90%;
+}

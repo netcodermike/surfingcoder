@@ -2069,12 +2069,15 @@
     "category": "Work & productivity",
     "featured": true,
     "order": 88,
-    "image": "assets/screenshots/WpfDigitalClockAlarm.webp",
+    "image": "assets/screenshots/WpfDigitalClockAlarm-full.webp",
     "capture": {
       "name": "WpfDigitalClockAlarm",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demo data.",
-      "platform": "Windows"
+      "caption": "Full Windows application view with the clock, alarm controls, and Arm Alarm button.",
+      "platform": "Windows",
+      "capture_date": "2026-11-22T17:16:15.436670+00:00",
+      "capture_method": "WPF RenderTargetBitmap using an isolated empty task file",
+      "source_commit": "dd80fdb65b47738a5e1d4edcf54f08badba314bf"
     },
     "ci": "https://github.com/netcodermike/WpfDigitalClockAlarm/actions"
   },
