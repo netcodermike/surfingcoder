@@ -1,0 +1,55 @@
+:root { color-scheme: dark; font-family: "Segoe UI", system-ui, sans-serif; color: #f7edfb; background: #18161f; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 78% 8%, #362742, transparent 44rem), #18161f; }
+main { width: min(1120px, calc(100% - 40px)); margin: auto; padding: clamp(25px, 5vw, 56px) 0 42px; }
+.heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 10px 25px; margin-bottom: 20px; }
+h1 { font-size: clamp(2rem, 6vw, 4.1rem); letter-spacing: -.06em; line-height: 1.04; margin: 0 0 10px; color: #e9c8ff; }
+p { line-height: 1.55; }
+.heading p, .controls p { margin: 0; color: #cec0d8; }
+.heading a { color: #e0b6ff; font-weight: 650; text-underline-offset: .25em; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1.95fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.panel { padding: clamp(14px, 2.5vw, 24px); border-radius: 16px; border: 1px solid #594866; background: linear-gradient(145deg, #302639, #241e2e 65%); box-shadow: 0 12px 26px #0c071533; }
+.controls, .controls form { display: grid; gap: 12px; }
+.stage { min-width: 0; }
+canvas { display: block; width: 100%; height: auto; border: 1px solid #5a456c; border-radius: 12px; background: #1d1729; }
+canvas[tabindex] { touch-action: none; cursor: grab; }
+label { display: block; color: #decce8; font-size: .87rem; font-weight: 650; }
+output { float: right; color: #ffcfbc; font-variant-numeric: tabular-nums; }
+input, select, button { font: inherit; }
+input, select { display: block; width: 100%; min-width: 0; margin-top: 4px; }
+input[type="range"] { accent-color: #cf9af5; margin-inline: 0; }
+select, input:not([type="range"]) { padding: 6px 8px; border: 1px solid #665375; border-radius: 7px; background: #1d1728; color: #faeefb; min-height: 35px; }
+button { background: #392b49; color: #f7edfb; border: 1px solid #665375; border-radius: 8px; min-height: 42px; padding: 6px 12px; cursor: pointer; font-weight: 650; }
+button:hover:not(:disabled) { border-color: #e3b8ff; }
+button:disabled { opacity: .56; cursor: default; }
+:focus-visible { outline: 2px solid #e6b9ff; outline-offset: 3px; }
+#reading { margin: 13px 0 0; font-weight: 700; color: #ffe2bc; }
+.pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+fieldset { margin: 0; min-inline-size: 0; padding: 8px; border: 1px solid #665375; border-radius: 8px; }
+legend { color: #e9c4ff; font-size: .84rem; font-weight: 700; }
+fieldset .pair { margin-top: 8px; }
+.actions, .colors { display: flex; flex-wrap: wrap; gap: 8px; }
+.extra { margin: 10px 0 0; color: #d8c6e2; }
+.key { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 12px; }
+.key span { display: inline-flex; align-items: center; gap: 8px; font-size: .88rem; }
+.key span::before { content: ""; display: block; width: 13px; height: 13px; border-radius: 3px; }
+.canopy-key::before { border: 2px dashed #ffd59f; }
+.shadow-key::before { background: #caa1f9; }
+label.check { display: flex; gap: 9px; align-items: center; }
+label.check input { width: auto; margin: 0; accent-color: #d8a6f7; }
+.values { display: grid; gap: 7px; margin: 0; }
+.values > div { display: flex; justify-content: space-between; gap: 7px; border-bottom: 1px solid #594866; padding-bottom: 6px; }
+.values dt { font-weight: 650; font-size: .86rem; color: #e2c9f2; }
+.values dd { margin: 0; font-variant-numeric: tabular-nums; }
+.truth { width: 100%; table-layout: fixed; border-spacing: 4px; }
+.truth th { text-align: center; font-size: .85rem; }
+.truth th:first-child { width: 15%; }
+.truth button { display: grid; gap: 4px; place-content: center; width: 100%; min-height: clamp(50px, 9vw, 80px); padding: 3px; border-bottom-width: 4px; }
+.truth button strong { font-size: clamp(1rem, 4vw, 1.8rem); line-height: 1; }
+.truth button small { display: block; font-size: .72rem; font-variant-numeric: tabular-nums; }
+.truth button[aria-pressed="true"] { color: #2d173d; background: #d5acee; }
+.truth button.highlighted { outline: 2px solid #fff5ee; outline-offset: -6px; }
+.term-list { display: grid; gap: 8px; }
+.term-list button { text-align: left; }
+.term-list button[aria-pressed="true"] { background: #5e4380; }
+@media (max-width: 730px) { main { width: calc(100% - 24px); } .workspace { grid-template-columns: 1fr; } }
