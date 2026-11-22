@@ -33,7 +33,6 @@ BODY_START = re.compile(r'<body\b[^>]*>(?:\s*<a class="skip(?:-link)?"[^>]*>[^<]
 LINKS = (
     ('Projects', '/#projects', 'index.html'),
     ('Surf Report', '/surfreport/', 'surfreport/index.html'),
-    ('Writing', '/articles/wsl-rankings-misleading.html', 'articles/wsl-rankings-misleading.html'),
     ('About', '/about.html', 'about.html'),
 )
 def game_links():
@@ -91,8 +90,6 @@ def render_navigation(page):
         *dropdown('Guitar', 'guitar', GUITAR),
         *(link(item, '      ') for item in LINKS[1:]),
     ]
-    links.append('      <a class="sc-github" href="https://github.com/netcodermike" target="_blank" '
-                 'rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>')
     return '\n'.join([
         START,
         '<div class="sc-site-header" role="banner">',

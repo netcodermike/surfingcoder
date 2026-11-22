@@ -17,7 +17,6 @@ Owner: netcodermike. Remote: https://github.com/netcodermike/surfingcoder.git.
 ## Editorial context
 
 - SurfingCoder covers software, data analysis, AI experiments, surfing, and related interests.
-- The WSL article is published. Keep the November 3, 2026 snapshot and its normal-participation assumptions explicit; the user requested removal of the old Review draft badge.
 - For surfing analysis, use official rules and timestamped official event results.
 - Distinguish exact points conditions from paths that depend on the eventual draw, entry list, withdrawals, or wildcard decisions.
 - Explain dropped-result arithmetic and use the exact published points table, including rounding.
@@ -26,4 +25,4 @@ See docs/publishing.md for local setup, authentication, GitHub Pages, and DNS in
 
 ## Publication status
 
-On November 6, 2026, the user explicitly authorized making this repository public and activating surfingcoder.com with the repository gallery as its homepage. The gallery must be visible immediately on landing. The November 9 curation request supersedes the earlier global SVD/Coinbase-first ordering: lead with AI apps, then other curated categories, with the strongest and most colorful screenshots first within each category. SvdStudio, coinbase-ladder, and fractal-render-lab lead their respective categories. All pages use the shared Amethyst & Graphite dark theme. Preserve existing writing and its snapshot context. See docs/publishing.md for the deployment source.
+On November 6, 2026, the user explicitly authorized making this repository public and activating surfingcoder.com with the repository gallery as its homepage. The gallery must be visible immediately on landing. The November 9 curation request supersedes the earlier global SVD/Coinbase-first ordering: lead with AI apps, then other curated categories, with the strongest and most colorful screenshots first within each category. SvdStudio, coinbase-ladder, and fractal-render-lab lead their respective categories. All pages use the shared Amethyst & Graphite dark theme. See docs/publishing.md for the deployment source.

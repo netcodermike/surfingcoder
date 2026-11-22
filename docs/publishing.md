@@ -46,10 +46,6 @@ If GitHub is provisioning a certificate, keep the custom domain configured while
 
 Preserve unrelated mail, TXT, and subdomain records. Keep any GitHub domain-verification TXT record. The `www` target has no protocol or repository path.
 
-## Existing writing
-
-The Pipeline analysis and supporting data retain the November 3, 2026 snapshot and review-draft wording. The gallery is the homepage; Writing and About remain linked. Updating the gallery does not revise the article's factual assumptions.
-
 ## Official references
 
 - [GitHub Pages publishing sources](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)

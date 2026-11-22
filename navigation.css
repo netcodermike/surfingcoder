@@ -111,13 +111,6 @@
 .sc-site-header .sc-dropdown-links a:hover,
 .sc-site-header .sc-dropdown-links a[aria-current] { color: #e0b5ff; background: #3a2a4a; }
 
-.sc-site-header .sc-nav-links > .sc-github {
-  gap: 9px;
-  border: 1px solid #4d3e58;
-  border-radius: 9px;
-  padding: 7px 13px;
-  color: #f0e9f5;
-}
 
 .sc-site-header :is(a, summary):focus-visible { outline: 2px solid #dda8ff; outline-offset: 3px; }
 
@@ -161,7 +154,6 @@ body > .sc-site-footer {
   .sc-site-header .sc-brand-mark { width: 38px; }
   .sc-site-header .sc-nav-links { --sc-link-height: 35px; font-size: 13px; gap: 1px clamp(6px, 1.55vw, 9px); }
   .sc-site-header .sc-nav-links > a { padding-block: 3px; }
-  .sc-site-header .sc-nav-links > .sc-github { padding-inline: 8px; }
 }
 
 .sc-site-header .sc-guitar-links { width: max-content; max-width: min(238px, calc(100vw - 28px)); }

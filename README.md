@@ -27,7 +27,7 @@ The JSON fields are documented in [docs/gallery.md](docs/gallery.md). Layout and
 
 ## Appearance
 
-Every HTML page loads `theme.css`, the shared **Amethyst & Graphite** palette: `#18161E` background, `#27222F` panels, `#A879E8` purple accents, `#D9C4F5` metallic highlights, and soft off-white text. Edit its CSS variables to keep the gallery, writing, About page, surf report, and hosted apps consistent. `app.css` holds shared app layouts; each hosted app's `style.css` imports it. Canvas charts read the same theme variables through the `theme()` helper in `ui.js`.
+Every HTML page loads `theme.css`, the shared **Amethyst & Graphite** palette: `#18161E` background, `#27222F` panels, `#A879E8` purple accents, `#D9C4F5` metallic highlights, and soft off-white text. Edit its CSS variables to keep the gallery, About page, surf report, and hosted apps consistent. `app.css` holds shared app layouts; each hosted app's `style.css` imports it. Canvas charts read the same theme variables through the `theme()` helper in `ui.js`.
 
 Gallery screenshots remain genuine captures of their source applications; they are not recolored. Hosted app styling is maintained in this website repository independently of the standalone app repositories.
 
@@ -43,13 +43,9 @@ The collection uses actual running app interfaces or actual command output from 
 
 The publication branch is `main`, with GitHub Pages serving the repository root and `CNAME` set to `surfingcoder.com`. A main-branch push updates the public site. See [docs/publishing.md](docs/publishing.md) for deployment and DNS verification.
 
-## Writing
-
-The existing [Pipeline title-race analysis](articles/wsl-rankings-misleading.html), its supporting data, and the About page remain available. The published article retains its November 3, 2026 snapshot and explicit assumptions.
-
 ## Operations research and forecast updates
 
-[OR Tableau Studio](https://surfingcoder.com/apps/or-tableau-studio/) adds a documented, tested simplex and farm-planning workbench. Its standalone source lives at [netcodermike/or-tableau-studio](https://github.com/netcodermike/or-tableau-studio). Refresh the hosted static copy when publishing app changes. The surf report now includes [seven-day component graphs](docs/surf-forecast-stage1.md). The Pipeline article retains its original snapshot, with [November 9 verification notes](docs/article-review-2026-11-09.md).
+[OR Tableau Studio](https://surfingcoder.com/apps/or-tableau-studio/) adds a documented, tested simplex and farm-planning workbench. Its standalone source lives at [netcodermike/or-tableau-studio](https://github.com/netcodermike/or-tableau-studio). Refresh the hosted static copy when publishing app changes. The surf report now includes [seven-day component graphs](docs/surf-forecast-stage1.md).
 
 ## Trading indicator lab
 
