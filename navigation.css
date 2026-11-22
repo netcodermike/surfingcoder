@@ -157,16 +157,26 @@ body > .sc-site-footer {
 }
 
 .sc-site-header .sc-guitar-links { width: max-content; max-width: min(238px, calc(100vw - 28px)); }
-.sc-site-header .sc-games-links {
-  width: max-content;
-  max-width: min(250px, calc(100vw - 30px));
+.sc-site-header :is(.sc-games-links, .sc-surf-cams-links) {
   max-height: min(54vh, 26rem);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: #79618e #271f32;
 }
+.sc-site-header .sc-games-links {
+  width: max-content;
+  max-width: min(250px, calc(100vw - 30px));
+}
+.sc-site-header .sc-surf-cams-links {
+  left: auto;
+  right: 0;
+  width: max-content;
+  max-width: min(300px, calc(100vw - 28px));
+}
 
 @media (max-width: 530px) {
+  .sc-site-header .sc-nav-wrap { position: relative; }
   .sc-site-header .sc-guitar-links { left: 50%; transform: translateX(-50%); }
   .sc-site-header .sc-games-links { max-width: min(218px, calc(100vw - 98px)); }
+  .sc-site-header .sc-surf-cams { position: static; }
 }

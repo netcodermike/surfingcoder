@@ -58,6 +58,25 @@ GUITAR = (
     ('Guitar Tuner', '/guitar-tuner/', 'guitar-tuner/index.html'),
 )
 
+# Follow the coastline from Virginia Beach to Wrightsville Beach.
+SURF_CAMS = (
+    ('Atlantic Park Surf · Virginia Beach', 'https://atlanticparksurf.com/aps-live-cam'),
+    ('Jennette’s Pier · NC Aquariums', 'https://www.ncaquariums.com/current-conditions'),
+    ('Jennette’s Pier · SurfChex', 'https://surfchex.com/cams/nags-head-web-cam/'),
+    ('Atlantic Beach · ABLiveSurf', 'https://www.ablivesurf.com/livecams/'),
+    ('Pine Knoll Shores · Atlantis Lodge', 'https://atlantislodge.com/webcam/'),
+    ('Emerald Isle · Eastern Beach Access',
+     'https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came'),
+    ('Bogue Inlet Pier · Pier Cam', 'https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html'),
+    ('Bogue Inlet Pier · EILiveSurf', 'https://www.eilivesurf.com/livecams/'),
+    ('Emerald Isle · Western Beach Access',
+     'https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came'),
+    ('North Topsail Beach', 'https://surfchex.com/cams/north-topsail-island-web-cam/'),
+    ('Surf City Pier · North', 'https://surfchex.com/cams/surf-city-pier-north/'),
+    ('Surf City Pier · South', 'https://surfchex.com/cams/surf-city-pier-south/'),
+    ('Wrightsville Beach', 'https://surfchex.com/cams/wrightsville-beach/'),
+)
+
 
 def html_pages(root=ROOT):
     return sorted(path for path in root.rglob('*.html') if not any(
@@ -74,21 +93,26 @@ def render_navigation(page):
         current = ' aria-current="page"' if active else ''
         return f'{indent}<a href="{escape(href)}"{current}>{escape(label)}</a>'
 
-    def dropdown(label, slug, items):
+    def dropdown(label, slug, anchors):
         return [
             f'      <details class="sc-dropdown sc-{slug}" name="surfingcoder-menu">',
             f'        <summary>{label}</summary>',
             f'        <ul class="sc-dropdown-links sc-{slug}-links">',
-            *(f'          <li>{link(item, "")}</li>' for item in items),
+            *(f'          <li>{anchor}</li>' for anchor in anchors),
             '        </ul>',
             '      </details>',
         ]
 
     links = [
         link(LINKS[0], '      '),
-        *dropdown('Games', 'games', GAMES),
-        *dropdown('Guitar', 'guitar', GUITAR),
-        *(link(item, '      ') for item in LINKS[1:]),
+        *dropdown('Games', 'games', (link(item, '') for item in GAMES)),
+        *dropdown('Guitar', 'guitar', (link(item, '') for item in GUITAR)),
+        link(LINKS[1], '      '),
+        *dropdown('Surf Cams', 'surf-cams', (
+            f'<a href="{escape(href)}" target="_blank" rel="noopener noreferrer">{escape(label)}</a>'
+            for label, href in SURF_CAMS
+        )),
+        link(LINKS[2], '      '),
     ]
     return '\n'.join([
         START,
