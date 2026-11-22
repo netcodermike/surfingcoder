@@ -173,6 +173,20 @@ body > .sc-site-footer {
   width: max-content;
   max-width: min(300px, calc(100vw - 28px));
 }
+.sc-site-header .sc-surf-cams-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sc-site-header .sc-cam-icon {
+  flex: none;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  padding: 2px;
+  border-radius: 4px;
+  background: #e9e2ec;
+}
 
 @media (max-width: 530px) {
   .sc-site-header .sc-nav-wrap { position: relative; }

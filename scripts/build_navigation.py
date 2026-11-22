@@ -60,21 +60,22 @@ GUITAR = (
 
 # Follow the coastline from Virginia Beach to Wrightsville Beach.
 SURF_CAMS = (
-    ('Atlantic Park Surf · Virginia Beach', 'https://atlanticparksurf.com/aps-live-cam'),
-    ('Jennette’s Pier · NC Aquariums', 'https://www.ncaquariums.com/current-conditions'),
-    ('Jennette’s Pier · SurfChex', 'https://surfchex.com/cams/nags-head-web-cam/'),
-    ('Atlantic Beach · ABLiveSurf', 'https://www.ablivesurf.com/livecams/'),
-    ('Pine Knoll Shores · Atlantis Lodge', 'https://atlantislodge.com/webcam/'),
+    ('Atlantic Park Surf · Virginia Beach', 'https://atlanticparksurf.com/aps-live-cam', 'atlantic-park-surf'),
+    ('Jennette’s Pier · NC Aquariums', 'https://www.ncaquariums.com/current-conditions', 'nc-aquariums'),
+    ('Jennette’s Pier · SurfChex', 'https://surfchex.com/cams/nags-head-web-cam/', 'surfchex'),
+    ('Atlantic Beach · ABLiveSurf', 'https://www.ablivesurf.com/livecams/', 'live-surf'),
+    ('Pine Knoll Shores · Atlantis Lodge', 'https://atlantislodge.com/webcam/', 'atlantis-lodge'),
     ('Emerald Isle · Eastern Beach Access',
-     'https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came'),
-    ('Bogue Inlet Pier · Pier Cam', 'https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html'),
-    ('Bogue Inlet Pier · EILiveSurf', 'https://www.eilivesurf.com/livecams/'),
+     'https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came', 'emerald-isle'),
+    ('Bogue Inlet Pier · Pier Cam', 'https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html',
+     'bogue-inlet-pier'),
+    ('Bogue Inlet Pier · EILiveSurf', 'https://www.eilivesurf.com/livecams/', 'live-surf'),
     ('Emerald Isle · Western Beach Access',
-     'https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came'),
-    ('North Topsail Beach', 'https://surfchex.com/cams/north-topsail-island-web-cam/'),
-    ('Surf City Pier · North', 'https://surfchex.com/cams/surf-city-pier-north/'),
-    ('Surf City Pier · South', 'https://surfchex.com/cams/surf-city-pier-south/'),
-    ('Wrightsville Beach', 'https://surfchex.com/cams/wrightsville-beach/'),
+     'https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came', 'emerald-isle'),
+    ('North Topsail Beach', 'https://surfchex.com/cams/north-topsail-island-web-cam/', 'surfchex'),
+    ('Surf City Pier · North', 'https://surfchex.com/cams/surf-city-pier-north/', 'surfchex'),
+    ('Surf City Pier · South', 'https://surfchex.com/cams/surf-city-pier-south/', 'surfchex'),
+    ('Wrightsville Beach', 'https://surfchex.com/cams/wrightsville-beach/', 'surfchex'),
 )
 
 
@@ -109,8 +110,10 @@ def render_navigation(page):
         *dropdown('Guitar', 'guitar', (link(item, '') for item in GUITAR)),
         link(LINKS[1], '      '),
         *dropdown('Surf Cams', 'surf-cams', (
-            f'<a href="{escape(href)}" target="_blank" rel="noopener noreferrer">{escape(label)}</a>'
-            for label, href in SURF_CAMS
+            f'<a href="{escape(href)}" target="_blank" rel="noopener noreferrer">'
+            f'<img class="sc-cam-icon" src="/assets/surf-cam-icons/{escape(icon)}.png" '
+            f'alt="" width="22" height="22" loading="lazy">{escape(label)}</a>'
+            for label, href, icon in SURF_CAMS
         )),
         link(LINKS[2], '      '),
     ]
