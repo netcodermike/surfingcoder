@@ -42,9 +42,9 @@
     link.addEventListener('auxclick', recordVisit);
   }
 
-  // Refresh on open so other tabs can contribute without moving a link under the pointer.
-  menu.addEventListener('toggle', () => {
-    if (menu.open) rankCameras();
+  // Refresh before the menu opens so links stay in place while it is open.
+  menu.querySelector('summary').addEventListener('click', () => {
+    if (!menu.open) rankCameras();
   });
   rankCameras();
 })();
