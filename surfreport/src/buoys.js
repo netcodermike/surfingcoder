@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261123-observed-daylight';
+import { drawBuoyChart } from './buoy-chart.js?v=20261123-popup-bearings';
 import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
 
 const HOUR = 3600000;

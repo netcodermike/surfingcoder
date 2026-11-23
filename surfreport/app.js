@@ -1,5 +1,5 @@
-import { setupBuoyView } from './src/buoys.js?v=20261123-observed-daylight';
-import { weekly } from './weekly.js?v=20261123-observed-daylight';
+import { setupBuoyView } from './src/buoys.js?v=20261123-popup-bearings';
+import { weekly } from './weekly.js?v=20261123-popup-bearings';
 import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261123-chart-ranges';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-rain-chance';

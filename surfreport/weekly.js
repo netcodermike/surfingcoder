@@ -287,6 +287,7 @@ export function weekly(forecastRows,options){
    ' · ' + val(row[item.period],' s'), direction:row[item.direction] ?? null }));
  }
  function renderReadings(panel, row, groups) {
+  const isPopup = panel === tooltip;
   const heading = document.createElement('strong');
   heading.textContent = fmt(row.time,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
   panel.replaceChildren(heading);
@@ -303,15 +304,15 @@ export function weekly(forecastRows,options){
     const label = document.createElement('span');
     label.className = 'week-reading-label';
     label.textContent = item.name + ':';
-    if (panel === tooltip && item.icon && Number.isFinite(item.iconValue)) label.prepend(weatherIcon(item.icon, item.iconValue));
+    if (isPopup && item.icon && Number.isFinite(item.iconValue)) label.prepend(weatherIcon(item.icon, item.iconValue));
     const value = document.createElement('span');
     value.textContent = item.text;
     if (item.direction !== undefined) {
      const source = document.createElement('span');
      source.style.whiteSpace = 'nowrap';
      source.textContent = bearing(item.direction);
-     if (panel === tooltip && Number.isFinite(item.direction)) source.append(createDirectionIcon(svg, item.direction));
-     value.append(' · from ', source);
+     if (isPopup && Number.isFinite(item.direction)) source.append(createDirectionIcon(svg, item.direction));
+     value.append(isPopup ? ' · ' : ' · from ', source);
     }
     line.append(label, value);
     panel.append(line);

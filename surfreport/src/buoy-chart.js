@@ -255,7 +255,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
       const [[, waveHeight], [, period], [, direction]] = metrics;
       const source = document.createElement('span');
       source.style.whiteSpace = 'nowrap';
-      source.textContent = direction === '—' ? direction : 'from ' + direction;
+      source.textContent = direction;
       const bearing = directionBearing(row[series.directionKey]);
       if (hasDirection(bearing)) source.append(createDirectionIcon(svg, bearing));
       values.append(waveHeight + ' · ' + period + ' · ', source);
