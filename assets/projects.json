@@ -5840,7 +5840,7 @@
   {
     "name": "habit-garden-desktop",
     "title": "Habit Garden Desktop",
-    "description": "Plant named habits, check in once per day, track streaks, and grow a small illustrated garden from completed days.",
+    "description": "Plant named habits, check in once per day, track streaks, and grow a small illustrated garden from completed days. Portable download for Windows x64.",
     "languages": [
       "Kotlin"
     ],
@@ -5860,7 +5860,8 @@
         "/tmp/surf-capture-6rwpvnb_/habit-garden-desktop/build/install/HabitGarden/bin/HabitGarden"
       ]
     },
-    "ci": "https://github.com/netcodermike/habit-garden-desktop/actions/runs/42204101585"
+    "ci": "https://github.com/netcodermike/habit-garden-desktop/actions/runs/42204101585",
+    "downloadUrl": "https://github.com/netcodermike/habit-garden-desktop/releases/download/v1.0.0/HabitGardenDesktop-win-x64.zip"
   },
   {
     "name": "offline-field-journal",
@@ -5881,12 +5882,13 @@
       "caption": "Actual Android journal with synthetic field notes.",
       "platform": "Android emulator"
     },
-    "ci": "https://github.com/netcodermike/offline-field-journal/actions"
+    "ci": "https://github.com/netcodermike/offline-field-journal/actions",
+    "downloadUrl": "https://github.com/netcodermike/offline-field-journal/releases/download/v1.0.0/OfflineFieldJournal-1.0.0.apk"
   },
   {
     "name": "pantry-meal-planner",
     "title": "Pantry Meal Planner",
-    "description": "Match recipes against your pantry, build a meal selection, and export the ingredients you still need.",
+    "description": "Match recipes against your pantry, build a meal selection, and export the ingredients you still need. Portable download for Windows x64.",
     "languages": [
       "Python"
     ],
@@ -5907,7 +5909,8 @@
         "planner.py"
       ]
     },
-    "ci": "https://github.com/netcodermike/pantry-meal-planner/actions/runs/42198816571"
+    "ci": "https://github.com/netcodermike/pantry-meal-planner/actions/runs/42198816571",
+    "downloadUrl": "https://github.com/netcodermike/pantry-meal-planner/releases/download/v1.0.0/pantry-meal-planner-1.0.0-windows-x64.zip"
   },
   {
     "name": "family-tree-builder",
