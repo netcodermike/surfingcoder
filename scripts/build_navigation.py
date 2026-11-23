@@ -28,6 +28,8 @@ PALETTE_TAG = re.compile(r'(<link rel="stylesheet" href="(?:\.\./)*theme\.css)(?
 CORE_PAGES = {'index.html', 'about.html', 'surfreport/index.html'}
 CAM_SCRIPT_VERSION = asset_version('surf-cams.js')
 CAM_SCRIPT = f'<script defer src="/surf-cams.js?v={CAM_SCRIPT_VERSION}"></script>'
+NAV_SCRIPT_VERSION = asset_version('navigation.js')
+NAV_SCRIPT = f'<script defer src="/navigation.js?v={NAV_SCRIPT_VERSION}"></script>'
 FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">'
 FAVICON_TAG = re.compile(r'<link\s+rel="(?:shortcut )?icon"[^>]*>', re.I)
 START = '<!-- SITE NAVIGATION START -->'
@@ -157,6 +159,7 @@ def render_navigation(page):
         '    </label>',
         '  </div>',
         '</div>',
+        NAV_SCRIPT,
         CAM_SCRIPT,
         END,
     ])

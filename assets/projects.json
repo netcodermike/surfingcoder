@@ -22,7 +22,7 @@
     },
     "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
     "applicationUrl": "/apps/function-surface-grapher/",
-    "downloadUrl": "https://github.com/netcodermike/function-surface-grapher/releases/download/v1.0.0/FunctionAndSurfaceGrapher-win-x64.zip"
+    "downloadUrl": "https://github.com/netcodermike/function-surface-grapher/releases/download/v1.0.1/FunctionAndSurfaceGrapher-win-x64.zip"
   },
   {
     "name": "SvdStudio",

@@ -1,4 +1,4 @@
-import { sampleCurve, surfaceCells } from './sampling.mjs?v=20261122-plot-review';
+import { gridCoordinate, sampleCurve, surfaceCells } from './sampling.mjs?v=20261123-plot-polish';
 
 const functions = {
   sin: Math.sin, cos: Math.cos, tan: Math.tan, sqrt: Math.sqrt, abs: Math.abs,
@@ -62,8 +62,13 @@ export function compileExpression(source, variables = ['x']) {
 }
 
 export function validateDomain(xmin, xmax, ymin, ymax) {
+  const minimumSpan = .00001;
+  const hasSpan = (min, max) => {
+    const roundoff = Number.EPSILON * Math.max(Math.abs(min), Math.abs(max), minimumSpan);
+    return max - min >= minimumSpan - roundoff;
+  };
   if (![xmin, xmax, ymin, ymax].every(x => Number.isFinite(x) && Math.abs(x) <= 1e6) ||
-      xmax - xmin < .00001 || ymax - ymin < .00001) {
+      !hasSpan(xmin, xmax) || !hasSpan(ymin, ymax)) {
     throw Error('Each axis needs bounds between −1,000,000 and 1,000,000, at least 0.00001 apart.');
   }
   return { xmin, xmax, ymin, ymax };
@@ -72,7 +77,7 @@ export function validateDomain(xmin, xmax, ymin, ymax) {
 export function surfaceSamples(evaluate, domain, steps = 30) {
   const { xmin, xmax, ymin, ymax } = domain;
   return Array.from({length: steps+1}, (_, i) => Array.from({length: steps+1}, (_, j) => {
-    const z = evaluate(xmin+(xmax-xmin)*j/steps, ymin+(ymax-ymin)*i/steps);
+    const z = evaluate(gridCoordinate(xmin, xmax, j, steps), gridCoordinate(ymin, ymax, i, steps));
     return {x: 2*j/steps-1, y: 2*i/steps-1, z: Number.isFinite(z) ? z : null};
   }));
 }
@@ -101,7 +106,6 @@ function buildModel({ mode, source, evaluate }, domain) {
     samples[r][c].z, samples[r][c + 1].z, samples[r + 1][c].z, samples[r + 1][c + 1].z,
   ]);
   const limits = [Math.min(...values), Math.max(...values)];
-  if (!Number.isFinite(limits[1] - limits[0])) throw Error('Surface values exceed the plot range.');
   return { ...model, samples, cells, limits };
 }
 
@@ -150,11 +154,16 @@ function initialize() {
     plotBounds = { width: right - left, height: bottom - top };
     const X = x => left + (x - xmin) * plotBounds.width / (xmax - xmin);
     const Y = y => bottom - (y - ymin) * plotBounds.height / (ymax - ymin);
+    let lastLabelRight = -Infinity;
     for (const { value, text } of xs) {
       const x = X(value);
       const halfWidth = ctx.measureText(text).width / 2;
       line([[x, top], [x, bottom]], value === 0 ? '#ac93c5' : '#392d46');
-      label(text, Math.max(halfWidth + 5, Math.min(W - halfWidth - 5, x)), bottom + 18, undefined, 'center');
+      const center = Math.max(halfWidth + 5, Math.min(W - halfWidth - 5, x));
+      if (center - halfWidth >= lastLabelRight + 8) {
+        label(text, center, bottom + 18, undefined, 'center');
+        lastLabelRight = center + halfWidth;
+      }
     }
     for (const { value, text } of ys) {
       const y = Y(value);
@@ -181,23 +190,38 @@ function initialize() {
   }
   function paint3d({ samples, cells, limits }) {
     const [low, high] = limits;
-    const span=high-low;
-    const scale=Math.min(W,H)*.273;
-    const project=(x,y,z) => {
-      const ix=x*Math.cos(yaw)-y*Math.sin(yaw);
-      const iy=x*Math.sin(yaw)+y*Math.cos(yaw);
-      return [W*.50+ix*scale,H*.475+(iy*Math.sin(pitch)-z*Math.cos(pitch))*scale,
-        iy*Math.cos(pitch)+z*Math.sin(pitch)];
+    const heightScale = Number.isFinite(high - low) ? 1 : .5;
+    const base = low * heightScale;
+    const span = high * heightScale - base;
+    const heightFraction = z => span ? (z * heightScale - base) / span : .5;
+    const axisTip = 1.23, axisBase = -.92, zTip = 1.13;
+    const horizontalReach = Math.hypot(axisTip, 1);
+    const verticalReach = Math.max(Math.hypot(horizontalReach, axisBase), Math.hypot(1, 1, zTip));
+    // Leave space for labels at every orientation while keeping a fixed zoom.
+    const scale = Math.min(Math.min(W, H) * .273, (W / 2 - 18) / horizontalReach, (H / 2 - 19) / verticalReach);
+    const cosYaw = Math.cos(yaw), sinYaw = Math.sin(yaw);
+    const cosPitch = Math.cos(pitch), sinPitch = Math.sin(pitch);
+    const project = (x, y, z) => {
+      const ix = x * cosYaw - y * sinYaw;
+      const iy = x * sinYaw + y * cosYaw;
+      return [W / 2 + ix * scale, H / 2 + (iy * sinPitch - z * cosPitch) * scale,
+        iy * cosPitch + z * sinPitch];
     };
-    const projected=samples.map(row=>row.map(({x,y,z})=>z===null?null:project(x,y,span ? (z-low)/span*1.55-.775 : 0)));
+    const projected = samples.map(row => row.map(({ x, y, z }) =>
+      z === null ? null : project(x, y, heightFraction(z) * 1.55 - .775)));
     const tiles = cells.map(([row, col]) => {
       const points = [projected[row][col], projected[row][col + 1], projected[row + 1][col + 1], projected[row + 1][col]];
       const z = samples[row][col].z;
-      return { points, depth: points.reduce((sum, point) => sum + point[2], 0), hue: span ? 192 + 87 * (z - low) / span : 235 };
+      return { points, depth: points.reduce((sum, point) => sum + point[2], 0), hue: 192 + 87 * heightFraction(z) };
     });
     tiles.sort((a,b)=>a.depth-b.depth);
-    const axes=[['x',project(1.23,-1,-.92),'#9fe8e0'],['y',project(-1,1.23,-.92),'#edc8ff'],['z',project(-1,-1,1.13),'#ffd4a2']];
-    for(const [,point,color] of axes)line([project(-1,-1,-.92),point],color,1.6);
+    const axes = [
+      ['x', project(axisTip, -1, axisBase), '#9fe8e0'],
+      ['y', project(-1, axisTip, axisBase), '#edc8ff'],
+      ['z', project(-1, -1, zTip), '#ffd4a2'],
+    ];
+    const origin = project(-1, -1, axisBase);
+    for (const [, point, color] of axes) line([origin, point], color, 1.6);
     for(const {points,hue} of tiles){
       ctx.beginPath();
       points.forEach(([x,y],i)=>i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));

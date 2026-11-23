@@ -1,6 +1,10 @@
 const maxCurveRefinements = 12;
 const maxSurfaceRefinements = 5;
 
+export function gridCoordinate(min, max, index, steps) {
+  return index === steps ? max : min + (max - min) * index / steps;
+}
+
 function midpointFits(start, middle, end, tolerance) {
   // Scale before subtracting so very large finite values can still be compared.
   const deviation = Math.abs(middle / 2 - (start / 4 + end / 4));
@@ -11,15 +15,17 @@ function midpointFits(start, middle, end, tolerance) {
 
 function clipSegment(x0, y0, x1, y1, min, max) {
   if ((y0 < min && y1 < min) || (y0 > max && y1 > max)) return null;
+  const scale = Number.isFinite(y1 - y0) ? 1 : .5;
+  const difference = y1 * scale - y0 * scale;
 
   function clipPoint(x, y) {
     if (y >= min && y <= max) return [x, y];
     const boundary = y < min ? min : max;
-    const difference = y1 - y0;
-    const fraction = Number.isFinite(difference)
-      ? (boundary - y0) / difference
-      : (boundary / 2 - y0 / 2) / (y1 / 2 - y0 / 2);
-    return [x0 + fraction * (x1 - x0), boundary];
+    const fraction = (boundary * scale - y0 * scale) / difference;
+    if (fraction <= .5) return [x0 + fraction * (x1 - x0), boundary];
+    // Interpolate from the closer endpoint to preserve tiny visible spans.
+    const reverse = (y1 * scale - boundary * scale) / difference;
+    return [x1 - reverse * (x1 - x0), boundary];
   }
 
   return [clipPoint(x0, y0), clipPoint(x1, y1)];
@@ -81,7 +87,7 @@ export function sampleCurve(evaluate, domain, steps = 960) {
 
   let x0 = xmin, y0 = sample(xmin);
   for (let i = 1; i <= steps; i++) {
-    const x1 = i === steps ? xmax : xmin + (xmax - xmin) * i / steps;
+    const x1 = gridCoordinate(xmin, xmax, i, steps);
     const y1 = sample(x1);
     trace(x0, y0, x1, y1, maxCurveRefinements);
     x0 = x1;
@@ -113,9 +119,9 @@ function continuousTransect(evaluate, start, end, minimumTolerance) {
 
 export function surfaceCells(evaluate, domain, samples) {
   const { xmin, xmax, ymin, ymax } = domain;
-  const points = samples.map(row => row.map(({ x, y, z }) => ({
-    x: xmin + (x + 1) * (xmax - xmin) / 2,
-    y: ymin + (y + 1) * (ymax - ymin) / 2,
+  const points = samples.map((row, i) => row.map(({ z }, j) => ({
+    x: gridCoordinate(xmin, xmax, j, row.length - 1),
+    y: gridCoordinate(ymin, ymax, i, samples.length - 1),
     z,
   })));
   const cells = [];
