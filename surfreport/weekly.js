@@ -1,4 +1,4 @@
-import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-two-hour-wind-arrows';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-shared-forecast-date-axis';
 import { compass } from './src/core.js?v=20261117-rain-chance';
 
 const components = [
@@ -94,7 +94,7 @@ export function weekly(rows,options){
   (periodSeries ? ' Dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
   (daylightByDay.size ? ' Lighter bands mark daylight and darker bands mark night.' : '') +
   ' Use the hourly slider and data table for exact values.';
- const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 310',role:'img','aria-label':description,class:'week-chart'});
+ const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 272',role:'img','aria-label':description,class:'week-chart'});
  shadeDaylight(graph, 20, 260);
  const max = Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
  const periods = periodSeries ? rows.map(row => row[periodSeries.period]).filter(hasPeriod) : [];
@@ -118,13 +118,19 @@ export function weekly(rows,options){
   const day = dayKey(row.time);
   if (!dates.has(day)) dates.set(day, { x:x(row.time), text:fmt(row.time, { weekday:compact?'narrow':'short', day:'numeric' }) });
  }
- function dayMarks(chart, top, bottom, labelY) {
-  for (const day of dates.values()) chart.append(
-   svg('line', { x1:day.x, x2:day.x, y1:top, y2:bottom, class:'week-grid', 'stroke-dasharray':'3 5' }),
-   svg('text', { x:Math.min(day.x+3,graphWidth-(compact?25:48)), y:labelY, class:'week-axis-label', 'font-size':axisFont }, day.text)
-  );
+ function dayMarks(chart, top, bottom) {
+  for (const day of dates.values()) chart.append(svg('line', {
+   x1:day.x, x2:day.x, y1:top, y2:bottom, class:'week-grid', 'stroke-dasharray':'3 5',
+  }));
  }
- dayMarks(graph, 20, 260, 289);
+ function addDateAxis({ graph: chart, dateAxis: { height, labelY } }) {
+  chart.setAttribute('viewBox', '0 0 ' + graphWidth + ' ' + height);
+  for (const day of dates.values()) chart.append(svg('text', {
+   x:Math.min(day.x+3,graphWidth-(compact?25:48)), y:labelY,
+   class:'week-axis-label week-date-label', 'font-size':axisFont,
+  }, day.text));
+ }
+ dayMarks(graph, 20, 260);
  for (const s of shown) {
   let path = '', active = false;
   s.values.forEach((value, i) => {
@@ -172,7 +178,7 @@ export function weekly(rows,options){
  tooltip.hidden = true;
  tooltip.setAttribute('aria-hidden', 'true');
  const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, dayMarks, shadeDaylight, axisFont, compact };
- mountChart(root, { graph, top:20, bottom:260 });
+ mountChart(root, { graph, top:20, bottom:260, dateAxis: { height:310, labelY:289 } });
  const tideWind = tideWindPanel(root, rows, tide, timeline, { heightUnit, scale, speedUnit, speedScale }, enabled, toggleLayer);
  const weather = weatherPanel(root, rows, timeline, enabled, toggleLayer);
  const seaConditions = [], airConditions = [];
@@ -189,6 +195,7 @@ export function weekly(rows,options){
   if (weather.rainReading) rainReading = row => ({ name:'Rain chance', color:rainColor, text:val(weather.rainReading(row), '%') });
   mountChart(weather.section, weather);
  }
+ addDateAxis(charts.at(-1));
  root.append(tooltip);
  const sliderLabel=document.createElement('label');sliderLabel.htmlFor='week-hour';sliderLabel.textContent='Inspect forecast hour · local time';const slider=document.createElement('input');slider.type='range';slider.id='week-hour';slider.min=0;slider.max=rows.length-1;slider.step=1;slider.value=selected;root.append(sliderLabel,slider);
  const readout=document.createElement('div');readout.className='week-readout';readout.setAttribute('aria-live','polite');root.append(readout);

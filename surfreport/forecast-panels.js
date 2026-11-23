@@ -93,7 +93,8 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
   // Leave room above the plot and before the date labels for the wind arrows.
   const top = arrows ? 16 : 12;
   const bottom = 119;
-  const height = arrows ? 157 : 147;
+  const height = arrows ? 138 : 130;
+  const dateAxis = arrows ? { height: 157, labelY: 151 } : { height: 147, labelY: 138 };
   const graph = svg('svg', {
     viewBox: `0 0 ${width} ${height}`, role: 'img', 'aria-label': label, class: 'week-support-chart',
   });
@@ -118,7 +119,7 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
   }
   if (primaryScale) drawAxis(primaryScale, primary, false);
   if (secondaryScale) drawAxis(secondaryScale, secondary, true);
-  dayMarks(graph, top, bottom, arrows ? 151 : 138);
+  dayMarks(graph, top, bottom);
 
   const markers = [];
   if (primaryScale) markers.push(drawSeries(graph, primary, timeline, primaryScale.y, bottom));
@@ -142,7 +143,7 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
     }
     graph.append(marks);
   }
-  return { graph, top, bottom, markers };
+  return { graph, top, bottom, markers, dateAxis };
 }
 
 function tideSeries(samples, timeline, heightUnit, scale) {
