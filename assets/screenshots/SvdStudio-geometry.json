@@ -1,0 +1,9 @@
+{
+  "name": "SvdStudio",
+  "kind": "runtime",
+  "caption": "Full SVD Studio window showing a 2×2 matrix mapping the unit circle to a rotated ellipse.",
+  "platform": "Windows",
+  "source_commit": "d073ea990dea4a8a28c58bad50bcf6939388119a",
+  "demo_data": true,
+  "capture_method": "Native Windows window capture of a WPF build with the geometric action tab selected"
+}
