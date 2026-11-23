@@ -5,5 +5,6 @@
   "platform": "Windows",
   "source_commit": "76ed5c27f0a1b7ad04164d5c09af9a64962936f1",
   "demo_data": true,
-  "capture_method": "Native Windows window capture of a WPF build with the geometric action tab selected"
+  "capture_method": "Full 1612 × 960 native Windows window captured from the published WPF v1.0.2 application",
+  "capture_date": "2026-11-23T07:40:21.365882+00:00"
 }

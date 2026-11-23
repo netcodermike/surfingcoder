@@ -23,10 +23,10 @@
   width: 90%;
   height: 90%;
 }
-.project-grid:not(.list) .project-card[data-name="function-surface-grapher"] .preview {
+.project-grid:not(.list) .project-card:is([data-name="function-surface-grapher"], [data-name="SvdStudio"]) .preview {
   aspect-ratio: 1.68;
 }
-.project-grid:not(.list) .project-card[data-name="function-surface-grapher"] .preview img {
+.project-grid:not(.list) .project-card:is([data-name="function-surface-grapher"], [data-name="SvdStudio"]) .preview img {
   inset: 3%;
   width: 94%;
   height: 94%;

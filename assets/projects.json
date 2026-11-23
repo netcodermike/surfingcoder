@@ -27,7 +27,7 @@
   {
     "name": "SvdStudio",
     "title": "SVD Studio",
-    "description": "Explore singular value decomposition (SVD), including geometric transformations, low-rank approximations, pseudoinverses, and image compression. Built in C# for Windows with WPF and the MVVM design pattern, powered by a cross-platform .NET 8 math engine.",
+    "description": "See a matrix turn a circle into a tilted ellipse, then explore the stretches and rotations behind it. Start with a preset or import your own matrix to explore its rank and conditioning. Compare full and economy factorizations, read scree plots, and inspect pseudoinverses with singular value decomposition (SVD). Use the rank slider to see which details survive when you compress a grayscale image. Built in C# for Windows with WPF and the MVVM design pattern, powered by a cross-platform .NET 8 math engine.",
     "languages": [
       "C#"
     ],
@@ -36,7 +36,7 @@
     "category": "Mathematics",
     "featured": true,
     "order": 1,
-    "image": "assets/screenshots/SvdStudio-geometry-1.0.2.webp",
+    "image": "assets/screenshots/SvdStudio-geometry-wide-1.0.2.webp",
     "capture": {
       "name": "SvdStudio",
       "kind": "runtime",
@@ -44,7 +44,8 @@
       "platform": "Windows",
       "source_commit": "76ed5c27f0a1b7ad04164d5c09af9a64962936f1",
       "demo_data": true,
-      "capture_method": "Native Windows window capture of a WPF build with the geometric action tab selected"
+      "capture_method": "Full 1612 × 960 native Windows window captured from the published WPF v1.0.2 application",
+      "capture_date": "2026-11-23T07:40:21.365882+00:00"
     },
     "ci": "https://github.com/netcodermike/SvdStudio/actions",
     "downloadUrl": "https://github.com/netcodermike/SvdStudio/releases/download/v1.0.2/SvdStudio-win-x64.exe"
