@@ -17,11 +17,19 @@
 
 @media(max-width:700px){nav>a[href^="articles/"],nav>a[href="about.html"]{display:none}.site-nav{height:auto}.nav-wrap{min-height:69px;flex-wrap:wrap;gap:0 16px;padding-block:6px}nav{gap:11px;flex-wrap:wrap}nav a{padding:7px 0}nav a[aria-current]:after{bottom:0}.brand{font-size:18px;gap:7px}.nav-github{padding:8px}}
 
-.project-card:is([data-name="WpfDigitalClockAlarm"], [data-name="SvdStudio"], [data-name="surfingcoder-arcade"]) .preview img {
+.project-card:is([data-name="WpfDigitalClockAlarm"], [data-name="SvdStudio"], [data-name="surfingcoder-arcade"], [data-name="function-surface-grapher"]) .preview img {
   position: absolute;
   inset: 5%;
   width: 90%;
   height: 90%;
+}
+.project-grid:not(.list) .project-card[data-name="function-surface-grapher"] .preview {
+  aspect-ratio: 1.68;
+}
+.project-grid:not(.list) .project-card[data-name="function-surface-grapher"] .preview img {
+  inset: 3%;
+  width: 94%;
+  height: 94%;
 }
 
 :root:is([data-theme='light'], [data-theme='dusk']) .skip-link {

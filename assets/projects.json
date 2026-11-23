@@ -11,13 +11,14 @@
     "category": "Mathematics",
     "featured": true,
     "order": 0,
-    "image": "assets/screenshots/function-surface-grapher.webp",
+    "image": "assets/screenshots/function-surface-grapher-workspace.webp",
     "capture": {
       "name": "function-surface-grapher",
       "kind": "runtime",
-      "caption": "Browser capture of the running application.",
-      "capture_date": "2026-11-23T02:43:00.779379+00:00",
-      "demo_data": true
+      "caption": "Radial ripple surface plot with the full plotting, zoom, and rotation controls.",
+      "capture_date": "2026-11-23T05:37:37.438269+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2× device scale"
     },
     "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
     "applicationUrl": "/apps/function-surface-grapher/"
