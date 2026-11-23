@@ -1,0 +1,648 @@
+/* Gallery-hosted apps share the page palette, while chart and game surfaces
+   retain the colors their renderers use. These rules only affect alternate themes. */
+:root:is([data-theme="light"], [data-theme="dusk"]) body[data-layout] {
+  color: var(--sc-ink);
+  background: radial-gradient(ellipse at 80% 0%, var(--sc-wash), transparent 46rem), var(--sc-page);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) body[data-layout] :is(input, select, textarea, audio) {
+  color-scheme: inherit;
+}
+
+/* Lab and game templates. */
+:root:is([data-theme="light"], [data-theme="dusk"]) body:has(> main > .app-title) {
+  --bg: var(--sc-page);
+  --panel: var(--sc-panel);
+  --edge: var(--sc-border);
+  --text: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --accent: var(--sc-accent);
+  --focus: var(--sc-focus);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title)) .panel,
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition .game-panel {
+  background: var(--sc-panel);
+  border-color: var(--sc-border);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> .heading) :is(h1, .heading a, legend),
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-title :is(h1, a) { color: var(--sc-accent); }
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> .heading)
+  :is(p, label, .ruler, #overlap-list, .chart-key),
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition
+  :is(.game-title p, .game-controls p, label, .mini-details, #sector dd) { color: var(--sc-muted); }
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title))
+  :is(output, #reading, .error, #error),
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition #status { color: var(--sc-warm); }
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title))
+  :is(fieldset, .summary, .summary :is(td, th)) { border-color: var(--sc-border); }
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title))
+  :is(select, textarea, input:not([type="range"], [type="color"], [type="checkbox"])),
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition :is(input, textarea, select) {
+  background: var(--sc-input);
+  color: var(--sc-ink);
+  border-color: var(--sc-line);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title))
+  :is(.controls, form, .stage, #visualization) button:not(.tile, .card, [style], [data-state]),
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition
+  :is(.game-controls, .game-actions, .keys, .number-keys) button {
+  background: var(--sc-raised);
+  color: var(--sc-ink);
+  border-color: var(--sc-line);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title))
+  :is(form, .controls, .stage, #visualization) button:is(.primary, [type="submit"], [aria-pressed="true"]):not([style]),
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition
+  :is(.game-controls, .game-actions, .keys, .number-keys) button:is(.primary, [aria-pressed="true"]) {
+  background: var(--sc-metal);
+  color: #251637;
+  border-color: var(--sc-line);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> :is(.heading, .app-title)) .result,
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition :is(.prompt-card, .rack span) {
+  background: var(--sc-raised);
+  color: var(--sc-ink);
+  border-color: var(--sc-line);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) .game-edition .prompt-card p { color: var(--sc-muted); }
+:root:is([data-theme="light"], [data-theme="dusk"]) main:has(> .app-title) :is(.tile, .rule-grid, .play-grid) {
+  color: #f1eaff;
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) :is(
+  main:has(> :is(.heading, .app-title)), .game-edition
+) :is(input[type="range"], input[type="checkbox"]) { accent-color: var(--sc-indicator); }
+:root:is([data-theme="light"], [data-theme="dusk"]) :is(
+  main:has(> :is(.heading, .app-title)), .game-edition
+) :focus-visible { outline-color: var(--sc-focus); }
+
+/* Creative editors share a layout with a deliberately neutral image viewport. */
+:root:is([data-theme="light"], [data-theme="dusk"]) body:has(> header .identity > .mark) {
+  --accent: var(--sc-accent);
+  --background: var(--sc-page);
+  --panel: var(--sc-panel);
+  --muted: var(--sc-muted);
+  --line: var(--sc-border);
+  --foreground: var(--sc-ink);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) body:has(> header .identity > .mark) .field {
+  color: var(--sc-ink);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) body:has(> header .identity > .mark)
+  :is(button, select, input[type="number"]) {
+  background: var(--sc-raised);
+  border-color: var(--sc-line);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) body:has(> header .identity > .mark) button.primary {
+  color: var(--sc-page);
+  background: var(--sc-accent);
+  border-color: var(--sc-accent);
+}
+
+/* The tableau app carries a local copy of the original theme. */
+:root:is([data-theme="light"], [data-theme="dusk"]) body[data-layout="or-tableau-studio"] {
+  --page-bg: var(--sc-page);
+  --panel-bg: var(--sc-panel);
+  --surface: var(--sc-surface);
+  --surface-raised: var(--sc-raised);
+  --input-bg: var(--sc-input);
+  --ink: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --text-secondary: var(--sc-muted);
+  --accent: var(--sc-accent);
+  --accent-light: var(--sc-accent);
+  --border: var(--sc-border);
+  --border-strong: var(--sc-line);
+  --hover: var(--sc-hover);
+  --warning: var(--sc-warm);
+  --metal: var(--sc-metal);
+  --panel-metal: linear-gradient(145deg, var(--sc-raised), var(--sc-panel) 70%);
+}
+
+/* Shared surfaces for the standalone games and music tools. */
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='arcade'], [data-layout='board-games'], [data-layout='cards'], [data-layout='guitar-chords'], [data-layout='guitar-tuner'], [data-layout='number-swell'], [data-layout='pinball'], [data-layout='slots']) {
+  --app-panel: linear-gradient(145deg, var(--sc-raised), var(--sc-surface) 69%);
+  --app-button-ink: #241b31;
+  --app-shadow: 0 12px 30px var(--sc-menu-shadow);
+  background: radial-gradient(ellipse at 76% 0%, var(--sc-wash), transparent 44rem), var(--sc-page);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) {
+  --puzzle-ink: var(--sc-ink);
+  --puzzle-muted: var(--sc-muted);
+  --puzzle-line: var(--sc-line);
+  --puzzle-accent: var(--sc-accent);
+  --puzzle-solid: var(--sc-indicator);
+  --puzzle-button-ink: var(--app-button-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) :is(.game-board, .side-panel) {
+  background: var(--app-panel);
+  box-shadow: var(--app-shadow);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .prompt-card {
+  background: linear-gradient(105deg, var(--sc-input) 12%, var(--sc-raised));
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .game-board progress {
+  background: var(--sc-raised);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .game-board progress::-webkit-progress-bar {
+  background: var(--sc-raised);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .puzzle button {
+  background: var(--sc-raised);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .puzzle button:hover:not(:disabled) {
+  background: var(--sc-hover);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .puzzle button:is(.primary, [aria-pressed='true']) {
+  background: var(--sc-metal);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell']) .puzzle button:is(.primary, [aria-pressed='true']):hover:not(:disabled) {
+  background: var(--sc-active);
+  color: var(--sc-page);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) {
+  --gt-ink: var(--sc-ink);
+  --gt-muted: var(--sc-muted);
+  --gt-line: var(--sc-line);
+  --gt-accent: var(--sc-accent);
+  --gt-focus: var(--sc-focus);
+  --gt-tuned: var(--sc-cool);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='20-questions'], [data-layout='number-swell'], [data-layout='guitar-chords'], [data-layout='guitar-tuner']) :is(.puzzle-hero, .gt-hero) h1 span {
+  background-image: linear-gradient(110deg, var(--sc-accent), var(--sc-active));
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) .gt-panel {
+  background: var(--app-panel);
+  box-shadow: var(--app-shadow);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='guitar-tuner'] .gt-meter {
+  background: radial-gradient(ellipse at 50% 33%, var(--sc-wash), transparent 73%), var(--app-panel);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) .guitar-tool :is(input, select) {
+  background: var(--sc-input);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) .guitar-tool button {
+  background: var(--sc-raised);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) .guitar-tool button:hover:not(:disabled) {
+  background: var(--sc-hover);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) .guitar-tool button:is(.gt-primary, [aria-pressed='true']) {
+  background: var(--sc-metal);
+  border-color: var(--sc-line);
+  color: var(--app-button-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='guitar-chords'], [data-layout='guitar-tuner']) .guitar-tool button:is(.gt-primary, [aria-pressed='true']):hover:not(:disabled) {
+  background: var(--sc-active);
+  color: var(--sc-page);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='guitar-chords'] .gt-chord-grid button[aria-pressed='true'] :is(strong, span) {
+  color: inherit;
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='guitar-chords'] .gt-pitches li {
+  background: var(--sc-raised);
+  border-color: var(--sc-line);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='guitar-chords'] #fretboard button:not([aria-pressed='true']) {
+  background: var(--sc-input);
+  color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='guitar-chords'] #fretboard button[aria-pressed='true'] {
+  background: var(--sc-metal);
+  color: var(--app-button-ink);
+}
+
+:root[data-theme='light'] body[data-layout='guitar-tuner'] .gt-centered .gt-ticks span {
+  background: #a6f0d7;
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] {
+  --ground: var(--sc-page);
+  --panel: var(--sc-surface);
+  --line: var(--sc-line);
+  --text: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --amethyst: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] #board {
+  --text: #f5edf9;
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] :is(#score, .skip-link) {
+  color: var(--sc-cool);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] :is(.game-picker a, .game-options button, .game-options select, .promotion-choices button) {
+  background: var(--sc-raised);
+  border-color: var(--sc-line);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] :is(.game-picker a[aria-current], .game-options button) {
+  background: var(--sc-metal);
+  color: var(--app-button-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] :is(.play-area, .game-panel) {
+  background: var(--app-panel);
+  border-color: var(--sc-border);
+  box-shadow: var(--app-shadow);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='board-games'] .sides > span:not(.turn) {
+  border-color: var(--sc-border);
+}
+
+:root[data-theme='light'] body[data-layout='board-games'] :is(.game-picker, .game-panel, .promotion-choices) :focus-visible {
+  outline-color: var(--sc-focus);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] {
+  --ink: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --line: var(--sc-line);
+  --accent: var(--sc-warm);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] .table {
+  color: #f9edf8;
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] .app-bar {
+  border-color: var(--sc-border);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] .app-bar a {
+  color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] .modes button {
+  background: var(--sc-raised);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] .modes button[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--sc-warm) 23%, var(--sc-surface));
+  border-color: var(--sc-warm);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='cards'] .table select {
+  color-scheme: dark;
+  color: #f9edf8;
+  border-color: #638881;
+}
+
+:root[data-theme='light'] body[data-layout='cards'] .modes :focus-visible {
+  outline-color: var(--sc-focus);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body:is([data-layout='pinball'], [data-layout='slots']) {
+  --panel: var(--sc-surface);
+  --line: var(--sc-line);
+  --text: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --amethyst: var(--sc-accent);
+  --peach: var(--sc-warm);
+  --mint: var(--sc-cool);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='pinball'] :is(.scoreboard, kbd) {
+  background: var(--sc-surface);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='pinball'] .controls button.active {
+  background: var(--sc-hover);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='pinball'] #launch {
+  background: var(--sc-metal);
+  color: var(--app-button-ink);
+  border-color: var(--sc-line);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='pinball'] #wave-lamps i:not(.lit) {
+  background: var(--sc-border);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='slots'] :is(.top-actions, .controls) :is(button:not(#spin), select) {
+  background: var(--sc-raised);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='slots'] .meters div {
+  background: var(--sc-input);
+  border-color: var(--sc-border);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='slots'] .cabinet {
+  box-shadow: var(--app-shadow);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='slots'] :is(.topbar, .paytable li),
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='pinball'] :is(.masthead, dl div) {
+  border-color: var(--sc-border);
+}
+
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] {
+  --surface: var(--sc-surface);
+  --panel-bg: var(--sc-panel);
+  --panel-metal: var(--app-panel);
+  --border: var(--sc-border);
+  --line: var(--sc-line);
+  --metal: var(--sc-metal);
+  --text: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --mint: var(--sc-accent);
+  --amethyst: var(--sc-accent);
+  --accent-light: var(--sc-accent);
+  --accent-ink: var(--app-button-ink);
+  --sea: var(--sc-cool);
+  --sun: var(--sc-warm);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.cabinet, .arcade .panel) {
+  background: var(--app-panel);
+  border-color: var(--sc-line);
+  box-shadow: var(--app-shadow);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.arcade-lobby, .controls-note, .session-footer, .touch-controls, .patrol-summary) {
+  border-color: var(--sc-border);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.arcade-lobby .arcade-choices a, .arcade-lobby .arcade-rom-open, .arcade-lobby .icon-button, .touch-controls button, .arcade .controls button, .arcade .scoreboard > div) {
+  background: var(--sc-input);
+  border-color: var(--sc-line);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.arcade-lobby .arcade-choices a[aria-current], .play-button, .arcade .primary) {
+  background: var(--sc-metal);
+  border-color: var(--sc-line);
+  color: var(--app-button-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.play-button:hover, .arcade .primary:hover) {
+  background: color-mix(in srgb, var(--sc-accent) 20%, var(--sc-surface));
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] .arcade .controls .throw {
+  background: color-mix(in srgb, var(--sc-cool) 18%, var(--sc-surface));
+  border-color: var(--sc-cool);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] .arcade .controls [data-hold]:active {
+  background: var(--sc-cool);
+  color: var(--sc-page);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.patrol-intro h1, .local strong, dialog h2) {
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.tagline, .legend > div, .legend small, .credit, .credit span, .score-totals span, .status, .pause-button, .session-tag, .section-label, .local p, .controls-note p, .controls-note .small-note, .session-footer, .text-button, .patrol-intro p, #rom-dialog .rom-note) {
+  color: var(--sc-muted);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] .session-tag.is-active {
+  background: var(--sc-raised);
+  color: var(--sc-accent);
+  text-shadow: none;
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.eyebrow, .patrol-intro em, .arcade-lobby .arcade-rom-downloads, #rom-dialog .rom-note a, #close-help, kbd) {
+  color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.scorebar .level strong, #rom-error) {
+  color: var(--sc-warm);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(.eyebrow > span, .intro-rule) {
+  background: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(dialog, #rom-dialog) {
+  background: var(--sc-surface);
+  border-color: var(--sc-line);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='arcade'] :is(kbd, #rom-dialog .rom-dialog-head button) {
+  background: var(--sc-raised);
+  border-color: var(--sc-line);
+}
+
+:root[data-theme='light'] body[data-layout='arcade'] .legend-dot.swell {
+  color: var(--sc-cool);
+}
+
+:root[data-theme='light'] body[data-layout='arcade'] .legend-dot.fruit {
+  color: var(--sc-warm);
+}
+
+:root[data-theme='light'] body[data-layout='arcade'] .legend-dot.pearl::before {
+  background: var(--sc-warm);
+}
+
+:root[data-theme='light'] body[data-layout='arcade'] :is(button, a):focus-visible {
+  outline-color: var(--sc-focus);
+}
+
+/* SVG presentation attributes supplied by the trading chart renderer. */
+:root[data-theme='light'] body[data-layout='marketlab'] .chart svg {
+  background: var(--sc-surface);
+}
+
+:root[data-theme='dusk'] body[data-layout='marketlab'] .chart svg {
+  background: var(--sc-input);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] {
+  --market-price: #382342;
+  --market-sma: #855716;
+  --market-ema: #126c63;
+  --market-band: #7544a0;
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart [stroke='#44394f'] {
+  stroke: var(--sc-border);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart [fill='#b5a9c2'] {
+  fill: var(--sc-muted);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart [stroke='#eee7f6'] {
+  stroke: var(--market-price);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] #price-point {
+  fill: var(--market-price);
+  stroke: var(--sc-surface);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart :is([stroke='#eac274'], [stroke='#e8bd76']) {
+  stroke: var(--market-sma);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart :is([stroke='#74cfca'], [stroke='#79d1cb']) {
+  stroke: var(--market-ema);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart :is([stroke='#ac7de9'], [stroke='#c7a2f4'], [data-cursor]) {
+  stroke: var(--market-band);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .chart [fill='#c7a2f4'] {
+  fill: var(--market-band);
+}
+
+:root[data-theme='light'] body[data-layout='marketlab'] .legend .price { background: var(--market-price); }
+:root[data-theme='light'] body[data-layout='marketlab'] .legend .sma { background: var(--market-sma); }
+:root[data-theme='light'] body[data-layout='marketlab'] .legend .ema { background: var(--market-ema); }
+:root[data-theme='light'] body[data-layout='marketlab'] .legend .band { background: var(--market-band); }
+
+/* These apps keep their own canvas palettes and use the site theme for their controls. */
+@media screen {
+  :root:is([data-theme='light'], [data-theme='dusk']) body:is(
+    [data-layout='local-whiteboard-studio'],
+    [data-layout='offline-stockroom-tracker'],
+    [data-layout='rhythm-practice-lab'],
+    [data-layout='tabletop-map-workshop']
+  ) {
+    background: var(--sc-page);
+    color: var(--sc-ink);
+  }
+
+  :root:is([data-theme='light'], [data-theme='dusk']) body:is(
+    [data-layout='local-whiteboard-studio'],
+    [data-layout='offline-stockroom-tracker'],
+    [data-layout='rhythm-practice-lab'],
+    [data-layout='tabletop-map-workshop']
+  ) > :is(button, input, select, textarea),
+  :root:is([data-theme='light'], [data-theme='dusk']) body:is(
+    [data-layout='local-whiteboard-studio'],
+    [data-layout='rhythm-practice-lab'],
+    [data-layout='tabletop-map-workshop']
+  ) > label > :is(input, select, textarea),
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='offline-stockroom-tracker'] td button {
+    background: var(--sc-input);
+    border: 1px solid var(--sc-line);
+    color: var(--sc-ink);
+    accent-color: var(--sc-accent);
+  }
+
+  :root:is([data-theme='light'], [data-theme='dusk']) body:is(
+    [data-layout='local-whiteboard-studio'],
+    [data-layout='offline-stockroom-tracker'],
+    [data-layout='rhythm-practice-lab'],
+    [data-layout='tabletop-map-workshop']
+  ) > button,
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='offline-stockroom-tracker'] td button {
+    background: var(--sc-raised);
+  }
+
+  :root:is([data-theme='light'], [data-theme='dusk']) body:is(
+    [data-layout='local-whiteboard-studio'],
+    [data-layout='offline-stockroom-tracker'],
+    [data-layout='rhythm-practice-lab'],
+    [data-layout='tabletop-map-workshop']
+  ) > button:enabled:hover,
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='offline-stockroom-tracker'] td button:enabled:hover {
+    background: var(--sc-wash);
+    border-color: var(--sc-accent);
+  }
+
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='local-whiteboard-studio'] > small,
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='rhythm-practice-lab'] > #beat {
+    color: var(--sc-accent);
+  }
+
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='offline-stockroom-tracker'] th {
+    background: var(--sc-raised);
+  }
+
+  :root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='offline-stockroom-tracker'] :is(td, th) {
+    border-bottom-color: var(--sc-line);
+  }
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] {
+  --ink: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --border: var(--sc-border);
+  background: radial-gradient(ellipse at 80% 0%, var(--sc-wash), transparent 48rem), var(--sc-page);
+  color: var(--sc-ink);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab :is(
+  h1 span, .source, fieldset legend, .validity summary, .metrics div:nth-child(2) strong
+) {
+  color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab :is(.panel, .metrics div) {
+  background: linear-gradient(145deg, var(--sc-raised), var(--sc-panel) 80%);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab :is(button, select, input) {
+  background: var(--sc-input);
+  border-color: var(--sc-line);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab :is(button, select):enabled:hover {
+  border-color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab button.primary {
+  background: var(--sc-metal);
+  border-color: var(--sc-line);
+  color: #241b31;
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab button.primary:enabled:hover {
+  border-color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab :focus-visible {
+  outline-color: var(--sc-accent);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab .metrics strong {
+  color: var(--sc-cool);
+}
+
+:root:is([data-theme='light'], [data-theme='dusk']) body[data-layout='wave-pool-lab'] .lab :is(
+  .metrics div:nth-child(4) strong, .validity #warning.flagged
+) {
+  color: var(--sc-warm);
+}
+
+:root[data-theme='light'] body[data-layout='wave-pool-lab'] .lab .legend i {
+  box-shadow: 0 0 0 1px var(--sc-line);
+}

@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Market Weight Lab</title><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="/navigation.css?v=f006171c41e3"><link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+<html lang="en"><head><meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Market Weight Lab</title><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="/navigation.css?v=d1c00783dd7b"><link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
 </head>
-<body><!-- SITE NAVIGATION START -->
+<body data-layout="market-weight-lab"><!-- SITE NAVIGATION START -->
 <div class="sc-site-header" role="banner">
   <div class="sc-nav-wrap">
     <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
@@ -67,6 +69,14 @@
       <a href="/surfreport/">Surf Report</a>
       <a href="/about.html">About</a>
     </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
   </div>
 </div>
 <script defer src="/surf-cams.js?v=fb479f63e9da"></script>

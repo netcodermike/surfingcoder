@@ -3,9 +3,9 @@ import { height } from './core.js?v=20261117-tides-wind';
 const HOUR = 3600000;
 export const OBSERVATION_HOURS = 48;
 const SERIES = [
-  { label: 'Combined sea', color: '#79bfff', heightKey: 'wave', periodKey: 'period' },
-  { label: 'Swell', color: '#a879e8', heightKey: 'swell', periodKey: 'swellPeriod' },
-  { label: 'Wind waves', color: '#d9c4f5', heightKey: 'windWave', periodKey: 'windWavePeriod', dash: '6 4' },
+  { label: 'Combined sea', color: 'var(--surf-combined-sea, #79bfff)', heightKey: 'wave', periodKey: 'period' },
+  { label: 'Swell', color: 'var(--surf-swell, #a879e8)', heightKey: 'swell', periodKey: 'swellPeriod' },
+  { label: 'Wind waves', color: 'var(--surf-wind-wave, #d9c4f5)', heightKey: 'windWave', periodKey: 'windWavePeriod', dash: '6 4' },
 ];
 const svg = (name, attrs, label) => {
   const element = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -105,7 +105,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     }
     chart.append(layer);
   }
-  const cursor = svg('line', { y1: top, y2: bottom, stroke: '#fff', opacity: .65, visibility: 'hidden' });
+  const cursor = svg('line', { y1: top, y2: bottom, class: 'buoy-cursor', stroke: '#fff', opacity: .65, visibility: 'hidden' });
   chart.append(cursor);
   const popup = document.createElement('div');
   popup.className = 'week-tooltip buoy-wave-tooltip';

@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; base-uri 'none'; form-action 'none'">
   <title>Studio</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" type="module"></script>
-<link rel="stylesheet" href="/navigation.css?v=f006171c41e3">
+<link rel="stylesheet" href="/navigation.css?v=d1c00783dd7b">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
 </head>
-<body>
+<body data-layout="crop-frame-studio">
 <!-- SITE NAVIGATION START -->
 <div class="sc-site-header" role="banner">
   <div class="sc-nav-wrap">
@@ -76,6 +78,14 @@
       <a href="/surfreport/">Surf Report</a>
       <a href="/about.html">About</a>
     </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
   </div>
 </div>
 <script defer src="/surf-cams.js?v=fb479f63e9da"></script>

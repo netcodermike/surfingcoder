@@ -20,14 +20,16 @@ Open http://127.0.0.1:8000. Search, category/language filters, sorting, grid/lis
 2. Add a genuine screenshot as `assets/screenshots/<repository>.webp` and its capture metadata as `<repository>.json`. Use synthetic demonstration data. Describe terminal captures as terminal output rather than app interfaces.
 3. Run `python scripts/build_gallery.py` to update the static cards and embedded data.
 
-When you add an HTML page or change the main menu, run `python scripts/build_navigation.py` to update the shared navigation.
+When you add an HTML page or change the main menu or shared theme assets, run `python scripts/build_navigation.py` to refresh the shared markup and asset versions.
 4. Run both checks above, preview desktop and mobile layouts, and review `git diff` before publication.
 
 The JSON fields are documented in [docs/gallery.md](docs/gallery.md). Layout and behavior live in `gallery.css` and `gallery.js`. Fonts use Google Fonts with system fallbacks. There are no analytics, accounts, or backend services.
 
 ## Appearance
 
-Every HTML page loads `theme.css`, the shared **Amethyst & Graphite** palette: `#18161E` background, `#27222F` panels, `#A879E8` purple accents, `#D9C4F5` metallic highlights, and soft off-white text. Edit its CSS variables to keep the gallery, About page, surf report, and hosted apps consistent. `app.css` holds shared app layouts; each hosted app's `style.css` imports it. Canvas charts read the same theme variables through the `theme()` helper in `ui.js`.
+The Theme selector in the shared header offers Dark (Amethyst & Graphite), Light (porcelain and plum), and Dusk (blue slate and lavender). Dark is the default. The browser remembers a visitor's choice using the `surfingcoder.theme` local storage key.
+
+`navigation.css` defines the shared palettes. `theme.css` and `app-themes.css` apply them to the gallery, About page, and hosted apps. The Surf Report defines chart colors in `surfreport/style.css` so the traces, legends, and hover readouts stay legible in each theme.
 
 Gallery screenshots remain genuine captures of their source applications; they are not recolored. Hosted app styling is maintained in this website repository independently of the standalone app repositories.
 

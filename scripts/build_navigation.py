@@ -10,6 +10,15 @@ ROOT = Path(__file__).resolve().parents[1]
 CSS_VERSION = hashlib.sha256((ROOT / 'navigation.css').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
 CSS_LINK = f'<link rel="stylesheet" href="/navigation.css?v={CSS_VERSION}">'
 NAV_STYLESHEET = re.compile(r'<link rel="stylesheet" href="/navigation\.css(?:\?v=[a-f0-9]+)?">')
+THEME_VERSION = hashlib.sha256((ROOT / 'site-theme.js').read_bytes()).hexdigest()[:12]
+THEME_SCRIPT = f'<script src="/site-theme.js?v={THEME_VERSION}"></script>'
+THEME_TAG = re.compile(r'<script src="/site-theme\.js\?v=[a-f0-9]+"></script>')
+APP_THEME_VERSION = hashlib.sha256((ROOT / 'app-themes.css').read_bytes()).hexdigest()[:12]
+APP_THEME_LINK = f'<link rel="stylesheet" href="/app-themes.css?v={APP_THEME_VERSION}">'
+APP_THEME_TAG = re.compile(r'<link rel="stylesheet" href="/app-themes\.css\?v=[a-f0-9]+">')
+PALETTE_VERSION = hashlib.sha256((ROOT / 'theme.css').read_bytes()).hexdigest()[:12]
+PALETTE_TAG = re.compile(r'(<link rel="stylesheet" href="(?:\.\./)*theme\.css)(?:\?v=[a-f0-9]+)?(">)')
+CORE_PAGES = {'index.html', 'about.html', 'surfreport/index.html'}
 CAM_SCRIPT_VERSION = hashlib.sha256((ROOT / 'surf-cams.js').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
 CAM_SCRIPT = f'<script defer src="/surf-cams.js?v={CAM_SCRIPT_VERSION}"></script>'
 FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">'
@@ -131,6 +140,14 @@ def render_navigation(page):
         '    <nav class="sc-nav-links" aria-label="Main navigation">',
         *links,
         '    </nav>',
+        '    <label class="sc-theme-control" hidden>',
+        '      <span>Theme</span>',
+        '      <select id="sc-theme-picker">',
+        '        <option value="dark">Dark</option>',
+        '        <option value="light">Light</option>',
+        '        <option value="dusk">Dusk</option>',
+        '      </select>',
+        '    </label>',
         '  </div>',
         '</div>',
         CAM_SCRIPT,
@@ -157,6 +174,29 @@ def update(source, page):
         updated = NAV_STYLESHEET.sub(CSS_LINK, updated, count=1)
     else:
         updated = updated.replace('</head>', CSS_LINK + '\n</head>', 1)
+    if THEME_TAG.search(updated):
+        updated = THEME_TAG.sub(THEME_SCRIPT, updated, count=1)
+    else:
+        updated = re.sub(
+            r'(<head\b[^>]*>\s*<meta charset="[^"]+">)',
+            lambda match: match[0] + '\n' + THEME_SCRIPT,
+            updated, count=1, flags=re.I,
+        )
+        if THEME_SCRIPT not in updated:
+            updated = updated.replace('</head>', THEME_SCRIPT + '\n</head>', 1)
+    if page != 'apps/or-tableau-studio/index.html':
+        updated = PALETTE_TAG.sub(lambda match: f'{match[1]}?v={PALETTE_VERSION}{match[2]}', updated)
+    if page not in CORE_PAGES:
+        if APP_THEME_TAG.search(updated):
+            updated = APP_THEME_TAG.sub(APP_THEME_LINK, updated, count=1)
+        else:
+            updated = updated.replace('</head>', APP_THEME_LINK + '\n</head>', 1)
+        parts = page.split('/')
+        layout = parts[1] if parts[0] == 'apps' else parts[0]
+        updated = re.sub(r'<body\b[^>]*>', lambda match: (
+            re.sub(r'\s+data-layout="[^"]*"', '', match[0][:-1]) +
+            f' data-layout="{escape(layout)}">'
+        ), updated, count=1)
     if FAVICON_TAG.search(updated):
         updated = FAVICON_TAG.sub(FAVICON_LINK, updated, count=1)
     else:

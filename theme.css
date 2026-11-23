@@ -1,4 +1,4 @@
-/* SurfingCoder: Amethyst & Graphite. Shared by every public HTML page. */
+/* SurfingCoder: Amethyst & Graphite defaults for the gallery, report and tools. */
 :root {
   color-scheme: dark;
   --page-bg: #18161e;
@@ -26,6 +26,32 @@
   --soft: var(--hover);
   --orange: var(--warning);
 }
+:root:is([data-theme="light"], [data-theme="dusk"]) {
+  --page-bg: var(--sc-page);
+  --panel-bg: var(--sc-panel);
+  --surface: var(--sc-surface);
+  --surface-raised: var(--sc-raised);
+  --input-bg: var(--sc-input);
+  --ink: var(--sc-ink);
+  --muted: var(--sc-muted);
+  --text-secondary: var(--sc-muted);
+  --accent: var(--sc-accent);
+  --accent-light: var(--sc-accent);
+  --accent-strong: var(--sc-active);
+  --accent-ink: #251637;
+  --border: var(--sc-border);
+  --border-strong: var(--sc-line);
+  --hover: var(--sc-hover);
+  --warning: var(--sc-warm);
+  --metal: var(--sc-metal);
+  --panel-metal: linear-gradient(145deg, var(--sc-raised), var(--sc-panel) 70%);
+}
+:root[data-theme="light"] { --accent-rgb: 101 65 161; }
+:root[data-theme="dusk"] { --accent-rgb: 194 154 243; }
+:root:is([data-theme="light"], [data-theme="dusk"]) body {
+  background: radial-gradient(ellipse at 82% 0%, var(--sc-wash), transparent 660px), var(--sc-page);
+}
+:root:is([data-theme="light"], [data-theme="dusk"]) :is(input, select, textarea) { color-scheme: inherit; }
 html { background: var(--page-bg); accent-color: var(--accent); }
 body { background: radial-gradient(ellipse at 82% 0%, #39244940, transparent 660px), var(--page-bg); color: var(--ink); }
 ::selection { background: #775298; color: #fff; }

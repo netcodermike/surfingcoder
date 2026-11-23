@@ -11,7 +11,8 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from build_navigation import (
-    CSS_LINK, FAVICON_LINK, FAVICON_TAG, FOOTER, FOOTER_BLOCK, NAV_BLOCK, html_pages, render_navigation,
+    APP_THEME_LINK, CORE_PAGES, CSS_LINK, FAVICON_LINK, FAVICON_TAG, FOOTER, FOOTER_BLOCK, NAV_BLOCK, THEME_SCRIPT,
+    html_pages, render_navigation,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -61,6 +62,9 @@ def main():
             continue
         if NAV_BLOCK.findall(source) != [render_navigation(rel)] or source.count(CSS_LINK) != 1:
             issues.append(f'{rel}: shared navigation is out of date; run scripts/build_navigation.py')
+        app_theme_count = 0 if rel in CORE_PAGES else 1
+        if source.count(THEME_SCRIPT) != 1 or source.count(APP_THEME_LINK) != app_theme_count:
+            issues.append(f'{rel}: shared theme assets are out of date; run scripts/build_navigation.py')
         if FOOTER_BLOCK.findall(source) != [FOOTER]:
             issues.append(f'{rel}: shared footer is out of date; run scripts/build_navigation.py')
         if FAVICON_TAG.findall(source) != [FAVICON_LINK]:

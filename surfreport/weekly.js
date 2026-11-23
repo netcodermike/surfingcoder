@@ -1,12 +1,12 @@
-import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-series-colors';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-chart-themes';
 import { compass } from './src/core.js?v=20261117-rain-chance';
 
 const components = [
- ['wave', 'Combined sea', '#79bfff', 'period', 'direction'],
- ['swell', 'Swell', '#a879e8', 'swellPeriod', 'swellDirection'],
- ['secondary', 'Secondary swell', '#e8bd78', 'secondaryPeriod', 'secondaryDirection'],
- ['tertiary', 'Tertiary swell', '#e190b9', 'tertiaryPeriod', 'tertiaryDirection'],
- ['windWave', 'Wind waves', '#d9c4f5', 'windWavePeriod', 'windWaveDirection', '6 4'],
+ ['wave', 'Combined sea', 'var(--surf-combined-sea, #79bfff)', 'period', 'direction'],
+ ['swell', 'Swell', 'var(--surf-swell, #a879e8)', 'swellPeriod', 'swellDirection'],
+ ['secondary', 'Secondary swell', 'var(--surf-secondary-swell, #e8bd78)', 'secondaryPeriod', 'secondaryDirection'],
+ ['tertiary', 'Tertiary swell', 'var(--surf-tertiary-swell, #e190b9)', 'tertiaryPeriod', 'tertiaryDirection'],
+ ['windWave', 'Wind waves', 'var(--surf-wind-wave, #d9c4f5)', 'windWavePeriod', 'windWaveDirection', '6 4'],
 ];
 let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave','tide','wind','temperature','rain']),selected=-1;
 let graphWidth = 1000;
@@ -16,6 +16,19 @@ function svg(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[
 const val=(v,suffix)=>Number.isFinite(v)?v.toFixed(1)+suffix:'—';
 const bearing=d=>Number.isFinite(d)?compass(d):'—';
 const hasPeriod = value => Number.isFinite(value) && value > 0;
+
+function directionArrow(degrees) {
+ const icon = svg('svg', {
+  class:'week-direction-arrow', width:16, height:16, viewBox:'-8 -8 16 16',
+  'aria-hidden':'true', focusable:'false', style:'margin-inline-start:4px; vertical-align:-0.2em',
+ });
+ // Source bearings say where waves or wind come from. Arrows show where they travel.
+ icon.append(svg('path', {
+  d:'M0 5V-5 M-3.5 -1.5L0 -5L3.5 -1.5', transform:'rotate('+(degrees+180)+')',
+  fill:'none', stroke:'currentColor', 'stroke-width':2.4, 'stroke-linecap':'round', 'stroke-linejoin':'round',
+ }));
+ return icon;
+}
 
 export function weekly(rows,options){
  const {zone,units,tide,daylight,location}=options;
@@ -90,13 +103,13 @@ export function weekly(rows,options){
  const rightLabelX = graphWidth - (compact ? 5 : 12);
  for (let i=0;i<5;i++) {
   const y=260-i*55;
-  graph.append(svg('line',{x1:plotLeft,y1:y,x2:plotRight,y2:y,stroke:'#44394f'}),
-   svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont},(max*i/4).toFixed(1)+unit));
+  graph.append(svg('line',{x1:plotLeft,y1:y,x2:plotRight,y2:y,stroke:'#44394f',class:'week-grid'}),
+   svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont,class:'week-axis-label'},(max*i/4).toFixed(1)+unit));
   if (periodSeries) periodAxis.append(svg('text', {x:rightLabelX,y:y+4}, periodMax*i/4 + ' s'));
  }
  if (periodSeries) {
   periodAxis.setAttribute('fill', periodSeries.color);
-  graph.append(svg('text', {x:6,y:18,fill:'#b5a9c2','font-size':axisFont}, 'Height'));
+  graph.append(svg('text', {x:6,y:18,fill:'#b5a9c2','font-size':axisFont,class:'week-axis-label'}, 'Height'));
   periodAxis.append(svg('text', {x:rightLabelX,y:18}, 'Period'));
   graph.append(periodAxis);
  }
@@ -166,7 +179,8 @@ export function weekly(rows,options){
  if (tideWind) {
   if (tideWind.tideReading) seaConditions.push(row => ({ name:'Tide', color:tideColor, text:val(tideWind.tideReading(row), heightUnit) }));
   if (tideWind.windReading) seaConditions.push(row => ({ name:'Wind', color:windColor, text:val(tideWind.windReading(row), speedUnit) +
-   (row.speed === 0 ? ' · Calm' : Number.isFinite(row.wind_direction) ? ' · from ' + bearing(row.wind_direction) : '') }));
+   (row.speed === 0 ? ' · Calm' : ''),
+   direction:row.speed !== 0 && Number.isFinite(row.wind_direction) ? row.wind_direction : undefined }));
   mountChart(tideWind.section, tideWind);
  }
  let rainReading;
@@ -181,7 +195,7 @@ export function weekly(rows,options){
  function waveReadings(row, items) {
   return items.map(item => ({ name:item.name, color:item.color,
    text:val(Number.isFinite(row[item.key]) ? row[item.key]*scale : null,heightUnit) +
-   ' · ' + val(row[item.period],' s') + ' · from ' + bearing(row[item.direction]) }));
+   ' · ' + val(row[item.period],' s'), direction:row[item.direction] ?? null }));
  }
  function renderReadings(panel, row, groups) {
   const heading = document.createElement('strong');
@@ -202,6 +216,13 @@ export function weekly(rows,options){
     label.textContent = item.name + ':';
     const value = document.createElement('span');
     value.textContent = item.text;
+    if (item.direction !== undefined) {
+     const source = document.createElement('span');
+     source.style.whiteSpace = 'nowrap';
+     source.textContent = bearing(item.direction);
+     if (panel === tooltip && Number.isFinite(item.direction)) source.append(directionArrow(item.direction));
+     value.append(' · from ', source);
+    }
     line.append(label, value);
     panel.append(line);
    }

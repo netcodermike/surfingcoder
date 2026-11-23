@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart, OBSERVATION_HOURS } from './buoy-chart.js?v=20261122-48-hour-buoys';
+import { drawBuoyChart, OBSERVATION_HOURS } from './buoy-chart.js?v=20261122-chart-themes';
 
 const HOUR = 3600000;
 const HISTORY_HOURS = OBSERVATION_HOURS + 12;
