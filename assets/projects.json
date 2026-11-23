@@ -4531,31 +4531,6 @@
     "applicationUrl": "/apps/guitar-chord-desk/"
   },
   {
-    "name": "surfingcoder-guitar-tuner",
-    "title": "SurfingCoder Guitar Tuner",
-    "description": "Microphone pitch meter and playable reference tones for 6-, 7-, and 12-string guitar, mandolin, banjo, bass, ukulele, and fiddle.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web",
-    "url": "https://github.com/netcodermike/surfingcoder-guitar-tuner",
-    "category": "Music & audio",
-    "featured": false,
-    "order": 194,
-    "image": "assets/screenshots/surfingcoder-guitar-tuner.webp",
-    "capture": {
-      "name": "surfingcoder-guitar-tuner",
-      "kind": "runtime",
-      "caption": "The twelve-string tuner showing the first course in tune with a synthetic E2 input.",
-      "capture_date": "2026-11-17T04:42:34.973004+00:00",
-      "demo_data": true,
-      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
-      "validation_passed": true
-    },
-    "ci": "https://github.com/netcodermike/surfingcoder-guitar-tuner/actions/workflows/verify.yml",
-    "applicationUrl": "/guitar-tuner/"
-  },
-  {
     "name": "surfingcoder-guitar-chord-workshop",
     "title": "SurfingCoder Guitar Chord Workshop",
     "description": "Build and identify guitar chords on an interactive fretboard, explore 216 chord recipes, and play or create transposable preset progressions.",
@@ -4566,7 +4541,7 @@
     "url": "https://github.com/netcodermike/surfingcoder-guitar-chord-workshop",
     "category": "Music & audio",
     "featured": false,
-    "order": 195,
+    "order": 194,
     "image": "assets/screenshots/surfingcoder-guitar-chord-workshop.webp",
     "capture": {
       "name": "surfingcoder-guitar-chord-workshop",
@@ -4579,6 +4554,31 @@
     },
     "ci": "https://github.com/netcodermike/surfingcoder-guitar-chord-workshop/actions/workflows/verify.yml",
     "applicationUrl": "/guitar-chords/"
+  },
+  {
+    "name": "surfingcoder-guitar-tuner",
+    "title": "SurfingCoder Guitar Tuner",
+    "description": "Microphone pitch meter and playable reference tones for 6-, 7-, and 12-string guitar, mandolin, banjo, bass, ukulele, and fiddle.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/surfingcoder-guitar-tuner",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 195,
+    "image": "assets/screenshots/surfingcoder-guitar-tuner.webp",
+    "capture": {
+      "name": "surfingcoder-guitar-tuner",
+      "kind": "runtime",
+      "caption": "The twelve-string tuner showing the first course in tune with a synthetic E2 input.",
+      "capture_date": "2026-11-17T04:42:34.973004+00:00",
+      "demo_data": true,
+      "capture_method": "Headless Chrome running the published app interface without the shared site navigation",
+      "validation_passed": true
+    },
+    "ci": "https://github.com/netcodermike/surfingcoder-guitar-tuner/actions/workflows/verify.yml",
+    "applicationUrl": "/guitar-tuner/"
   },
   {
     "name": "electric-guitar-designer",
