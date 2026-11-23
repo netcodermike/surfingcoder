@@ -1,6 +1,6 @@
-import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261123-chart-ranges';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261123-observed-daylight';
 import { compass } from './src/core.js?v=20261117-rain-chance';
-import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261122-combined-sea-arrows';
+import { appendMarkerCheckbox, createChartArrows, createDirectionIcon, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261123-observed-daylight';
 import { dayRangeControl, forecastWindow } from './src/chart-ranges.js?v=20261123-chart-ranges';
 
 const components = [
@@ -22,19 +22,6 @@ function svg(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[
 const val=(v,suffix)=>Number.isFinite(v)?v.toFixed(1)+suffix:'—';
 const bearing=d=>Number.isFinite(d)?compass(d):'—';
 const hasPeriod = value => Number.isFinite(value) && value > 0;
-
-function directionArrow(degrees) {
- const icon = svg('svg', {
-  class:'week-direction-arrow', width:16, height:16, viewBox:'-8 -8 16 16',
-  'aria-hidden':'true', focusable:'false', style:'margin-inline-start:4px; vertical-align:-0.2em',
- });
- // Source bearings say where waves or wind come from. Arrows show where they travel.
- icon.append(svg('path', {
-  d:'M0 5V-5 M-3.5 -1.5L0 -5L3.5 -1.5', transform:'rotate('+(degrees+180)+')',
-  fill:'none', stroke:'currentColor', 'stroke-width':2.4, 'stroke-linecap':'round', 'stroke-linejoin':'round',
- }));
- return icon;
-}
 
 const cloud = 'M4 10h7.5a2.4 2.4 0 1 0-.25-4.8A3.6 3.6 0 0 0 4.5 6H4a2 2 0 1 0 0 4Z';
 const weatherIcons = {
@@ -323,7 +310,7 @@ export function weekly(forecastRows,options){
      const source = document.createElement('span');
      source.style.whiteSpace = 'nowrap';
      source.textContent = bearing(item.direction);
-     if (panel === tooltip && Number.isFinite(item.direction)) source.append(directionArrow(item.direction));
+     if (panel === tooltip && Number.isFinite(item.direction)) source.append(createDirectionIcon(svg, item.direction));
      value.append(' · from ', source);
     }
     line.append(label, value);

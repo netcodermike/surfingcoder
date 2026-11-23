@@ -1,6 +1,7 @@
 import { height } from './core.js?v=20261117-tides-wind';
-import { appendMarkerCheckbox, createChartArrows, hasDirection } from './chart-markers.js?v=20261122-combined-sea-arrows';
+import { appendMarkerCheckbox, createChartArrows, createDirectionIcon, hasDirection } from './chart-markers.js?v=20261123-observed-daylight';
 import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
+import { daylightIntervals } from './daylight.js?v=20261123-observed-daylight';
 
 const HOUR = 3600000;
 const ARROW_INTERVAL_PER_DAY = HOUR / 4;
@@ -47,7 +48,9 @@ function waveArrowSamples(rows, series, interval) {
   return arrows;
 }
 
-export function drawBuoyChart(readings, units, width, date, details, hiddenLayers, { days = 2, end = Date.now(), onRangeChange } = {}) {
+export function drawBuoyChart(readings, units, width, date, details, hiddenLayers, {
+  days = 2, end = Date.now(), onRangeChange, station,
+} = {}) {
   const section = document.createElement('section');
   section.className = 'buoy-wave-chart';
   const toolbar = document.createElement('div');
@@ -71,8 +74,16 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   const x = time => left + (right - left) * (time - start) / (end - start);
   const plot = document.createElement('div');
   plot.className = 'week-plot';
+  const daylight = daylightIntervals(start, end, station);
+  const description = 'Measured wave heights on the left, periods on the right, and local dates and times along the bottom.';
   const chart = svg('svg', { viewBox: `0 0 ${width} 272`, class: 'week-chart', role: 'img',
-    'aria-label': 'Measured wave heights on the left, periods on the right, and local dates and times along the bottom.' });
+    'aria-label': description + (daylight.length ? ' Lighter shading marks daylight and darker shading marks night.' : '') });
+  for (const band of daylight) {
+    chart.append(svg('rect', {
+      x: x(band.start), y: top, width: x(band.end) - x(band.start), height: bottom - top,
+      class: 'week-daylight-band', 'aria-hidden': 'true',
+    }));
+  }
   const legend = document.createElement('div');
   legend.className = 'week-legend';
   legend.setAttribute('role', 'group');
@@ -217,26 +228,37 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
       },
     });
   }
+  if (daylight.length) {
+    const key = document.createElement('span');
+    key.className = 'week-daylight-key';
+    key.textContent = 'Lighter daylight · Darker night';
+    legend.append(key);
+  }
 
   function show(index) {
     const row = rows[index], xx = x(row.time);
     const stamp = document.createElement('strong');
     stamp.textContent = observationTime.format(row.time);
     popup.replaceChildren(stamp);
-    const visibleColors = new Map(SERIES.filter(series => isVisible(series.heightKey))
-      .map(series => [series.label, series.color]));
-    const groups = details(row).filter(([label]) => visibleColors.has(label));
+    const visibleSeries = new Map(SERIES.filter(series => isVisible(series.heightKey))
+      .map(series => [series.label, series]));
+    const groups = details(row).filter(([label]) => visibleSeries.has(label));
     for (const [label, metrics] of groups) {
+      const series = visibleSeries.get(label);
       const line = document.createElement('span');
       line.className = 'week-reading buoy-wave-row';
-      line.style.setProperty('--series-color', visibleColors.get(label));
+      line.style.setProperty('--series-color', series.color);
       const name = document.createElement('span');
       name.className = 'week-reading-label';
       name.textContent = label + ':';
       const values = document.createElement('span');
       const [[, waveHeight], [, period], [, direction]] = metrics;
-      const bearing = direction === '—' ? direction : 'from ' + direction;
-      values.textContent = [waveHeight, period, bearing].join(' · ');
+      const source = document.createElement('span');
+      source.style.whiteSpace = 'nowrap';
+      source.textContent = direction === '—' ? direction : 'from ' + direction;
+      const bearing = directionBearing(row[series.directionKey]);
+      if (hasDirection(bearing)) source.append(createDirectionIcon(svg, bearing));
+      values.append(waveHeight + ' · ' + period + ' · ', source);
       line.append(name, values);
       popup.append(line);
     }

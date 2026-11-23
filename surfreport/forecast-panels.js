@@ -1,5 +1,5 @@
 import { tideAt } from './src/tides.js';
-import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261122-combined-sea-arrows';
+import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261123-observed-daylight';
 
 export const tideColor = 'var(--surf-tide, #46b4ba)';
 export const windColor = 'var(--surf-wind, #e7e9ee)';

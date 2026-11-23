@@ -1,5 +1,5 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261123-observed-arrow-spacing';
+import { drawBuoyChart } from './buoy-chart.js?v=20261123-observed-daylight';
 import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
 
 const HOUR = 3600000;
@@ -209,6 +209,7 @@ export function setupBuoyView(getUnits) {
     return drawBuoyChart(readings, getUnits(), chartWidth || 320, date, item => measurements(item).waves, hiddenLayers, {
       days: observationDays,
       end: observationEnd,
+      station: displayedStation,
       onRangeChange(days) {
         observationDays = days;
         drawReadings();
@@ -291,12 +292,12 @@ export function setupBuoyView(getUnits) {
     }
     stationLink.href = NDBC + '/station_page.php?station=' + encodeURIComponent(buoy.id);
     note.textContent = formatDistance(buoy.km, getUnits()) + ' from ' + location.label;
-    const sameStation = buoy.id === displayedStation;
+    const sameStation = buoy.id === displayedStation?.id;
     if (sameStation && !refresh) { drawReadings(); return; }
     request?.abort();
     const controller = new AbortController();
     request = controller;
-    displayedStation = buoy.id;
+    displayedStation = buoy;
     if (!sameStation) mirrored = [];
     if (!sameStation || !readings?.length) {
       readings = undefined;
