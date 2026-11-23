@@ -4532,7 +4532,7 @@
   },
   {
     "name": "surfingcoder-guitar-chord-workshop",
-    "title": "SurfingCoder Guitar Chord Workshop",
+    "title": "Guitar Chord Workshop",
     "description": "Build and identify guitar chords on an interactive fretboard, explore 216 chord recipes, and play or create transposable preset progressions.",
     "languages": [
       "JavaScript"
@@ -4557,7 +4557,7 @@
   },
   {
     "name": "surfingcoder-guitar-tuner",
-    "title": "SurfingCoder Guitar Tuner",
+    "title": "Guitar Tuner",
     "description": "Microphone pitch meter and playable reference tones for 6-, 7-, and 12-string guitar, mandolin, banjo, bass, ukulele, and fiddle.",
     "languages": [
       "JavaScript"
