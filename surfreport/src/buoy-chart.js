@@ -1,8 +1,9 @@
 import { height } from './core.js?v=20261117-tides-wind';
-import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS } from './chart-markers.js?v=20261122-combined-sea-arrows';
+import { appendMarkerCheckbox, createChartArrows, hasDirection } from './chart-markers.js?v=20261122-combined-sea-arrows';
 import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
 
 const HOUR = 3600000;
+const ARROW_INTERVAL_PER_DAY = HOUR / 4;
 const COMPASS_POINTS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 const SERIES = [
   { label: 'Combined sea', color: 'var(--surf-combined-sea, #79bfff)', heightKey: 'wave', periodKey: 'period', directionKey: 'direction' },
@@ -20,6 +21,30 @@ function directionBearing(value) {
   if (typeof value !== 'string') return value;
   const point = COMPASS_POINTS.indexOf(value.trim().toUpperCase());
   return point >= 0 ? point * 22.5 : undefined;
+}
+
+function waveArrowSamples(rows, series, interval) {
+  const samples = [];
+  for (const row of rows) {
+    const value = row[series.heightKey];
+    const bearing = directionBearing(row[series.directionKey]);
+    if (Number.isFinite(value) && value > 0 && hasDirection(bearing)) {
+      samples.push({ time: row.time, value, bearing });
+    }
+  }
+  if (!samples.length) return [];
+
+  const arrows = [];
+  let index = 0;
+  // Space the targets in time, then attach each arrow to an actual measurement.
+  for (let target = samples[0].time; target <= samples.at(-1).time; target += interval) {
+    while (index + 1 < samples.length &&
+      Math.abs(samples[index + 1].time - target) < Math.abs(samples[index].time - target)) {
+      index++;
+    }
+    if (arrows.at(-1) !== samples[index]) arrows.push(samples[index]);
+  }
+  return arrows;
 }
 
 export function drawBuoyChart(readings, units, width, date, details, hiddenLayers, { days = 2, end = Date.now(), onRangeChange } = {}) {
@@ -94,7 +119,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   const layers = new Map();
   const arrowLayers = [], periodLayers = [];
   const isVisible = key => availableLayers.has(key) && !hiddenLayers.has(key);
-  const arrowInterval = DIRECTION_INTERVAL_SECONDS * 1000;
+  const arrowInterval = days * ARROW_INTERVAL_PER_DAY;
   for (const series of SERIES) {
     const layer = svg('g', { 'data-observed-layer': series.heightKey });
     if (!isVisible(series.heightKey)) layer.style.display = 'none';
@@ -113,13 +138,8 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     const arrows = createChartArrows(svg, {
       className: 'buoy-wave-arrows', color: series.color, spacing: x(start + arrowInterval) - x(start), bottom: 230,
     });
-    let lastArrowTime = -Infinity;
-    for (const row of rows) {
-      const value = row[series.heightKey];
-      if (row.time - lastArrowTime < arrowInterval || !Number.isFinite(value) || value <= 0) continue;
-      if (arrows.add(x(row.time), y(height(value, units), heightMax), directionBearing(row[series.directionKey]))) {
-        lastArrowTime = row.time;
-      }
+    for (const { time, value, bearing } of waveArrowSamples(rows, series, arrowInterval)) {
+      arrows.add(x(time), y(height(value, units), heightMax), bearing);
     }
     if (arrows.group.childElementCount) {
       layer.append(arrows.group);
