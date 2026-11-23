@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CSS_VERSION = hashlib.sha256((ROOT / 'navigation.css').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
 CSS_LINK = f'<link rel="stylesheet" href="/navigation.css?v={CSS_VERSION}">'
 NAV_STYLESHEET = re.compile(r'<link rel="stylesheet" href="/navigation\.css(?:\?v=[a-f0-9]+)?">')
+CAM_SCRIPT_VERSION = hashlib.sha256((ROOT / 'surf-cams.js').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
+CAM_SCRIPT = f'<script defer src="/surf-cams.js?v={CAM_SCRIPT_VERSION}"></script>'
 FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">'
 FAVICON_TAG = re.compile(r'<link\s+rel="(?:shortcut )?icon"[^>]*>', re.I)
 START = '<!-- SITE NAVIGATION START -->'
@@ -131,6 +133,7 @@ def render_navigation(page):
         '    </nav>',
         '  </div>',
         '</div>',
+        CAM_SCRIPT,
         END,
     ])
 
