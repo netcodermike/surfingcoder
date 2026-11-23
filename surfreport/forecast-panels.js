@@ -89,7 +89,7 @@ function drawSeries(graph, { values, color, gap, reading, filled = false }, { sv
 }
 
 function seriesChart(primary, timeline, { label, arrows, secondary }) {
-  const { svg, width, left, right, x, start, dayMarks, shadeDaylight, axisFont, compact } = timeline;
+  const { svg, width, left, right, x, start, firstForecastHour, dayMarks, shadeDaylight, axisFont, compact } = timeline;
   // Leave room above the plot and before the date labels for the wind arrows.
   const top = arrows ? 16 : 12;
   const bottom = 119;
@@ -134,7 +134,7 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
     const interval = 2 * 3600;
     const arrowScale = Math.max(.45, Math.min(1, (x(start + interval) - x(start)) / 15));
     for (const row of arrows) {
-      if ((row.time - start) % interval !== 0 || !Number.isFinite(row.speed) || row.speed <= 0 ||
+      if ((row.time - firstForecastHour) % interval !== 0 || !Number.isFinite(row.speed) || row.speed <= 0 ||
           !Number.isFinite(row.wind_direction)) continue;
       marks.append(svg('path', {
         d: 'M0 0V-14 M-4.5 -9L0 -14L4.5 -9',
