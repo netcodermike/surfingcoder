@@ -7,19 +7,26 @@ from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS_VERSION = hashlib.sha256((ROOT / 'navigation.css').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
+
+
+def asset_version(name):
+    source = (ROOT / name).read_text(encoding='utf-8')
+    return hashlib.sha256(source.encode('utf-8')).hexdigest()[:12]
+
+
+CSS_VERSION = asset_version('navigation.css')
 CSS_LINK = f'<link rel="stylesheet" href="/navigation.css?v={CSS_VERSION}">'
 NAV_STYLESHEET = re.compile(r'<link rel="stylesheet" href="/navigation\.css(?:\?v=[a-f0-9]+)?">')
-THEME_VERSION = hashlib.sha256((ROOT / 'site-theme.js').read_bytes()).hexdigest()[:12]
+THEME_VERSION = asset_version('site-theme.js')
 THEME_SCRIPT = f'<script src="/site-theme.js?v={THEME_VERSION}"></script>'
 THEME_TAG = re.compile(r'<script src="/site-theme\.js\?v=[a-f0-9]+"></script>')
-APP_THEME_VERSION = hashlib.sha256((ROOT / 'app-themes.css').read_bytes()).hexdigest()[:12]
+APP_THEME_VERSION = asset_version('app-themes.css')
 APP_THEME_LINK = f'<link rel="stylesheet" href="/app-themes.css?v={APP_THEME_VERSION}">'
 APP_THEME_TAG = re.compile(r'<link rel="stylesheet" href="/app-themes\.css\?v=[a-f0-9]+">')
-PALETTE_VERSION = hashlib.sha256((ROOT / 'theme.css').read_bytes()).hexdigest()[:12]
+PALETTE_VERSION = asset_version('theme.css')
 PALETTE_TAG = re.compile(r'(<link rel="stylesheet" href="(?:\.\./)*theme\.css)(?:\?v=[a-f0-9]+)?(">)')
 CORE_PAGES = {'index.html', 'about.html', 'surfreport/index.html'}
-CAM_SCRIPT_VERSION = hashlib.sha256((ROOT / 'surf-cams.js').read_text(encoding='utf-8').encode('utf-8')).hexdigest()[:12]
+CAM_SCRIPT_VERSION = asset_version('surf-cams.js')
 CAM_SCRIPT = f'<script defer src="/surf-cams.js?v={CAM_SCRIPT_VERSION}"></script>'
 FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">'
 FAVICON_TAG = re.compile(r'<link\s+rel="(?:shortcut )?icon"[^>]*>', re.I)

@@ -46,8 +46,17 @@
   --metal: var(--sc-metal);
   --panel-metal: linear-gradient(145deg, var(--sc-raised), var(--sc-panel) 70%);
 }
-:root[data-theme="light"] { --accent-rgb: 101 65 161; }
-:root[data-theme="dusk"] { --accent-rgb: 194 154 243; }
+:root[data-theme="light"] {
+  --accent-rgb: 101 65 161;
+  --canvas-bg: #fbf8ff;
+  --chart-grid: #ded2eb;
+  --chart-marker-text: #fff;
+}
+:root[data-theme="dusk"] {
+  --accent-rgb: 194 154 243;
+  --canvas-bg: #202638;
+  --chart-grid: #464e69;
+}
 :root:is([data-theme="light"], [data-theme="dusk"]) body {
   background: radial-gradient(ellipse at 82% 0%, var(--sc-wash), transparent 660px), var(--sc-page);
 }
