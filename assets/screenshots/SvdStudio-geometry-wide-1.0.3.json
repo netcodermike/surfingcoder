@@ -1,0 +1,10 @@
+{
+  "name": "SvdStudio",
+  "kind": "runtime",
+  "caption": "Full SVD Studio window with Full SVD selected and a 2×2 matrix mapping the unit circle to a rotated ellipse.",
+  "platform": "Windows",
+  "source_commit": "8e8cca40f89ed390e4f295e968f5a9cd84f5731a",
+  "demo_data": true,
+  "capture_method": "Full 1612 × 960 native Windows window captured from SVD Studio v1.0.3",
+  "capture_date": "2026-11-23T08:02:11.525007+00:00"
+}
