@@ -1,0 +1,7 @@
+{
+  "name": "stratified-label-audit",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-23T02:36:24.338396+00:00",
+  "demo_data": true
+}

@@ -110,13 +110,13 @@ def render_navigation(page):
         link(LINKS[0], '      '),
         *dropdown('Games', 'games', (link(item, '') for item in GAMES)),
         *dropdown('Guitar', 'guitar', (link(item, '') for item in GUITAR)),
-        link(LINKS[1], '      '),
         *dropdown('Surf Cams', 'surf-cams', (
             f'<a href="{escape(href)}" target="_blank" rel="noopener noreferrer">'
             f'<img class="sc-cam-icon" src="/assets/surf-cam-icons/{escape(icon)}.png" '
             f'alt="" width="22" height="22" loading="lazy">{escape(label)}</a>'
             for label, href, icon in SURF_CAMS
         )),
+        link(LINKS[1], '      '),
         link(LINKS[2], '      '),
     ]
     return '\n'.join([
