@@ -2,7 +2,7 @@
   {
     "name": "function-surface-grapher",
     "title": "Function and Surface Grapher",
-    "description": "Turn equations into interactive graphs. Pan and zoom 2D curves, spin color-shaded 3D surfaces, and explore presets from reciprocal curves to radial ripples. Built with JavaScript, HTML Canvas, and a custom math parser. Use it in your browser or download the offline Electron edition for Windows x64.",
+    "description": "Turn equations into interactive graphs. Pan and zoom 2D curves, spin color-shaded 3D surfaces, and explore presets from reciprocal curves to radial ripples. Built with JavaScript, HTML Canvas, and a custom math parser. Play now in your browser or download the offline Electron edition for Windows x64.",
     "languages": [
       "JavaScript"
     ],
