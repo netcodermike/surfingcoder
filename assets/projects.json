@@ -475,6 +475,75 @@
     "ci": "https://github.com/netcodermike/voronoi-playground/actions/workflows/verify.yml"
   },
   {
+    "name": "wave-packet-dispersion-lab",
+    "title": "Wave Packet Dispersion Lab",
+    "description": "Compare group velocity and phase velocity as a simple wave packet travels.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/wave-packet-dispersion-lab",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 18,
+    "image": "assets/screenshots/wave-packet-dispersion-lab.webp",
+    "capture": {
+      "name": "wave-packet-dispersion-lab",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-22T02:53:40.650764+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/wave-packet-dispersion-lab/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/wave-packet-dispersion-lab/"
+  },
+  {
+    "name": "function-surface-grapher",
+    "title": "Function and Surface Grapher",
+    "description": "Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/function-surface-grapher",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 19,
+    "image": "assets/screenshots/function-surface-grapher.webp",
+    "capture": {
+      "name": "function-surface-grapher",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-23T02:43:00.779379+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/function-surface-grapher/"
+  },
+  {
+    "name": "polynomial-rational-explorer",
+    "title": "Polynomial and Rational Explorer",
+    "description": "Graph and solve polynomial and rational equations and inequalities with sign intervals, holes, and poles.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/polynomial-rational-explorer",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 20,
+    "image": "assets/screenshots/polynomial-rational-explorer.webp",
+    "capture": {
+      "name": "polynomial-rational-explorer",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-23T02:43:01.004549+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/polynomial-rational-explorer/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/polynomial-rational-explorer/"
+  },
+  {
     "name": "second-order-ode-grapher",
     "title": "Second-Order ODE Grapher",
     "description": "Graph displacement, velocity and phase for linear forced oscillators.",
@@ -485,7 +554,7 @@
     "url": "https://github.com/netcodermike/second-order-ode-grapher",
     "category": "Mathematics",
     "featured": false,
-    "order": 18,
+    "order": 21,
     "image": "assets/screenshots/second-order-ode-grapher.webp",
     "capture": {
       "name": "second-order-ode-grapher",
@@ -508,7 +577,7 @@
     "url": "https://github.com/netcodermike/fractal-dimension-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 19,
+    "order": 22,
     "image": "assets/screenshots/fractal-dimension-lab.webp",
     "capture": {
       "name": "fractal-dimension-lab",
@@ -531,7 +600,7 @@
     "url": "https://github.com/netcodermike/latin-square-graph-explorer",
     "category": "Mathematics",
     "featured": false,
-    "order": 20,
+    "order": 23,
     "image": "assets/screenshots/latin-square-graph-explorer.webp",
     "capture": {
       "name": "latin-square-graph-explorer",
@@ -554,7 +623,7 @@
     "url": "https://github.com/netcodermike/sixteen-card-square",
     "category": "Mathematics",
     "featured": false,
-    "order": 21,
+    "order": 24,
     "image": "assets/screenshots/sixteen-card-square.webp",
     "capture": {
       "name": "sixteen-card-square",
@@ -578,7 +647,7 @@
     "url": "https://github.com/netcodermike/transversal-hunt",
     "category": "Mathematics",
     "featured": false,
-    "order": 22,
+    "order": 25,
     "image": "assets/screenshots/transversal-hunt.webp",
     "capture": {
       "name": "transversal-hunt",
@@ -602,7 +671,7 @@
     "url": "https://github.com/netcodermike/modular-arithmetic-arcade",
     "category": "Mathematics",
     "featured": false,
-    "order": 23,
+    "order": 26,
     "image": "assets/screenshots/modular-arithmetic-arcade.webp",
     "capture": {
       "name": "modular-arithmetic-arcade",
@@ -626,7 +695,7 @@
     "url": "https://github.com/netcodermike/surfingcoder-number-swell",
     "category": "Mathematics",
     "featured": false,
-    "order": 24,
+    "order": 27,
     "image": "assets/screenshots/surfingcoder-number-swell.webp",
     "capture": {
       "name": "surfingcoder-number-swell",
@@ -652,7 +721,7 @@
     "url": "https://github.com/netcodermike/multi-latin-square-studio",
     "category": "Mathematics",
     "featured": false,
-    "order": 25,
+    "order": 28,
     "image": "assets/screenshots/multi-latin-square-studio.webp",
     "capture": {
       "name": "multi-latin-square-studio",
@@ -675,7 +744,7 @@
     "url": "https://github.com/netcodermike/orthogonal-mate-workshop",
     "category": "Mathematics",
     "featured": false,
-    "order": 26,
+    "order": 29,
     "image": "assets/screenshots/orthogonal-mate-workshop.webp",
     "capture": {
       "name": "orthogonal-mate-workshop",
@@ -698,7 +767,7 @@
     "url": "https://github.com/netcodermike/prime-sieve-observatory",
     "category": "Mathematics",
     "featured": false,
-    "order": 27,
+    "order": 30,
     "image": "assets/screenshots/prime-sieve-observatory.webp",
     "capture": {
       "name": "prime-sieve-observatory",
@@ -721,7 +790,7 @@
     "url": "https://github.com/netcodermike/markov-chain-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 28,
+    "order": 31,
     "image": "assets/screenshots/markov-chain-playground.webp",
     "capture": {
       "name": "markov-chain-playground",
@@ -744,7 +813,7 @@
     "url": "https://github.com/netcodermike/numerical-integration-race",
     "category": "Mathematics",
     "featured": false,
-    "order": 29,
+    "order": 32,
     "image": "assets/screenshots/numerical-integration-race.webp",
     "capture": {
       "name": "numerical-integration-race",
@@ -767,7 +836,7 @@
     "url": "https://github.com/netcodermike/bayes-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 30,
+    "order": 33,
     "image": "assets/screenshots/bayes-lab.webp",
     "capture": {
       "name": "bayes-lab",
@@ -790,7 +859,7 @@
     "url": "https://github.com/netcodermike/pick-your-symbols",
     "category": "Mathematics",
     "featured": false,
-    "order": 31,
+    "order": 34,
     "image": "assets/screenshots/pick-your-symbols.webp",
     "capture": {
       "name": "pick-your-symbols",
@@ -813,7 +882,7 @@
     "url": "https://github.com/netcodermike/transversal-search-bench",
     "category": "Mathematics",
     "featured": false,
-    "order": 32,
+    "order": 35,
     "image": "assets/screenshots/transversal-search-bench.webp",
     "capture": {
       "name": "transversal-search-bench",
@@ -836,7 +905,7 @@
     "url": "https://github.com/netcodermike/interval-coverage-ledger",
     "category": "Mathematics",
     "featured": false,
-    "order": 33,
+    "order": 36,
     "image": "assets/screenshots/interval-coverage-ledger.webp",
     "capture": {
       "name": "interval-coverage-ledger",
@@ -858,7 +927,7 @@
     "url": "https://github.com/netcodermike/polyomino-symmetry-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 34,
+    "order": 37,
     "image": "assets/screenshots/polyomino-symmetry-lab.webp",
     "capture": {
       "name": "polyomino-symmetry-lab",
@@ -880,7 +949,7 @@
     "url": "https://github.com/netcodermike/lever-equilibrium-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 35,
+    "order": 38,
     "image": "assets/screenshots/lever-equilibrium-lab.webp",
     "capture": {
       "name": "lever-equilibrium-lab",
@@ -902,7 +971,7 @@
     "url": "https://github.com/netcodermike/lattice-route-counter",
     "category": "Mathematics",
     "featured": false,
-    "order": 36,
+    "order": 39,
     "image": "assets/screenshots/lattice-route-counter.webp",
     "capture": {
       "name": "lattice-route-counter",
@@ -924,7 +993,7 @@
     "url": "https://github.com/netcodermike/tidal-phase-clock",
     "category": "Mathematics",
     "featured": false,
-    "order": 37,
+    "order": 40,
     "image": "assets/screenshots/tidal-phase-clock.webp",
     "capture": {
       "name": "tidal-phase-clock",
@@ -946,7 +1015,7 @@
     "url": "https://github.com/netcodermike/binomial-tail-table",
     "category": "Mathematics",
     "featured": false,
-    "order": 38,
+    "order": 41,
     "image": "assets/screenshots/binomial-tail-table.webp",
     "capture": {
       "name": "binomial-tail-table",
@@ -968,7 +1037,7 @@
     "url": "https://github.com/netcodermike/polygon-rotation-matcher",
     "category": "Mathematics",
     "featured": false,
-    "order": 39,
+    "order": 42,
     "image": "assets/screenshots/polygon-rotation-matcher.webp",
     "capture": {
       "name": "polygon-rotation-matcher",
@@ -990,7 +1059,7 @@
     "url": "https://github.com/netcodermike/tangram-area-auditor",
     "category": "Mathematics",
     "featured": false,
-    "order": 40,
+    "order": 43,
     "image": "assets/screenshots/tangram-area-auditor.webp",
     "capture": {
       "name": "tangram-area-auditor",
@@ -1012,7 +1081,7 @@
     "url": "https://github.com/netcodermike/permutation-cycle-reader",
     "category": "Mathematics",
     "featured": false,
-    "order": 41,
+    "order": 44,
     "image": "assets/screenshots/permutation-cycle-reader.webp",
     "capture": {
       "name": "permutation-cycle-reader",
@@ -1034,7 +1103,7 @@
     "url": "https://github.com/netcodermike/resistor-network-solver",
     "category": "Mathematics",
     "featured": false,
-    "order": 42,
+    "order": 45,
     "image": "assets/screenshots/resistor-network-solver.webp",
     "capture": {
       "name": "resistor-network-solver",
@@ -1056,7 +1125,7 @@
     "url": "https://github.com/netcodermike/triangle-center-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 43,
+    "order": 46,
     "image": "assets/screenshots/triangle-center-playground.webp",
     "capture": {
       "name": "triangle-center-playground",
@@ -1079,7 +1148,7 @@
     "url": "https://github.com/netcodermike/pendulum-period-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 44,
+    "order": 47,
     "image": "assets/screenshots/pendulum-period-playground.webp",
     "capture": {
       "name": "pendulum-period-playground",
@@ -1102,7 +1171,7 @@
     "url": "https://github.com/netcodermike/projection-latitude-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 45,
+    "order": 48,
     "image": "assets/screenshots/projection-latitude-lab.webp",
     "capture": {
       "name": "projection-latitude-lab",
@@ -1125,7 +1194,7 @@
     "url": "https://github.com/netcodermike/flow-network-cut-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 46,
+    "order": 49,
     "image": "assets/screenshots/flow-network-cut-lab.webp",
     "capture": {
       "name": "flow-network-cut-lab",
@@ -1148,7 +1217,7 @@
     "url": "https://github.com/netcodermike/vector-component-splitter",
     "category": "Mathematics",
     "featured": false,
-    "order": 47,
+    "order": 50,
     "image": "assets/screenshots/vector-component-splitter.webp",
     "capture": {
       "name": "vector-component-splitter",
@@ -1170,7 +1239,7 @@
     "url": "https://github.com/netcodermike/pulley-rope-travel",
     "category": "Mathematics",
     "featured": false,
-    "order": 48,
+    "order": 51,
     "image": "assets/screenshots/pulley-rope-travel.webp",
     "capture": {
       "name": "pulley-rope-travel",
@@ -1192,7 +1261,7 @@
     "url": "https://github.com/netcodermike/sampling-alias-studio",
     "category": "Mathematics",
     "featured": false,
-    "order": 49,
+    "order": 52,
     "image": "assets/screenshots/sampling-alias-studio.webp",
     "capture": {
       "name": "sampling-alias-studio",
@@ -1215,7 +1284,7 @@
     "url": "https://github.com/netcodermike/paired-effect-bootstrap",
     "category": "Mathematics",
     "featured": false,
-    "order": 50,
+    "order": 53,
     "image": "assets/screenshots/paired-effect-bootstrap.webp",
     "capture": {
       "name": "paired-effect-bootstrap",
@@ -1225,75 +1294,6 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/paired-effect-bootstrap/actions/workflows/verify.yml"
-  },
-  {
-    "name": "wave-packet-dispersion-lab",
-    "title": "Wave Packet Dispersion Lab",
-    "description": "Compare group velocity and phase velocity as a simple wave packet travels.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web",
-    "url": "https://github.com/netcodermike/wave-packet-dispersion-lab",
-    "category": "Mathematics",
-    "featured": false,
-    "order": 51,
-    "image": "assets/screenshots/wave-packet-dispersion-lab.webp",
-    "capture": {
-      "name": "wave-packet-dispersion-lab",
-      "kind": "runtime",
-      "caption": "Browser capture of the running application.",
-      "capture_date": "2026-11-22T02:53:40.650764+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/wave-packet-dispersion-lab/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/wave-packet-dispersion-lab/"
-  },
-  {
-    "name": "function-surface-grapher",
-    "title": "Function and Surface Grapher",
-    "description": "Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web",
-    "url": "https://github.com/netcodermike/function-surface-grapher",
-    "category": "Mathematics",
-    "featured": false,
-    "order": 52,
-    "image": "assets/screenshots/function-surface-grapher.webp",
-    "capture": {
-      "name": "function-surface-grapher",
-      "kind": "runtime",
-      "caption": "Browser capture of the running application.",
-      "capture_date": "2026-11-23T02:43:00.779379+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/function-surface-grapher/"
-  },
-  {
-    "name": "polynomial-rational-explorer",
-    "title": "Polynomial and Rational Explorer",
-    "description": "Graph and solve polynomial and rational equations and inequalities with sign intervals, holes, and poles.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web",
-    "url": "https://github.com/netcodermike/polynomial-rational-explorer",
-    "category": "Mathematics",
-    "featured": false,
-    "order": 53,
-    "image": "assets/screenshots/polynomial-rational-explorer.webp",
-    "capture": {
-      "name": "polynomial-rational-explorer",
-      "kind": "runtime",
-      "caption": "Browser capture of the running application.",
-      "capture_date": "2026-11-23T02:43:01.004549+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/polynomial-rational-explorer/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/polynomial-rational-explorer/"
   },
   {
     "name": "pedestrian-crossing-phase-check",

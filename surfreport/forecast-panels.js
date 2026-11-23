@@ -1,9 +1,9 @@
 import { tideAt } from './src/tides.js';
 
-export const tideColor = '#78c7ff';
-export const windColor = '#f2c486';
+export const tideColor = '#46b4ba';
+export const windColor = '#e7e9ee';
 export const temperatureColor = '#62e6bd';
-export const rainColor = '#a3adff';
+export const rainColor = '#6290ff';
 
 export function seriesLegend(series, enabled, onChange, title) {
   const legend = document.createElement('div');
