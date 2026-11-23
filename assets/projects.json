@@ -4507,35 +4507,27 @@
     "ci": "https://github.com/netcodermike/palette-transparency-flatten/actions/workflows/verify.yml"
   },
   {
-    "name": "spectrogram-waterfall",
-    "title": "Spectrogram Waterfall",
-    "description": "Inspect microphone or local audio as a scrolling frequency heatmap with adjustable range.",
+    "name": "guitar-chord-desk",
+    "title": "Guitar Chord Desk",
+    "description": "Explore major, minor, and dominant seventh guitar chords with open and movable voicings, note labels, synthesized strums, and text export.",
     "languages": [
       "JavaScript"
     ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/spectrogram-waterfall",
+    "platform": "Browser edition · Electron desktop, Windows, macOS, Linux",
+    "url": "https://github.com/netcodermike/guitar-chord-desk",
     "category": "Music & audio",
     "featured": false,
     "order": 193,
-    "image": "assets/screenshots/spectrogram-waterfall.webp",
+    "image": "assets/screenshots/guitar-chord-desk.webp",
     "capture": {
-      "name": "spectrogram-waterfall",
-      "capture_date": "2026-11-06T12:09:04.511804+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "d39769904a4c09e7938f2329b80557d5035f0cc0",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
+      "name": "guitar-chord-desk",
       "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Input stopped"
+      "caption": "Actual Electron app showing open C major chord diagram, note names, and voicing controls.",
+      "capture_date": "2026-11-12T01:28:16.006395+00:00",
+      "demo_data": true
     },
-    "ci": "https://github.com/netcodermike/spectrogram-waterfall/actions",
-    "applicationUrl": "/apps/spectrogram-waterfall/"
+    "ci": "https://github.com/netcodermike/guitar-chord-desk/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/guitar-chord-desk/"
   },
   {
     "name": "surfingcoder-guitar-tuner",
@@ -4611,27 +4603,35 @@
     "applicationUrl": "/apps/electric-guitar-designer/"
   },
   {
-    "name": "guitar-chord-desk",
-    "title": "Guitar Chord Desk",
-    "description": "Explore major, minor, and dominant seventh guitar chords with open and movable voicings, note labels, synthesized strums, and text export.",
+    "name": "spectrogram-waterfall",
+    "title": "Spectrogram Waterfall",
+    "description": "Inspect microphone or local audio as a scrolling frequency heatmap with adjustable range.",
     "languages": [
       "JavaScript"
     ],
-    "platform": "Browser edition · Electron desktop, Windows, macOS, Linux",
-    "url": "https://github.com/netcodermike/guitar-chord-desk",
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/spectrogram-waterfall",
     "category": "Music & audio",
     "featured": false,
     "order": 197,
-    "image": "assets/screenshots/guitar-chord-desk.webp",
+    "image": "assets/screenshots/spectrogram-waterfall.webp",
     "capture": {
-      "name": "guitar-chord-desk",
+      "name": "spectrogram-waterfall",
+      "capture_date": "2026-11-06T12:09:04.511804+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "d39769904a4c09e7938f2329b80557d5035f0cc0",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
       "kind": "runtime",
-      "caption": "Actual Electron app showing open C major chord diagram, note names, and voicing controls.",
-      "capture_date": "2026-11-12T01:28:16.006395+00:00",
-      "demo_data": true
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Input stopped"
     },
-    "ci": "https://github.com/netcodermike/guitar-chord-desk/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/guitar-chord-desk/"
+    "ci": "https://github.com/netcodermike/spectrogram-waterfall/actions",
+    "applicationUrl": "/apps/spectrogram-waterfall/"
   },
   {
     "name": "pocket-drum-foundry",

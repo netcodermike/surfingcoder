@@ -11,7 +11,7 @@ assert project_names.isdisjoint(gallery_exclusions), 'The Surf Report belongs in
 category_order = ['Mathematics', 'AI & machine learning', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
 assert list(dict.fromkeys(p['category'] for p in projects)) == category_order, 'Curated category priorities changed'
 assert [category_order.index(p['category']) for p in projects] == sorted(category_order.index(p['category']) for p in projects), 'Categories must stay grouped'
-leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Mathematics': 'function-surface-grapher', 'Work & productivity': 'coinbase-ladder', 'Creative tools': 'fractal-render-lab', 'Music & audio': 'spectrogram-waterfall'}
+leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Mathematics': 'function-surface-grapher', 'Work & productivity': 'coinbase-ladder', 'Creative tools': 'fractal-render-lab', 'Music & audio': 'guitar-chord-desk'}
 for category, name in leaders.items():
     assert next(p['name'] for p in projects if p['category']==category) == name, category+': visual lead changed'
 page = (ROOT/'index.html').read_text(encoding='utf-8')
