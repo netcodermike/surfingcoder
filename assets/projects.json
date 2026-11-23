@@ -374,6 +374,29 @@
     "downloadUrl": "https://github.com/netcodermike/SvdStudio/releases/download/v1.0.2/SvdStudio-win-x64.exe"
   },
   {
+    "name": "function-surface-grapher",
+    "title": "Function and Surface Grapher",
+    "description": "Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/function-surface-grapher",
+    "category": "Mathematics",
+    "featured": true,
+    "order": 14,
+    "image": "assets/screenshots/function-surface-grapher.webp",
+    "capture": {
+      "name": "function-surface-grapher",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-23T02:43:00.779379+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/function-surface-grapher/"
+  },
+  {
     "name": "wave-pool-lab",
     "title": "Wave Pool Lab",
     "description": "Send a wave set through a virtual pool, shape the beach, and compare two designs using live gauge plots.",
@@ -383,8 +406,8 @@
     "platform": "Browser",
     "url": "https://github.com/netcodermike/wave-pool-lab",
     "category": "Mathematics",
-    "featured": true,
-    "order": 14,
+    "featured": false,
+    "order": 15,
     "image": "assets/screenshots/wave-pool-lab.webp",
     "capture": {
       "name": "wave-pool-lab",
@@ -403,7 +426,8 @@
     "ci": "https://github.com/netcodermike/wave-pool-lab/actions",
     "applicationUrl": "/apps/wave-pool-lab/",
     "gameMenuLabel": "Wave Pool Lab",
-    "gamesOrder": 1
+    "gamesOrder": 1,
+    "gamesFeatured": true
   },
   {
     "name": "pde-wave-and-heat-explorer",
@@ -416,7 +440,7 @@
     "url": "https://github.com/netcodermike/pde-wave-and-heat-explorer",
     "category": "Mathematics",
     "featured": false,
-    "order": 15,
+    "order": 16,
     "image": "assets/screenshots/pde-wave-and-heat-explorer.webp",
     "capture": {
       "name": "pde-wave-and-heat-explorer",
@@ -439,7 +463,7 @@
     "url": "https://github.com/netcodermike/fourier-sketchpad",
     "category": "Mathematics",
     "featured": false,
-    "order": 16,
+    "order": 17,
     "image": "assets/screenshots/fourier-sketchpad.webp",
     "capture": {
       "name": "fourier-sketchpad",
@@ -462,7 +486,7 @@
     "url": "https://github.com/netcodermike/voronoi-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 17,
+    "order": 18,
     "image": "assets/screenshots/voronoi-playground.webp",
     "capture": {
       "name": "voronoi-playground",
@@ -485,7 +509,7 @@
     "url": "https://github.com/netcodermike/wave-packet-dispersion-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 18,
+    "order": 19,
     "image": "assets/screenshots/wave-packet-dispersion-lab.webp",
     "capture": {
       "name": "wave-packet-dispersion-lab",
@@ -496,29 +520,6 @@
     },
     "ci": "https://github.com/netcodermike/wave-packet-dispersion-lab/actions/workflows/verify.yml",
     "applicationUrl": "/apps/wave-packet-dispersion-lab/"
-  },
-  {
-    "name": "function-surface-grapher",
-    "title": "Function and Surface Grapher",
-    "description": "Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web",
-    "url": "https://github.com/netcodermike/function-surface-grapher",
-    "category": "Mathematics",
-    "featured": false,
-    "order": 19,
-    "image": "assets/screenshots/function-surface-grapher.webp",
-    "capture": {
-      "name": "function-surface-grapher",
-      "kind": "runtime",
-      "caption": "Browser capture of the running application.",
-      "capture_date": "2026-11-23T02:43:00.779379+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/function-surface-grapher/"
   },
   {
     "name": "polynomial-rational-explorer",

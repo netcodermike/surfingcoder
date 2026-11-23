@@ -12,6 +12,7 @@
 | `platform` | Platforms included in keyword searches |
 | `category` | One of the ten category filters |
 | `featured` | Whether to use the larger featured card treatment |
+| `gamesFeatured` | Optional featured treatment in the Games & learning filter for a project linked through `gameMenuLabel` |
 | `order` | Historical curation metadata; array order controls display |
 | `image` | Local WebP screenshot path |
 | `capture` | Capture metadata including `kind`, `caption`, date, and demo-data flag |
