@@ -12,7 +12,7 @@
 | `platform` | Platforms included in keyword searches |
 | `category` | One of the ten category filters |
 | `featured` | Whether to use the larger featured card treatment |
-| `gamesFeatured` | Optional featured treatment in the Games & learning filter for a project linked through `gameMenuLabel` |
+| `gamesListed` | Set to `false` to keep a project in its primary gallery category while retaining its Games menu link |
 | `order` | Historical curation metadata; array order controls display |
 | `image` | Local WebP screenshot path |
 | `capture` | Capture metadata including `kind`, `caption`, date, and demo-data flag |
@@ -21,7 +21,7 @@
 
 Keep projects grouped in this curated order: AI & machine learning, Mathematics, Data & analysis, Work & productivity, Creative tools, Music & audio, Microservices, Everyday apps, Games & learning, Systems & Linux. Within each category, lead with visually compelling, colorful runtime screenshots before text-heavy and terminal captures. Tiny Neural Network Playground and Decision Tree Workbench open the AI group; SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories. Category filter buttons follow the same order. New categories/languages require corresponding controls in `index.html` as well as CSS color rules if desired.
 
-Search matches title, description, name, category, language, and platform. Filters combine, and sorting changes only the display order. The URL stores search/filter/sort state for sharing. Grid/list preference is stored locally; storage failures are tolerated. The initial HTML includes every card for progressive enhancement.
+The homepage opens in Mathematics by default. A category in the URL overrides that default. Search matches title, description, name, category, language, and platform. Filters combine, and sorting changes only the display order. The URL stores search/filter/sort state for sharing. The browser remembers the grid or list preference when storage is available. The initial HTML includes every card for progressive enhancement.
 
 Screenshots open in a native dialog with keyboard focus management and Escape support. Buttons and controls have accessible names, result counts announce changes, images include descriptive alternatives, and reduced-motion preferences are respected.
 

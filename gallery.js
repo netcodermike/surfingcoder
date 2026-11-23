@@ -1,27 +1,39 @@
-(()=>{'use strict';const $=id=>document.getElementById(id),grid=$('project-grid'),cards=[...grid.querySelectorAll('.project-card')],projects=JSON.parse($('project-data').textContent),lookup=new Map(projects.map(p=>[p.name,p]));let category='all',view='grid';
-const params=new URLSearchParams(location.search);$('search').value=params.get('q')||'';if([...$('language').options].some(o=>o.value===params.get('language')))$('language').value=params.get('language');if([...$('sort').options].some(o=>o.value===params.get('sort')))$('sort').value=params.get('sort');if([...document.querySelectorAll('.filter-chip')].some(b=>b.dataset.category===params.get('category')))category=params.get('category');
+(()=>{'use strict';const $=id=>document.getElementById(id),grid=$('project-grid'),cards=[...grid.querySelectorAll('.project-card')],projects=JSON.parse($('project-data').textContent),lookup=new Map(projects.map(p=>[p.name,p]));
+const defaultCategory = 'Mathematics';
+let category=defaultCategory,view='grid';
+const params=new URLSearchParams(location.search);
+const requestedCategory = params.get('category');
+$('search').value=params.get('q')||'';if([...$('language').options].some(o=>o.value===params.get('language')))$('language').value=params.get('language');if([...$('sort').options].some(o=>o.value===params.get('sort')))$('sort').value=params.get('sort');if([...document.querySelectorAll('.filter-chip')].some(b=>b.dataset.category===requestedCategory))category=requestedCategory;
 try{view=params.get('view')||localStorage.getItem('surfingcoder-view')||'grid';}catch{}if(!['grid','list'].includes(view))view='grid';
-function curatedOrder(card) {
+const gamesCategory = 'Games & learning';
+const orderedCategories = [...new Set(projects.map(project => project.category))];
+const categoryPositions = new Map(orderedCategories.map((name, position) => [name, position]));
+
+function curatedOrder(card, project) {
   const order = Number(card.dataset.order);
-  if (category !== 'Games & learning') return order;
-  return lookup.get(card.dataset.name).gamesOrder ?? (projects.length + order);
+  if (category !== gamesCategory) return order;
+  return project.gamesOrder ?? (projects.length + order);
 }
-const gamesFeatureHeadings = grid.querySelectorAll('[data-games-feature-heading]');
-function updateGamesFeatures() {
-  const featured = category === 'Games & learning';
-  for (const heading of gamesFeatureHeadings) {
-    const card = heading.closest('.project-card');
-    if (card.classList.contains('featured') === featured) continue;
-    card.classList.toggle('featured', featured);
-    heading.classList.toggle('featured-card-heading', featured);
-    heading.querySelector('.featured-label').hidden = !featured;
-    const container = featured ? card : card.querySelector('.card-body');
-    container.prepend(heading);
+
+function curatedPriority(project) {
+  if (project.featured) return 0;
+  return project.applicationUrl ? 1 : 2;
+}
+
+function compareCurated(a, b) {
+  const left = lookup.get(a.dataset.name);
+  const right = lookup.get(b.dataset.name);
+  if (category === 'all' && left.category !== right.category) {
+    return categoryPositions.get(left.category) - categoryPositions.get(right.category);
   }
+  return curatedPriority(left) - curatedPriority(right) || curatedOrder(a, left) - curatedOrder(b, right);
+}
+function matchesCategory(project) {
+  return category === 'all' || project.category === category ||
+    (category === gamesCategory && project.gameMenuLabel && project.gamesListed !== false);
 }
 function update(){
-  updateGamesFeatures();
-  const q=$('search').value.trim().toLocaleLowerCase(),language=$('language').value;let count=0;cards.forEach(card=>{const p=lookup.get(card.dataset.name),matches=(!q||`${p.title} ${p.description} ${p.name} ${p.category} ${p.languages.join(' ')} ${p.platform}`.toLocaleLowerCase().includes(q))&&(category==='all'||p.category===category||(category==='Games & learning'&&p.gameMenuLabel))&&(language==='all'||p.languages.includes(language));card.hidden=!matches;if(matches)count++;});const sort=$('sort').value;[...cards].sort((a,b)=>sort==='name'?a.dataset.title.localeCompare(b.dataset.title):sort==='language'?a.dataset.languages.localeCompare(b.dataset.languages)||a.dataset.title.localeCompare(b.dataset.title):curatedOrder(a)-curatedOrder(b)).forEach(card=>grid.append(card));$('result-count').innerHTML=`<strong>${count}</strong> ${count===1?'repository':'repositories'}${q||category!=='all'||language!=='all'?' found':' to explore'}`;$('empty-state').hidden=count!==0;$('clear-filters').hidden=!q&&category==='all'&&language==='all';document.querySelectorAll('.filter-chip').forEach(b=>{const active=b.dataset.category===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});grid.classList.toggle('list',view==='list');$('grid-view').setAttribute('aria-pressed',String(view==='grid'));$('list-view').setAttribute('aria-pressed',String(view==='list'));const next=new URLSearchParams();if(q)next.set('q',$('search').value.trim());if(language!=='all')next.set('language',language);if(category!=='all')next.set('category',category);if(sort!=='featured')next.set('sort',sort);if(view!=='grid')next.set('view',view);history.replaceState(null,'',location.pathname+(next.size?'?'+next:'')+location.hash);}
+  const q=$('search').value.trim().toLocaleLowerCase(),language=$('language').value;let count=0;cards.forEach(card=>{const p=lookup.get(card.dataset.name),matches=(!q||`${p.title} ${p.description} ${p.name} ${p.category} ${p.languages.join(' ')} ${p.platform}`.toLocaleLowerCase().includes(q))&&matchesCategory(p)&&(language==='all'||p.languages.includes(language));card.hidden=!matches;if(matches)count++;});const sort=$('sort').value;[...cards].sort((a,b)=>sort==='name'?a.dataset.title.localeCompare(b.dataset.title):sort==='language'?a.dataset.languages.localeCompare(b.dataset.languages)||a.dataset.title.localeCompare(b.dataset.title):compareCurated(a,b)).forEach(card=>grid.append(card));$('result-count').innerHTML=`<strong>${count}</strong> ${count===1?'repository':'repositories'}${q||category!=='all'||language!=='all'?' found':' to explore'}`;$('empty-state').hidden=count!==0;$('clear-filters').hidden=!q&&category==='all'&&language==='all';document.querySelectorAll('.filter-chip').forEach(b=>{const active=b.dataset.category===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});grid.classList.toggle('list',view==='list');$('grid-view').setAttribute('aria-pressed',String(view==='grid'));$('list-view').setAttribute('aria-pressed',String(view==='list'));const next=new URLSearchParams();if(q)next.set('q',$('search').value.trim());if(language!=='all')next.set('language',language);if(category!==defaultCategory||requestedCategory===defaultCategory)next.set('category',category);if(sort!=='featured')next.set('sort',sort);if(view!=='grid')next.set('view',view);history.replaceState(null,'',location.pathname+(next.size?'?'+next:'')+location.hash);}
 function reset(){category='all';$('search').value='';$('language').value='all';update();}$('search').addEventListener('input',update);$('language').addEventListener('change',update);$('sort').addEventListener('change',update);document.querySelectorAll('.filter-chip').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;update();}));$('clear-filters').onclick=reset;$('reset-empty').onclick=reset;function setView(v){view=v;try{localStorage.setItem('surfingcoder-view',v);}catch{}update();}$('grid-view').onclick=()=>setView('grid');$('list-view').onclick=()=>setView('list');document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)&&!$('project-dialog').open){e.preventDefault();$('search').focus();}});
 const dialog=$('project-dialog');let opener;document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=lookup.get(button.dataset.project);opener=button;$('dialog-title').textContent=p.title;$('dialog-category').textContent=p.category+' · '+p.languages.join(' / ');$('dialog-image').src=p.image;$('dialog-image').alt=p.title+' — '+p.capture.caption;$('dialog-description').textContent=p.description;$('dialog-caption').textContent=(p.capture.kind==='source-preview'?'Source preview — ':p.capture.kind==='terminal'?'Terminal capture — ':'Runtime capture — ')+(p.capture.caption||'Actual interface with demo data.');const play=$('dialog-play');play.hidden=!p.applicationUrl;if(p.applicationUrl)play.href=p.applicationUrl;else play.removeAttribute('href');
 const download = $('dialog-download');

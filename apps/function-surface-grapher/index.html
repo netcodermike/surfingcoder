@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.">
   <title>Function and Surface Grapher</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.mjs"></script>
+  <link rel="stylesheet" href="./style.css?v=20261122-plot-review">
+  <script type="module" src="./app.mjs?v=20261122-plot-review"></script>
 <link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
 <link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
@@ -98,11 +98,14 @@
   </div>
   <div class="workspace">
     <section class="panel stage" aria-label="Project workspace">
-      <canvas id="plot" width="810" height="475" tabindex="0" role="img" aria-label="Mathematical graph">Mathematical graph</canvas><p id="reading" role="status"></p>
+      <canvas id="plot" width="810" height="475" tabindex="0" role="img" aria-label="Mathematical graph" aria-describedby="plot-help">Mathematical graph</canvas>
+      <p id="reading" role="status"></p>
+      <p id="plot-details"></p>
+      <p id="plot-help"></p>
     </section>
     <section class="panel controls" aria-label="Controls">
       <form id="controls">
-<label>Example <select id="example"><optgroup label="Surfaces"><option value="ripple">Radial ripple</option>
+<label>Example <select id="example"><option value="">Custom expression</option><optgroup label="Surfaces"><option value="ripple">Radial ripple</option>
 <option value="saddle">Saddle</option><option value="hills">Periodic hills</option></optgroup>
 <optgroup label="Curves"><option value="sine">Harmonic curve</option><option value="cubic">Cubic</option>
 <option value="reciprocal">Reciprocal</option></optgroup></select></label>
@@ -121,7 +124,7 @@
 <button id="zoom-out" type="button">Zoom out</button></div>
 <div id="rotate-controls" class="actions"><button id="turn-left" type="button">Rotate left</button>
 <button id="turn-right" type="button">Rotate right</button></div>
-<p>Drag to pan the 2D graph or rotate the 3D surface. Write products with <code>*</code>, such as <code>2*x</code>.</p>
+<p>Write products with <code>*</code>, such as <code>2*x</code>.</p>
 <p class="error" id="error" role="alert"></p>
 </form>
     </section>

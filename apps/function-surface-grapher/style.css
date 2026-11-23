@@ -11,7 +11,7 @@ p { line-height: 1.55; }
 .panel { padding: clamp(14px, 2.5vw, 24px); border-radius: 16px; border: 1px solid #594866; background: linear-gradient(145deg, #302639, #241e2e 65%); box-shadow: 0 12px 26px #0c071533; }
 .controls, .controls form { display: grid; gap: 12px; }
 .stage { min-width: 0; }
-canvas { display: block; width: 100%; height: auto; border: 1px solid #5a456c; border-radius: 12px; background: #1d1729; }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 810 / 475; min-height: 230px; border: 1px solid #5a456c; border-radius: 12px; background: #1d1729; }
 canvas[tabindex] { touch-action: none; cursor: grab; }
 label { display: block; color: #decce8; font-size: .87rem; font-weight: 650; }
 output { float: right; color: #ffcfbc; font-variant-numeric: tabular-nums; }
@@ -24,6 +24,7 @@ button:hover:not(:disabled) { border-color: #e3b8ff; }
 button:disabled { opacity: .56; cursor: default; }
 :focus-visible { outline: 2px solid #e6b9ff; outline-offset: 3px; }
 #reading { margin: 13px 0 0; font-weight: 700; color: #ffe2bc; }
+#plot-details, #plot-help { margin: 5px 0 0; color: var(--sc-muted, #cec0d8); font-size: .86rem; overflow-wrap: anywhere; }
 .pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
 fieldset { margin: 0; min-inline-size: 0; padding: 8px; border: 1px solid #665375; border-radius: 8px; }
 legend { color: #e9c4ff; font-size: .84rem; font-weight: 700; }
@@ -54,7 +55,7 @@ label.check input { width: auto; margin: 0; accent-color: #d8a6f7; }
 .term-list button[aria-pressed="true"] { background: #5e4380; }
 @media (max-width: 730px) { main { width: calc(100% - 24px); } .workspace { grid-template-columns: 1fr; } }
 [hidden] { display: none !important; }
-.error { color: #ffb6c9; min-height: 1.5em; margin: 0; }
+.controls .error { color: #ffb6c9; min-height: 1.5em; margin: 0; }
 .controls button[type="submit"] { background: #cf9af5; color: #251731; border-color: #e0bafc; }
 .chart-key { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: .84rem; color: #e1cde8; }
 .chart-key span { display: inline-flex; gap: 6px; align-items: center; }

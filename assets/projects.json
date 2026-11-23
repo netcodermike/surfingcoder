@@ -426,8 +426,7 @@
     "ci": "https://github.com/netcodermike/wave-pool-lab/actions",
     "applicationUrl": "/apps/wave-pool-lab/",
     "gameMenuLabel": "Wave Pool Lab",
-    "gamesOrder": 1,
-    "gamesFeatured": true
+    "gamesListed": false
   },
   {
     "name": "pde-wave-and-heat-explorer",
@@ -6792,7 +6791,7 @@
     "platform": "Web browser, keyboard and touch",
     "url": "https://github.com/netcodermike/surfingcoder-slots",
     "category": "Games & learning",
-    "featured": false,
+    "featured": true,
     "order": 286,
     "image": "assets/screenshots/surfingcoder-slots.webp",
     "capture": {
@@ -6804,7 +6803,8 @@
     },
     "ci": "https://github.com/netcodermike/surfingcoder-slots/actions/workflows/verify.yml",
     "applicationUrl": "/slots/",
-    "gameMenuLabel": "Slots"
+    "gameMenuLabel": "Slots",
+    "gamesOrder": 1
   },
   {
     "name": "procedural-planet-explorer",

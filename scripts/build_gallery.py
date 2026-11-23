@@ -13,12 +13,7 @@ def card(p,i):
  tags=''.join('<span class="language" data-language="'+esc(l)+'"><i aria-hidden="true"></i>'+esc(l)+'</span>'for l in p['languages'])
  capture=p['capture'];label='App screenshot'if capture.get('kind')=='runtime'else'Terminal capture'if capture.get('kind')=='terminal'else'Source preview'if capture.get('kind')=='source-preview'else'Project preview'
  badge = '<span class="featured-label">Featured</span>' if p['featured'] else ''
- games_feature = p.get('gamesFeatured') and not p['featured']
- if games_feature:
-    badge = '<span class="featured-label" hidden>Featured</span>'
  heading=f'<div class="card-meta"><span>{esc(p["category"])}</span>{badge}</div><h2><a href="{esc(p["url"])}" target="_blank" rel="noopener noreferrer">{esc(p["title"])}<span aria-hidden="true">↗</span></a></h2>'
- if games_feature:
-    heading = f'<div data-games-feature-heading>{heading}</div>'
  play=f'<a class="play-now" href="{esc(p["applicationUrl"])}">Play Now!</a>' if p.get('applicationUrl') else ''
  download=f'<a class="download-now" href="{esc(p["downloadUrl"])}">Download Now!</a>' if p.get('downloadUrl') else ''
  return f'''<article class="project-card {'featured'if p['featured']else''}" {attrs}>
