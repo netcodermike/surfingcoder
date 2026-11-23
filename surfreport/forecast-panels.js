@@ -89,7 +89,7 @@ function drawSeries(graph, { values, color, gap, reading, filled = false }, { sv
 }
 
 function seriesChart(primary, timeline, { label, arrows, secondary }) {
-  const { svg, width, left, right, x, dayMarks, shadeDaylight, axisFont, compact } = timeline;
+  const { svg, width, left, right, x, start, dayMarks, shadeDaylight, axisFont, compact } = timeline;
   // Leave room above the plot and before the date labels for the wind arrows.
   const top = arrows ? 16 : 12;
   const bottom = 119;
@@ -130,16 +130,15 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
       fill: 'none', stroke: windColor, 'stroke-width': 2.2,
       'stroke-linecap': 'round', 'stroke-linejoin': 'round',
     });
-    const spacing = compact ? 32 : 44;
-    let lastX = -Infinity;
+    const interval = 2 * 3600;
+    const arrowScale = Math.max(.45, Math.min(1, (x(start + interval) - x(start)) / 15));
     for (const row of arrows) {
-      const xx = x(row.time);
-      if (row.speed <= 0 || !Number.isFinite(row.speed) || !Number.isFinite(row.wind_direction) || xx - lastX < spacing) continue;
+      if ((row.time - start) % interval !== 0 || !Number.isFinite(row.speed) || row.speed <= 0 ||
+          !Number.isFinite(row.wind_direction)) continue;
       marks.append(svg('path', {
         d: 'M0 0V-14 M-4.5 -9L0 -14L4.5 -9',
-        transform: `translate(${xx} ${secondaryScale.y(secondary.reading(row))}) rotate(${row.wind_direction + 180})`,
+        transform: `translate(${x(row.time)} ${secondaryScale.y(secondary.reading(row))}) rotate(${row.wind_direction + 180}) scale(${arrowScale})`,
       }));
-      lastX = xx;
     }
     graph.append(marks);
   }
@@ -178,7 +177,7 @@ export function tideWindPanel(root, rows, tide, timeline, metrics, enabled, onCh
   const visibleWind = enabled.has('wind') ? wind : null;
   const descriptions = ['Seven-day tide and wind forecast.'];
   if (visibleTide) descriptions.push('NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water on the left axis.');
-  if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis. Arrows point downwind.');
+  if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis. Arrows point downwind at two-hour intervals.');
   const chart = seriesChart(visibleTide, timeline, {
     secondary: visibleWind, arrows: visibleWind ? rows : null, label: descriptions.join(' '),
   });

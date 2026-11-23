@@ -1,4 +1,4 @@
-import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-stronger-wind-arrows';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-two-hour-wind-arrows';
 import { compass } from './src/core.js?v=20261117-rain-chance';
 
 const components = [
