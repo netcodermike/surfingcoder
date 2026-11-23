@@ -1,5 +1,6 @@
-import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-current-forecast-window';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-combined-sea-arrows';
 import { compass } from './src/core.js?v=20261117-rain-chance';
+import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261122-combined-sea-arrows';
 
 const components = [
  ['wave', 'Combined sea', 'var(--surf-combined-sea, #79bfff)', 'period', 'direction'],
@@ -8,10 +9,14 @@ const components = [
  ['tertiary', 'Tertiary swell', 'var(--surf-tertiary-swell, #e190b9)', 'tertiaryPeriod', 'tertiaryDirection'],
  ['windWave', 'Wind waves', 'var(--surf-wind-wave, #d9c4f5)', 'windWavePeriod', 'windWaveDirection', '6 4'],
 ];
-let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave','tide','wind','temperature','rain']);
+let mode = 'height';
+const enabled = new Set([
+ 'wave', 'swell', 'secondary', 'tertiary', 'windWave', 'tide', 'wind', 'temperature', 'rain',
+ 'wave-direction-arrows', 'wave-period-dots', 'wind-direction-arrows',
+]);
 let selectedTime;
 let graphWidth = 1000;
-let periodSeriesKey = 'wave';
+let markerSeriesKey = 'wave';
 const ns='http://www.w3.org/2000/svg';
 function svg(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!=null)e.textContent=text;return e;}
 const val=(v,suffix)=>Number.isFinite(v)?v.toFixed(1)+suffix:'—';
@@ -27,6 +32,40 @@ function directionArrow(degrees) {
  icon.append(svg('path', {
   d:'M0 5V-5 M-3.5 -1.5L0 -5L3.5 -1.5', transform:'rotate('+(degrees+180)+')',
   fill:'none', stroke:'currentColor', 'stroke-width':2.4, 'stroke-linecap':'round', 'stroke-linejoin':'round',
+ }));
+ return icon;
+}
+
+const cloud = 'M4 10h7.5a2.4 2.4 0 1 0-.25-4.8A3.6 3.6 0 0 0 4.5 6H4a2 2 0 1 0 0 4Z';
+const weatherIcons = {
+ temperature: {
+  cold:'M8 1.5v13M2.4 4.75l11.2 6.5m0-6.5-11.2 6.5M6.3 3.2 8 4.9l1.7-1.7M6.3 12.8 8 11.1l1.7 1.7',
+  mild:'M6.5 9.25V3.5a1.5 1.5 0 0 1 3 0v5.75a3 3 0 1 1-3 0ZM8 7.5v4.25',
+  hot:'M8 5a3 3 0 1 0 0 6 3 3 0 1 0 0-6ZM8 1.5v1.3m0 10.4v1.3M1.5 8h1.3m10.4 0h1.3M3.4 3.4l.9.9m7.4 7.4.9.9m0-9.2-.9.9m-7.4 7.4-.9.9',
+ },
+ rain: {
+  low:cloud,
+  medium:cloud + ' M8.7 12l-1 1.7',
+  high:cloud + ' M5.5 12l-1 1.7m4.2-1.7-1 1.7m4.2-1.7-1 1.7',
+ },
+};
+function weatherLevel(kind, value) {
+ if (kind === 'temperature') {
+  if (value <= 32) return 'cold';
+  return value >= 85 ? 'hot' : 'mild';
+ }
+ if (value < 20) return 'low';
+ return value < 60 ? 'medium' : 'high';
+}
+function weatherIcon(kind, value) {
+ const level = weatherLevel(kind, value);
+ const icon = svg('svg', {
+  width:14, height:14, viewBox:'0 0 16 16', 'data-weather-icon':kind, 'data-weather-level':level,
+  'aria-hidden':'true', focusable:'false', style:'margin-inline-end:5px; vertical-align:-0.18em',
+ });
+ icon.append(svg('path', {
+  d:weatherIcons[kind][level], fill:'none', stroke:'currentColor', 'stroke-width':1.5,
+  'stroke-linejoin':'round', 'stroke-linecap':'round',
  }));
  return icon;
 }
@@ -60,7 +99,8 @@ export function weekly(forecastRows,options){
  const speedScale = imperial ? .621371 : 1, speedUnit = imperial ? ' mph' : ' km/h';
  const controls=document.createElement('div');controls.className='week-controls';
  const label=document.createElement('label');label.htmlFor='week-mode';label.textContent='Graph';const select=document.createElement('select');select.id='week-mode';for(const [v,t]of [['height','Wave / swell height'],['period','Wave / swell period']]){const o=document.createElement('option');o.value=v;o.textContent=t;select.append(o);}select.value=mode;select.onchange=()=>{mode=select.value;weekly(forecastRows,options);};controls.append(label,select);toolbar.append(controls);
- const series=components.map(([key,name,color,period,direction,dash])=>({key,name,color,period,direction,dash,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}));
+ const series=components.map(([key,name,color,period,direction,dash])=>({key,name,color,period,direction,dash,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}))
+  .filter(item => item.key !== 'tertiary' || item.available);
  const toggleLayer = (key, visible) => {
   if (visible) enabled.add(key);
   else enabled.delete(key);
@@ -69,8 +109,17 @@ export function weekly(forecastRows,options){
  const legend = seriesLegend(series, enabled, toggleLayer, 'Wave forecast layers');
  root.append(legend);
  const shown = series.filter(s => s.available && enabled.has(s.key));
- const periodOptions = mode === 'height' ? shown.filter(s => rows.some(row => hasPeriod(row[s.period]))) : [];
- const periodSeries = periodOptions.find(s => s.key === periodSeriesKey) ?? periodOptions[0];
+ const interval = DIRECTION_INTERVAL_SECONDS;
+ const canDrawDirection = (row, value, key) => (row.time - firstForecastHour) % interval === 0 &&
+  Number.isFinite(value) && value > 0 && hasDirection(row[key]);
+ const markerOptions = shown.map(series => ({
+  ...series,
+  hasPeriods: mode === 'height' && rows.some(row => hasPeriod(row[series.period])),
+  hasDirections: rows.some((row, i) => canDrawDirection(row, series.values[i], series.direction)),
+ })).filter(series => series.hasPeriods || series.hasDirections);
+ const markerSeries = markerOptions.find(series => series.key === markerSeriesKey) ?? markerOptions[0];
+ const showDirections = enabled.has('wave-direction-arrows') && markerSeries?.hasDirections;
+ const periodSeries = enabled.has('wave-period-dots') && markerSeries?.hasPeriods ? markerSeries : undefined;
  const hasRightAxis = periodSeries || rows.some(row => Number.isFinite(row.speed) || Number.isFinite(row.rainChance));
  const plotRight = graphWidth - (hasRightAxis ? (compact ? 46 : 64) : (compact ? 8 : 20));
  const plotWidth = plotRight - plotLeft;
@@ -90,6 +139,14 @@ export function weekly(forecastRows,options){
   key.textContent = 'Lighter daylight · Darker night';
   legend.append(key);
  }
+ for (const [key, label, available] of [
+  ['wave-direction-arrows', 'Direction arrows', markerOptions.some(series => series.hasDirections)],
+  ['wave-period-dots', 'Period dots', markerOptions.some(series => series.hasPeriods)],
+ ]) {
+  if (available) appendMarkerCheckbox(legend, {
+   id:'week-show-' + key, label, checked:enabled.has(key), onChange:checked => toggleLayer(key, checked),
+  });
+ }
  function shadeDaylight(chart, top, bottom) {
   for (const {sunrise, sunset} of daylightByDay.values()) {
    const left = x(Math.max(start, sunrise));
@@ -99,11 +156,13 @@ export function weekly(forecastRows,options){
  }
  const description = 'Seven-day ' + mode + ' forecast in ' + unit.trim() + ', in location time.' +
   (periodSeries ? ' Dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
+  (showDirections ? ' Arrows show the direction of ' + markerSeries.name + ' wave travel.' : '') +
   (daylightByDay.size ? ' Lighter bands mark daylight and darker bands mark night.' : '') +
   ' Use the hourly slider and data table for exact values.';
  const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 272',role:'img','aria-label':description,class:'week-chart'});
  shadeDaylight(graph, 20, 260);
  const max = Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
+ const yValue = value => 260 - value / max * 220;
  const periods = periodSeries ? rows.map(row => row[periodSeries.period]).filter(hasPeriod) : [];
  const periodMax = 4 * Math.ceil(Math.max(20, ...periods)/4);
  const periodAxis = svg('g', {class:'week-period-axis','font-size':axisFont,'text-anchor':'end'});
@@ -143,13 +202,23 @@ export function weekly(forecastRows,options){
   let path = '', active = false;
   s.values.forEach((value, i) => {
    if (!Number.isFinite(value)) { active = false; return; }
-   const row = rows[i], xx = x(row.time), yy = 260-value/max*220;
+   const row = rows[i], xx = x(row.time), yy = yValue(value);
    path += (active ? 'L' : 'M') + xx.toFixed(2) + ',' + yy.toFixed(2) + ' ';
    active = true;
   });
   const trace = svg('path',{d:path,fill:'none',stroke:s.color,'stroke-width':s.key==='wave'?3:2,'stroke-linejoin':'round'});
   if (s.dash) trace.setAttribute('stroke-dasharray', s.dash);
   graph.append(trace);
+ }
+ if (showDirections) {
+  const arrows = createChartArrows(svg, {
+   className:'week-wave-arrows', color:markerSeries.color, spacing:x(start + interval) - x(start), bottom:270,
+  });
+  for (const [i, row] of rows.entries()) {
+   const value = markerSeries.values[i];
+   if (canDrawDirection(row, value, markerSeries.direction)) arrows.add(x(row.time), yValue(value), row[markerSeries.direction]);
+  }
+  graph.append(arrows.group);
  }
  if (periodSeries) {
   const markers = svg('g', {class:'week-period-dots',fill:periodSeries.color,'aria-hidden':'true'});
@@ -161,18 +230,21 @@ export function weekly(forecastRows,options){
    lastX = xx;
   }
   graph.append(markers);
+ }
+ if (markerSeries) {
   const picker = document.createElement('div');
   picker.className = 'week-period-options';
+  picker.dataset.mode = mode;
   const periodLabel = document.createElement('label');
   periodLabel.htmlFor = 'week-period-series';
-  periodLabel.textContent = 'Period dots';
-  periodLabel.style.color = periodSeries.color;
+  periodLabel.textContent = mode === 'height' ? 'Period & direction' : 'Direction arrows';
+  periodLabel.style.color = markerSeries.color;
   const periodSelect = document.createElement('select');
   periodSelect.id = periodLabel.htmlFor;
-  for (const item of periodOptions) periodSelect.append(new Option(item.name, item.key));
-  periodSelect.value = periodSeries.key;
+  for (const item of markerOptions) periodSelect.append(new Option(item.name, item.key));
+  periodSelect.value = markerSeries.key;
   periodSelect.onchange = () => {
-   periodSeriesKey = periodSelect.value;
+   markerSeriesKey = periodSelect.value;
    weekly(forecastRows,options);
    document.getElementById('week-period-series').focus({preventScroll:true});
   };
@@ -199,8 +271,14 @@ export function weekly(forecastRows,options){
  }
  let rainReading;
  if (weather) {
-  if (weather.temperatureReading) airConditions.push(row => ({ name:'Air temperature', color:temperatureColor, text:val(weather.temperatureReading(row), ' °F') }));
-  if (weather.rainReading) rainReading = row => ({ name:'Rain chance', color:rainColor, text:val(weather.rainReading(row), '%') });
+  if (weather.temperatureReading) airConditions.push(row => {
+   const value = weather.temperatureReading(row);
+   return { name:'Air temperature', color:temperatureColor, icon:'temperature', iconValue:value, text:val(value, ' °F') };
+  });
+  if (weather.rainReading) rainReading = row => {
+   const value = weather.rainReading(row);
+   return { name:'Rain chance', color:rainColor, icon:'rain', iconValue:value, text:val(value, '%') };
+  };
   mountChart(weather.section, weather);
  }
  addDateAxis(charts.at(-1));
@@ -229,6 +307,7 @@ export function weekly(forecastRows,options){
     const label = document.createElement('span');
     label.className = 'week-reading-label';
     label.textContent = item.name + ':';
+    if (panel === tooltip && item.icon && Number.isFinite(item.iconValue)) label.prepend(weatherIcon(item.icon, item.iconValue));
     const value = document.createElement('span');
     value.textContent = item.text;
     if (item.direction !== undefined) {
@@ -335,6 +414,6 @@ export function weekly(forecastRows,options){
  }
  slider.oninput = () => inspect(Number(slider.value));
  inspect(selected);
- const note=document.createElement('p');note.className='small';note.textContent='Combined sea includes wind waves and swell; heights are not added arithmetically. Missing data creates gaps. Swell partitions are model components, not tracked named storms, and may change order over time. Secondary/tertiary availability depends on the provider model. Tap a chart or use the hourly slider.';root.append(note);
+ const note=document.createElement('p');note.className='small';note.textContent='Combined sea includes wind waves and swell; heights are not added arithmetically. Arrows show where the selected waves are traveling. Missing data creates gaps. Swell partitions are model components, not tracked named storms, and may change order over time. Secondary/tertiary availability depends on the provider model. Tap a chart or use the hourly slider.';root.append(note);
  if (focusId) document.getElementById(focusId)?.focus({preventScroll:true});
 }

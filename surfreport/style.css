@@ -79,7 +79,8 @@
 .week-tooltip .week-daylight-times { margin-top: 5px; }
 .week-period-options { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: -3px 0 10px; }
 .week-period-options label { display: inline-flex; align-items: center; gap: 7px; margin: 0; font-size: .88rem; font-weight: 700; }
-.week-period-options label::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.week-period-options label::before { content: '● ↗'; }
+.week-period-options[data-mode="period"] label::before { content: '↗'; }
 .week-period-options select { width: auto; max-width: 100%; padding: 6px 8px; font-size: .86rem; }
 .week-readout { font-size: .93rem; line-height: 1.45; gap: 8px 14px; }
 .week-readout > strong { font-size: 1rem; color: var(--ink); }

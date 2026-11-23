@@ -1,4 +1,5 @@
 import { tideAt } from './src/tides.js';
+import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261122-combined-sea-arrows';
 
 export const tideColor = 'var(--surf-tide, #46b4ba)';
 export const windColor = 'var(--surf-wind, #e7e9ee)';
@@ -126,22 +127,15 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
   if (secondaryScale) markers.push(drawSeries(graph, secondary, timeline, secondaryScale.y, bottom));
 
   if (arrows) {
-    const marks = svg('g', {
-      'aria-hidden': 'true', class: 'week-wind-arrows',
-      fill: 'none', stroke: windColor, 'stroke-width': 2.2,
-      'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+    const interval = DIRECTION_INTERVAL_SECONDS;
+    const arrowsOnWind = createChartArrows(svg, {
+      className: 'week-wind-arrows', color: windColor, spacing: x(start + interval) - x(start),
     });
-    const interval = 2 * 3600;
-    const arrowScale = Math.max(.45, Math.min(1, (x(start + interval) - x(start)) / 15));
     for (const row of arrows) {
-      if ((row.time - firstForecastHour) % interval !== 0 || !Number.isFinite(row.speed) || row.speed <= 0 ||
-          !Number.isFinite(row.wind_direction)) continue;
-      marks.append(svg('path', {
-        d: 'M0 0V-14 M-4.5 -9L0 -14L4.5 -9',
-        transform: `translate(${x(row.time)} ${secondaryScale.y(secondary.reading(row))}) rotate(${row.wind_direction + 180}) scale(${arrowScale})`,
-      }));
+      if ((row.time - firstForecastHour) % interval !== 0 || !Number.isFinite(row.speed) || row.speed <= 0) continue;
+      arrowsOnWind.add(x(row.time), secondaryScale.y(secondary.reading(row)), row.wind_direction);
     }
-    graph.append(marks);
+    graph.append(arrowsOnWind.group);
   }
   return { graph, top, bottom, markers, dateAxis };
 }
@@ -173,14 +167,24 @@ export function tideWindPanel(root, rows, tide, timeline, metrics, enabled, onCh
         tide?.message ?? (tide?.samples ? 'NOAA tide predictions unavailable' : 'Loading NOAA tide predictions') },
     { key: 'wind', name: 'Wind speed', color: windColor, available: Boolean(wind) },
   ], enabled, onChange);
+  const arrowKey = 'wind-direction-arrows';
+  const hasWindDirection = wind && rows.some(row =>
+    (row.time - timeline.firstForecastHour) % DIRECTION_INTERVAL_SECONDS === 0 &&
+    Number.isFinite(row.speed) && row.speed > 0 && hasDirection(row.wind_direction));
+  if (hasWindDirection) appendMarkerCheckbox(section.firstElementChild, {
+    id: 'week-show-' + arrowKey, label: 'Direction arrows',
+    checked: enabled.has(arrowKey), onChange: checked => onChange(arrowKey, checked),
+  });
   if (!tidal && !wind) return null;
   const visibleTide = enabled.has('tide') ? tidal : null;
   const visibleWind = enabled.has('wind') ? wind : null;
   const descriptions = ['Seven-day tide and wind forecast.'];
   if (visibleTide) descriptions.push('NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water on the left axis.');
-  if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis. Arrows point downwind at two-hour intervals.');
+  const showWindArrows = visibleWind && hasWindDirection && enabled.has(arrowKey);
+  if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis.');
+  if (showWindArrows) descriptions.push('Arrows point downwind at two-hour intervals.');
   const chart = seriesChart(visibleTide, timeline, {
-    secondary: visibleWind, arrows: visibleWind ? rows : null, label: descriptions.join(' '),
+    secondary: visibleWind, arrows: showWindArrows ? rows : null, label: descriptions.join(' '),
   });
   return { section, ...chart, tideReading: visibleTide?.reading, windReading: visibleWind?.reading };
 }
