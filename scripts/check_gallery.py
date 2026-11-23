@@ -5,13 +5,17 @@ from html.parser import HTMLParser
 ROOT = Path(__file__).resolve().parents[1]
 projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))
 assert len(projects) == len({p['name'] for p in projects}), 'Duplicate repository names'
-category_order = ['AI & machine learning', 'Mathematics', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
+category_order = ['Mathematics', 'AI & machine learning', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
 assert list(dict.fromkeys(p['category'] for p in projects)) == category_order, 'Curated category priorities changed'
 assert [category_order.index(p['category']) for p in projects] == sorted(category_order.index(p['category']) for p in projects), 'Categories must stay grouped'
 leaders = {'AI & machine learning': 'tiny-neural-network-playground', 'Mathematics': 'SvdStudio', 'Work & productivity': 'coinbase-ladder', 'Creative tools': 'fractal-render-lab', 'Music & audio': 'spectrogram-waterfall'}
 for category, name in leaders.items():
     assert next(p['name'] for p in projects if p['category']==category) == name, category+': visual lead changed'
 page = (ROOT/'index.html').read_text(encoding='utf-8')
+category_tabs = [
+    html.unescape(category) for category in re.findall(r'<button class="filter-chip[^"]*" data-category="([^"]+)"', page)
+]
+assert category_tabs == ['all', *sorted(category_order, key=str.casefold)], 'Category tabs must be alphabetical'
 for pattern, label in [
     (r'class="collection-count"[^>]*>\s*<strong[^>]*>(\d+)</strong>', 'large header count'),
     (r'All projects\s*<span[^>]*>(\d+)</span>', 'all-projects filter count'),

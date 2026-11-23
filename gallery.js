@@ -1,5 +1,5 @@
 (()=>{'use strict';const $=id=>document.getElementById(id),grid=$('project-grid'),cards=[...grid.querySelectorAll('.project-card')],projects=JSON.parse($('project-data').textContent),lookup=new Map(projects.map(p=>[p.name,p]));
-const defaultCategory = 'Mathematics';
+const defaultCategory = 'all';
 let category=defaultCategory,view='grid';
 const params=new URLSearchParams(location.search);
 const requestedCategory = params.get('category');

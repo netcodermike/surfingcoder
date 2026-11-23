@@ -1,354 +1,5 @@
 [
   {
-    "name": "tiny-neural-network-playground",
-    "title": "Tiny Neural Network Playground",
-    "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
-    "languages": [
-      "TypeScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/tiny-neural-network-playground",
-    "category": "AI & machine learning",
-    "featured": true,
-    "order": 0,
-    "image": "assets/screenshots/tiny-neural-network-playground.webp",
-    "capture": {
-      "name": "tiny-neural-network-playground",
-      "capture_date": "2026-11-06T12:33:32.427902+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "f980a7c61ab3eb516db2ea340d6b06da0e551763",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner"
-    },
-    "ci": "https://github.com/netcodermike/tiny-neural-network-playground/actions",
-    "applicationUrl": "/apps/tiny-neural-network-playground/"
-  },
-  {
-    "name": "decision-tree-workbench",
-    "title": "Decision Tree Workbench",
-    "description": "Train a small CART classifier, inspect readable split rules, and query new feature values.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/decision-tree-workbench",
-    "category": "AI & machine learning",
-    "featured": true,
-    "order": 1,
-    "image": "assets/screenshots/decision-tree-workbench.webp",
-    "capture": {
-      "name": "decision-tree-workbench",
-      "capture_date": "2026-11-06T12:33:36.407288+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "43d2fddbdc3fdd764cbcd846a7b2cc23587a2760",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "CART with Gini impurity; chart axes 0–10."
-    },
-    "ci": "https://github.com/netcodermike/decision-tree-workbench/actions",
-    "applicationUrl": "/apps/decision-tree-workbench/"
-  },
-  {
-    "name": "embedding-neighbor-map",
-    "title": "Embedding Neighbor Map",
-    "description": "Explore document similarity using transparent TF-IDF vectors and a nearest-neighbor graph.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Browser",
-    "url": "https://github.com/netcodermike/embedding-neighbor-map",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 2,
-    "image": "assets/screenshots/embedding-neighbor-map.webp",
-    "capture": {
-      "name": "embedding-neighbor-map",
-      "capture_date": "2026-11-06T12:33:30.532475+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "8d447c6030faa43aa2546ae919f62bae1c44a440",
-      "validation_commands": [
-        "npm install --ignore-scripts",
-        "npm test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Lexical TF-IDF vectors, not a pretrained semantic model."
-    },
-    "ci": "https://github.com/netcodermike/embedding-neighbor-map/actions",
-    "applicationUrl": "/apps/embedding-neighbor-map/"
-  },
-  {
-    "name": "local-model-chat-desk",
-    "title": "Local Model Chat Desk",
-    "description": "Chat with installed Ollama models through a localhost-only server, with conversation export.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Local server",
-    "url": "https://github.com/netcodermike/local-model-chat-desk",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 3,
-    "image": "assets/screenshots/local-model-chat-desk.webp",
-    "capture": {
-      "name": "local-model-chat-desk",
-      "capture_date": "2026-11-06T12:33:35.133090+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "968f1b2adc30d9aa472e361342540b07f1f62097",
-      "validation_commands": [
-        "python server.py --self-test"
-      ],
-      "kind": "runtime",
-      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
-      "capture_method": "Playwright Chromium on disposable CI runner",
-      "visible_status": "Ollama unavailable. Start it locally and install a model."
-    },
-    "ci": "https://github.com/netcodermike/local-model-chat-desk/actions"
-  },
-  {
-    "name": "local-rag-notebook",
-    "title": "Local RAG Notebook",
-    "description": "Retrieve cited document chunks with BM25 and optionally answer using a local Ollama model.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/local-rag-notebook",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 4,
-    "image": "assets/screenshots/local-rag-notebook.webp",
-    "capture": {
-      "name": "local-rag-notebook",
-      "capture_date": "2026-11-06T12:33:18.078272+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "dc8741cdec1aa6adeadfcb67463e5cd2430ccabc",
-      "validation_commands": [
-        "python app.py --self-test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "python app.py examples \"How are ocean waves measured?\""
-    },
-    "ci": "https://github.com/netcodermike/local-rag-notebook/actions"
-  },
-  {
-    "name": "prompt-evaluation-bench",
-    "title": "Prompt Evaluation Bench",
-    "description": "Score model responses against reproducible contains, forbidden-text, and regular-expression checks.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/prompt-evaluation-bench",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 5,
-    "image": "assets/screenshots/prompt-evaluation-bench.webp",
-    "capture": {
-      "name": "prompt-evaluation-bench",
-      "capture_date": "2026-11-06T12:33:18.671696+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "e3585be742538eb38fac81df23bcb5f8b521e091",
-      "validation_commands": [
-        "python app.py --self-test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
-      "command": "python app.py examples/cases.jsonl"
-    },
-    "ci": "https://github.com/netcodermike/prompt-evaluation-bench/actions"
-  },
-  {
-    "name": "ai-dataset-quality-auditor",
-    "title": "AI Dataset Quality Auditor",
-    "description": "Audit JSONL datasets for malformed rows, duplicate prompts, split leakage, and possible sensitive fields.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/ai-dataset-quality-auditor",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 6,
-    "image": "assets/screenshots/ai-dataset-quality-auditor.webp",
-    "capture": {
-      "name": "ai-dataset-quality-auditor",
-      "capture_date": "2026-11-06T12:33:31.838880+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "f446ce1d164bc1e4f8048ab5d698447414aaf4ec",
-      "validation_commands": [
-        "python app.py --self-test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "python app.py examples/dataset.jsonl"
-    },
-    "ci": "https://github.com/netcodermike/ai-dataset-quality-auditor/actions"
-  },
-  {
-    "name": "naive-bayes-mail-lab",
-    "title": "Naive Bayes Mail Lab",
-    "description": "Train and evaluate a Laplace-smoothed text classifier with readable per-token evidence.",
-    "languages": [
-      "Go"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/naive-bayes-mail-lab",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 7,
-    "image": "assets/screenshots/naive-bayes-mail-lab.webp",
-    "capture": {
-      "name": "naive-bayes-mail-lab",
-      "capture_date": "2026-11-06T12:33:19.154752+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "89ac5a4dfff2eefb7a178f3dfdf7f877659abe9e",
-      "validation_commands": [
-        "go test ./..."
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "go run . examples/training.json \"team meeting project schedule\""
-    },
-    "ci": "https://github.com/netcodermike/naive-bayes-mail-lab/actions"
-  },
-  {
-    "name": "knn-signal-classifier",
-    "title": "KNN Signal Classifier",
-    "description": "Classify numeric feature vectors using standardized nearest neighbors and confidence votes.",
-    "languages": [
-      "Rust"
-    ],
-    "platform": "Command line",
-    "url": "https://github.com/netcodermike/knn-signal-classifier",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 8,
-    "image": "assets/screenshots/knn-signal-classifier.webp",
-    "capture": {
-      "name": "knn-signal-classifier",
-      "capture_date": "2026-11-06T12:33:16.909593+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "4a110ccbfad9143211409acea992aaa2faea85ad",
-      "validation_commands": [
-        "cargo test"
-      ],
-      "kind": "terminal",
-      "caption": "Actual command output from an isolated runner using synthetic inputs.",
-      "command": "cargo run -- examples/signals.tsv \"115,0.25\" 3"
-    },
-    "ci": "https://github.com/netcodermike/knn-signal-classifier/actions"
-  },
-  {
-    "name": "reliability-calibration-table",
-    "title": "Reliability Calibration Table",
-    "description": "Compare predicted probabilities with observed outcomes and report Brier score and calibration error.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Cross-platform CLI",
-    "url": "https://github.com/netcodermike/reliability-calibration-table",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 9,
-    "image": "assets/screenshots/reliability-calibration-table.webp",
-    "capture": {
-      "name": "reliability-calibration-table",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic inputs.",
-      "capture_date": "2026-11-20T02:38:37.245010+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/reliability-calibration-table/actions/workflows/verify.yml"
-  },
-  {
-    "name": "sentence-simhash-map",
-    "title": "Sentence SimHash Map",
-    "description": "Compare short documents by Hamming distance over deterministic word-frequency fingerprints.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Cross-platform CLI",
-    "url": "https://github.com/netcodermike/sentence-simhash-map",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 10,
-    "image": "assets/screenshots/sentence-simhash-map.webp",
-    "capture": {
-      "name": "sentence-simhash-map",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic inputs.",
-      "capture_date": "2026-11-21T02:33:53.254499+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/sentence-simhash-map/actions/workflows/verify.yml"
-  },
-  {
-    "name": "ensemble-vote-disagreement-map",
-    "title": "Ensemble Vote Disagreement Map",
-    "description": "Measure pairwise disagreement between classifiers and identify cases without a majority decision.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Cross-platform CLI",
-    "url": "https://github.com/netcodermike/ensemble-vote-disagreement-map",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 11,
-    "image": "assets/screenshots/ensemble-vote-disagreement-map.webp",
-    "capture": {
-      "name": "ensemble-vote-disagreement-map",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic inputs.",
-      "capture_date": "2026-11-22T02:52:19.646680+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/ensemble-vote-disagreement-map/actions/workflows/verify.yml"
-  },
-  {
-    "name": "stratified-label-audit",
-    "title": "Stratified Label Audit",
-    "description": "Compare label distribution between reference data and evaluation splits using total variation distance.",
-    "languages": [
-      "Python"
-    ],
-    "platform": "Cross-platform CLI",
-    "url": "https://github.com/netcodermike/stratified-label-audit",
-    "category": "AI & machine learning",
-    "featured": false,
-    "order": 12,
-    "image": "assets/screenshots/stratified-label-audit.webp",
-    "capture": {
-      "name": "stratified-label-audit",
-      "kind": "terminal",
-      "caption": "Excerpt from actual sample command output using synthetic inputs.",
-      "capture_date": "2026-11-23T02:36:24.338396+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/stratified-label-audit/actions/workflows/verify.yml"
-  },
-  {
     "name": "SvdStudio",
     "title": "SVD Studio",
     "description": "Explore singular value decomposition (SVD), including geometric transformations, low-rank approximations, pseudoinverses, and image compression. Built in C# for Windows with WPF and the MVVM design pattern, powered by a cross-platform .NET 8 math engine.",
@@ -359,7 +10,7 @@
     "url": "https://github.com/netcodermike/SvdStudio",
     "category": "Mathematics",
     "featured": true,
-    "order": 13,
+    "order": 0,
     "image": "assets/screenshots/SvdStudio-geometry-1.0.2.webp",
     "capture": {
       "name": "SvdStudio",
@@ -384,7 +35,7 @@
     "url": "https://github.com/netcodermike/function-surface-grapher",
     "category": "Mathematics",
     "featured": true,
-    "order": 14,
+    "order": 1,
     "image": "assets/screenshots/function-surface-grapher.webp",
     "capture": {
       "name": "function-surface-grapher",
@@ -407,7 +58,7 @@
     "url": "https://github.com/netcodermike/wave-pool-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 15,
+    "order": 2,
     "image": "assets/screenshots/wave-pool-lab.webp",
     "capture": {
       "name": "wave-pool-lab",
@@ -439,7 +90,7 @@
     "url": "https://github.com/netcodermike/pde-wave-and-heat-explorer",
     "category": "Mathematics",
     "featured": false,
-    "order": 16,
+    "order": 3,
     "image": "assets/screenshots/pde-wave-and-heat-explorer.webp",
     "capture": {
       "name": "pde-wave-and-heat-explorer",
@@ -462,7 +113,7 @@
     "url": "https://github.com/netcodermike/fourier-sketchpad",
     "category": "Mathematics",
     "featured": false,
-    "order": 17,
+    "order": 4,
     "image": "assets/screenshots/fourier-sketchpad.webp",
     "capture": {
       "name": "fourier-sketchpad",
@@ -485,7 +136,7 @@
     "url": "https://github.com/netcodermike/voronoi-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 18,
+    "order": 5,
     "image": "assets/screenshots/voronoi-playground.webp",
     "capture": {
       "name": "voronoi-playground",
@@ -508,7 +159,7 @@
     "url": "https://github.com/netcodermike/wave-packet-dispersion-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 19,
+    "order": 6,
     "image": "assets/screenshots/wave-packet-dispersion-lab.webp",
     "capture": {
       "name": "wave-packet-dispersion-lab",
@@ -531,7 +182,7 @@
     "url": "https://github.com/netcodermike/polynomial-rational-explorer",
     "category": "Mathematics",
     "featured": false,
-    "order": 20,
+    "order": 7,
     "image": "assets/screenshots/polynomial-rational-explorer.webp",
     "capture": {
       "name": "polynomial-rational-explorer",
@@ -554,7 +205,7 @@
     "url": "https://github.com/netcodermike/second-order-ode-grapher",
     "category": "Mathematics",
     "featured": false,
-    "order": 21,
+    "order": 8,
     "image": "assets/screenshots/second-order-ode-grapher.webp",
     "capture": {
       "name": "second-order-ode-grapher",
@@ -577,7 +228,7 @@
     "url": "https://github.com/netcodermike/fractal-dimension-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 22,
+    "order": 9,
     "image": "assets/screenshots/fractal-dimension-lab.webp",
     "capture": {
       "name": "fractal-dimension-lab",
@@ -600,7 +251,7 @@
     "url": "https://github.com/netcodermike/latin-square-graph-explorer",
     "category": "Mathematics",
     "featured": false,
-    "order": 23,
+    "order": 10,
     "image": "assets/screenshots/latin-square-graph-explorer.webp",
     "capture": {
       "name": "latin-square-graph-explorer",
@@ -623,7 +274,7 @@
     "url": "https://github.com/netcodermike/sixteen-card-square",
     "category": "Mathematics",
     "featured": false,
-    "order": 24,
+    "order": 11,
     "image": "assets/screenshots/sixteen-card-square.webp",
     "capture": {
       "name": "sixteen-card-square",
@@ -647,7 +298,7 @@
     "url": "https://github.com/netcodermike/transversal-hunt",
     "category": "Mathematics",
     "featured": false,
-    "order": 25,
+    "order": 12,
     "image": "assets/screenshots/transversal-hunt.webp",
     "capture": {
       "name": "transversal-hunt",
@@ -671,7 +322,7 @@
     "url": "https://github.com/netcodermike/modular-arithmetic-arcade",
     "category": "Mathematics",
     "featured": false,
-    "order": 26,
+    "order": 13,
     "image": "assets/screenshots/modular-arithmetic-arcade.webp",
     "capture": {
       "name": "modular-arithmetic-arcade",
@@ -695,7 +346,7 @@
     "url": "https://github.com/netcodermike/surfingcoder-number-swell",
     "category": "Mathematics",
     "featured": false,
-    "order": 27,
+    "order": 14,
     "image": "assets/screenshots/surfingcoder-number-swell.webp",
     "capture": {
       "name": "surfingcoder-number-swell",
@@ -721,7 +372,7 @@
     "url": "https://github.com/netcodermike/multi-latin-square-studio",
     "category": "Mathematics",
     "featured": false,
-    "order": 28,
+    "order": 15,
     "image": "assets/screenshots/multi-latin-square-studio.webp",
     "capture": {
       "name": "multi-latin-square-studio",
@@ -744,7 +395,7 @@
     "url": "https://github.com/netcodermike/orthogonal-mate-workshop",
     "category": "Mathematics",
     "featured": false,
-    "order": 29,
+    "order": 16,
     "image": "assets/screenshots/orthogonal-mate-workshop.webp",
     "capture": {
       "name": "orthogonal-mate-workshop",
@@ -767,7 +418,7 @@
     "url": "https://github.com/netcodermike/prime-sieve-observatory",
     "category": "Mathematics",
     "featured": false,
-    "order": 30,
+    "order": 17,
     "image": "assets/screenshots/prime-sieve-observatory.webp",
     "capture": {
       "name": "prime-sieve-observatory",
@@ -790,7 +441,7 @@
     "url": "https://github.com/netcodermike/markov-chain-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 31,
+    "order": 18,
     "image": "assets/screenshots/markov-chain-playground.webp",
     "capture": {
       "name": "markov-chain-playground",
@@ -813,7 +464,7 @@
     "url": "https://github.com/netcodermike/numerical-integration-race",
     "category": "Mathematics",
     "featured": false,
-    "order": 32,
+    "order": 19,
     "image": "assets/screenshots/numerical-integration-race.webp",
     "capture": {
       "name": "numerical-integration-race",
@@ -836,7 +487,7 @@
     "url": "https://github.com/netcodermike/bayes-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 33,
+    "order": 20,
     "image": "assets/screenshots/bayes-lab.webp",
     "capture": {
       "name": "bayes-lab",
@@ -859,7 +510,7 @@
     "url": "https://github.com/netcodermike/pick-your-symbols",
     "category": "Mathematics",
     "featured": false,
-    "order": 34,
+    "order": 21,
     "image": "assets/screenshots/pick-your-symbols.webp",
     "capture": {
       "name": "pick-your-symbols",
@@ -882,7 +533,7 @@
     "url": "https://github.com/netcodermike/transversal-search-bench",
     "category": "Mathematics",
     "featured": false,
-    "order": 35,
+    "order": 22,
     "image": "assets/screenshots/transversal-search-bench.webp",
     "capture": {
       "name": "transversal-search-bench",
@@ -905,7 +556,7 @@
     "url": "https://github.com/netcodermike/interval-coverage-ledger",
     "category": "Mathematics",
     "featured": false,
-    "order": 36,
+    "order": 23,
     "image": "assets/screenshots/interval-coverage-ledger.webp",
     "capture": {
       "name": "interval-coverage-ledger",
@@ -927,7 +578,7 @@
     "url": "https://github.com/netcodermike/polyomino-symmetry-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 37,
+    "order": 24,
     "image": "assets/screenshots/polyomino-symmetry-lab.webp",
     "capture": {
       "name": "polyomino-symmetry-lab",
@@ -949,7 +600,7 @@
     "url": "https://github.com/netcodermike/lever-equilibrium-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 38,
+    "order": 25,
     "image": "assets/screenshots/lever-equilibrium-lab.webp",
     "capture": {
       "name": "lever-equilibrium-lab",
@@ -971,7 +622,7 @@
     "url": "https://github.com/netcodermike/lattice-route-counter",
     "category": "Mathematics",
     "featured": false,
-    "order": 39,
+    "order": 26,
     "image": "assets/screenshots/lattice-route-counter.webp",
     "capture": {
       "name": "lattice-route-counter",
@@ -993,7 +644,7 @@
     "url": "https://github.com/netcodermike/tidal-phase-clock",
     "category": "Mathematics",
     "featured": false,
-    "order": 40,
+    "order": 27,
     "image": "assets/screenshots/tidal-phase-clock.webp",
     "capture": {
       "name": "tidal-phase-clock",
@@ -1015,7 +666,7 @@
     "url": "https://github.com/netcodermike/binomial-tail-table",
     "category": "Mathematics",
     "featured": false,
-    "order": 41,
+    "order": 28,
     "image": "assets/screenshots/binomial-tail-table.webp",
     "capture": {
       "name": "binomial-tail-table",
@@ -1037,7 +688,7 @@
     "url": "https://github.com/netcodermike/polygon-rotation-matcher",
     "category": "Mathematics",
     "featured": false,
-    "order": 42,
+    "order": 29,
     "image": "assets/screenshots/polygon-rotation-matcher.webp",
     "capture": {
       "name": "polygon-rotation-matcher",
@@ -1059,7 +710,7 @@
     "url": "https://github.com/netcodermike/tangram-area-auditor",
     "category": "Mathematics",
     "featured": false,
-    "order": 43,
+    "order": 30,
     "image": "assets/screenshots/tangram-area-auditor.webp",
     "capture": {
       "name": "tangram-area-auditor",
@@ -1081,7 +732,7 @@
     "url": "https://github.com/netcodermike/permutation-cycle-reader",
     "category": "Mathematics",
     "featured": false,
-    "order": 44,
+    "order": 31,
     "image": "assets/screenshots/permutation-cycle-reader.webp",
     "capture": {
       "name": "permutation-cycle-reader",
@@ -1103,7 +754,7 @@
     "url": "https://github.com/netcodermike/resistor-network-solver",
     "category": "Mathematics",
     "featured": false,
-    "order": 45,
+    "order": 32,
     "image": "assets/screenshots/resistor-network-solver.webp",
     "capture": {
       "name": "resistor-network-solver",
@@ -1125,7 +776,7 @@
     "url": "https://github.com/netcodermike/triangle-center-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 46,
+    "order": 33,
     "image": "assets/screenshots/triangle-center-playground.webp",
     "capture": {
       "name": "triangle-center-playground",
@@ -1148,7 +799,7 @@
     "url": "https://github.com/netcodermike/pendulum-period-playground",
     "category": "Mathematics",
     "featured": false,
-    "order": 47,
+    "order": 34,
     "image": "assets/screenshots/pendulum-period-playground.webp",
     "capture": {
       "name": "pendulum-period-playground",
@@ -1171,7 +822,7 @@
     "url": "https://github.com/netcodermike/projection-latitude-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 48,
+    "order": 35,
     "image": "assets/screenshots/projection-latitude-lab.webp",
     "capture": {
       "name": "projection-latitude-lab",
@@ -1194,7 +845,7 @@
     "url": "https://github.com/netcodermike/flow-network-cut-lab",
     "category": "Mathematics",
     "featured": false,
-    "order": 49,
+    "order": 36,
     "image": "assets/screenshots/flow-network-cut-lab.webp",
     "capture": {
       "name": "flow-network-cut-lab",
@@ -1217,7 +868,7 @@
     "url": "https://github.com/netcodermike/vector-component-splitter",
     "category": "Mathematics",
     "featured": false,
-    "order": 50,
+    "order": 37,
     "image": "assets/screenshots/vector-component-splitter.webp",
     "capture": {
       "name": "vector-component-splitter",
@@ -1239,7 +890,7 @@
     "url": "https://github.com/netcodermike/pulley-rope-travel",
     "category": "Mathematics",
     "featured": false,
-    "order": 51,
+    "order": 38,
     "image": "assets/screenshots/pulley-rope-travel.webp",
     "capture": {
       "name": "pulley-rope-travel",
@@ -1261,7 +912,7 @@
     "url": "https://github.com/netcodermike/sampling-alias-studio",
     "category": "Mathematics",
     "featured": false,
-    "order": 52,
+    "order": 39,
     "image": "assets/screenshots/sampling-alias-studio.webp",
     "capture": {
       "name": "sampling-alias-studio",
@@ -1284,7 +935,7 @@
     "url": "https://github.com/netcodermike/paired-effect-bootstrap",
     "category": "Mathematics",
     "featured": false,
-    "order": 53,
+    "order": 40,
     "image": "assets/screenshots/paired-effect-bootstrap.webp",
     "capture": {
       "name": "paired-effect-bootstrap",
@@ -1306,7 +957,7 @@
     "url": "https://github.com/netcodermike/pedestrian-crossing-phase-check",
     "category": "Mathematics",
     "featured": false,
-    "order": 54,
+    "order": 41,
     "image": "assets/screenshots/pedestrian-crossing-phase-check.webp",
     "capture": {
       "name": "pedestrian-crossing-phase-check",
@@ -1316,6 +967,355 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/pedestrian-crossing-phase-check/actions/workflows/verify.yml"
+  },
+  {
+    "name": "tiny-neural-network-playground",
+    "title": "Tiny Neural Network Playground",
+    "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
+    "languages": [
+      "TypeScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/tiny-neural-network-playground",
+    "category": "AI & machine learning",
+    "featured": true,
+    "order": 42,
+    "image": "assets/screenshots/tiny-neural-network-playground.webp",
+    "capture": {
+      "name": "tiny-neural-network-playground",
+      "capture_date": "2026-11-06T12:33:32.427902+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f980a7c61ab3eb516db2ea340d6b06da0e551763",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner"
+    },
+    "ci": "https://github.com/netcodermike/tiny-neural-network-playground/actions",
+    "applicationUrl": "/apps/tiny-neural-network-playground/"
+  },
+  {
+    "name": "decision-tree-workbench",
+    "title": "Decision Tree Workbench",
+    "description": "Train a small CART classifier, inspect readable split rules, and query new feature values.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/decision-tree-workbench",
+    "category": "AI & machine learning",
+    "featured": true,
+    "order": 43,
+    "image": "assets/screenshots/decision-tree-workbench.webp",
+    "capture": {
+      "name": "decision-tree-workbench",
+      "capture_date": "2026-11-06T12:33:36.407288+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "43d2fddbdc3fdd764cbcd846a7b2cc23587a2760",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "CART with Gini impurity; chart axes 0–10."
+    },
+    "ci": "https://github.com/netcodermike/decision-tree-workbench/actions",
+    "applicationUrl": "/apps/decision-tree-workbench/"
+  },
+  {
+    "name": "embedding-neighbor-map",
+    "title": "Embedding Neighbor Map",
+    "description": "Explore document similarity using transparent TF-IDF vectors and a nearest-neighbor graph.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Browser",
+    "url": "https://github.com/netcodermike/embedding-neighbor-map",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 44,
+    "image": "assets/screenshots/embedding-neighbor-map.webp",
+    "capture": {
+      "name": "embedding-neighbor-map",
+      "capture_date": "2026-11-06T12:33:30.532475+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "8d447c6030faa43aa2546ae919f62bae1c44a440",
+      "validation_commands": [
+        "npm install --ignore-scripts",
+        "npm test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Lexical TF-IDF vectors, not a pretrained semantic model."
+    },
+    "ci": "https://github.com/netcodermike/embedding-neighbor-map/actions",
+    "applicationUrl": "/apps/embedding-neighbor-map/"
+  },
+  {
+    "name": "local-model-chat-desk",
+    "title": "Local Model Chat Desk",
+    "description": "Chat with installed Ollama models through a localhost-only server, with conversation export.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Local server",
+    "url": "https://github.com/netcodermike/local-model-chat-desk",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 45,
+    "image": "assets/screenshots/local-model-chat-desk.webp",
+    "capture": {
+      "name": "local-model-chat-desk",
+      "capture_date": "2026-11-06T12:33:35.133090+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "968f1b2adc30d9aa472e361342540b07f1f62097",
+      "validation_commands": [
+        "python server.py --self-test"
+      ],
+      "kind": "runtime",
+      "caption": "Actual application interface with synthetic demonstration inputs; microphone apps use a generated test tone.",
+      "capture_method": "Playwright Chromium on disposable CI runner",
+      "visible_status": "Ollama unavailable. Start it locally and install a model."
+    },
+    "ci": "https://github.com/netcodermike/local-model-chat-desk/actions"
+  },
+  {
+    "name": "local-rag-notebook",
+    "title": "Local RAG Notebook",
+    "description": "Retrieve cited document chunks with BM25 and optionally answer using a local Ollama model.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/local-rag-notebook",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 46,
+    "image": "assets/screenshots/local-rag-notebook.webp",
+    "capture": {
+      "name": "local-rag-notebook",
+      "capture_date": "2026-11-06T12:33:18.078272+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "dc8741cdec1aa6adeadfcb67463e5cd2430ccabc",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples \"How are ocean waves measured?\""
+    },
+    "ci": "https://github.com/netcodermike/local-rag-notebook/actions"
+  },
+  {
+    "name": "prompt-evaluation-bench",
+    "title": "Prompt Evaluation Bench",
+    "description": "Score model responses against reproducible contains, forbidden-text, and regular-expression checks.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/prompt-evaluation-bench",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 47,
+    "image": "assets/screenshots/prompt-evaluation-bench.webp",
+    "capture": {
+      "name": "prompt-evaluation-bench",
+      "capture_date": "2026-11-06T12:33:18.671696+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "e3585be742538eb38fac81df23bcb5f8b521e091",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs; excerpt.",
+      "command": "python app.py examples/cases.jsonl"
+    },
+    "ci": "https://github.com/netcodermike/prompt-evaluation-bench/actions"
+  },
+  {
+    "name": "ai-dataset-quality-auditor",
+    "title": "AI Dataset Quality Auditor",
+    "description": "Audit JSONL datasets for malformed rows, duplicate prompts, split leakage, and possible sensitive fields.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/ai-dataset-quality-auditor",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 48,
+    "image": "assets/screenshots/ai-dataset-quality-auditor.webp",
+    "capture": {
+      "name": "ai-dataset-quality-auditor",
+      "capture_date": "2026-11-06T12:33:31.838880+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "f446ce1d164bc1e4f8048ab5d698447414aaf4ec",
+      "validation_commands": [
+        "python app.py --self-test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "python app.py examples/dataset.jsonl"
+    },
+    "ci": "https://github.com/netcodermike/ai-dataset-quality-auditor/actions"
+  },
+  {
+    "name": "naive-bayes-mail-lab",
+    "title": "Naive Bayes Mail Lab",
+    "description": "Train and evaluate a Laplace-smoothed text classifier with readable per-token evidence.",
+    "languages": [
+      "Go"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/naive-bayes-mail-lab",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 49,
+    "image": "assets/screenshots/naive-bayes-mail-lab.webp",
+    "capture": {
+      "name": "naive-bayes-mail-lab",
+      "capture_date": "2026-11-06T12:33:19.154752+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "89ac5a4dfff2eefb7a178f3dfdf7f877659abe9e",
+      "validation_commands": [
+        "go test ./..."
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "go run . examples/training.json \"team meeting project schedule\""
+    },
+    "ci": "https://github.com/netcodermike/naive-bayes-mail-lab/actions"
+  },
+  {
+    "name": "knn-signal-classifier",
+    "title": "KNN Signal Classifier",
+    "description": "Classify numeric feature vectors using standardized nearest neighbors and confidence votes.",
+    "languages": [
+      "Rust"
+    ],
+    "platform": "Command line",
+    "url": "https://github.com/netcodermike/knn-signal-classifier",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 50,
+    "image": "assets/screenshots/knn-signal-classifier.webp",
+    "capture": {
+      "name": "knn-signal-classifier",
+      "capture_date": "2026-11-06T12:33:16.909593+00:00",
+      "demo_data": true,
+      "validation_passed": true,
+      "source_commit": "4a110ccbfad9143211409acea992aaa2faea85ad",
+      "validation_commands": [
+        "cargo test"
+      ],
+      "kind": "terminal",
+      "caption": "Actual command output from an isolated runner using synthetic inputs.",
+      "command": "cargo run -- examples/signals.tsv \"115,0.25\" 3"
+    },
+    "ci": "https://github.com/netcodermike/knn-signal-classifier/actions"
+  },
+  {
+    "name": "reliability-calibration-table",
+    "title": "Reliability Calibration Table",
+    "description": "Compare predicted probabilities with observed outcomes and report Brier score and calibration error.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/reliability-calibration-table",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 51,
+    "image": "assets/screenshots/reliability-calibration-table.webp",
+    "capture": {
+      "name": "reliability-calibration-table",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-20T02:38:37.245010+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/reliability-calibration-table/actions/workflows/verify.yml"
+  },
+  {
+    "name": "sentence-simhash-map",
+    "title": "Sentence SimHash Map",
+    "description": "Compare short documents by Hamming distance over deterministic word-frequency fingerprints.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/sentence-simhash-map",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 52,
+    "image": "assets/screenshots/sentence-simhash-map.webp",
+    "capture": {
+      "name": "sentence-simhash-map",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-21T02:33:53.254499+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/sentence-simhash-map/actions/workflows/verify.yml"
+  },
+  {
+    "name": "ensemble-vote-disagreement-map",
+    "title": "Ensemble Vote Disagreement Map",
+    "description": "Measure pairwise disagreement between classifiers and identify cases without a majority decision.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/ensemble-vote-disagreement-map",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 53,
+    "image": "assets/screenshots/ensemble-vote-disagreement-map.webp",
+    "capture": {
+      "name": "ensemble-vote-disagreement-map",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-22T02:52:19.646680+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/ensemble-vote-disagreement-map/actions/workflows/verify.yml"
+  },
+  {
+    "name": "stratified-label-audit",
+    "title": "Stratified Label Audit",
+    "description": "Compare label distribution between reference data and evaluation splits using total variation distance.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/stratified-label-audit",
+    "category": "AI & machine learning",
+    "featured": false,
+    "order": 54,
+    "image": "assets/screenshots/stratified-label-audit.webp",
+    "capture": {
+      "name": "stratified-label-audit",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-23T02:36:24.338396+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/stratified-label-audit/actions/workflows/verify.yml"
   },
   {
     "name": "trading-indicator-playground",

@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 332 projects across 14 languages. AI apps lead the collection, followed by mathematics, data analysis, productivity, creative tools, music/audio, microservices, everyday apps, games, and Linux utilities. Each category opens with its strongest visual interfaces. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 332 projects across 14 languages. All Projects opens with Mathematics, followed by AI apps, data analysis, productivity, creative tools, music/audio, microservices, everyday apps, games, and Linux utilities. SVD Studio, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
 
 ## Run locally
 
@@ -16,7 +16,7 @@ Open http://127.0.0.1:8000. Search, category/language filters, sorting, grid/lis
 
 ## Edit the gallery
 
-1. Edit `assets/projects.json`. Array order sets the default display priority; keep AI first and projects grouped by category, with the strongest screenshots first in each group.
+1. Edit `assets/projects.json`. Keep Mathematics first and projects grouped by category. Array order sets the priority within each group of featured, playable, or remaining projects.
 2. Add a genuine screenshot as `assets/screenshots/<repository>.webp` and its capture metadata as `<repository>.json`. Use synthetic demonstration data. Describe terminal captures as terminal output rather than app interfaces.
 3. Run `python scripts/build_gallery.py` to update the static cards and embedded data.
 
