@@ -1,4 +1,4 @@
-import { setupBuoyView } from './src/buoys.js?v=20261120-live-buoy-data';
+import { setupBuoyView } from './src/buoys.js?v=20261122-48-hour-buoys';
 import { weekly } from './weekly.js?v=20261120-forecast-period-colors';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-rain-chance';

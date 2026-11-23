@@ -1,6 +1,7 @@
 import { height } from './core.js?v=20261117-tides-wind';
 
 const HOUR = 3600000;
+export const OBSERVATION_HOURS = 48;
 const SERIES = [
   { label: 'Combined sea', color: '#79bfff', heightKey: 'wave', periodKey: 'period' },
   { label: 'Swell', color: '#a879e8', heightKey: 'swell', periodKey: 'swellPeriod' },
@@ -17,13 +18,13 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   const section = document.createElement('section');
   section.className = 'buoy-wave-chart';
   const title = document.createElement('h4');
-  title.textContent = 'Observed waves · Last 24 hours';
+  title.textContent = `Observed waves · Last ${OBSERVATION_HOURS} hours`;
   section.append(title);
-  const end = Date.now(), start = end - 24 * HOUR;
+  const end = Date.now(), start = end - OBSERVATION_HOURS * HOUR;
   const rows = readings.filter(row => row.time >= start && row.time <= end).reverse();
   if (!rows.length) {
     const empty = document.createElement('p');
-    empty.textContent = 'No readings in the last 24 hours. The table below shows the latest available records.';
+    empty.textContent = `No readings in the last ${OBSERVATION_HOURS} hours.`;
     section.append(empty);
     return section;
   }

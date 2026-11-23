@@ -1,7 +1,9 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261120-observed-tooltip';
+import { drawBuoyChart, OBSERVATION_HOURS } from './buoy-chart.js?v=20261122-48-hour-buoys';
 
 const HOUR = 3600000;
+const HISTORY_HOURS = OBSERVATION_HOURS + 12;
+const HISTORY_QUERY = `&time%3Enow-${HISTORY_HOURS}hours`;
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
 const COASTWATCH = 'https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet';
@@ -41,7 +43,7 @@ export function parseReadings(data, stationId) {
 function readStation(stationId, signal) {
   // NOAA supports JSONP for browsers. The sandbox keeps its script away from the site’s DOM and storage.
   const query = [...fields, 'DPD'].join(',') + '&station=' + encodeURIComponent('"' + stationId + '"') +
-    '&time%3Enow-36hours&.jsonp=receiveBuoyData';
+    HISTORY_QUERY + '&.jsonp=receiveBuoyData';
   const url = (COASTWATCH + '.json?' + query).replaceAll('&', '&amp;');
   return new Promise((resolve, reject) => {
     const frame = document.createElement('iframe');
@@ -79,7 +81,7 @@ async function readObservations(stationId, signal) {
       'sea_surface_wave_period_at_variance_spectral_density_maximum',
     ];
     try {
-      const response = await fetch(ONSLOW_DATASET + '.json?' + variables.join(',') + '&time%3Enow-36hours', {
+      const response = await fetch(ONSLOW_DATASET + '.json?' + variables.join(',') + HISTORY_QUERY, {
         signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]),
       });
       if (!response.ok) throw Error('Onslow Bay data unavailable');
@@ -97,7 +99,7 @@ async function readObservations(stationId, signal) {
 
 async function readDetailedWaves(stationId, signal) {
   const file = encodeURIComponent(stationId) + '.json';
-  const cutoff = Date.now() - 36 * HOUR;
+  const cutoff = Date.now() - HISTORY_HOURS * HOUR;
   const endpoints = [
     { url: LIVE_WAVES + file, timeout: 6500 },
     { url: WAVES_API + file + '?ref=buoy-data', timeout: 3750, cache: 'no-cache',
@@ -215,24 +217,27 @@ export function setupBuoyView(getUnits) {
     observation.replaceChildren();
     chart = undefined;
     if (!displayedStation) return;
-    if (!readings?.length) {
-      observation.append(node('p', readings ? 'No recent readings are available. Try another buoy or open NOAA’s station history.' :
-        'Loading wave observations…', 'buoy-reading-status'));
+    const end = Date.now(), start = end - OBSERVATION_HOURS * HOUR;
+    const recent = readings?.filter(row => row.time >= start && row.time <= end);
+    if (!recent?.length) {
+      observation.append(node('p', recent
+        ? `No readings in the last ${OBSERVATION_HOURS} hours. Try another buoy or open NOAA’s station history.`
+        : 'Loading wave observations…', 'buoy-reading-status'));
       return;
     }
-    const latestDetailed = readings.find(row => ['swell', 'swellPeriod', 'windWave', 'windWavePeriod']
+    const latestDetailed = recent.find(row => ['swell', 'swellPeriod', 'windWave', 'windWavePeriod']
       .some(field => Number.isFinite(row[field])));
-    if (Date.now() - readings[0].time > 3 * HOUR) {
+    if (end - recent[0].time > 3 * HOUR) {
       observation.append(node('p', 'The latest reading is over 3 hours old.', 'buoy-reading-status'));
-    } else if (latestDetailed && readings[0].time > latestDetailed.time) {
+    } else if (latestDetailed && recent[0].time > latestDetailed.time) {
       observation.append(node('p', 'Swell and wind-wave readings are available through ' + date.format(latestDetailed.time) +
         '. Newer basic readings are shown below.', 'buoy-reading-status'));
     }
     chart = makeChart();
     observation.append(chart);
-    const headings = tableMeasurements(readings[0]).map(([label]) => label);
+    const headings = tableMeasurements(recent[0]).map(([label]) => label);
     const history = node('section', '', 'buoy-history');
-    const title = node('h4', 'Recent readings');
+    const title = node('h4', `Recent readings · Last ${OBSERVATION_HOURS} hours`);
     title.id = 'buoy-history-heading';
     history.setAttribute('aria-labelledby', title.id);
     const scroll = node('div', '', 'buoy-table-scroll');
@@ -248,7 +253,7 @@ export function setupBuoyView(getUnits) {
       headingsRow.append(header);
     }
     const body = table.createTBody();
-    for (const item of readings) {
+    for (const item of recent) {
       const tr = body.insertRow();
       const stamp = node('time', date.format(item.time));
       stamp.dateTime = new Date(item.time).toISOString();
@@ -291,7 +296,7 @@ export function setupBuoyView(getUnits) {
       if (controller.signal.aborted) return;
       const latest = detailed.status === 'fulfilled' ? detailed.value : [];
       if (latest.length && (!mirrored.length || latest[0].time >= mirrored[0].time)) mirrored = latest;
-      mirrored = mirrored.filter(row => row.time >= Date.now() - 36 * HOUR);
+      mirrored = mirrored.filter(row => row.time >= Date.now() - HISTORY_HOURS * HOUR);
       const base = standard.status === 'fulfilled' ? standard.value : { readings: [], source: COASTWATCH + '.html' };
       const merged = mergeWaveReadings(base.readings, mirrored);
       if (merged.length || !sameStation || !readings?.length) readings = merged;
