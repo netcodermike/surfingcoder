@@ -1,5 +1,28 @@
 [
   {
+    "name": "function-surface-grapher",
+    "title": "Function and Surface Grapher",
+    "description": "Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/function-surface-grapher",
+    "category": "Mathematics",
+    "featured": true,
+    "order": 0,
+    "image": "assets/screenshots/function-surface-grapher.webp",
+    "capture": {
+      "name": "function-surface-grapher",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-23T02:43:00.779379+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/function-surface-grapher/"
+  },
+  {
     "name": "SvdStudio",
     "title": "SVD Studio",
     "description": "Explore singular value decomposition (SVD), including geometric transformations, low-rank approximations, pseudoinverses, and image compression. Built in C# for Windows with WPF and the MVVM design pattern, powered by a cross-platform .NET 8 math engine.",
@@ -10,7 +33,7 @@
     "url": "https://github.com/netcodermike/SvdStudio",
     "category": "Mathematics",
     "featured": true,
-    "order": 0,
+    "order": 1,
     "image": "assets/screenshots/SvdStudio-geometry-1.0.2.webp",
     "capture": {
       "name": "SvdStudio",
@@ -23,29 +46,6 @@
     },
     "ci": "https://github.com/netcodermike/SvdStudio/actions",
     "downloadUrl": "https://github.com/netcodermike/SvdStudio/releases/download/v1.0.2/SvdStudio-win-x64.exe"
-  },
-  {
-    "name": "function-surface-grapher",
-    "title": "Function and Surface Grapher",
-    "description": "Plot functions of one variable in 2D and rotate surfaces of two variables in 3D with adjustable domains.",
-    "languages": [
-      "JavaScript"
-    ],
-    "platform": "Web",
-    "url": "https://github.com/netcodermike/function-surface-grapher",
-    "category": "Mathematics",
-    "featured": true,
-    "order": 1,
-    "image": "assets/screenshots/function-surface-grapher.webp",
-    "capture": {
-      "name": "function-surface-grapher",
-      "kind": "runtime",
-      "caption": "Browser capture of the running application.",
-      "capture_date": "2026-11-23T02:43:00.779379+00:00",
-      "demo_data": true
-    },
-    "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/function-surface-grapher/"
   },
   {
     "name": "wave-pool-lab",
