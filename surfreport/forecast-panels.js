@@ -90,10 +90,12 @@ function drawSeries(graph, { values, color, gap, reading, filled = false }, { sv
 
 function seriesChart(primary, timeline, { label, arrows, secondary }) {
   const { svg, width, left, right, x, dayMarks, shadeDaylight, axisFont, compact } = timeline;
-  const top = 12;
+  // Leave room above the plot and before the date labels for the wind arrows.
+  const top = arrows ? 16 : 12;
   const bottom = 119;
+  const height = arrows ? 157 : 147;
   const graph = svg('svg', {
-    viewBox: `0 0 ${width} 147`, role: 'img', 'aria-label': label, class: 'week-support-chart',
+    viewBox: `0 0 ${width} ${height}`, role: 'img', 'aria-label': label, class: 'week-support-chart',
   });
   shadeDaylight(graph, top, bottom);
   const primaryScale = primary && seriesScale(primary, top, bottom);
@@ -116,20 +118,25 @@ function seriesChart(primary, timeline, { label, arrows, secondary }) {
   }
   if (primaryScale) drawAxis(primaryScale, primary, false);
   if (secondaryScale) drawAxis(secondaryScale, secondary, true);
-  dayMarks(graph, top, bottom, 138);
+  dayMarks(graph, top, bottom, arrows ? 151 : 138);
 
   const markers = [];
   if (primaryScale) markers.push(drawSeries(graph, primary, timeline, primaryScale.y, bottom));
   if (secondaryScale) markers.push(drawSeries(graph, secondary, timeline, secondaryScale.y, bottom));
 
   if (arrows) {
-    const marks = svg('g', { 'aria-hidden': 'true', fill: 'none', stroke: windColor, class: 'week-wind-arrows' });
+    const marks = svg('g', {
+      'aria-hidden': 'true', class: 'week-wind-arrows',
+      fill: 'none', stroke: windColor, 'stroke-width': 2.2,
+      'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+    });
+    const spacing = compact ? 32 : 44;
     let lastX = -Infinity;
     for (const row of arrows) {
       const xx = x(row.time);
-      if (row.speed <= 0 || !Number.isFinite(row.speed) || !Number.isFinite(row.wind_direction) || xx - lastX < (compact ? 26 : 38)) continue;
+      if (row.speed <= 0 || !Number.isFinite(row.speed) || !Number.isFinite(row.wind_direction) || xx - lastX < spacing) continue;
       marks.append(svg('path', {
-        d: 'M0 0V-10 M-3.5 -6.5L0 -10L3.5 -6.5',
+        d: 'M0 0V-14 M-4.5 -9L0 -14L4.5 -9',
         transform: `translate(${xx} ${secondaryScale.y(secondary.reading(row))}) rotate(${row.wind_direction + 180})`,
       }));
       lastX = xx;
