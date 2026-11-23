@@ -178,7 +178,7 @@ export function tideWindPanel(root, rows, tide, timeline, metrics, enabled, onCh
   if (!tidal && !wind) return null;
   const visibleTide = enabled.has('tide') ? tidal : null;
   const visibleWind = enabled.has('wind') ? wind : null;
-  const descriptions = ['Seven-day tide and wind forecast.'];
+  const descriptions = [timeline.duration + ' tide and wind forecast.'];
   if (visibleTide) descriptions.push('NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water on the left axis.');
   const showWindArrows = visibleWind && hasWindDirection && enabled.has(arrowKey);
   if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis.');
@@ -202,7 +202,7 @@ export function weatherPanel(root, rows, timeline, enabled, onChange) {
   if (!temperature && !rain) return null;
   const visibleTemperature = enabled.has('temperature') ? temperature : null;
   const visibleRain = enabled.has('rain') ? rain : null;
-  const descriptions = ['Seven-day air temperature and rain chance.'];
+  const descriptions = [timeline.duration + ' air temperature and rain chance.'];
   if (visibleTemperature) descriptions.push('Air temperature in degrees Fahrenheit on the left axis.');
   if (visibleRain) descriptions.push('Hourly chance of precipitation on the right axis, from 0 to 100 percent.');
   const chart = seriesChart(visibleTemperature, timeline, { secondary: visibleRain, label: descriptions.join(' ') });

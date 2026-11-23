@@ -1,8 +1,9 @@
 import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart, OBSERVATION_HOURS } from './buoy-chart.js?v=20261122-combined-sea-arrows';
+import { drawBuoyChart } from './buoy-chart.js?v=20261123-chart-ranges';
+import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
 
 const HOUR = 3600000;
-const HISTORY_HOURS = OBSERVATION_HOURS + 12;
+const HISTORY_HOURS = MAX_RANGE_DAYS * 24 + 12;
 const HISTORY_QUERY = `&time%3Enow-${HISTORY_HOURS}hours`;
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
@@ -157,6 +158,8 @@ export function setupBuoyView(getUnits) {
   let mirrored = [];
   let chartWidth = 0;
   let chart;
+  let observationDays = 2;
+  let observationEnd;
   const hiddenLayers = new Set(['windWave']);
   const date = new Intl.DateTimeFormat('en-US', {
     month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
@@ -203,7 +206,15 @@ export function setupBuoyView(getUnits) {
 
   function makeChart() {
     chartWidth = observation.clientWidth;
-    return drawBuoyChart(readings, getUnits(), chartWidth || 320, date, item => measurements(item).waves, hiddenLayers);
+    return drawBuoyChart(readings, getUnits(), chartWidth || 320, date, item => measurements(item).waves, hiddenLayers, {
+      days: observationDays,
+      end: observationEnd,
+      onRangeChange(days) {
+        observationDays = days;
+        drawReadings();
+        get('observation-days')?.focus({preventScroll:true});
+      },
+    });
   }
 
   new ResizeObserver(() => {
@@ -217,17 +228,16 @@ export function setupBuoyView(getUnits) {
     observation.replaceChildren();
     chart = undefined;
     if (!displayedStation) return;
-    const end = Date.now(), start = end - OBSERVATION_HOURS * HOUR;
-    const recent = readings?.filter(row => row.time >= start && row.time <= end);
-    if (!recent?.length) {
-      observation.append(node('p', recent
-        ? `No readings in the last ${OBSERVATION_HOURS} hours. Try another buoy or open NOAA’s station history.`
-        : 'Loading wave observations…', 'buoy-reading-status'));
+    if (!readings) {
+      observation.append(node('p', 'Loading wave observations…', 'buoy-reading-status'));
       return;
     }
+    const end = observationEnd = Date.now();
+    const start = end - observationDays * DAY_SECONDS * 1000;
+    const recent = readings.filter(row => row.time >= start && row.time <= end);
     const latestDetailed = recent.find(row => ['swell', 'swellPeriod', 'windWave', 'windWavePeriod']
       .some(field => Number.isFinite(row[field])));
-    if (end - recent[0].time > 3 * HOUR) {
+    if (recent.length && end - recent[0].time > 3 * HOUR) {
       observation.append(node('p', 'The latest reading is over 3 hours old.', 'buoy-reading-status'));
     } else if (latestDetailed && recent[0].time > latestDetailed.time) {
       observation.append(node('p', 'Swell and wind-wave readings are available through ' + date.format(latestDetailed.time) +
@@ -235,9 +245,10 @@ export function setupBuoyView(getUnits) {
     }
     chart = makeChart();
     observation.append(chart);
+    if (!recent.length) return;
     const headings = tableMeasurements(recent[0]).map(([label]) => label);
     const history = node('section', '', 'buoy-history');
-    const title = node('h4', `Recent readings · Last ${OBSERVATION_HOURS} hours`);
+    const title = node('h4', `Recent readings · Last ${formatDayRange(observationDays)}`);
     title.id = 'buoy-history-heading';
     history.setAttribute('aria-labelledby', title.id);
     const scroll = node('div', '', 'buoy-table-scroll');

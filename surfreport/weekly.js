@@ -1,6 +1,7 @@
-import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-combined-sea-arrows';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261123-chart-ranges';
 import { compass } from './src/core.js?v=20261117-rain-chance';
 import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261122-combined-sea-arrows';
+import { dayRangeControl, forecastWindow } from './src/chart-ranges.js?v=20261123-chart-ranges';
 
 const components = [
  ['wave', 'Combined sea', 'var(--surf-combined-sea, #79bfff)', 'period', 'direction'],
@@ -9,7 +10,6 @@ const components = [
  ['tertiary', 'Tertiary swell', 'var(--surf-tertiary-swell, #e190b9)', 'tertiaryPeriod', 'tertiaryDirection'],
  ['windWave', 'Wind waves', 'var(--surf-wind-wave, #d9c4f5)', 'windWavePeriod', 'windWaveDirection', '6 4'],
 ];
-let mode = 'height';
 const enabled = new Set([
  'wave', 'swell', 'secondary', 'tertiary', 'windWave', 'tide', 'wind', 'temperature', 'rain',
  'wave-direction-arrows', 'wave-period-dots', 'wind-direction-arrows',
@@ -71,35 +71,45 @@ function weatherIcon(kind, value) {
 }
 
 export function weekly(forecastRows,options){
- const {zone,units,tide,daylight,location}=options;
+ const {zone,units,tide,daylight,location,days,onRangeChange}=options;
+ const duration = { 1:'One-day', 2:'Two-day', 3:'Three-day', 7:'Seven-day' }[days];
  const root = document.getElementById('weekly');
  const active = document.activeElement;
  const focusId = root.contains(active) ? active.id : '';
  const heading = document.createElement('h2');
  heading.id = 'swell-heading';
- heading.textContent = location ? location + ' · Seven-day swell explorer' : 'Seven-day swell explorer';
+ const title = duration + ' swell explorer';
+ heading.textContent = location ? location + ' · ' + title : title;
  const toolbar = document.createElement('div');
  toolbar.className = 'week-toolbar';
- toolbar.append(heading);
+ toolbar.append(heading, dayRangeControl('forecast-days', 'Forecast range', days, onRangeChange));
  root.replaceChildren(toolbar);
- if (!forecastRows.length) return;
+ if (!forecastRows.length) {
+  if (focusId) document.getElementById(focusId)?.focus({preventScroll:true});
+  return [];
+ }
  const firstForecastHour = forecastRows[0].time;
- const now = Math.floor(Date.now() / 1000);
- const nextHour = forecastRows.findIndex(row => row.time >= now);
- // Keep the available forecast visible when the current time is outside its range.
- const rows = nextHour > 0 ? forecastRows.slice(nextHour) : forecastRows;
- const start = nextHour > 0 ? now : firstForecastHour;
+ const { rows, start, end } = forecastWindow(forecastRows, days);
+ if (!rows.length) {
+  const status = document.createElement('p');
+  status.textContent = 'No forecast readings in this range.';
+  root.append(status);
+  if (focusId) document.getElementById(focusId)?.focus({preventScroll:true});
+  return [];
+ }
  if (root.clientWidth) graphWidth = Math.max(260, root.clientWidth);
  const compact = graphWidth < 520;
  const plotLeft = compact ? 49 : 65;
  const axisFont = compact ? 10 : 13;
  const fmt=(t,opt)=>new Intl.DateTimeFormat('en-US',{timeZone:zone,...opt}).format(new Date(t*1000));
  const imperial = units === 'imperial';
- const scale=imperial?3.28084:1,heightUnit=imperial?' ft':' m',unit=mode==='height'?heightUnit:' s';
+ const scale=imperial?3.28084:1,heightUnit=imperial?' ft':' m';
  const speedScale = imperial ? .621371 : 1, speedUnit = imperial ? ' mph' : ' km/h';
- const controls=document.createElement('div');controls.className='week-controls';
- const label=document.createElement('label');label.htmlFor='week-mode';label.textContent='Graph';const select=document.createElement('select');select.id='week-mode';for(const [v,t]of [['height','Wave / swell height'],['period','Wave / swell period']]){const o=document.createElement('option');o.value=v;o.textContent=t;select.append(o);}select.value=mode;select.onchange=()=>{mode=select.value;weekly(forecastRows,options);};controls.append(label,select);toolbar.append(controls);
- const series=components.map(([key,name,color,period,direction,dash])=>({key,name,color,period,direction,dash,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}))
+ const series=components.map(([key,name,color,period,direction,dash])=>({
+  key,name,color,period,direction,dash,
+  values:rows.map(row=>Number.isFinite(row[key]) ? row[key]*scale : null),
+  available:rows.some(row=>Number.isFinite(row[key])),
+ }))
   .filter(item => item.key !== 'tertiary' || item.available);
  const toggleLayer = (key, visible) => {
   if (visible) enabled.add(key);
@@ -114,7 +124,7 @@ export function weekly(forecastRows,options){
   Number.isFinite(value) && value > 0 && hasDirection(row[key]);
  const markerOptions = shown.map(series => ({
   ...series,
-  hasPeriods: mode === 'height' && rows.some(row => hasPeriod(row[series.period])),
+  hasPeriods: rows.some(row => hasPeriod(row[series.period])),
   hasDirections: rows.some((row, i) => canDrawDirection(row, series.values[i], series.direction)),
  })).filter(series => series.hasPeriods || series.hasDirections);
  const markerSeries = markerOptions.find(series => series.key === markerSeriesKey) ?? markerOptions[0];
@@ -123,7 +133,7 @@ export function weekly(forecastRows,options){
  const hasRightAxis = periodSeries || rows.some(row => Number.isFinite(row.speed) || Number.isFinite(row.rainChance));
  const plotRight = graphWidth - (hasRightAxis ? (compact ? 46 : 64) : (compact ? 8 : 20));
  const plotWidth = plotRight - plotLeft;
- const end=rows.at(-1).time,span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
+ const span=end-start||1,x=t=>plotLeft+(t-start)/span*plotWidth;
  const dateFormat = new Intl.DateTimeFormat('en-US', { timeZone:zone, year:'numeric', month:'2-digit', day:'2-digit' });
  const clockFormat = new Intl.DateTimeFormat('en-US', { timeZone:zone, hour:'numeric', minute:'2-digit' });
  const dayKey = time => dateFormat.format(time * 1000);
@@ -154,14 +164,14 @@ export function weekly(forecastRows,options){
    chart.append(svg('rect', { x:left, y:top, width:right-left, height:bottom-top, class:'week-daylight-band', 'aria-hidden':'true' }));
   }
  }
- const description = 'Seven-day ' + mode + ' forecast in ' + unit.trim() + ', in location time.' +
+ const description = duration + ' height forecast in ' + heightUnit.trim() + ', in location time.' +
   (periodSeries ? ' Dots show ' + periodSeries.name + ' period on the right axis in seconds.' : '') +
   (showDirections ? ' Arrows show the direction of ' + markerSeries.name + ' wave travel.' : '') +
   (daylightByDay.size ? ' Lighter bands mark daylight and darker bands mark night.' : '') +
   ' Use the hourly slider and data table for exact values.';
  const graph = svg('svg', {viewBox:'0 0 '+graphWidth+' 272',role:'img','aria-label':description,class:'week-chart'});
  shadeDaylight(graph, 20, 260);
- const max = Math.max(mode==='height'?1:5,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
+ const max = Math.max(1,...shown.flatMap(s=>s.values.filter(Number.isFinite)))*1.12;
  const yValue = value => 260 - value / max * 220;
  const periods = periodSeries ? rows.map(row => row[periodSeries.period]).filter(hasPeriod) : [];
  const periodMax = 4 * Math.ceil(Math.max(20, ...periods)/4);
@@ -170,7 +180,7 @@ export function weekly(forecastRows,options){
  for (let i=0;i<5;i++) {
   const y=260-i*55;
   graph.append(svg('line',{x1:plotLeft,y1:y,x2:plotRight,y2:y,stroke:'#44394f',class:'week-grid'}),
-   svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont,class:'week-axis-label'},(max*i/4).toFixed(1)+unit));
+   svg('text',{x:6,y:y+4,fill:'#b5a9c2','font-size':axisFont,class:'week-axis-label'},(max*i/4).toFixed(1)+heightUnit));
   if (periodSeries) periodAxis.append(svg('text', {x:rightLabelX,y:y+4}, periodMax*i/4 + ' s'));
  }
  if (periodSeries) {
@@ -234,10 +244,9 @@ export function weekly(forecastRows,options){
  if (markerSeries) {
   const picker = document.createElement('div');
   picker.className = 'week-period-options';
-  picker.dataset.mode = mode;
   const periodLabel = document.createElement('label');
   periodLabel.htmlFor = 'week-period-series';
-  periodLabel.textContent = mode === 'height' ? 'Period & direction' : 'Direction arrows';
+  periodLabel.textContent = 'Period & direction';
   periodLabel.style.color = markerSeries.color;
   const periodSelect = document.createElement('select');
   periodSelect.id = periodLabel.htmlFor;
@@ -257,7 +266,7 @@ export function weekly(forecastRows,options){
  tooltip.className = 'week-tooltip week-forecast-tooltip';
  tooltip.hidden = true;
  tooltip.setAttribute('aria-hidden', 'true');
- const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, firstForecastHour, dayMarks, shadeDaylight, axisFont, compact };
+ const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, duration, firstForecastHour, dayMarks, shadeDaylight, axisFont, compact };
  mountChart(root, { graph, top:20, bottom:260, dateAxis: { height:310, labelY:289 } });
  const tideWind = tideWindPanel(root, rows, tide, timeline, { heightUnit, scale, speedUnit, speedScale }, enabled, toggleLayer);
  const weather = weatherPanel(root, rows, timeline, enabled, toggleLayer);
@@ -416,4 +425,5 @@ export function weekly(forecastRows,options){
  inspect(selected);
  const note=document.createElement('p');note.className='small';note.textContent='Combined sea includes wind waves and swell; heights are not added arithmetically. Arrows show where the selected waves are traveling. Missing data creates gaps. Swell partitions are model components, not tracked named storms, and may change order over time. Secondary/tertiary availability depends on the provider model. Tap a chart or use the hourly slider.';root.append(note);
  if (focusId) document.getElementById(focusId)?.focus({preventScroll:true});
+ return rows;
 }

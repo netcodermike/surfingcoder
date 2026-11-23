@@ -109,8 +109,8 @@ def main(output):
     catalog = Path(__file__).resolve().parents[1] / "surfreport/src/ndbc-stations.json"
     stations = [row["id"] for row in json.loads(catalog.read_text(encoding="utf-8"))["stations"]
                 if re.fullmatch(r"[0-9A-Z]{5}", row["id"])]
-    # Keep a buffer beyond the 48-hour display in case a scheduled refresh runs late.
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=60)
+    # Keep a buffer beyond the seven-day display in case a scheduled refresh runs late.
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7, hours=12)
     cutoff_ms = int(cutoff.timestamp() * 1000)
     output.mkdir(parents=True, exist_ok=True)
     with ThreadPoolExecutor(max_workers=12) as pool:

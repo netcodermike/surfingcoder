@@ -1,5 +1,6 @@
-import { setupBuoyView } from './src/buoys.js?v=20261122-combined-sea-arrows';
-import { weekly } from './weekly.js?v=20261122-combined-sea-arrows';
+import { setupBuoyView } from './src/buoys.js?v=20261123-chart-ranges';
+import { weekly } from './weekly.js?v=20261123-chart-ranges';
+import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261123-chart-ranges';
 import { $, field, select, button, on, download } from './ui.js';
 import * as core from './src/core.js?v=20261117-rain-chance';
 import { loadTides } from './src/tides.js';
@@ -27,14 +28,23 @@ let active;
 let controller;
 let tide;
 let daylight;
+let chosenForecastDays;
+const narrowForecast = matchMedia('(max-width: 600px)');
 
 const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
 
 function drawWeek() {
-  weekly(rows, { zone, units: $('units').value, tide, daylight, location: active?.label });
+  const days = chosenForecastDays ?? (narrowForecast.matches ? 2 : MAX_RANGE_DAYS);
+  return weekly(rows, {
+    zone, units: $('units').value, tide, daylight, location: active?.label, days,
+    onRangeChange: next => {
+      chosenForecastDays = next;
+      draw();
+    },
+  });
 }
 
-function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
+function renderHourly(visibleRows, timeFormat, units, heightUnit, speedUnit, speedFactor) {
   const table = document.createElement('table');
   const headings = table.createTHead().insertRow();
   for (const title of ['Time', 'Waves' + heightUnit, 'Period', 'Swell' + heightUnit, 'Wave from', 'Wind' + speedUnit, 'Wind from']) {
@@ -45,7 +55,7 @@ function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
     headings.append(header);
   }
   const body = table.createTBody();
-  for (const row of rows) {
+  for (const row of visibleRows) {
     const tr = body.insertRow();
     const date = new Date(row.time * 1000);
     const stamp = document.createElement('time');
@@ -68,7 +78,12 @@ function renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor) {
 }
 
 function draw() {
-  if (!rows.length) return;
+  const visibleRows = drawWeek();
+  if (!visibleRows.length) {
+    $('output').replaceChildren();
+    $('hourly').hidden = true;
+    return;
+  }
   const units = $('units').value;
   const imperial = units === 'imperial';
   const heightUnit = imperial ? ' ft' : ' m';
@@ -77,8 +92,7 @@ function draw() {
   const timeFormat = new Intl.DateTimeFormat('en-US', {
     timeZone: zone, weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
   });
-  drawWeek();
-  renderHourly(timeFormat, units, heightUnit, speedUnit, speedFactor);
+  renderHourly(visibleRows, timeFormat, units, heightUnit, speedUnit, speedFactor);
 }
 
 const marineFields = [
@@ -119,7 +133,8 @@ async function load(lat, lon, label) {
   drawWeek();
   const timeout = setTimeout(() => request.abort(), 20000);
   try {
-    const common = 'latitude=' + coords.lat + '&longitude=' + coords.lon + '&timezone=auto&timeformat=unixtime&forecast_days=7';
+    const common = 'latitude=' + coords.lat + '&longitude=' + coords.lon +
+      '&timezone=auto&timeformat=unixtime&forecast_days=' + (MAX_RANGE_DAYS + 1);
     const signals = { signal: request.signal };
     const [marine, weather] = await Promise.allSettled([
       fetch('https://marine-api.open-meteo.com/v1/marine?' + common + '&cell_selection=sea&hourly=' + marineFields, signals).then(async response => {
@@ -224,6 +239,9 @@ try {
 }
 
 let chartWidth;
+narrowForecast.addEventListener('change', () => {
+  if (chosenForecastDays === undefined) draw();
+});
 new ResizeObserver(([entry]) => {
   const width = entry.contentRect.width;
   if (!width || width === chartWidth) return;

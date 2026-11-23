@@ -1,12 +1,13 @@
 import { height } from './core.js?v=20261117-tides-wind';
 import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS } from './chart-markers.js?v=20261122-combined-sea-arrows';
+import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
 
 const HOUR = 3600000;
-export const OBSERVATION_HOURS = 48;
+const COMPASS_POINTS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 const SERIES = [
-  { label: 'Combined sea', color: 'var(--surf-combined-sea, #79bfff)', heightKey: 'wave', periodKey: 'period' },
-  { label: 'Swell', color: 'var(--surf-swell, #a879e8)', heightKey: 'swell', periodKey: 'swellPeriod' },
-  { label: 'Wind waves', color: 'var(--surf-wind-wave, #d9c4f5)', heightKey: 'windWave', periodKey: 'windWavePeriod', dash: '6 4' },
+  { label: 'Combined sea', color: 'var(--surf-combined-sea, #79bfff)', heightKey: 'wave', periodKey: 'period', directionKey: 'direction' },
+  { label: 'Swell', color: 'var(--surf-swell, #a879e8)', heightKey: 'swell', periodKey: 'swellPeriod', directionKey: 'swellDirection' },
+  { label: 'Wind waves', color: 'var(--surf-wind-wave, #d9c4f5)', heightKey: 'windWave', periodKey: 'windWavePeriod', directionKey: 'windWaveDirection', dash: '6 4' },
 ];
 const svg = (name, attrs, label) => {
   const element = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -15,17 +16,26 @@ const svg = (name, attrs, label) => {
   return element;
 };
 
-export function drawBuoyChart(readings, units, width, date, details, hiddenLayers) {
+function directionBearing(value) {
+  if (typeof value !== 'string') return value;
+  const point = COMPASS_POINTS.indexOf(value.trim().toUpperCase());
+  return point >= 0 ? point * 22.5 : undefined;
+}
+
+export function drawBuoyChart(readings, units, width, date, details, hiddenLayers, { days = 2, end = Date.now(), onRangeChange } = {}) {
   const section = document.createElement('section');
   section.className = 'buoy-wave-chart';
+  const toolbar = document.createElement('div');
+  toolbar.className = 'week-toolbar';
   const title = document.createElement('h4');
-  title.textContent = `Observed waves · Last ${OBSERVATION_HOURS} hours`;
-  section.append(title);
-  const end = Date.now(), start = end - OBSERVATION_HOURS * HOUR;
+  title.textContent = `Observed waves · Last ${formatDayRange(days)}`;
+  toolbar.append(title, dayRangeControl('observation-days', 'Observed range', days, range => onRangeChange?.(range)));
+  section.append(toolbar);
+  const start = end - days * 24 * HOUR;
   const rows = readings.filter(row => row.time >= start && row.time <= end).reverse();
   if (!rows.length) {
     const empty = document.createElement('p');
-    empty.textContent = `No readings in the last ${OBSERVATION_HOURS} hours.`;
+    empty.textContent = `No readings in the last ${formatDayRange(days)}.`;
     section.append(empty);
     return section;
   }
@@ -84,6 +94,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   const layers = new Map();
   const arrowLayers = [], periodLayers = [];
   const isVisible = key => availableLayers.has(key) && !hiddenLayers.has(key);
+  const arrowInterval = DIRECTION_INTERVAL_SECONDS * 1000;
   for (const series of SERIES) {
     const layer = svg('g', { 'data-observed-layer': series.heightKey });
     if (!isVisible(series.heightKey)) layer.style.display = 'none';
@@ -99,20 +110,20 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     const trace = svg('path', { d: path, fill: 'none', stroke: series.color, 'stroke-width': 2 });
     if (series.dash) trace.setAttribute('stroke-dasharray', series.dash);
     layer.append(trace);
-    if (series.heightKey === 'wave') {
-      const interval = DIRECTION_INTERVAL_SECONDS * 1000;
-      const arrows = createChartArrows(svg, {
-        className: 'buoy-wave-arrows', color: series.color, spacing: x(start + interval) - x(start), bottom: 230,
-      });
-      let lastArrowTime = -Infinity;
-      for (const row of rows) {
-        if (row.time - lastArrowTime < interval || !Number.isFinite(row.wave) || row.wave <= 0) continue;
-        if (arrows.add(x(row.time), y(height(row.wave, units), heightMax), row.direction)) lastArrowTime = row.time;
+    const arrows = createChartArrows(svg, {
+      className: 'buoy-wave-arrows', color: series.color, spacing: x(start + arrowInterval) - x(start), bottom: 230,
+    });
+    let lastArrowTime = -Infinity;
+    for (const row of rows) {
+      const value = row[series.heightKey];
+      if (row.time - lastArrowTime < arrowInterval || !Number.isFinite(value) || value <= 0) continue;
+      if (arrows.add(x(row.time), y(height(value, units), heightMax), directionBearing(row[series.directionKey]))) {
+        lastArrowTime = row.time;
       }
-      if (arrows.group.childElementCount) {
-        layer.append(arrows.group);
-        arrowLayers.push(arrows.group);
-      }
+    }
+    if (arrows.group.childElementCount) {
+      layer.append(arrows.group);
+      arrowLayers.push(arrows.group);
     }
     if (series.periodKey) {
       const dots = svg('g', { class: 'buoy-period-dots', 'aria-hidden': 'true' });
@@ -136,7 +147,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   popup.hidden = true;
   const hint = document.createElement('p');
   hint.className = 'buoy-reading-status';
-  hint.textContent = 'Times are local. Lines show heights and matching circles show periods. Combined sea arrows show the direction of wave travel.';
+  hint.textContent = 'Times are local. Lines show heights, matching circles show periods, and arrows show wave travel direction.';
   const slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
