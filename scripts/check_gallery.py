@@ -4,7 +4,10 @@ import json, re, html
 from html.parser import HTMLParser
 ROOT = Path(__file__).resolve().parents[1]
 projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))
-assert len(projects) == len({p['name'] for p in projects}), 'Duplicate repository names'
+project_names = {project['name'] for project in projects}
+gallery_exclusions = {'surfcoder-regional-surf-report'}
+assert len(projects) == len(project_names), 'Duplicate repository names'
+assert project_names.isdisjoint(gallery_exclusions), 'The Surf Report belongs in the header, outside the project gallery'
 category_order = ['Mathematics', 'AI & machine learning', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
 assert list(dict.fromkeys(p['category'] for p in projects)) == category_order, 'Curated category priorities changed'
 assert [category_order.index(p['category']) for p in projects] == sorted(category_order.index(p['category']) for p in projects), 'Categories must stay grouped'
@@ -56,6 +59,7 @@ inventory=ROOT/'scripts/expansion40-inventory.json'
 if inventory.exists():
     expansion=json.loads(inventory.read_text(encoding='utf-8'))
     assert len(expansion)==40 and len(projects)>=103, 'Expansion incomplete'
-    assert all(any(p['name']==r['name'] for p in projects) for r in expansion), 'New app missing from gallery'
+    expected = {app['name'] for app in expansion} - gallery_exclusions
+    assert expected <= project_names, 'New app missing from gallery'
 
 print(f'Gallery checks passed: {len(projects)} repositories, ordered cards, valid links and real screenshots.')
