@@ -3,28 +3,42 @@ import { tideAt } from './src/tides.js';
 export const tideColor = '#78c7ff';
 export const windColor = '#f2c486';
 export const temperatureColor = '#62e6bd';
-const rainColor = '#a3adff';
+export const rainColor = '#a3adff';
 
-function panel(root, name, title) {
+export function seriesLegend(series, enabled, onChange, title) {
+  const legend = document.createElement('div');
+  legend.className = 'week-legend';
+  legend.setAttribute('role', 'group');
+  legend.setAttribute('aria-label', title);
+  for (const item of series) {
+    const label = document.createElement('label');
+    const check = document.createElement('input');
+    const swatch = document.createElement('i');
+    check.type = 'checkbox';
+    check.id = 'week-show-' + item.key;
+    check.checked = item.available && enabled.has(item.key);
+    check.disabled = !item.available;
+    check.setAttribute('aria-label', item.name);
+    check.onchange = () => onChange(item.key, check.checked);
+    swatch.setAttribute('aria-hidden', 'true');
+    swatch.style.background = item.dash
+      ? `repeating-linear-gradient(to right, ${item.color} 0 6px, transparent 6px 9px)`
+      : item.color;
+    if (item.hint) label.title = item.hint;
+    label.append(check, swatch, item.name + (item.available ? '' : ' · unavailable'));
+    legend.append(label);
+  }
+  return legend;
+}
+
+function panel(root, name, title, entries, enabled, onChange) {
   const section = document.createElement('section');
   section.className = 'week-support';
   section.id = 'week-' + name;
-  const heading = document.createElement('h4');
-  heading.id = section.id + '-title';
-  heading.textContent = title;
-  section.setAttribute('aria-labelledby', heading.id);
-  const caption = document.createElement('p');
-  section.append(heading, caption);
+  section.setAttribute('aria-label', title);
+  section.append(seriesLegend(entries, enabled, onChange, title + ' layers'));
   root.append(section);
-  return { section, caption };
-}
-
-function seriesKey(text, color) {
-  const key = document.createElement('span');
-  key.className = 'week-series-key';
-  key.style.setProperty('--series-color', color);
-  key.textContent = text;
-  return key;
+  return section;
 }
 
 function hourlySeries(rows, reading, options) {
@@ -141,58 +155,45 @@ function tideSeries(samples, timeline, heightUnit, scale) {
     ? { values, unit: heightUnit, color: tideColor, gap: 360, reading, filled: true } : null;
 }
 
-export function tideWindPanel(root, rows, tide, timeline, { units, heightUnit, scale, speedUnit, speedScale }) {
-  const { section, caption } = panel(root, 'tides', 'Tide and wind');
+export function tideWindPanel(root, rows, tide, timeline, metrics, enabled, onChange) {
+  const { heightUnit, scale, speedUnit, speedScale } = metrics;
   const wind = hourlySeries(rows, row => Number.isFinite(row.speed) ? row.speed * speedScale : null,
     { unit: speedUnit, color: windColor });
   const tidal = tide?.samples ? tideSeries(tide.samples, timeline, heightUnit, scale) : null;
-  const descriptions = [];
-  if (tidal) {
-    const { station } = tide;
-    const stationLink = document.createElement('a');
-    stationLink.href = 'https://tidesandcurrents.noaa.gov/noaatidepredictions.html?id=' + encodeURIComponent(station.id);
-    stationLink.textContent = 'NOAA ' + (station.id === '8656590' ? 'Atlantic Beach Triple S Pier' : station.name);
-    const distance = units === 'imperial' ? Math.round(station.distance * .621371) + ' mi' : Math.round(station.distance) + ' km';
-    caption.append(seriesKey('Tide', tideColor), ' · ', stationLink, ` · ${distance} away · MLLW`);
-    descriptions.push('NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water on the left axis.');
-  } else {
-    caption.textContent = tide?.message ?? (tide?.samples ? 'NOAA tide predictions unavailable.' : 'Loading NOAA tide predictions…');
-  }
-  if (wind) {
-    caption.append(' · ', seriesKey('Wind speed', windColor), ' · Arrows point downwind');
-    descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis. Arrows point downwind.');
-  } else {
-    caption.append(' · Wind forecast unavailable');
-  }
+  const section = panel(root, 'tides', 'Tide and wind', [
+    { key: 'tide', name: 'Tide', color: tideColor, available: Boolean(tidal),
+      hint: tidal ? 'NOAA predictions relative to Mean Lower Low Water' :
+        tide?.message ?? (tide?.samples ? 'NOAA tide predictions unavailable' : 'Loading NOAA tide predictions') },
+    { key: 'wind', name: 'Wind speed', color: windColor, available: Boolean(wind) },
+  ], enabled, onChange);
   if (!tidal && !wind) return null;
-  const chart = seriesChart(tidal, timeline, { secondary: wind, arrows: wind ? rows : null, label: descriptions.join(' ') });
-  return { section, ...chart, tideReading: tidal?.reading, windReading: wind?.reading };
+  const visibleTide = enabled.has('tide') ? tidal : null;
+  const visibleWind = enabled.has('wind') ? wind : null;
+  const descriptions = ['Seven-day tide and wind forecast.'];
+  if (visibleTide) descriptions.push('NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water on the left axis.');
+  if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis. Arrows point downwind.');
+  const chart = seriesChart(visibleTide, timeline, {
+    secondary: visibleWind, arrows: visibleWind ? rows : null, label: descriptions.join(' '),
+  });
+  return { section, ...chart, tideReading: visibleTide?.reading, windReading: visibleWind?.reading };
 }
 
-export function weatherPanel(root, rows, timeline) {
-  const { section, caption } = panel(root, 'weather', 'Air temperature and rain chance');
+export function weatherPanel(root, rows, timeline, enabled, onChange) {
   const temperature = hourlySeries(rows, row => row.airTemperatureF,
     { unit: ' °F', color: temperatureColor, includeZero: false });
   const rain = hourlySeries(rows, row => Number.isFinite(row.rainChance) && row.rainChance >= 0 && row.rainChance <= 100 ? row.rainChance : null,
     { unit: '%', color: rainColor, ticks: [0, 25, 50, 75, 100] });
-  const descriptions = [];
-  if (temperature) {
-    caption.append(seriesKey('Air temperature (°F)', temperatureColor));
-    descriptions.push('Air temperature in degrees Fahrenheit on the left axis.');
-  }
-  if (rain) {
-    const rainKey = seriesKey('Rain chance (%)', rainColor);
-    rainKey.title = 'Chance of measurable precipitation in the hour ending at the forecast time';
-    if (temperature) caption.append(' · ');
-    caption.append(rainKey);
-    descriptions.push('Hourly chance of precipitation on the right axis, from 0 to 100 percent.');
-  } else if (temperature) {
-    caption.append(' · Rain chance unavailable');
-  }
-  if (!temperature && !rain) {
-    caption.textContent = 'Air temperature and rain chance are unavailable for this location.';
-    return null;
-  }
-  const chart = seriesChart(temperature, timeline, { secondary: rain, label: descriptions.join(' ') });
-  return { section, ...chart, temperatureReading: temperature?.reading };
+  const section = panel(root, 'weather', 'Air temperature and rain chance', [
+    { key: 'temperature', name: 'Air temperature (°F)', color: temperatureColor, available: Boolean(temperature) },
+    { key: 'rain', name: 'Rain chance (%)', color: rainColor, available: Boolean(rain),
+      hint: 'Chance of measurable precipitation in the hour ending at the forecast time' },
+  ], enabled, onChange);
+  if (!temperature && !rain) return null;
+  const visibleTemperature = enabled.has('temperature') ? temperature : null;
+  const visibleRain = enabled.has('rain') ? rain : null;
+  const descriptions = ['Seven-day air temperature and rain chance.'];
+  if (visibleTemperature) descriptions.push('Air temperature in degrees Fahrenheit on the left axis.');
+  if (visibleRain) descriptions.push('Hourly chance of precipitation on the right axis, from 0 to 100 percent.');
+  const chart = seriesChart(visibleTemperature, timeline, { secondary: visibleRain, label: descriptions.join(' ') });
+  return { section, ...chart, temperatureReading: visibleTemperature?.reading, rainReading: visibleRain?.reading };
 }

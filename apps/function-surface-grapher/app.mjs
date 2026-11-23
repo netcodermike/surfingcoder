@@ -142,11 +142,11 @@ function initialize() {
   function paint3d({samples, limits}) {
     const [low, high] = limits;
     const span=high-low;
-    const scale=Math.min(W,H)*.305;
+    const scale=Math.min(W,H)*.273;
     const project=(x,y,z) => {
       const ix=x*Math.cos(yaw)-y*Math.sin(yaw);
       const iy=x*Math.sin(yaw)+y*Math.cos(yaw);
-      return [W*.50+ix*scale,H*.51+(iy*Math.sin(pitch)-z*Math.cos(pitch))*scale,
+      return [W*.50+ix*scale,H*.475+(iy*Math.sin(pitch)-z*Math.cos(pitch))*scale,
         iy*Math.cos(pitch)+z*Math.sin(pitch)];
     };
     const projected=samples.map(row=>row.map(({x,y,z})=>z===null?null:project(x,y,span ? (z-low)/span*1.55-.775 : 0)));

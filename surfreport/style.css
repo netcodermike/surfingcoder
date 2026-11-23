@@ -56,17 +56,12 @@
 .buoy-actions button { margin: 0; }
 .buoy-actions a { font-size: .82rem; line-height: 1.5; text-underline-offset: 3px; }
 .week-plot { position: relative; }
-.week-support { margin: 14px 0; }
-.week-support h4 { margin: 0; font-size: 1rem; }
-.week-support p { margin: 2px 0 8px; font-size: .84rem; color: var(--text-secondary); }
-.week-support a { text-underline-offset: 3px; }
-#week-tides a { color: #96d2ff; }
+.week-support { margin: 0 0 6px; }
+.week-support > .week-legend { margin: 2px 0; }
 .week-support-chart { display: block; width: 100%; height: auto; background: var(--canvas-bg); border-radius: 8px; touch-action: pan-y; }
 .week-grid { stroke: #44394f; }
 .week-zero { stroke: #71627e; }
 .week-axis-label { fill: #b5a9c2; }
-.week-series-key { display: inline-flex; align-items: center; gap: 7px; color: var(--series-color); white-space: nowrap; }
-.week-series-key::before { content: ''; width: 18px; border-top: 2px solid currentColor; }
 .week-support-point { stroke: var(--canvas-bg); stroke-width: 1.5; }
 .week-legend { gap: 7px 20px; }
 .week-legend label { min-height: 30px; margin: 0; gap: 7px; color: var(--ink); font-size: .92rem; }
@@ -110,3 +105,5 @@
 }
 .week-axis-label.buoy-axis-date { fill: var(--ink); font-weight: 700; }
 .week-axis-label.buoy-axis-time { fill: var(--text-secondary); font-size: 12px; }
+.week-tooltip.week-forecast-tooltip { position: fixed; max-width: min(24rem, calc(100vw - 12px)); z-index: 50; }
+.week-tooltip-divider { margin: 1px 0; width: 100%; border: 0; border-top: 1px solid var(--border); grid-column: 1 / -1; }

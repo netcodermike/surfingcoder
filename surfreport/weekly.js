@@ -1,4 +1,4 @@
-import { temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261119-wind-arrows';
+import { rainColor, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261122-compact-legends';
 import { compass } from './src/core.js?v=20261117-rain-chance';
 
 const components = [
@@ -8,7 +8,7 @@ const components = [
  ['tertiary', 'Tertiary swell', '#e190b9', 'tertiaryPeriod', 'tertiaryDirection'],
  ['windWave', 'Wind waves', '#d9c4f5', 'windWavePeriod', 'windWaveDirection', '6 4'],
 ];
-let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave']),selected=-1;
+let mode='height',enabled=new Set(['wave','swell','secondary','tertiary','windWave','tide','wind','temperature','rain']),selected=-1;
 let graphWidth = 1000;
 let periodSeriesKey = 'wave';
 const ns='http://www.w3.org/2000/svg';
@@ -40,28 +40,14 @@ export function weekly(rows,options){
  const speedScale = imperial ? .621371 : 1, speedUnit = imperial ? ' mph' : ' km/h';
  const controls=document.createElement('div');controls.className='week-controls';
  const label=document.createElement('label');label.htmlFor='week-mode';label.textContent='Graph';const select=document.createElement('select');select.id='week-mode';for(const [v,t]of [['height','Wave / swell height'],['period','Wave / swell period']]){const o=document.createElement('option');o.value=v;o.textContent=t;select.append(o);}select.value=mode;select.onchange=()=>{mode=select.value;weekly(rows,options);};controls.append(label,select);toolbar.append(controls);
- const legend=document.createElement('div');legend.className='week-legend';root.append(legend);
  const series=components.map(([key,name,color,period,direction,dash])=>({key,name,color,period,direction,dash,values:rows.map(r=>mode==='height'?(Number.isFinite(r[key])?r[key]*scale:null):r[period]),available:rows.some(r=>Number.isFinite(mode==='height'?r[key]:r[period]))}));
- for (const s of series) {
-  const label = document.createElement('label');
-  const check = document.createElement('input');
-  const swatch = document.createElement('i');
-  check.type = 'checkbox';
-  check.id = 'week-show-' + s.key;
-  check.checked = enabled.has(s.key) && s.available;
-  check.disabled = !s.available;
-  check.setAttribute('aria-label', s.name);
-  check.onchange = () => {
-   if (check.checked) enabled.add(s.key);
-   else enabled.delete(s.key);
-   weekly(rows, options);
-  };
-  swatch.style.background = s.dash
-   ? `repeating-linear-gradient(to right, ${s.color} 0 6px, transparent 6px 9px)`
-   : s.color;
-  label.append(check, swatch, document.createTextNode(s.name + (s.available ? '' : ' · unavailable')));
-  legend.append(label);
- }
+ const toggleLayer = (key, visible) => {
+  if (visible) enabled.add(key);
+  else enabled.delete(key);
+  weekly(rows, options);
+ };
+ const legend = seriesLegend(series, enabled, toggleLayer, 'Wave forecast layers');
+ root.append(legend);
  const shown = series.filter(s => s.available && enabled.has(s.key));
  const periodOptions = mode === 'height' ? shown.filter(s => rows.some(row => hasPeriod(row[s.period]))) : [];
  const periodSeries = periodOptions.find(s => s.key === periodSeriesKey) ?? periodOptions[0];
@@ -168,24 +154,28 @@ export function weekly(rows,options){
  }
  if(selected<0||selected>=rows.length)selected=Math.max(0,rows.findIndex(r=>r.time>=Date.now()/1000));
  const charts = [];
- mountChart(root, { graph, top:20, bottom:260 }, (panel, row) => renderReadings(panel, row, waveReadings(row, shown)));
+ const tooltip = document.createElement('div');
+ tooltip.className = 'week-tooltip week-forecast-tooltip';
+ tooltip.hidden = true;
+ tooltip.setAttribute('aria-hidden', 'true');
  const timeline = { svg, width:graphWidth, left:plotLeft, right:plotRight, x, start, end, dayMarks, shadeDaylight, axisFont, compact };
- const tideWind = tideWindPanel(root, rows, tide, timeline, { units, heightUnit, scale, speedUnit, speedScale });
- const weather = weatherPanel(root, rows, timeline);
- const extraReadings = [];
+ mountChart(root, { graph, top:20, bottom:260 });
+ const tideWind = tideWindPanel(root, rows, tide, timeline, { heightUnit, scale, speedUnit, speedScale }, enabled, toggleLayer);
+ const weather = weatherPanel(root, rows, timeline, enabled, toggleLayer);
+ const seaConditions = [], airConditions = [];
  if (tideWind) {
-  const readings = [];
-  if (tideWind.tideReading) readings.push(row => ({ name:'Tide', color:tideColor, text:val(tideWind.tideReading(row), heightUnit) }));
-  if (tideWind.windReading) readings.push(row => ({ name:'Wind', color:windColor, text:val(tideWind.windReading(row), speedUnit) +
+  if (tideWind.tideReading) seaConditions.push(row => ({ name:'Tide', color:tideColor, text:val(tideWind.tideReading(row), heightUnit) }));
+  if (tideWind.windReading) seaConditions.push(row => ({ name:'Wind', color:windColor, text:val(tideWind.windReading(row), speedUnit) +
    (row.speed === 0 ? ' · Calm' : Number.isFinite(row.wind_direction) ? ' · from ' + bearing(row.wind_direction) : '') }));
-  extraReadings.push(...readings);
-  mountChart(tideWind.section, tideWind, (panel, row) => renderReadings(panel, row, readings.map(reading => reading(row))));
+  mountChart(tideWind.section, tideWind);
  }
+ let rainReading;
  if (weather) {
-  const reading = weather.temperatureReading && (row => ({ name:'Air temperature', color:temperatureColor, text:val(weather.temperatureReading(row), ' °F') }));
-  if (reading) extraReadings.push(reading);
-  mountChart(weather.section, weather, (panel, row) => renderReadings(panel, row, reading ? [reading(row)] : []));
+  if (weather.temperatureReading) airConditions.push(row => ({ name:'Air temperature', color:temperatureColor, text:val(weather.temperatureReading(row), ' °F') }));
+  if (weather.rainReading) rainReading = row => ({ name:'Rain chance', color:rainColor, text:val(weather.rainReading(row), '%') });
+  mountChart(weather.section, weather);
  }
+ root.append(tooltip);
  const sliderLabel=document.createElement('label');sliderLabel.htmlFor='week-hour';sliderLabel.textContent='Inspect forecast hour · local time';const slider=document.createElement('input');slider.type='range';slider.id='week-hour';slider.min=0;slider.max=rows.length-1;slider.step=1;slider.value=selected;root.append(sliderLabel,slider);
  const readout=document.createElement('div');readout.className='week-readout';readout.setAttribute('aria-live','polite');root.append(readout);
  function waveReadings(row, items) {
@@ -193,22 +183,29 @@ export function weekly(rows,options){
    text:val(Number.isFinite(row[item.key]) ? row[item.key]*scale : null,heightUnit) +
    ' · ' + val(row[item.period],' s') + ' · from ' + bearing(row[item.direction]) }));
  }
- function renderReadings(panel, row, items) {
+ function renderReadings(panel, row, groups) {
   const heading = document.createElement('strong');
   heading.textContent = fmt(row.time,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
   panel.replaceChildren(heading);
-  for (const item of items) {
-   const line = document.createElement('span');
-   line.className = 'week-reading';
-   line.style.setProperty('--series-color', item.color);
-   const label = document.createElement('span');
-   label.className = 'week-reading-label';
-   label.textContent = item.name + ':';
-   const value = document.createElement('span');
-   value.textContent = item.text;
-   line.append(label, value);
-   panel.append(line);
-  }
+  groups.filter(group => group.length).forEach((items, i) => {
+   if (i) {
+    const divider = document.createElement('hr');
+    divider.className = 'week-tooltip-divider';
+    panel.append(divider);
+   }
+   for (const item of items) {
+    const line = document.createElement('span');
+    line.className = 'week-reading';
+    line.style.setProperty('--series-color', item.color);
+    const label = document.createElement('span');
+    label.className = 'week-reading-label';
+    label.textContent = item.name + ':';
+    const value = document.createElement('span');
+    value.textContent = item.text;
+    line.append(label, value);
+    panel.append(line);
+   }
+  });
   const sun = daylightByDay.get(dayKey(row.time));
   if (sun) {
    const times = document.createElement('span');
@@ -238,7 +235,7 @@ export function weekly(rows,options){
    position(chart.cursor, x(row.time));
    mark(chart, row);
   }
-  renderReadings(readout, row, [...waveReadings(row, series), ...extraReadings.map(reading => reading(row))]);
+  renderReadings(readout, row, [[...waveReadings(row, series), ...[...seaConditions, ...airConditions].map(reading => reading(row))]]);
  }
  function hourAt(clientX, chart) {
   const bounds = chart.getBoundingClientRect();
@@ -248,7 +245,7 @@ export function weekly(rows,options){
   if (next === -1) return rows.length-1;
   return next > 0 && instant-rows[next-1].time <= rows[next].time-instant ? next-1 : next;
  }
- function mountChart(parent, chart, render) {
+ function mountChart(parent, chart) {
   const { graph, top, bottom, markers } = chart;
   const cursor = svg('line', { y1:top, y2:bottom, stroke:'#f0eaf6', 'stroke-dasharray':'4 4', class:'week-selected-cursor' });
   const hoverCursor = svg('line', { y1:top, y2:bottom, stroke:'#d7b9f5', visibility:'hidden', class:'week-hover-cursor' });
@@ -257,11 +254,7 @@ export function weekly(rows,options){
   charts.push({ ...chart, cursor, hoverCursor });
   const plot = document.createElement('div');
   plot.className = 'week-plot';
-  const tooltip = document.createElement('div');
-  tooltip.className = 'week-tooltip';
-  tooltip.hidden = true;
-  tooltip.setAttribute('aria-hidden', 'true');
-  plot.append(graph, tooltip);
+  plot.append(graph);
   parent.append(plot);
 
   let hovered = -1;
@@ -271,7 +264,13 @@ export function weekly(rows,options){
    if (hovered !== index) {
     hovered = index;
     const row = rows[index];
-    render(tooltip, row);
+    const weatherData = airConditions.map(reading => reading(row));
+    if (rainReading) weatherData.push(rainReading(row));
+    renderReadings(tooltip, row, [
+     waveReadings(row, shown),
+     seaConditions.map(reading => reading(row)),
+     weatherData,
+    ]);
     for (const item of charts) {
      position(item.hoverCursor, x(row.time));
      item.hoverCursor.setAttribute('visibility', 'visible');
@@ -279,12 +278,13 @@ export function weekly(rows,options){
     }
    }
    tooltip.hidden = false;
-   const bounds = plot.getBoundingClientRect();
-   const px = event.clientX-bounds.left, py = event.clientY-bounds.top;
-   const left = px+14+tooltip.offsetWidth <= bounds.width ? px+14 : px-14-tooltip.offsetWidth;
-   const top = py+14+tooltip.offsetHeight <= bounds.height ? py+14 : py-14-tooltip.offsetHeight;
-   tooltip.style.left = Math.max(6, Math.min(left, bounds.width-tooltip.offsetWidth-6)) + 'px';
-   tooltip.style.top = Math.max(6, Math.min(top, bounds.height-tooltip.offsetHeight-6)) + 'px';
+   const viewportWidth = document.documentElement.clientWidth, viewportHeight = window.innerHeight;
+   const left = event.clientX + 14 + tooltip.offsetWidth <= viewportWidth
+    ? event.clientX + 14 : event.clientX - 14 - tooltip.offsetWidth;
+   const top = event.clientY + 14 + tooltip.offsetHeight <= viewportHeight
+    ? event.clientY + 14 : event.clientY - 14 - tooltip.offsetHeight;
+   tooltip.style.left = Math.max(6, Math.min(left, viewportWidth - tooltip.offsetWidth - 6)) + 'px';
+   tooltip.style.top = Math.max(6, Math.min(top, viewportHeight - tooltip.offsetHeight - 6)) + 'px';
   };
   graph.onpointerleave = graph.onpointercancel = () => {
    hovered = -1;

@@ -360,18 +360,18 @@
     "category": "Mathematics",
     "featured": true,
     "order": 13,
-    "image": "assets/screenshots/SvdStudio-geometry-1.0.1.webp",
+    "image": "assets/screenshots/SvdStudio-geometry-1.0.2.webp",
     "capture": {
       "name": "SvdStudio",
       "kind": "runtime",
-      "caption": "Full SVD Studio window with the blue Sigma icon and a 2×2 matrix mapping the unit circle to a rotated ellipse.",
+      "caption": "Full SVD Studio window with Full SVD selected and a 2×2 matrix mapping the unit circle to a rotated ellipse.",
       "platform": "Windows",
-      "source_commit": "a3d873c78c1eb354a832bc6efab076e0c188048d",
+      "source_commit": "76ed5c27f0a1b7ad04164d5c09af9a64962936f1",
       "demo_data": true,
       "capture_method": "Native Windows window capture of a WPF build with the geometric action tab selected"
     },
     "ci": "https://github.com/netcodermike/SvdStudio/actions",
-    "downloadUrl": "https://github.com/netcodermike/SvdStudio/releases/download/v1.0.1/SvdStudio-win-x64.exe"
+    "downloadUrl": "https://github.com/netcodermike/SvdStudio/releases/download/v1.0.2/SvdStudio-win-x64.exe"
   },
   {
     "name": "wave-pool-lab",
