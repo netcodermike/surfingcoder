@@ -1,0 +1,80 @@
+body.reef-page {
+  --reef-bg: var(--sc-page, #18161e);
+  --reef-surface: var(--sc-panel, #27222f);
+  --reef-raised: var(--sc-raised, #302839);
+  --reef-ink: var(--sc-ink, #f0eaf6);
+  --reef-muted: var(--sc-muted, #c5b8d0);
+  --reef-accent: var(--sc-accent, #d4adf5);
+  --reef-border: var(--sc-line, #695478);
+  --reef-metal: var(--sc-metal, linear-gradient(130deg, #b58ae9, #e4cafa 55%, #bf95ef));
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 78% 0%, var(--sc-wash, #392449), transparent 48rem), var(--reef-bg);
+  color: var(--reef-ink);
+  font: 16px/1.5 "Segoe UI", system-ui, sans-serif;
+}
+
+.reef-shell, .reef-shell * { box-sizing: border-box; }
+.reef-shell { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 32px 0 48px; }
+.reef-heading { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px 28px; margin-bottom: 22px; }
+.reef-heading h1 { margin: 5px 0 7px; font-size: clamp(2.5rem, 7vw, 4.8rem); line-height: 1.03; letter-spacing: -.065em; }
+.reef-heading h1 span { color: var(--reef-accent); }
+.reef-heading p { margin: 0; color: var(--reef-muted); }
+.reef-heading .reef-kicker { font-size: .76rem; font-weight: 750; text-transform: uppercase; letter-spacing: .14em; color: var(--reef-accent); }
+.reef-shell a { color: var(--reef-accent); text-underline-offset: .22em; }
+
+.reef-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr); gap: 18px; align-items: start; }
+.reef-console, .reef-controls { border: 1px solid var(--reef-border); border-radius: 17px; background: var(--reef-surface); }
+.reef-console { padding: clamp(10px, 2.6vw, 18px); }
+.reef-toolbar { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 12px; }
+.reef-screen { max-width: 576px; margin-inline: auto; border: 1px solid #66507d; border-radius: 9px; overflow: hidden; background: #171323; }
+.reef-screen canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.reef-screen canvas:focus-visible { outline-offset: -4px; }
+.reef-status { color: var(--reef-muted); min-height: 1.35em; font-size: .85rem; margin: 10px 0 0; }
+
+.reef-shell button {
+  min-height: 42px;
+  padding: 7px 12px;
+  border: 1px solid var(--reef-border);
+  border-radius: 9px;
+  background: var(--reef-raised);
+  color: var(--reef-ink);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+.reef-shell button:hover:not(:disabled) { border-color: var(--reef-accent); }
+.reef-shell button:disabled { cursor: default; opacity: .58; }
+.reef-shell :focus-visible { outline: 3px solid var(--reef-accent); outline-offset: 3px; }
+.reef-shell :is(.reef-primary, .reef-action) { background: var(--reef-metal); color: #241632; }
+
+.reef-controls { padding: clamp(13px, 2.4vw, 20px); }
+.reef-controls h2 { font-size: 1.2rem; margin: 0 0 11px; }
+.reef-objective { color: var(--reef-muted); font-size: .86rem; margin: 0 0 9px; }
+.reef-keyboard { margin: 0; }
+.reef-keyboard div { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 6px 0; font-size: .85rem; }
+.reef-keyboard dd { margin: 0; color: var(--reef-muted); white-space: nowrap; }
+.reef-keyboard kbd { border: 1px solid var(--reef-border); border-radius: 3px; padding: 1px 4px; }
+.reef-controller { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 18px 0 8px; }
+.reef-dpad { display: grid; grid-template: repeat(3, 40px) / repeat(3, 40px); gap: 4px; }
+.reef-dpad button { padding: 0; min-height: 0; font-size: 1.15rem; }
+.reef-up { grid-area: 1 / 2; }
+.reef-left { grid-area: 2 / 1; }
+.reef-right { grid-area: 2 / 3; }
+.reef-down { grid-area: 3 / 2; }
+.reef-controller button { touch-action: none; user-select: none; }
+.reef-controller-actions { display: grid; gap: 9px; justify-items: stretch; }
+.reef-controller .is-held { background: var(--reef-accent); color: var(--reef-bg); border-color: var(--reef-accent); }
+.reef-credit { color: var(--reef-muted); margin: 10px 0 0; font-size: .77rem; }
+
+@media (max-width: 720px) {
+  .reef-shell { width: calc(100% - 24px); padding-block: 23px 36px; }
+  .reef-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .reef-heading { margin-bottom: 15px; }
+  .reef-controls { width: 100%; }
+  .reef-controller { justify-content: space-around; }
+}
+@media (pointer: coarse) {
+  .reef-dpad { grid-template: repeat(3, 45px) / repeat(3, 45px); }
+  .reef-controller-actions button { min-height: 45px; }
+}

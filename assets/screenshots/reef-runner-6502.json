@@ -1,0 +1,14 @@
+{
+  "name": "reef-runner-6502",
+  "capture_date": "2026-11-24T08:21:29.493013+00:00",
+  "demo_data": true,
+  "validation_passed": true,
+  "source_commit": "a30c94b54a6f07cf59abd74f875f88cee3060603",
+  "validation_commands": [
+    "python build.py --check --labels reef-runner.lbl",
+    "node tests/playthrough.mjs reef-runner.lbl"
+  ],
+  "kind": "runtime",
+  "caption": "The surfer in the moving wave pocket at Amethyst Point, with both reef obstacles and the full NES HUD visible.",
+  "capture_method": "Actual JSNES frame from the verified original NES ROM after controller inputs; nearest-neighbor enlargement of the full 256×240 frame."
+}

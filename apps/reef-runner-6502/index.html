@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18161e">
+  <meta name="description" content="Play an original 6502 surfing game on a browser-based NES console.">
+  <title>Reef Runner 6502 · SurfingCoder Arcade</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/jsnes-2.1.0.min.js"></script>
+  <script defer src="player.js"></script>
+<link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+</head>
+<body class="reef-page" data-layout="reef-runner-6502">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/reef-runner-6502/" aria-current="page">Reef Runner 6502</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-surf-cams" name="surfingcoder-menu">
+        <summary>Surf Cams</summary>
+        <ul class="sc-dropdown-links sc-surf-cams-links">
+          <li><a href="https://atlanticparksurf.com/aps-live-cam" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantic-park-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Park Surf · Virginia Beach</a></li>
+          <li><a href="https://www.ncaquariums.com/current-conditions" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/nc-aquariums.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · NC Aquariums</a></li>
+          <li><a href="https://surfchex.com/cams/nags-head-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · SurfChex</a></li>
+          <li><a href="https://www.ablivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Beach · ABLiveSurf</a></li>
+          <li><a href="https://atlantislodge.com/webcam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantis-lodge.png" alt="" width="22" height="22" loading="lazy">Pine Knoll Shores · Atlantis Lodge</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Eastern Beach Access</a></li>
+          <li><a href="https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/bogue-inlet-pier.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · Pier Cam</a></li>
+          <li><a href="https://www.eilivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · EILiveSurf</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Western Beach Access</a></li>
+          <li><a href="https://surfchex.com/cams/north-topsail-island-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">North Topsail Beach</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-north/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · North</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-south/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · South</a></li>
+          <li><a href="https://surfchex.com/cams/wrightsville-beach/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Wrightsville Beach</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Data</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
+  </div>
+</div>
+<script defer src="/navigation.js?v=07e2a726d1de"></script>
+<script defer src="/surf-cams.js?v=fb479f63e9da"></script>
+<!-- SITE NAVIGATION END -->
+
+  <main class="reef-shell">
+    <header role="group" aria-label="Page controls" class="reef-heading">
+      <div>
+        <p class="reef-kicker">SurfingCoder Arcade</p>
+        <h1>Reef Runner <span>6502</span></h1>
+        <p>Paddle into Amethyst Point, time your takeoff, and steer through the break.</p>
+      </div>
+      <a href="https://github.com/netcodermike/reef-runner-6502">Game source ↗</a>
+    </header>
+
+    <div class="reef-layout">
+      <section class="reef-console" aria-label="NES game">
+        <div class="reef-toolbar">
+          <button class="reef-primary" id="reef-play" type="button">Play Reef Runner</button>
+          <button id="reef-reset" type="button" disabled>Reset</button>
+          <button id="reef-sound" type="button" aria-pressed="true">Sound on</button>
+        </div>
+        <div class="reef-screen">
+          <canvas id="reef-display" width="256" height="240" tabindex="0" aria-label="Reef Runner game screen" aria-describedby="reef-keyboard">
+            This browser needs canvas support to display the NES game.
+          </canvas>
+        </div>
+        <p class="reef-status" id="reef-status" role="status">Press Play to load the cartridge.</p>
+      </section>
+
+      <section class="reef-controls" aria-labelledby="reef-controls-heading">
+        <h2 id="reef-controls-heading">Controls</h2>
+        <p class="reef-objective">Stay with the moving pocket to score. Dodge the reef through a 30-second ride.</p>
+        <dl class="reef-keyboard" id="reef-keyboard">
+          <div><dt>Steer</dt><dd>Arrow keys</dd></div>
+          <div><dt>Take off when the pocket turns gold</dt><dd><kbd>Z</kbd> or <kbd>A</kbd></dd></div>
+          <div><dt>Start a run</dt><dd><kbd>Enter</kbd></dd></div>
+        </dl>
+        <div class="reef-controller" role="group" aria-label="On-screen NES controller">
+          <div class="reef-dpad">
+            <button class="reef-up" type="button" data-button="UP" aria-label="Up" disabled>↑</button>
+            <button class="reef-left" type="button" data-button="LEFT" aria-label="Left" disabled>←</button>
+            <button class="reef-right" type="button" data-button="RIGHT" aria-label="Right" disabled>→</button>
+            <button class="reef-down" type="button" data-button="DOWN" aria-label="Down" disabled>↓</button>
+          </div>
+          <div class="reef-controller-actions">
+            <button class="reef-action" type="button" data-button="A" aria-label="A, take off" disabled>A</button>
+            <button type="button" data-button="START" disabled>Start</button>
+          </div>
+        </div>
+        <p class="reef-credit">Runs the original cartridge with <a href="https://github.com/bfirsh/jsnes/tree/v2.1.0">JSNES</a>.</p>
+      </section>
+    </div>
+    <noscript><p>Enable JavaScript to play Reef Runner in the browser.</p></noscript>
+  </main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>
