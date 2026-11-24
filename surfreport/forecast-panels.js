@@ -1,10 +1,12 @@
-import { tideAt } from './src/tides.js';
+import { tideAt } from './src/tides.js?v=20261124-review';
 import { appendMarkerCheckbox, createChartArrows, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261123-observed-daylight';
 
 export const tideColor = 'var(--surf-tide, #46b4ba)';
 export const windColor = 'var(--surf-wind, #e7e9ee)';
 export const temperatureColor = 'var(--surf-temperature, #62e6bd)';
 export const rainColor = 'var(--surf-rain, #6290ff)';
+export const rainProbability = row => Number.isFinite(row.rainChance) && row.rainChance >= 0 && row.rainChance <= 100
+  ? row.rainChance : null;
 
 export function seriesLegend(series, enabled, onChange, title) {
   const legend = document.createElement('div');
@@ -167,20 +169,20 @@ export function tideWindPanel(root, rows, tide, timeline, metrics, enabled, onCh
         tide?.message ?? (tide?.samples ? 'NOAA tide predictions unavailable' : 'Loading NOAA tide predictions') },
     { key: 'wind', name: 'Wind speed', color: windColor, available: Boolean(wind) },
   ], enabled, onChange);
+  const visibleTide = enabled.has('tide') ? tidal : null;
+  const visibleWind = enabled.has('wind') ? wind : null;
   const arrowKey = 'wind-direction-arrows';
-  const hasWindDirection = wind && rows.some(row =>
+  const hasWindDirection = visibleWind && rows.some(row =>
     (row.time - timeline.firstForecastHour) % DIRECTION_INTERVAL_SECONDS === 0 &&
     Number.isFinite(row.speed) && row.speed > 0 && hasDirection(row.wind_direction));
   if (hasWindDirection) appendMarkerCheckbox(section.firstElementChild, {
     id: 'week-show-' + arrowKey, label: 'Direction arrows',
     checked: enabled.has(arrowKey), onChange: checked => onChange(arrowKey, checked),
   });
-  if (!tidal && !wind) return null;
-  const visibleTide = enabled.has('tide') ? tidal : null;
-  const visibleWind = enabled.has('wind') ? wind : null;
+  if (!visibleTide && !visibleWind) return null;
   const descriptions = [timeline.duration + ' tide and wind forecast.'];
   if (visibleTide) descriptions.push('NOAA tide height in ' + heightUnit.trim() + ' relative to Mean Lower Low Water on the left axis.');
-  const showWindArrows = visibleWind && hasWindDirection && enabled.has(arrowKey);
+  const showWindArrows = hasWindDirection && enabled.has(arrowKey);
   if (visibleWind) descriptions.push('Wind speed in ' + speedUnit.trim() + ' on the right axis.');
   if (showWindArrows) descriptions.push('Arrows point downwind at two-hour intervals.');
   const chart = seriesChart(visibleTide, timeline, {
@@ -192,16 +194,16 @@ export function tideWindPanel(root, rows, tide, timeline, metrics, enabled, onCh
 export function weatherPanel(root, rows, timeline, enabled, onChange) {
   const temperature = hourlySeries(rows, row => row.airTemperatureF,
     { unit: ' °F', color: temperatureColor, includeZero: false });
-  const rain = hourlySeries(rows, row => Number.isFinite(row.rainChance) && row.rainChance >= 0 && row.rainChance <= 100 ? row.rainChance : null,
+  const rain = hourlySeries(rows, rainProbability,
     { unit: '%', color: rainColor, ticks: [0, 25, 50, 75, 100] });
   const section = panel(root, 'weather', 'Air temperature and rain chance', [
     { key: 'temperature', name: 'Air temperature (°F)', color: temperatureColor, available: Boolean(temperature) },
     { key: 'rain', name: 'Rain chance (%)', color: rainColor, available: Boolean(rain),
       hint: 'Chance of measurable precipitation in the hour ending at the forecast time' },
   ], enabled, onChange);
-  if (!temperature && !rain) return null;
   const visibleTemperature = enabled.has('temperature') ? temperature : null;
   const visibleRain = enabled.has('rain') ? rain : null;
+  if (!visibleTemperature && !visibleRain) return null;
   const descriptions = [timeline.duration + ' air temperature and rain chance.'];
   if (visibleTemperature) descriptions.push('Air temperature in degrees Fahrenheit on the left axis.');
   if (visibleRain) descriptions.push('Hourly chance of precipitation on the right axis, from 0 to 100 percent.');

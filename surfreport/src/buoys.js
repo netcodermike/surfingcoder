@@ -1,9 +1,11 @@
-import { compass, distanceKm, height } from './core.js?v=20261117-tides-wind';
-import { drawBuoyChart } from './buoy-chart.js?v=20261123-popup-bearings';
-import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
+import { compass, distanceKm, height } from './core.js?v=20261124-review';
+import { drawBuoyChart } from './buoy-chart.js?v=20261124-review';
+import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261124-review';
 
 const HOUR = 3600000;
+const MINUTE = 60000;
 const HISTORY_HOURS = MAX_RANGE_DAYS * 24 + 12;
+const FRESH_HOURS = 2;
 const HISTORY_QUERY = `&time%3Enow-${HISTORY_HOURS}hours`;
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
@@ -13,6 +15,48 @@ const fields = ['station', 'time', 'WVHT', 'MWD', 'WTMP'];
 const LIVE_WAVES = 'https://surfingcoder-buoy-api.dreamymanatee10.chatgpt.site/waves/';
 const WAVES_API = 'https://api.github.com/repos/netcodermike/surfingcoder/contents/waves/';
 const WAVES_RAW = 'https://raw.githubusercontent.com/netcodermike/surfingcoder/buoy-data/waves/';
+const COMPASS = new Set('N NNE NE ENE E ESE SE SSE S SSW SW WSW W WNW NW NNW'.split(' '));
+const STEEPNESS = new Set(['very steep', 'steep', 'average', 'swell']);
+const heightFields = ['wave', 'swell', 'windWave'];
+const periodFields = ['period', 'averagePeriod', 'swellPeriod', 'windWavePeriod'];
+const directionFields = ['direction', 'swellDirection', 'windWaveDirection'];
+
+function inRange(value, min, max) {
+  return Number.isFinite(value) && value >= min && value <= max;
+}
+
+function normalizeReading(row) {
+  const clean = { time: row.time };
+  for (const key of heightFields) {
+    if (inRange(row[key], 0, 99) && row[key] < 99) clean[key] = row[key];
+  }
+  for (const key of periodFields) {
+    if (inRange(row[key], 0, 99) && row[key] > 0 && row[key] < 99) clean[key] = row[key];
+  }
+  for (const key of directionFields) {
+    const direction = row[key];
+    if (inRange(direction, 0, 360) || COMPASS.has(direction)) clean[key] = direction;
+  }
+  if (inRange(row.temperature, -5, 50)) clean.temperature = row.temperature;
+  if (STEEPNESS.has(row.steepness)) clean.steepness = row.steepness;
+  return clean;
+}
+
+function mergeReadingBatches(previous, incoming, now = Date.now()) {
+  const cutoff = now - HISTORY_HOURS * HOUR;
+  const readings = new Map();
+  for (const row of [...previous, ...incoming]) {
+    if (!inRange(row?.time, cutoff, now)) continue;
+    const clean = normalizeReading(row);
+    readings.set(clean.time, { ...readings.get(clean.time), ...clean });
+  }
+  return [...readings.values()].filter(row => heightFields.some(key => Number.isFinite(row[key])))
+    .sort((first, second) => second.time - first.time);
+}
+
+function hasSpectralData(row) {
+  return ['swell', 'swellPeriod', 'windWave', 'windWavePeriod'].some(key => Number.isFinite(row[key]));
+}
 
 export function nearestBuoys(stations, location) {
   return stations.map(station => ({ ...station, km: distanceKm(location, station) }))
@@ -28,16 +72,20 @@ function formatDistance(km, units) {
 export function parseReadings(data, stationId) {
   const { columnNames, rows } = data?.table ?? {};
   if (!Array.isArray(columnNames) || !Array.isArray(rows)) return [];
-  const indexes = fields.map(field => columnNames.indexOf(field));
-  const peakIndex = columnNames.indexOf('DPD');
-  if (indexes.some(index => index < 0)) return [];
+  const [stationIndex, timeIndex, waveIndex, directionIndex, temperatureIndex, peakIndex] =
+    [...fields, 'DPD'].map(field => columnNames.indexOf(field));
+  if ([stationIndex, timeIndex, waveIndex].some(index => index < 0)) return [];
   return rows.flatMap(row => {
     if (!Array.isArray(row)) return [];
-    const [id, iso, wave, direction, temperature] = indexes.map(index => row[index]);
-    const time = Date.parse(iso), peak = row[peakIndex];
-    const period = Number.isFinite(peak) && peak > 0 && peak < 99 ? peak : undefined;
-    return id === stationId && Number.isFinite(time) && Number.isFinite(wave) && wave >= 0
-      ? [{ time, wave, direction, temperature, period }] : [];
+    const iso = row[timeIndex];
+    if (row[stationIndex] !== stationId || typeof iso !== 'string') return [];
+    const time = Date.parse(iso);
+    if (!Number.isFinite(time)) return [];
+    const reading = normalizeReading({
+      time, wave: row[waveIndex], direction: row[directionIndex],
+      temperature: row[temperatureIndex], period: row[peakIndex],
+    });
+    return Number.isFinite(reading.wave) ? [reading] : [];
   }).sort((a, b) => b.time - a.time);
 }
 
@@ -89,7 +137,7 @@ async function readObservations(stationId, signal) {
       const { table } = await response.json();
       const indexes = variables.map(variable => table.columnNames.indexOf(variable));
       const rows = table.rows.map(row => [stationId, ...indexes.map(index => row[index])]);
-      const readings = parseReadings({ table: { columnNames: [...fields, 'DPD'], rows } }, stationId);
+      const readings = mergeReadingBatches([], parseReadings({ table: { columnNames: [...fields, 'DPD'], rows } }, stationId));
       if (readings.length) return { readings, source: ONSLOW_DATASET + '.html' };
     } catch {
       signal.throwIfAborted();
@@ -100,13 +148,14 @@ async function readObservations(stationId, signal) {
 
 async function readDetailedWaves(stationId, signal) {
   const file = encodeURIComponent(stationId) + '.json';
-  const cutoff = Date.now() - HISTORY_HOURS * HOUR;
+  const now = Date.now();
   const endpoints = [
-    { url: LIVE_WAVES + file, timeout: 6500 },
+    { url: LIVE_WAVES + file, timeout: 6500, cache: 'no-cache' },
     { url: WAVES_API + file + '?ref=buoy-data', timeout: 3750, cache: 'no-cache',
       headers: { Accept: 'application/vnd.github.raw+json' } },
     { url: WAVES_RAW + file, timeout: 3750, cache: 'no-cache' },
   ];
+  let readings = [];
   for (const { url, timeout, ...options } of endpoints) {
     try {
       const response = await fetch(url, {
@@ -115,31 +164,52 @@ async function readDetailedWaves(stationId, signal) {
       if (!response.ok) continue;
       const rows = await response.json();
       if (!Array.isArray(rows)) continue;
-      const recent = rows.filter(row => Number.isFinite(row?.time) && row.time >= cutoff)
-        .sort((a, b) => b.time - a.time);
-      if (recent.length) return recent;
+      // Keep the first successful source's values when the mirrors overlap.
+      readings = mergeReadingBatches(rows, readings, now);
+      const latestDetailed = readings.find(hasSpectralData);
+      if (latestDetailed && now - latestDetailed.time <= FRESH_HOURS * HOUR) return readings;
     } catch {
       signal.throwIfAborted();
     }
   }
-  return [];
+  return readings;
 }
 
-export function mergeWaveReadings(standard, detailed) {
+function sameOnslowObservation(direct, native) {
+  // Equivalent 41159 NDBC bulk wave records are observed 26 minutes later
+  // than the SECOORA timestamps.
+  // Confirm that they describe the same waves before using decimal precision.
+  return Number.isFinite(direct.direction) && direct.direction === native.direction &&
+    Math.abs(direct.wave - native.wave) <= .11 &&
+    (!Number.isFinite(direct.period) || !Number.isFinite(native.period) || Math.abs(direct.period - native.period) <= .6);
+}
+
+export function mergeWaveReadings(standard, detailed, source = COASTWATCH + '.html') {
   const unmatched = new Set([...new Map(standard.map(row => [row.time, row])).values()]);
-  const readings = [...new Map(detailed.map(row => [row.time, row])).values()].sort((a, b) => b.time - a.time).map(row => {
-    let closest, distance = 5 * 60000 + 1;
+  const onslow = source === ONSLOW_DATASET + '.html';
+  const native = [...new Map(detailed.map(row => [row.time, row])).values()].sort((a, b) => b.time - a.time);
+  const readings = native.map(row => {
+    let closest, distance = 5 * MINUTE + 1;
     for (const candidate of unmatched) {
+      if (onslow) {
+        if (candidate.time + 26 * MINUTE === row.time && sameOnslowObservation(candidate, row)) {
+          closest = candidate;
+          break;
+        }
+        continue;
+      }
       const delta = Math.abs(candidate.time - row.time);
       if (delta < distance) { closest = candidate; distance = delta; }
     }
     unmatched.delete(closest);
     const matched = { ...closest, ...row };
-    // Direct buoy records can retain decimal precision where NDBC's standard file rounds.
-    if (Number.isFinite(closest?.period)) matched.period = closest.period;
+    if (onslow && Number.isFinite(closest?.period)) matched.period = closest.period;
     return matched;
   });
-  return [...readings, ...unmatched].sort((a, b) => b.time - a.time);
+  const independent = onslow && native.length
+    ? [...unmatched].filter(row => row.time > native[0].time || row.time + 26 * MINUTE < native.at(-1).time)
+    : unmatched;
+  return [...readings, ...independent].sort((a, b) => b.time - a.time);
 }
 
 export function setupBuoyView(getUnits) {
@@ -155,15 +225,19 @@ export function setupBuoyView(getUnits) {
   let displayedStation;
   let request;
   let readings;
-  let mirrored = [];
+  let standard = [];
+  let native = [];
+  let standardSource = COASTWATCH + '.html';
   let chartWidth = 0;
   let chart;
   let observationDays = 2;
   let observationEnd;
+  let selectedTime;
   const hiddenLayers = new Set(['windWave']);
-  const date = new Intl.DateTimeFormat('en-US', {
-    month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+  const dateFormatter = timeZone => new Intl.DateTimeFormat('en-US', {
+    month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone,
   });
+  let date = dateFormatter('UTC');
   const dataLink = get('buoy-data-link');
 
   function node(tag, text, className) {
@@ -210,6 +284,8 @@ export function setupBuoyView(getUnits) {
       days: observationDays,
       end: observationEnd,
       station: displayedStation,
+      selectedTime,
+      onSelectTime(time) { selectedTime = time; },
       onRangeChange(days) {
         observationDays = days;
         drawReadings();
@@ -220,12 +296,19 @@ export function setupBuoyView(getUnits) {
 
   new ResizeObserver(() => {
     if (!chart?.isConnected || !observation.clientWidth || chartWidth === observation.clientWidth) return;
+    const focusId = chart.contains(document.activeElement) ? document.activeElement.id : '';
     const replacement = makeChart();
     chart.replaceWith(replacement);
     chart = replacement;
+    if (focusId) get(focusId)?.focus({ preventScroll: true });
   }).observe(observation);
 
   function drawReadings() {
+    const priorScroll = observation.querySelector('.buoy-table-scroll');
+    const scrollTop = priorScroll?.scrollTop ?? 0;
+    const scrollLeft = priorScroll?.scrollLeft ?? 0;
+    const scrollFocused = document.activeElement === priorScroll;
+    const focusId = observation.contains(document.activeElement) ? document.activeElement.id : '';
     observation.replaceChildren();
     chart = undefined;
     if (!displayedStation) return;
@@ -236,16 +319,18 @@ export function setupBuoyView(getUnits) {
     const end = observationEnd = Date.now();
     const start = end - observationDays * DAY_SECONDS * 1000;
     const recent = readings.filter(row => row.time >= start && row.time <= end);
-    const latestDetailed = recent.find(row => ['swell', 'swellPeriod', 'windWave', 'windWavePeriod']
-      .some(field => Number.isFinite(row[field])));
+    const latestDetailed = recent.find(hasSpectralData);
     if (recent.length && end - recent[0].time > 3 * HOUR) {
       observation.append(node('p', 'The latest reading is over 3 hours old.', 'buoy-reading-status'));
     } else if (latestDetailed && recent[0].time > latestDetailed.time) {
       observation.append(node('p', 'Swell and wind-wave readings are available through ' + date.format(latestDetailed.time) +
         '. Newer basic readings are shown below.', 'buoy-reading-status'));
+    } else if (recent.length && !latestDetailed) {
+      observation.append(node('p', 'Only basic wave readings are available in this time range.', 'buoy-reading-status'));
     }
     chart = makeChart();
     observation.append(chart);
+    if (focusId) get(focusId)?.focus({ preventScroll: true });
     if (!recent.length) return;
     const headings = tableMeasurements(recent[0]).map(([label]) => label);
     const history = node('section', '', 'buoy-history');
@@ -275,6 +360,16 @@ export function setupBuoyView(getUnits) {
     scroll.append(table);
     history.append(title, scroll);
     observation.append(history);
+    scroll.scrollTop = scrollTop;
+    scroll.scrollLeft = scrollLeft;
+    if (scrollFocused) scroll.focus({ preventScroll: true });
+  }
+
+  function clearSources() {
+    standard = [];
+    native = [];
+    standardSource = COASTWATCH + '.html';
+    selectedTime = undefined;
   }
 
   function showStation(refresh = false) {
@@ -286,7 +381,7 @@ export function setupBuoyView(getUnits) {
       request?.abort();
       request = undefined;
       displayedStation = undefined;
-      mirrored = [];
+      clearSources();
       drawReadings();
       return;
     }
@@ -298,21 +393,30 @@ export function setupBuoyView(getUnits) {
     const controller = new AbortController();
     request = controller;
     displayedStation = buoy;
-    if (!sameStation) mirrored = [];
+    if (!sameStation) clearSources();
     if (!sameStation || !readings?.length) {
       readings = undefined;
       dataLink.href = COASTWATCH + '.html';
       drawReadings();
     }
-    Promise.allSettled([readObservations(buoy.id, controller.signal), readDetailedWaves(buoy.id, controller.signal)]).then(([standard, detailed]) => {
+    Promise.allSettled([readObservations(buoy.id, controller.signal), readDetailedWaves(buoy.id, controller.signal)]).then(([basic, detailed]) => {
       if (controller.signal.aborted) return;
-      const latest = detailed.status === 'fulfilled' ? detailed.value : [];
-      if (latest.length && (!mirrored.length || latest[0].time >= mirrored[0].time)) mirrored = latest;
-      mirrored = mirrored.filter(row => row.time >= Date.now() - HISTORY_HOURS * HOUR);
-      const base = standard.status === 'fulfilled' ? standard.value : { readings: [], source: COASTWATCH + '.html' };
-      const merged = mergeWaveReadings(base.readings, mirrored);
-      if (merged.length || !sameStation || !readings?.length) readings = merged;
-      dataLink.href = mirrored.length ? NDBC + '/data/realtime2/' + encodeURIComponent(buoy.id) + '.spec' : base.source;
+      const now = Date.now();
+      standard = mergeReadingBatches(standard, [], now);
+      if (basic.status === 'fulfilled') {
+        const { source } = basic.value;
+        const incoming = mergeReadingBatches([], basic.value.readings, now);
+        if (source === standardSource) standard = mergeReadingBatches(standard, incoming, now);
+        else if (incoming.length && (!standard.length || incoming[0].time >= standard[0].time)) {
+          standard = incoming;
+          standardSource = source;
+        }
+      }
+      native = mergeReadingBatches(native, detailed.status === 'fulfilled' ? detailed.value : [], now);
+      readings = mergeWaveReadings(standard, native, standardSource);
+      dataLink.href = native.length
+        ? NDBC + '/data/realtime2/' + encodeURIComponent(buoy.id) + (native.some(hasSpectralData) ? '.spec' : '.txt')
+        : standardSource;
       drawReadings();
     }).catch(() => {
       if (controller.signal.aborted) return;
@@ -366,12 +470,25 @@ export function setupBuoyView(getUnits) {
   }, 5 * 60_000);
   return {
     setLocation(next) {
+      if (next.lat !== location?.lat || next.lon !== location?.lon) date = dateFormatter('UTC');
       if (next.lat !== location?.lat || next.lon !== location?.lon || next.label !== location?.label) {
         picker.value = '';
       }
       location = next;
       loadCatalog();
       render();
+    },
+    setTimeZone(timeZone) {
+      let next;
+      try { next = dateFormatter(timeZone ?? 'UTC'); }
+      catch (error) {
+        if (!(error instanceof RangeError)) throw error;
+        next = dateFormatter('UTC');
+      }
+      if (next.resolvedOptions().timeZone !== date.resolvedOptions().timeZone) {
+        date = next;
+        drawReadings();
+      }
     },
     updateUnits: render,
   };

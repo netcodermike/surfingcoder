@@ -13,38 +13,61 @@ export const regions={
 'Japan':[['Chiba',35.32,140.48],['Shonan',35.29,139.44]],
 'Central America':[['Tamarindo, Costa Rica',10.3,-85.89],['El Tunco, El Salvador',13.47,-89.38]],
 'South America':[['Florianopolis, Brazil',-27.65,-48.38],['Pichilemu, Chile',-34.4,-72.08]]};
-export function coordinates(lat,lon){lat=Number(lat);lon=Number(lon);if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat < -85||lat>85||lon < -180||lon>180)throw Error('Use latitude −85 to 85 and longitude −180 to 180');return {lat,lon}}
-export function compass(deg){return deg==null?'—':['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(((deg%360)+360)%360/22.5)%16]}
+export function coordinates(lat, lon) {
+  const coordinate = value => typeof value === 'string' && value.trim() ? Number(value) : value;
+  lat = coordinate(lat);
+  lon = coordinate(lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lon) || lat < -85 || lat > 85 || lon < -180 || lon > 180) {
+    throw Error('Use latitude −85 to 85 and longitude −180 to 180');
+  }
+  return { lat, lon };
+}
+const compassPoints = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+
+export function compass(degrees) {
+  if (!Number.isFinite(degrees) || degrees < 0 || degrees > 360) return '—';
+  return compassPoints[Math.round(degrees / 22.5) % compassPoints.length];
+}
 export function height(m,units){return m==null?null:m*(units==='imperial'?3.28084:1)}
+
+const marineFields = {
+  wave: 'wave_height', period: 'wave_period', direction: 'wave_direction',
+  swell: 'swell_wave_height', swellPeriod: 'swell_wave_period', swellDirection: 'swell_wave_direction',
+  secondary: 'secondary_swell_wave_height', secondaryPeriod: 'secondary_swell_wave_period', secondaryDirection: 'secondary_swell_wave_direction',
+  tertiary: 'tertiary_swell_wave_height', tertiaryPeriod: 'tertiary_swell_wave_period', tertiaryDirection: 'tertiary_swell_wave_direction',
+  windWave: 'wind_wave_height', windWavePeriod: 'wind_wave_period', windWaveDirection: 'wind_wave_direction',
+};
+const weatherFields = {
+  speed: 'wind_speed_10m', wind_direction: 'wind_direction_10m',
+  airTemperatureF: 'temperature_2m', rainChance: 'precipitation_probability',
+};
+const waveHeightKeys = ['wave', 'swell', 'secondary', 'tertiary', 'windWave'];
+
+function hourlyByTime(hourly, fields) {
+  const rows = new Map();
+  if (!Array.isArray(hourly?.time)) return rows;
+  const columns = Object.entries(fields);
+  for (const [i, time] of hourly.time.entries()) {
+    if (!Number.isInteger(time) || !Number.isFinite(new Date(time * 1000).getTime())) continue;
+    const row = rows.get(time) ?? { time };
+    // If the provider repeats an hour, retain its most recent valid values.
+    for (const [key, field] of columns) {
+      const sample = hourly[field]?.[i];
+      if (Number.isFinite(sample) && (!waveHeightKeys.includes(key) || sample >= 0)) row[key] = sample;
+      else row[key] ??= null;
+    }
+    rows.set(time, row);
+  }
+  return rows;
+}
+
 export function align(marine, weather) {
-  const sea = marine?.hourly;
-  if (!sea?.time?.length) throw Error('No marine forecast returned for this location');
-  const air = weather?.hourly;
-  const weatherByTime = new Map((air?.time ?? []).map((time, i) => [time, {
-    speed: air.wind_speed_10m?.[i],
-    wind_direction: air.wind_direction_10m?.[i],
-    airTemperatureF: air.temperature_2m?.[i],
-    rainChance: air.precipitation_probability?.[i],
-  }]));
-  return sea.time.map((time, i) => ({
-    time,
-    wave: sea.wave_height?.[i] ?? null,
-    period: sea.wave_period?.[i] ?? null,
-    direction: sea.wave_direction?.[i] ?? null,
-    swell: sea.swell_wave_height?.[i] ?? null,
-    swellPeriod: sea.swell_wave_period?.[i] ?? null,
-    swellDirection: sea.swell_wave_direction?.[i] ?? null,
-    secondary: sea.secondary_swell_wave_height?.[i] ?? null,
-    secondaryPeriod: sea.secondary_swell_wave_period?.[i] ?? null,
-    secondaryDirection: sea.secondary_swell_wave_direction?.[i] ?? null,
-    tertiary: sea.tertiary_swell_wave_height?.[i] ?? null,
-    tertiaryPeriod: sea.tertiary_swell_wave_period?.[i] ?? null,
-    tertiaryDirection: sea.tertiary_swell_wave_direction?.[i] ?? null,
-    windWave: sea.wind_wave_height?.[i] ?? null,
-    windWavePeriod: sea.wind_wave_period?.[i] ?? null,
-    windWaveDirection: sea.wind_wave_direction?.[i] ?? null,
-    ...weatherByTime.get(time),
-  }));
+  const waves = [...hourlyByTime(marine?.hourly, marineFields).values()];
+  if (!waves.some(row => waveHeightKeys.some(key => Number.isFinite(row[key])))) {
+    throw Error('No marine wave heights returned for this location');
+  }
+  const weatherByTime = hourlyByTime(weather?.hourly, weatherFields);
+  return waves.map(row => ({ ...row, ...weatherByTime.get(row.time) })).sort((a, b) => a.time - b.time);
 }
 
 export function presetForLabel(label){for(const [region,spots]of Object.entries(regions)){const index=spots.findIndex(p=>p[0]===label);if(index>=0)return {region,index,point:spots[index]}}return null}

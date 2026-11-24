@@ -1,9 +1,9 @@
-import { setupBuoyView } from './src/buoys.js?v=20261123-popup-bearings';
-import { weekly } from './weekly.js?v=20261123-popup-bearings';
-import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261123-chart-ranges';
-import { $, field, select, button, on, download } from './ui.js';
-import * as core from './src/core.js?v=20261117-rain-chance';
-import { loadTides } from './src/tides.js';
+import { setupBuoyView } from './src/buoys.js?v=20261124-review';
+import { weekly } from './weekly.js?v=20261124-review';
+import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261124-review';
+import { $, field, select, button, on, download } from './ui.js?v=20261124-review';
+import * as core from './src/core.js?v=20261124-review';
+import { loadTides } from './src/tides.js?v=20261124-review';
 
 const defaultLocation = 'Indian Beach, NC';
 const [, defaultLat, defaultLon] = core.presetForLabel(defaultLocation).point;
@@ -19,24 +19,44 @@ $('controls').innerHTML =
   '</div><details class="coordinate-controls"><summary>Custom coordinates</summary><div class="coordinate-fields">' +
   '<div>' + field('Latitude', 'lat', 'number', defaultLat, 'step=".0001" min="-85" max="85"') + '</div>' +
   '<div>' + field('Longitude', 'lon', 'number', defaultLon, 'step=".0001" min="-180" max="180"') + '</div>' +
-  button('Use custom coordinates', 'custom') + '</div></details>';
+  button('Use custom coordinates', 'custom') + '</div></details>' +
+  '<p id="control-status" class="status" role="status"></p>';
 
 const buoyView = setupBuoyView(() => $('units').value);
 let rows = [];
+let visibleRows = [];
 let zone = 'UTC';
 let active;
 let controller;
 let tide;
 let daylight;
+let forecastTime;
+let forecastMessage = '';
+let weatherMessage = '';
 let chosenForecastDays;
 const narrowForecast = matchMedia('(max-width: 600px)');
+const currentTime = () => Math.floor(Date.now() / 1000);
+$('csv').disabled = true;
+
+function showForecastStatus() {
+  $('status').textContent = [forecastMessage, weatherMessage, tide?.message].filter(Boolean).join(' ');
+}
+
+function locationTimeZone(timeZone) {
+  if (typeof timeZone !== 'string' || !timeZone) return 'UTC';
+  try {
+    return new Intl.DateTimeFormat('en-US', { timeZone }).resolvedOptions().timeZone;
+  } catch {
+    return 'UTC';
+  }
+}
 
 const value = (number, suffix = '') => Number.isFinite(number) ? number.toFixed(1) + suffix : '—';
 
 function drawWeek() {
   const days = chosenForecastDays ?? (narrowForecast.matches ? 2 : MAX_RANGE_DAYS);
   return weekly(rows, {
-    zone, units: $('units').value, tide, daylight, location: active?.label, days,
+    zone, units: $('units').value, tide, daylight, location: active?.label, days, now: forecastTime,
     onRangeChange: next => {
       chosenForecastDays = next;
       draw();
@@ -72,13 +92,21 @@ function renderHourly(visibleRows, timeFormat, units, heightUnit, speedUnit, spe
     ];
     for (const field of fields) tr.insertCell().textContent = field;
   }
-  $('output').replaceChildren(table);
-  $('output').scrollTop = 0;
+  const output = $('output');
+  const { scrollTop, scrollLeft } = output;
+  output.replaceChildren(table);
+  output.scrollTop = scrollTop;
+  output.scrollLeft = scrollLeft;
   $('hourly').hidden = false;
 }
 
 function draw() {
-  const visibleRows = drawWeek();
+  visibleRows = drawWeek();
+  $('csv').disabled = !visibleRows.length;
+  if (rows.length && !visibleRows.length) {
+    forecastMessage = 'This forecast has expired. Select Update forecast for a fresh report.';
+    showForecastStatus();
+  }
   if (!visibleRows.length) {
     $('output').replaceChildren();
     $('hourly').hidden = true;
@@ -115,6 +143,21 @@ async function updateTides(location, request, start, end) {
   if (request !== controller) return;
   tide = result;
   drawWeek();
+  showForecastStatus();
+  const link = $('tide-source');
+  if (tide.station) {
+    link.href = 'https://tidesandcurrents.noaa.gov/noaatidepredictions.html?id=' + encodeURIComponent(tide.station.id);
+    link.textContent = 'NOAA tide predictions · ' + tide.station.name + ' · MLLW';
+    link.hidden = false;
+  }
+}
+
+async function forecastData(endpoint, params, request) {
+  const signal = AbortSignal.any([request.signal, AbortSignal.timeout(20000)]);
+  const response = await fetch(endpoint + '?' + params, { signal });
+  const data = await response.json();
+  if (!response.ok) throw Error(data.reason || 'The data provider returned HTTP ' + response.status + '.');
+  return data;
 }
 
 async function load(lat, lon, label) {
@@ -127,40 +170,49 @@ async function load(lat, lon, label) {
   rows = [];
   tide = undefined;
   daylight = undefined;
-  $('output').replaceChildren();
-  $('hourly').hidden = true;
-  $('status').textContent = 'Requesting the seven-day forecast…';
-  drawWeek();
-  const timeout = setTimeout(() => request.abort(), 20000);
+  $('tide-source').hidden = true;
+  forecastMessage = 'Loading the marine forecast…';
+  weatherMessage = '';
+  showForecastStatus();
+  draw();
+  const common = new URLSearchParams({
+    latitude: coords.lat, longitude: coords.lon, timezone: 'auto', timeformat: 'unixtime',
+    forecast_days: MAX_RANGE_DAYS + 1,
+  });
+  const weatherParams = new URLSearchParams(common);
+  weatherParams.set('hourly', 'wind_speed_10m,wind_direction_10m,temperature_2m,precipitation_probability');
+  weatherParams.set('temperature_unit', 'fahrenheit');
+  weatherParams.set('daily', 'sunrise,sunset');
+  const weather = forecastData('https://api.open-meteo.com/v1/forecast', weatherParams, request).catch(() => null);
   try {
-    const common = 'latitude=' + coords.lat + '&longitude=' + coords.lon +
-      '&timezone=auto&timeformat=unixtime&forecast_days=' + (MAX_RANGE_DAYS + 1);
-    const signals = { signal: request.signal };
-    const [marine, weather] = await Promise.allSettled([
-      fetch('https://marine-api.open-meteo.com/v1/marine?' + common + '&cell_selection=sea&hourly=' + marineFields, signals).then(async response => {
-        const data = await response.json();
-        if (!response.ok) throw Error(data.reason || 'Marine request failed');
-        return data;
-      }),
-      fetch('https://api.open-meteo.com/v1/forecast?' + common + '&hourly=wind_speed_10m,wind_direction_10m,temperature_2m,precipitation_probability&temperature_unit=fahrenheit&daily=sunrise,sunset', signals).then(response => {
-        if (!response.ok) throw Error('Wind request failed');
-        return response.json();
-      }),
-    ]);
+    const marineParams = new URLSearchParams(common);
+    marineParams.set('cell_selection', 'sea');
+    marineParams.set('hourly', marineFields);
+    const marine = await forecastData('https://marine-api.open-meteo.com/v1/marine', marineParams, request);
     if (request !== controller) return;
-    if (marine.status !== 'fulfilled') throw marine.reason;
-    zone = marine.value.timezone || 'UTC';
-    const weatherData = weather.status === 'fulfilled' ? weather.value : null;
-    daylight = weatherData?.daily;
-    rows = core.align(marine.value, weatherData).sort((a, b) => a.time - b.time);
+    zone = locationTimeZone(marine.timezone);
+    buoyView.setTimeZone(zone);
+    rows = core.align(marine);
+    forecastTime = currentTime();
+    forecastMessage = '';
     draw();
-    $('status').textContent = '';
-    updateTides(active, request, rows[0].time, rows.at(-1).time);
+    showForecastStatus();
+    void updateTides(active, request, rows[0].time, rows.at(-1).time);
+
+    const weatherData = await weather;
+    if (request !== controller) return;
+    daylight = weatherData?.daily;
+    rows = core.align(marine, weatherData);
+    if (!rows.some(row => [row.speed, row.airTemperatureF, row.rainChance].some(Number.isFinite))) {
+      weatherMessage = 'Local wind, temperature and rain forecasts are currently unavailable.';
+    }
+    draw();
+    showForecastStatus();
   } catch (error) {
     if (request !== controller) return;
-    $('status').textContent = 'Could not load the forecast. ' + (error.name === 'AbortError' ? 'Request timed out.' : error.message);
-  } finally {
-    clearTimeout(timeout);
+    request.abort();
+    forecastMessage = 'Could not load the marine forecast. ' + (error.name === 'TimeoutError' ? 'Request timed out.' : error.message);
+    showForecastStatus();
   }
 }
 
@@ -185,9 +237,18 @@ function populateSpots() {
 }
 
 function choose() {
+  $('control-status').textContent = '';
+  $('spot').querySelector('option[value="custom"]')?.remove();
   const [label, lat, lon] = core.regions[$('region').value][Number($('spot').value)];
   $('lat').value = lat;
   $('lon').value = lon;
+  return load(lat, lon, label);
+}
+
+function useCustomPoint(lat, lon, label) {
+  const spots = $('spot');
+  if (!spots.querySelector('option[value="custom"]')) spots.add(new Option('Custom coordinates', 'custom'));
+  spots.value = 'custom';
   return load(lat, lon, label);
 }
 
@@ -207,16 +268,16 @@ on('refresh', () => active ? load(active.lat, active.lon, active.label) : choose
 on('custom', () => {
   if (!$('lat').value.trim() || !$('lon').value.trim()) throw Error('Enter both coordinates');
   const { lat, lon } = core.coordinates($('lat').value, $('lon').value);
-  return load(lat, lon, 'Custom coastal point ' + lat + ', ' + lon);
+  return useCustomPoint(lat, lon, 'Custom coastal point ' + lat + ', ' + lon);
 });
 on('save', () => {
   if (!active) throw Error('Choose a location first');
   localStorage.setItem(storageKey, JSON.stringify(active));
-  $('status').textContent = 'Saved on this device.';
+  $('control-status').textContent = 'Saved on this device.';
 });
 on('csv', () => {
-  if (!rows.length) throw Error('Load a forecast first');
-  const csv = rows.map(row => [
+  if (!visibleRows.length) return;
+  const csv = visibleRows.map(row => [
     new Date(row.time * 1000).toISOString(), row.wave ?? '', row.period ?? '',
     row.swell ?? '', row.speed ?? '', row.wind_direction ?? '',
   ].join(',')).join('\n');
@@ -232,7 +293,7 @@ try {
     const { lat, lon } = core.coordinates(saved.lat, saved.lon);
     $('lat').value = lat;
     $('lon').value = lon;
-    load(lat, lon, String(saved.label || 'Saved coastal point'));
+    useCustomPoint(lat, lon, String(saved.label || 'Saved coastal point'));
   }
 } catch {
   choose();
@@ -248,3 +309,12 @@ new ResizeObserver(([entry]) => {
   chartWidth = width;
   if (rows.length) drawWeek();
 }).observe($('weekly'));
+
+function advanceForecast() {
+  const now = currentTime();
+  if (document.hidden || !visibleRows.length || now <= visibleRows[0].time) return;
+  forecastTime = now;
+  draw();
+}
+setInterval(advanceForecast, 60000);
+document.addEventListener('visibilitychange', advanceForecast);

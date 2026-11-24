@@ -1,6 +1,6 @@
-import { height } from './core.js?v=20261117-tides-wind';
+import { height } from './core.js?v=20261124-review';
 import { appendMarkerCheckbox, createChartArrows, createDirectionIcon, hasDirection } from './chart-markers.js?v=20261123-observed-daylight';
-import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261123-chart-ranges';
+import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261124-review';
 import { daylightIntervals } from './daylight.js?v=20261123-observed-daylight';
 
 const HOUR = 3600000;
@@ -49,7 +49,7 @@ function waveArrowSamples(rows, series, interval) {
 }
 
 export function drawBuoyChart(readings, units, width, date, details, hiddenLayers, {
-  days = 2, end = Date.now(), onRangeChange, station,
+  days = 2, end = Date.now(), onRangeChange, station, selectedTime, onSelectTime,
 } = {}) {
   const section = document.createElement('section');
   section.className = 'buoy-wave-chart';
@@ -135,17 +135,24 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     const layer = svg('g', { 'data-observed-layer': series.heightKey });
     if (!isVisible(series.heightKey)) layer.style.display = 'none';
     layers.set(series.heightKey, layer);
-    let path = '', previous = -Infinity;
-    for (const row of rows) {
-      const value = row[series.heightKey];
-      if (!Number.isFinite(value)) { previous = -Infinity; continue; }
-      path += (row.time - previous > 2 * HOUR ? 'M' : 'L') + x(row.time).toFixed(2) + ',' +
-        y(height(value, units), heightMax).toFixed(2);
-      previous = row.time;
+    const heights = rows.filter(row => Number.isFinite(row[series.heightKey]));
+    let path = '';
+    const isolated = [];
+    for (const [index, row] of heights.entries()) {
+      // The basic and spectral feeds can report at different times.
+      const joinsPrevious = index > 0 && row.time - heights[index - 1].time <= 2 * HOUR;
+      const joinsNext = index + 1 < heights.length && heights[index + 1].time - row.time <= 2 * HOUR;
+      const cx = x(row.time), cy = y(height(row[series.heightKey], units), heightMax);
+      if (!joinsPrevious && !joinsNext) {
+        isolated.push(svg('circle', { cx, cy, r: 3.4, fill: 'none', stroke: series.color, 'stroke-width': 1.7,
+          class: 'buoy-isolated-height', 'aria-hidden': 'true' }));
+      } else {
+        path += (joinsPrevious ? 'L' : 'M') + cx.toFixed(2) + ',' + cy.toFixed(2);
+      }
     }
     const trace = svg('path', { d: path, fill: 'none', stroke: series.color, 'stroke-width': 2 });
     if (series.dash) trace.setAttribute('stroke-dasharray', series.dash);
-    layer.append(trace);
+    layer.append(trace, ...isolated);
     const arrows = createChartArrows(svg, {
       className: 'buoy-wave-arrows', color: series.color, spacing: x(start + arrowInterval) - x(start), bottom: 230,
     });
@@ -178,12 +185,14 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
   popup.hidden = true;
   const hint = document.createElement('p');
   hint.className = 'buoy-reading-status';
-  hint.textContent = 'Times are local. Lines show heights, matching circles show periods, and arrows show wave travel direction.';
+  const clockHint = timeZone === 'UTC' ? 'Times are in UTC.' : 'Times are in the forecast location’s time zone.';
+  hint.textContent = clockHint + ' Lines and hollow circles show heights. Solid dots show periods and arrows show wave travel direction.';
   const slider = document.createElement('input');
+  slider.id = 'buoy-reading-hour';
   slider.type = 'range';
   slider.min = 0;
   slider.max = rows.length - 1;
-  slider.value = slider.max;
+  slider.value = Number.isFinite(selectedTime) ? nearestIndex(selectedTime) : Number(slider.max);
   slider.setAttribute('aria-label', 'Inspect buoy observation');
 
   for (const series of SERIES) {
@@ -191,6 +200,7 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     const label = document.createElement('label');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.id = 'buoy-show-' + key;
     checkbox.checked = isVisible(key);
     checkbox.disabled = !availableLayers.has(key);
     const swatch = document.createElement('i');
@@ -235,8 +245,9 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     legend.append(key);
   }
 
-  function show(index) {
+  function show(index, select = false) {
     const row = rows[index], xx = x(row.time);
+    if (select) onSelectTime?.(row.time);
     const stamp = document.createElement('strong');
     stamp.textContent = observationTime.format(row.time);
     popup.replaceChildren(stamp);
@@ -272,20 +283,23 @@ export function drawBuoyChart(readings, units, width, date, details, hiddenLayer
     slider.value = index;
     slider.setAttribute('aria-valuetext', [stamp.textContent, ...groups.map(([label, metrics]) => [label, ...metrics.map(pair => pair.join(' '))].join(', '))].join(', '));
   }
-  function inspect(event) {
+  function nearestIndex(time) {
+    return rows.reduce((best, row, index) =>
+      Math.abs(row.time - time) < Math.abs(rows[best].time - time) ? index : best, 0);
+  }
+  function inspect(event, select = false) {
     const rect = chart.getBoundingClientRect();
     const time = start + ((event.clientX - rect.left) * width / rect.width - left) / (right - left) * (end - start);
-    const nearest = rows.reduce((best, row, i) => Math.abs(row.time - time) < Math.abs(rows[best].time - time) ? i : best, 0);
-    show(nearest);
+    show(nearestIndex(time), select);
   }
   function hide() {
     popup.hidden = true;
     cursor.setAttribute('visibility', 'hidden');
   }
   chart.addEventListener('pointermove', event => { if (event.pointerType !== 'touch') inspect(event); });
-  chart.addEventListener('pointerup', inspect);
+  chart.addEventListener('pointerup', event => inspect(event, true));
   chart.addEventListener('pointerleave', hide);
-  slider.addEventListener('input', () => show(Number(slider.value)));
+  slider.addEventListener('input', () => show(Number(slider.value), true));
   slider.addEventListener('focus', () => show(Number(slider.value)));
   slider.addEventListener('blur', hide);
   plot.append(chart, popup);

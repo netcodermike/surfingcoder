@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<script src="/site-theme.js?v=a59f6f0e32de"></script><meta name="viewport" content="width=device-width,initial-scale=1"><title>Regional Surf Report</title><meta name="description" content="Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261123-observed-daylight"><script type="module" src="app.js?v=20261123-popup-bearings"></script><link rel="stylesheet" href="../theme.css?v=2ff094ac0641"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<script src="/site-theme.js?v=a59f6f0e32de"></script><meta name="viewport" content="width=device-width,initial-scale=1"><title>Regional Surf Report</title><meta name="description" content="Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261124-review"><script type="module" src="app.js?v=20261124-review"></script><link rel="stylesheet" href="../theme.css?v=2ff094ac0641"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
 </head><body>
 <!-- SITE NAVIGATION START -->
@@ -102,7 +102,13 @@
     <summary>Hourly forecast</summary>
     <div id="output" tabindex="0" role="region" aria-label="Hourly forecast, earliest time first"></div>
   </details>
-</section></div></main><footer><a href="https://open-meteo.com/">Weather data by Open-Meteo</a> · <a href="https://open-meteo.com/en/docs/marine-weather-api">Marine API and data sources</a><br>Built for discovery. Offshore grid forecasts do not resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.<br>Local files stay in your browser unless the interface explicitly describes a request.</footer>
+</section></div></main>
+<footer>
+  <a href="https://open-meteo.com/">Weather data by Open-Meteo</a> · <a href="https://open-meteo.com/en/docs/marine-weather-api">Marine API and data sources</a>
+  <a id="tide-source" hidden></a>
+  <p>Offshore model cells and buoy stations sample different locations. The forecast shows the model’s wave period, while the buoy reports the measured peak period for combined sea.</p>
+  <p>Offshore forecasts cannot resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.</p>
+</footer>
 <!-- SITE FOOTER START -->
 <footer class="sc-site-footer">
   <div class="sc-footer-wrap">

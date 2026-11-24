@@ -4,7 +4,17 @@ export function field(label,id,type='text',value='',extra=''){return `<label for
 export function select(label,id,options){return `<label for="${id}">${label}</label><select id="${id}">${options.map(x=>`<option value="${Array.isArray(x)?x[0]:x}">${Array.isArray(x)?x[1]:x}</option>`).join('')}</select>`}
 export function area(label,id,value){return `<label for="${id}">${label}</label><textarea id="${id}">${value}</textarea>`}
 export function button(label,id){return `<button id="${id}">${label}</button>`}
-export function on(id,fn){$(id).onclick=async()=>{try{$('status').textContent='';await fn()}catch(e){$('status').textContent=e.message||String(e)}}}
+export function on(id, fn) {
+  $(id).onclick = async () => {
+    const status = $('control-status');
+    try {
+      status.textContent = '';
+      await fn();
+    } catch (error) {
+      status.textContent = error.message || String(error);
+    }
+  };
+}
 export function show(value){$('output').textContent=typeof value==='string'?value:JSON.stringify(value,null,2)}
 export function download(name,value,type='application/json'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([typeof value==='string'?value:JSON.stringify(value,null,2)],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 let ac;export async function audio(){ac??=new AudioContext();if(ac.state==='suspended')await ac.resume();return ac}

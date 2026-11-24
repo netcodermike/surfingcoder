@@ -1,4 +1,4 @@
-import { distanceKm } from './core.js?v=20261117-tides-wind';
+import { distanceKm } from './core.js?v=20261124-review';
 
 const catalogUrl = 'https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type=tidepredictions';
 const predictionsUrl = 'https://api.tidesandcurrents.noaa.gov/api/prod/datagetter';
@@ -13,9 +13,11 @@ async function readJson(url, signal) {
 }
 
 function referenceStations() {
-  catalog ??= readJson(catalogUrl, AbortSignal.timeout(12000)).then(({ stations }) =>
-    stations.filter(station => station.type === 'R' && Number.isFinite(station.lat) && Number.isFinite(station.lng))
-  ).catch(error => {
+  catalog ??= readJson(catalogUrl, AbortSignal.timeout(12000)).then(({ stations }) => {
+    if (!Array.isArray(stations)) throw Error('NOAA returned an invalid tide station catalog');
+    return stations.filter(station => station?.type === 'R' && station.id &&
+      Number.isFinite(station.lat) && Number.isFinite(station.lng));
+  }).catch(error => {
     catalog = undefined;
     throw error;
   });
@@ -32,20 +34,28 @@ export function tideStation(stations, location) {
 }
 
 export async function loadTides(location, start, end, signal) {
+  signal?.throwIfAborted();
   const station = tideStation(await referenceStations(), location);
+  signal?.throwIfAborted();
   if (!station) return null;
   const date = time => new Date(time * 1000).toISOString().slice(0, 10).replaceAll('-', '');
+  const first = start - intervalSeconds, last = end + intervalSeconds;
   const query = new URLSearchParams({
     product: 'predictions', application: 'SurfingCoder', station: station.id,
-    begin_date: date(start), end_date: date(end), datum: 'MLLW', time_zone: 'gmt',
+    begin_date: date(first), end_date: date(last), datum: 'MLLW', time_zone: 'gmt',
     units: 'metric', interval: '6', format: 'json',
   });
-  const { predictions } = await readJson(predictionsUrl + '?' + query, signal);
-  const samples = (predictions ?? []).filter(row => row.v != null && String(row.v).trim()).map(row => ({
-    time: Date.parse(row.t.replace(' ', 'T') + ':00Z') / 1000,
-    value: Number(row.v),
-  })).filter(row => Number.isFinite(row.value) && row.time >= start - intervalSeconds && row.time <= end + intervalSeconds)
-    .sort((a, b) => a.time - b.time);
+  const { predictions, error } = await readJson(predictionsUrl + '?' + query, signal);
+  if (error?.message) throw Error(error.message);
+  if (!Array.isArray(predictions)) throw Error('NOAA returned an invalid tide forecast');
+  const samplesByTime = new Map();
+  for (const row of predictions) {
+    if (typeof row?.t !== 'string' || row.v == null || !String(row.v).trim()) continue;
+    const time = Date.parse(row.t.replace(' ', 'T') + ':00Z') / 1000;
+    const value = Number(row.v);
+    if (Number.isFinite(value) && time >= first && time <= last) samplesByTime.set(time, { time, value });
+  }
+  const samples = [...samplesByTime.values()].sort((a, b) => a.time - b.time);
   if (samples.length < 2) throw new Error('NOAA returned no tide predictions');
   return { station, samples };
 }

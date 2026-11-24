@@ -21,11 +21,11 @@ export function dayRangeControl(id, label, days, onChange) {
   return control;
 }
 
-export function forecastWindow(hourly, days, now = Math.floor(Date.now() / 1000)) {
-  const first = hourly[0].time;
-  const last = hourly.at(-1).time;
-  // Start at the first available hour when the current time is outside the forecast.
-  const start = now >= first && now <= last ? now : first;
+export function forecastWindow(hourly, days, now = Date.now() / 1000) {
+  const first = hourly[0]?.time;
+  const last = hourly.at(-1)?.time;
+  if (!hourly.length || now > last) return { rows: [], start: now, end: now };
+  const start = Math.max(first, now);
   const end = Math.min(last, start + days * DAY_SECONDS);
   return { start, end, rows: hourly.filter(row => row.time >= start && row.time <= end) };
 }
