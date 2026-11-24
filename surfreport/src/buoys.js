@@ -1,6 +1,6 @@
 import { compass, distanceKm, height } from './core.js?v=20261124-review';
-import { drawBuoyChart } from './buoy-chart.js?v=20261124-review';
-import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261124-review';
+import { drawBuoyChart } from './buoy-chart.js?v=20261124-five-days';
+import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261124-five-days';
 
 const HOUR = 3600000;
 const MINUTE = 60000;

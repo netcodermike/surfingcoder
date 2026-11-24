@@ -4,10 +4,10 @@ Completed November 6, 2026. Forty separate public repositories under netcodermik
 
 - 20 music/audio projects
 - 9 AI and machine-learning projects
-- 1 regional surf report
+- 1 Regional Surf Data
 - 10 other practical tools
 
-[Browse the complete gallery](https://surfingcoder.com/) · [Regional surf report](https://surfingcoder.com/surfreport/)
+[Browse the complete gallery](https://surfingcoder.com/) · [Regional Surf Data](https://surfingcoder.com/surfreport/)
 
 | App | Language | Repository | Try it |
 | --- | --- | --- | --- |
@@ -40,7 +40,7 @@ Completed November 6, 2026. Forty separate public repositories under netcodermik
 | Local Model Chat Desk | Python | [local-model-chat-desk](https://github.com/netcodermike/local-model-chat-desk) | Run locally; see README |
 | AI Dataset Quality Auditor | Python | [ai-dataset-quality-auditor](https://github.com/netcodermike/ai-dataset-quality-auditor) | Run locally; see README |
 | Decision Tree Workbench | JavaScript | [decision-tree-workbench](https://github.com/netcodermike/decision-tree-workbench) | [Launch](https://surfingcoder.com/apps/decision-tree-workbench/) |
-| SurfingCoder Regional Surf Report | JavaScript | [surfcoder-regional-surf-report](https://github.com/netcodermike/surfcoder-regional-surf-report) | [Launch](https://surfingcoder.com/surfreport/) |
+| SurfingCoder Regional Surf Data | JavaScript | [surfcoder-regional-surf-report](https://github.com/netcodermike/surfcoder-regional-surf-report) | [Launch](https://surfingcoder.com/surfreport/) |
 | Home Energy Scenario Lab | TypeScript | [home-energy-scenario-lab](https://github.com/netcodermike/home-energy-scenario-lab) | [Launch](https://surfingcoder.com/apps/home-energy-scenario-lab/) |
 | Offline Recipe Scaling Kit | Swift | [offline-recipe-scaling-kit](https://github.com/netcodermike/offline-recipe-scaling-kit) | Run locally; see README |
 | Network Subnet Workbench | Go | [network-subnet-workbench](https://github.com/netcodermike/network-subnet-workbench) | Run locally; see README |
@@ -58,7 +58,7 @@ Browser audio needs a user gesture; microphone tools need HTTPS/localhost and pe
 
 The local chat desk, RAG generation, and live prompt-evaluation mode require a separately installed Ollama model. Their offline tests validate the algorithms/protocol handling; they do not claim to have run a model that is not installed. TF-IDF, neural-network, CART, naive Bayes and KNN projects implement actual local algorithms and identify their educational scope.
 
-The surf report requests marine/wind forecasts from Open-Meteo for the chosen coordinates. It displays location-local time, data retrieval time, missing values and errors. It does not invent live conditions or claim offshore grids are beach observations.
+Surf Data requests marine/wind forecasts from Open-Meteo for the chosen coordinates. It displays location-local time, data retrieval time, missing values and errors. It does not invent live conditions or claim offshore grids are beach observations.
 
 ## Verification
 

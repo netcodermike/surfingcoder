@@ -1,4 +1,4 @@
-const RANGE_DAYS = [1, 2, 3, 7];
+const RANGE_DAYS = [1, 2, 3, 5, 7];
 export const MAX_RANGE_DAYS = RANGE_DAYS.at(-1);
 export const DAY_SECONDS = 24 * 60 * 60;
 

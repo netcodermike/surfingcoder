@@ -29,13 +29,13 @@ The JSON fields are documented in [docs/gallery.md](docs/gallery.md). Layout and
 
 The Theme selector in the shared header offers Dark (Amethyst & Graphite), Light (porcelain and plum), and Dusk (blue slate and lavender). Dark is the default. The browser remembers a visitor's choice using the `surfingcoder.theme` local storage key.
 
-`navigation.css` defines the shared palettes. `theme.css` and `app-themes.css` apply them to the gallery, About page, and hosted apps. The Surf Report defines chart colors in `surfreport/style.css` so the traces, legends, and hover readouts stay legible in each theme.
+`navigation.css` defines the shared palettes. `theme.css` and `app-themes.css` apply them to the gallery, About page, and hosted apps. Surf Data defines chart colors in `surfreport/style.css` so the traces, legends, and hover readouts stay legible in each theme.
 
 Gallery screenshots remain genuine captures of their source applications; they are not recolored. Hosted app styling is maintained in this website repository independently of the standalone app repositories.
 
 ## New music, AI, and practical apps
 
-The latest expansion adds 20 music/audio apps, 9 AI projects, a [regional surf report](https://surfingcoder.com/surfreport/), and 10 practical tools. [Browse all 40 new repositories and setup notes](docs/expansion40.md). Browser apps have **Launch app** links directly in the gallery; CLI and local-server projects link to their documented setup.
+The latest expansion adds 20 music/audio apps, 9 AI projects, [Regional Surf Data](https://surfingcoder.com/surfreport/), and 10 practical tools. [Browse all 40 new repositories and setup notes](docs/expansion40.md). Browser apps have **Launch app** links directly in the gallery; CLI and local-server projects link to their documented setup.
 
 ## Screenshots
 
@@ -47,7 +47,7 @@ The publication branch is `main`, with GitHub Pages serving the repository root 
 
 ## Operations research and forecast updates
 
-[OR Tableau Studio](https://surfingcoder.com/apps/or-tableau-studio/) adds a documented, tested simplex and farm-planning workbench. Its standalone source lives at [netcodermike/or-tableau-studio](https://github.com/netcodermike/or-tableau-studio). Refresh the hosted static copy when publishing app changes. The surf report now includes [seven-day component graphs](docs/surf-forecast-stage1.md).
+[OR Tableau Studio](https://surfingcoder.com/apps/or-tableau-studio/) adds a documented, tested simplex and farm-planning workbench. Its standalone source lives at [netcodermike/or-tableau-studio](https://github.com/netcodermike/or-tableau-studio). Refresh the hosted static copy when publishing app changes. Surf Data now includes [seven-day component graphs](docs/surf-forecast-stage1.md).
 
 ## Trading indicator lab
 

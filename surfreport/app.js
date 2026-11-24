@@ -1,6 +1,6 @@
-import { setupBuoyView } from './src/buoys.js?v=20261124-review';
-import { weekly } from './weekly.js?v=20261124-review';
-import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261124-review';
+import { setupBuoyView } from './src/buoys.js?v=20261124-five-days';
+import { weekly } from './weekly.js?v=20261124-five-days';
+import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261124-five-days';
 import { $, field, select, button, on, download } from './ui.js?v=20261124-review';
 import * as core from './src/core.js?v=20261124-review';
 import { loadTides } from './src/tides.js?v=20261124-review';

@@ -673,7 +673,7 @@
   },
   {
     "name": "surfcoder-regional-surf-report",
-    "title": "SurfingCoder Regional Surf Report",
+    "title": "SurfingCoder Regional Surf Data",
     "language": "JavaScript",
     "group": "surf",
     "summary": "Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.",

@@ -1,7 +1,7 @@
 import { rainColor, rainProbability, seriesLegend, temperatureColor, tideColor, tideWindPanel, weatherPanel, windColor } from './forecast-panels.js?v=20261124-review';
 import { compass } from './src/core.js?v=20261124-review';
 import { appendMarkerCheckbox, createChartArrows, createDirectionIcon, DIRECTION_INTERVAL_SECONDS, hasDirection } from './src/chart-markers.js?v=20261123-observed-daylight';
-import { dayRangeControl, forecastWindow } from './src/chart-ranges.js?v=20261124-review';
+import { dayRangeControl, forecastWindow } from './src/chart-ranges.js?v=20261124-five-days';
 
 const components = [
  ['wave', 'Combined sea', 'var(--surf-combined-sea, #79bfff)', 'period', 'direction'],
@@ -62,7 +62,7 @@ export function weekly(forecastRows,options){
  const {zone,units,tide,daylight,location,days,onRangeChange,now}=options;
  dismissTap?.abort();
  dismissTap = undefined;
- const duration = { 1:'One-day', 2:'Two-day', 3:'Three-day', 7:'Seven-day' }[days];
+ const duration = { 1:'One-day', 2:'Two-day', 3:'Three-day', 5:'Five-day', 7:'Seven-day' }[days];
  const root = document.getElementById('weekly');
  const active = document.activeElement;
  const focusId = root.contains(active) ? active.id : '';

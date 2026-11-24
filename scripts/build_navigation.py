@@ -52,7 +52,7 @@ OLD_HEADER = re.compile(r'<header class="(?:site-nav|site-header)">.*?</header>'
 BODY_START = re.compile(r'<body\b[^>]*>(?:\s*<a class="skip(?:-link)?"[^>]*>[^<]*</a>)?', re.I)
 LINKS = (
     ('Projects', '/#projects', 'index.html'),
-    ('Surf Report', '/surfreport/', 'surfreport/index.html'),
+    ('Surf Data', '/surfreport/', 'surfreport/index.html'),
     ('About', '/about.html', 'about.html'),
 )
 def game_links():

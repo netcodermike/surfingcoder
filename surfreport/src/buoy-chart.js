@@ -1,6 +1,6 @@
 import { height } from './core.js?v=20261124-review';
 import { appendMarkerCheckbox, createChartArrows, createDirectionIcon, hasDirection } from './chart-markers.js?v=20261123-observed-daylight';
-import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261124-review';
+import { dayRangeControl, formatDayRange } from './chart-ranges.js?v=20261124-five-days';
 import { daylightIntervals } from './daylight.js?v=20261123-observed-daylight';
 
 const HOUR = 3600000;

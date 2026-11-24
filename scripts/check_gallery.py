@@ -7,7 +7,7 @@ projects = json.loads((ROOT/'assets/projects.json').read_text(encoding='utf-8'))
 project_names = {project['name'] for project in projects}
 gallery_exclusions = {'surfcoder-regional-surf-report'}
 assert len(projects) == len(project_names), 'Duplicate repository names'
-assert project_names.isdisjoint(gallery_exclusions), 'The Surf Report belongs in the header, outside the project gallery'
+assert project_names.isdisjoint(gallery_exclusions), 'Surf Data belongs in the header, outside the project gallery'
 category_order = ['Mathematics', 'AI & machine learning', 'Data & analysis', 'Work & productivity', 'Creative tools', 'Music & audio', 'Microservices', 'Everyday apps', 'Games & learning', 'Systems & Linux']
 assert list(dict.fromkeys(p['category'] for p in projects)) == category_order, 'Curated category priorities changed'
 assert [category_order.index(p['category']) for p in projects] == sorted(category_order.index(p['category']) for p in projects), 'Categories must stay grouped'
