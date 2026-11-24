@@ -1,6 +1,6 @@
 # SurfingCoder
 
-A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 331 projects across 14 languages. All Projects opens with Mathematics, followed by AI apps, data analysis, productivity, creative tools, music/audio, microservices, everyday apps, games, and Linux utilities. Function and Surface Grapher, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
+A repository gallery for [surfingcoder.com](https://surfingcoder.com), featuring 346 projects across 14 languages. All Projects opens with Mathematics, followed by AI apps, data analysis, productivity, creative tools, music/audio, microservices, everyday apps, games, and Linux utilities. Function and Surface Grapher, Coinbase Ladder, and Fractal Render Lab lead their respective categories.
 
 ## Run locally
 
