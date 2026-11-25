@@ -7143,7 +7143,7 @@
   {
     "name": "surfingcoder-arcade",
     "title": "SurfingCoder Arcade",
-    "description": "Collect pearls through reef mazes in Surf Break, throw boards at diving sea creatures in Barrel Patrol, or open a compatible MAME ROM ZIP in your browser. Ride Amethyst Point in Reef Runner 6502.",
+    "description": "Collect pearls through reef mazes in Surf Break, throw boards at diving sea creatures in Barrel Patrol, or open a compatible MAME ROM ZIP in your browser.",
     "languages": [
       "JavaScript"
     ],
@@ -7167,38 +7167,6 @@
     "applicationUrl": "/arcade/",
     "gameMenuLabel": "Arcade",
     "gamesOrder": 0
-  },
-  {
-    "name": "reef-runner-6502",
-    "title": "Reef Runner 6502",
-    "description": "Catch a wave at Amethyst Point, dodge the reef, and score by staying in the moving pocket. This original NES game runs hand-written 6502 assembly in your browser.",
-    "languages": [
-      "Assembly",
-      "JavaScript"
-    ],
-    "platform": "NES and web browser, keyboard and touch",
-    "url": "https://github.com/netcodermike/reef-runner-6502",
-    "category": "Games & learning",
-    "featured": false,
-    "order": 346,
-    "image": "assets/screenshots/reef-runner-6502.webp",
-    "capture": {
-      "name": "reef-runner-6502",
-      "capture_date": "2026-11-24T08:21:29.493013+00:00",
-      "demo_data": true,
-      "validation_passed": true,
-      "source_commit": "a30c94b54a6f07cf59abd74f875f88cee3060603",
-      "validation_commands": [
-        "python build.py --check --labels reef-runner.lbl",
-        "node tests/playthrough.mjs reef-runner.lbl"
-      ],
-      "kind": "runtime",
-      "caption": "The surfer in the moving wave pocket at Amethyst Point, with both reef obstacles and the full NES HUD visible.",
-      "capture_method": "Actual JSNES frame from the verified original NES ROM after controller inputs; nearest-neighbor enlargement of the full 256×240 frame."
-    },
-    "ci": "https://github.com/netcodermike/reef-runner-6502/actions/workflows/verify.yml",
-    "applicationUrl": "/apps/reef-runner-6502/",
-    "gameMenuLabel": "Reef Runner 6502"
   },
   {
     "name": "surfingcoder-20-questions",
