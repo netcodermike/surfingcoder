@@ -3682,6 +3682,31 @@
     "ci": "https://github.com/netcodermike/fractal-render-lab/actions/runs/42207093709"
   },
   {
+    "name": "spiral-draw-asm",
+    "title": "Spiral Draw ASM",
+    "description": "Watch a six-color square spiral draw itself from the center and change color at each corner. Playback starts automatically, with pause, resume, and replay controls. The browser runs WebAssembly on HTML Canvas. The downloadable 16-bit x86 edition is assembled with NASM and writes straight to VGA memory. In DOSBox, press Space to replay or Esc to exit.",
+    "languages": [
+      "Assembly",
+      "WebAssembly",
+      "JavaScript"
+    ],
+    "platform": "Web and DOS",
+    "url": "https://github.com/netcodermike/spiral-draw-asm",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 362,
+    "image": "assets/screenshots/spiral-draw-asm.webp",
+    "capture": {
+      "name": "spiral-draw-asm",
+      "kind": "runtime",
+      "caption": "The completed square spiral and playback controls in the browser edition.",
+      "capture_date": "2026-11-25T04:22:36.835116+00:00",
+      "demo_data": true
+    },
+    "applicationUrl": "/apps/spiral-draw-asm/",
+    "downloadUrl": "/apps/spiral-draw-asm/spiral-dos.zip"
+  },
+  {
     "name": "repeat-tile-studio",
     "title": "Repeat Tile Studio",
     "description": "Design seamless repeating tiles with rotating petal, diamond, or arch motifs, color controls, and a reusable PNG export.",

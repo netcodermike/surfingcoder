@@ -1,0 +1,7 @@
+{
+  "name": "spiral-draw-asm",
+  "kind": "runtime",
+  "caption": "The completed square spiral and playback controls in the browser edition.",
+  "capture_date": "2026-11-25T04:22:36.835116+00:00",
+  "demo_data": true
+}
