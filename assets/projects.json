@@ -1017,6 +1017,50 @@
     "ci": "https://github.com/netcodermike/periodic-necklace-canon/actions/workflows/verify.yml"
   },
   {
+    "name": "pell-recurrence-table",
+    "title": "Pell Recurrence Table",
+    "description": "Find the smallest positive solution of a Pell equation and generate an exact sequence of larger integer solutions.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/pell-recurrence-table",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 348,
+    "image": "assets/screenshots/pell-recurrence-table.webp",
+    "capture": {
+      "name": "pell-recurrence-table",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:10.652424+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/pell-recurrence-table/actions/workflows/verify.yml"
+  },
+  {
+    "name": "fractional-spline-sampler",
+    "title": "Fractional Spline Sampler",
+    "description": "Evaluate a B-spline at fractional parameters using a knot vector and the de Boor algorithm.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/fractional-spline-sampler",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 354,
+    "image": "assets/screenshots/fractional-spline-sampler.webp",
+    "capture": {
+      "name": "fractional-spline-sampler",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:11.058732+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/fractional-spline-sampler/actions/workflows/verify.yml"
+  },
+  {
     "name": "tiny-neural-network-playground",
     "title": "Tiny Neural Network Playground",
     "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
@@ -2220,6 +2264,28 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/herbarium-duplicate-exchange/actions/workflows/verify.yml"
+  },
+  {
+    "name": "museum-collection-condition-rollup",
+    "title": "Museum Collection Condition Rollup",
+    "description": "Summarize recorded condition and priority across collections and flag open records with missing labels.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/museum-collection-condition-rollup",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 351,
+    "image": "assets/screenshots/museum-collection-condition-rollup.webp",
+    "capture": {
+      "name": "museum-collection-condition-rollup",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:10.663141+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/museum-collection-condition-rollup/actions/workflows/verify.yml"
   },
   {
     "name": "coinbase-ladder",
@@ -3547,6 +3613,50 @@
     "ci": "https://github.com/netcodermike/timecard-midnight-split/actions/workflows/verify.yml"
   },
   {
+    "name": "community-fridge-expiry-board",
+    "title": "Community Fridge Expiry Board",
+    "description": "Arrange community fridge inventory by its recorded use-by labels and count the units listed before, on, and after a chosen review date.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/community-fridge-expiry-board",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 357,
+    "image": "assets/screenshots/community-fridge-expiry-board.webp",
+    "capture": {
+      "name": "community-fridge-expiry-board",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:15.514251+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/community-fridge-expiry-board/actions/workflows/verify.yml"
+  },
+  {
+    "name": "newsletter-run-of-show",
+    "title": "Newsletter Run of Show",
+    "description": "Build a chronological newsletter schedule by working back from a publish time through editing, proofing, and test-send milestones.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/newsletter-run-of-show",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 358,
+    "image": "assets/screenshots/newsletter-run-of-show.webp",
+    "capture": {
+      "name": "newsletter-run-of-show",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:15.596213+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/newsletter-run-of-show/actions/workflows/verify.yml"
+  },
+  {
     "name": "fractal-render-lab",
     "title": "Fractal Render Lab",
     "description": "Explore Mandelbrot views through center/zoom controls and export rendered PNGs.",
@@ -4709,6 +4819,50 @@
     "ci": "https://github.com/netcodermike/poster-frame-mat-cuts/actions/workflows/verify.yml"
   },
   {
+    "name": "darkroom-enlargement-exposure",
+    "title": "Darkroom Enlargement Exposure",
+    "description": "Estimate a new darkroom print exposure from measured paper-plane light levels and generate a bracketed test strip.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/darkroom-enlargement-exposure",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 350,
+    "image": "assets/screenshots/darkroom-enlargement-exposure.webp",
+    "capture": {
+      "name": "darkroom-enlargement-exposure",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:10.633676+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/darkroom-enlargement-exposure/actions/workflows/verify.yml"
+  },
+  {
+    "name": "paper-marbling-palette",
+    "title": "Paper Marbling Palette",
+    "description": "Create repeatable color recipes from a starting palette and compare their screen contrast against the paper color.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/paper-marbling-palette",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 352,
+    "image": "assets/screenshots/paper-marbling-palette.webp",
+    "capture": {
+      "name": "paper-marbling-palette",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:11.094800+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/paper-marbling-palette/actions/workflows/verify.yml"
+  },
+  {
     "name": "guitar-chord-desk",
     "title": "Guitar Chord Desk",
     "description": "Explore major, minor, and dominant seventh guitar chords with open and movable voicings, note labels, synthesized strums, and text export.",
@@ -5854,6 +6008,50 @@
     "ci": "https://github.com/netcodermike/music-box-comb-puncher/actions/workflows/verify.yml"
   },
   {
+    "name": "room-mode-spacing-audit",
+    "title": "Room Mode Spacing Audit",
+    "description": "Calculate the axial resonance frequencies of a rectangular room and find neighboring modes that cluster together.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/room-mode-spacing-audit",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 349,
+    "image": "assets/screenshots/room-mode-spacing-audit.webp",
+    "capture": {
+      "name": "room-mode-spacing-audit",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:10.673008+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/room-mode-spacing-audit/actions/workflows/verify.yml"
+  },
+  {
+    "name": "mandolin-scale-length-layout",
+    "title": "Mandolin Scale Length Layout",
+    "description": "Lay out equal-tempered mandolin frets from a fractional scale length and measure the spacing between successive frets.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/mandolin-scale-length-layout",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 359,
+    "image": "assets/screenshots/mandolin-scale-length-layout.webp",
+    "capture": {
+      "name": "mandolin-scale-length-layout",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:17.301943+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/mandolin-scale-length-layout/actions/workflows/verify.yml"
+  },
+  {
     "name": "festival-set-planner",
     "title": "Festival Set Planner",
     "description": "Build a festival itinerary around favorite sets while accounting for walking time between stages.",
@@ -6899,6 +7097,50 @@
     "ci": "https://github.com/netcodermike/knitting-short-row-shaper/actions/workflows/verify.yml"
   },
   {
+    "name": "clothing-care-batch-sorter",
+    "title": "Clothing Care Batch Sorter",
+    "description": "Group garments by the machine-wash, color, and drying instructions you enter and flag labels that need review.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/clothing-care-batch-sorter",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 353,
+    "image": "assets/screenshots/clothing-care-batch-sorter.webp",
+    "capture": {
+      "name": "clothing-care-batch-sorter",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:11.091976+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/clothing-care-batch-sorter/actions/workflows/verify.yml"
+  },
+  {
+    "name": "rainwater-barrel-overflow",
+    "title": "Rainwater Barrel Overflow",
+    "description": "Model daily roof capture, barrel overflow, and requested water use to compare storage capacity with a given rainfall record.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/rainwater-barrel-overflow",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 356,
+    "image": "assets/screenshots/rainwater-barrel-overflow.webp",
+    "capture": {
+      "name": "rainwater-barrel-overflow",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:15.477008+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/rainwater-barrel-overflow/actions/workflows/verify.yml"
+  },
+  {
     "name": "surfingcoder-arcade",
     "title": "SurfingCoder Arcade",
     "description": "Collect pearls through reef mazes in Surf Break, throw boards at diving sea creatures in Barrel Patrol, or open a compatible MAME ROM ZIP in your browser. Ride Amethyst Point in Reef Runner 6502.",
@@ -7710,6 +7952,52 @@
     "ci": "https://github.com/netcodermike/waterfall-tile-traversal/actions/workflows/verify.yml"
   },
   {
+    "name": "hex-dominance-puzzle",
+    "title": "Hex Dominance Puzzle",
+    "description": "Place as few beacons as possible to cover an entire hex board. Solve three layouts and get hints that account for the beacons you placed.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/hex-dominance-puzzle",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 347,
+    "image": "assets/screenshots/hex-dominance-puzzle.webp",
+    "capture": {
+      "name": "hex-dominance-puzzle",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-25T02:40:51.745237+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/hex-dominance-puzzle/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/hex-dominance-puzzle/",
+    "gameMenuLabel": "Hex Dominance Puzzle"
+  },
+  {
+    "name": "calendar-recurrence-puzzle",
+    "title": "Calendar Recurrence Puzzle",
+    "description": "Practice finding the nth weekday of a month by playing repeatable Gregorian calendar puzzles and checking your answers.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/calendar-recurrence-puzzle",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 360,
+    "image": "assets/screenshots/calendar-recurrence-puzzle.webp",
+    "capture": {
+      "name": "calendar-recurrence-puzzle",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:17.173671+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/calendar-recurrence-puzzle/actions/workflows/verify.yml"
+  },
+  {
     "name": "linux-backup-server",
     "title": "Linux Backup Vault",
     "description": "Store client-encrypted folder backups in a self-hosted content-addressed vault, list snapshots, and restore files with verified hashes.",
@@ -8192,5 +8480,49 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/field-sensor-gap-audit/actions/workflows/verify.yml"
+  },
+  {
+    "name": "csv-retention-capacity-audit",
+    "title": "CSV Retention Capacity Audit",
+    "description": "Estimate how much disk space recurring CSV jobs need for their retention windows, and see which sources consume the most capacity.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/csv-retention-capacity-audit",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 355,
+    "image": "assets/screenshots/csv-retention-capacity-audit.webp",
+    "capture": {
+      "name": "csv-retention-capacity-audit",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:15.534981+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/csv-retention-capacity-audit/actions/workflows/verify.yml"
+  },
+  {
+    "name": "log-rotation-retention-simulator",
+    "title": "Log Rotation Retention Simulator",
+    "description": "Simulate size-based rotation and retention, tracking how each write batch affects active logs, archives and pruned bytes.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/log-rotation-retention-simulator",
+    "category": "Systems & Linux",
+    "featured": false,
+    "order": 361,
+    "image": "assets/screenshots/log-rotation-retention-simulator.webp",
+    "capture": {
+      "name": "log-rotation-retention-simulator",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-25T02:39:17.301943+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/log-rotation-retention-simulator/actions/workflows/verify.yml"
   }
 ]

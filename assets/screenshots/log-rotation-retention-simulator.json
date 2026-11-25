@@ -1,0 +1,7 @@
+{
+  "name": "log-rotation-retention-simulator",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-25T02:39:17.301943+00:00",
+  "demo_data": true
+}
