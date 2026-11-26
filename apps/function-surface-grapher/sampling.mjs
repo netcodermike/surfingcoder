@@ -1,13 +1,16 @@
 const maxCurveRefinements = 12;
+const maxCurveSplitsPerInterval = 48;
 const maxSurfaceRefinements = 5;
+const offsetProbe = (3 - Math.sqrt(5)) / 2;
 
 export function gridCoordinate(min, max, index, steps) {
   return index === steps ? max : min + (max - min) * index / steps;
 }
 
-function midpointFits(start, middle, end, tolerance) {
+function pointFits(start, middle, end, tolerance, fraction = .5) {
   // Scale before subtracting so very large finite values can still be compared.
-  const deviation = Math.abs(middle / 2 - (start / 4 + end / 4));
+  const expected = (1 - fraction) * (start / 2) + fraction * (end / 2);
+  const deviation = Math.abs(middle / 2 - expected);
   const change = Math.abs(end / 2 - start / 2);
   const roundoff = Number.EPSILON * Math.max(Math.abs(start), Math.abs(middle), Math.abs(end)) * 4;
   return deviation <= tolerance + .27 * change + roundoff;
@@ -35,7 +38,7 @@ export function sampleCurve(evaluate, domain, steps = 960) {
   const { xmin, xmax, ymin, ymax } = domain;
   const paths = [];
   const tolerance = (ymax - ymin) / 1000;
-  let remainingRefinements = 8 * steps;
+  let remainingSplits;
   let path, hasFiniteSamples = false;
 
   function sample(x) {
@@ -61,23 +64,31 @@ export function sampleCurve(evaluate, domain, steps = 960) {
   }
 
   function trace(x0, y0, x1, y1, refinements) {
-    const middleX = x0 + (x1 - x0) / 2;
+    const width = x1 - x0;
+    const middleX = x0 + width / 2;
     const middleY = sample(middleX);
     const finite = [y0, middleY, y1].filter(Number.isFinite).length;
     if (finite === 3) {
       // Use the local change as well as the viewport span so small poles
       // don't pass the continuity check just because the y-axis is wide.
       const change = Math.max(Math.abs(y0 / 2 - middleY / 2), Math.abs(y1 / 2 - middleY / 2));
-      if (midpointFits(y0, middleY, y1, Math.min(tolerance, .01 * change))) {
-        append(x0, y0, x1, y1);
-        return;
+      const localTolerance = Math.min(tolerance, .01 * change);
+      if (pointFits(y0, middleY, y1, localTolerance, (middleX - x0) / width)) {
+        const offsetX = x0 + width * offsetProbe;
+        const offsetY = sample(offsetX);
+        if (Number.isFinite(offsetY) &&
+            pointFits(y0, offsetY, y1, localTolerance, (offsetX - x0) / width)) {
+          append(x0, y0, x1, y1);
+          return;
+        }
       }
     }
-    if (finite > 0 && refinements > 0 && remainingRefinements > 0 && middleX > x0 && middleX < x1) {
+    if (refinements > 0 && remainingSplits > 0 && middleX > x0 && middleX < x1 &&
+        (finite > 0 || Number.isFinite(sample(x0 + width * offsetProbe)))) {
       // Probe steep or partly defined regions. An interval that still looks
       // discontinuous at the refinement limit becomes a gap. Finite sampling
       // can miss narrow features between probes.
-      remainingRefinements -= 1;
+      remainingSplits -= 1;
       trace(x0, y0, middleX, middleY, refinements - 1);
       trace(middleX, middleY, x1, y1, refinements - 1);
     } else {
@@ -89,6 +100,8 @@ export function sampleCurve(evaluate, domain, steps = 960) {
   for (let i = 1; i <= steps; i++) {
     const x1 = gridCoordinate(xmin, xmax, i, steps);
     const y1 = sample(x1);
+    // A rough interval must not exhaust the probes for the rest of the curve.
+    remainingSplits = maxCurveSplitsPerInterval;
     trace(x0, y0, x1, y1, maxCurveRefinements);
     x0 = x1;
     y0 = y1;
@@ -107,7 +120,7 @@ function continuousTransect(evaluate, start, end, minimumTolerance) {
   const tolerance = minimumTolerance + .002 * change;
   function check(t0, z0, t1, z1, tm, zm, refinements) {
     if (!Number.isFinite(zm)) return false;
-    if (midpointFits(z0, zm, z1, tolerance)) return true;
+    if (pointFits(z0, zm, z1, tolerance, (tm - t0) / (t1 - t0))) return true;
     if (!refinements) return false;
     const left = (t0 + tm) / 2;
     const right = (tm + t1) / 2;
@@ -115,6 +128,52 @@ function continuousTransect(evaluate, start, end, minimumTolerance) {
       && check(tm, zm, t1, z1, right, sample(right), refinements - 1);
   }
   return check(0, start.z, 1, end.z, .5, center, maxSurfaceRefinements);
+}
+
+export function needsFinerSurface(evaluate, domain, samples) {
+  const { xmin, xmax, ymin, ymax } = domain;
+  const rows = samples.length - 1, cols = samples[0].length - 1;
+  let low = Infinity, high = -Infinity;
+  for (const row of samples) {
+    for (const { z } of row) {
+      if (!Number.isFinite(z)) continue;
+      low = Math.min(low, z);
+      high = Math.max(high, z);
+    }
+  }
+  if (!Number.isFinite(low)) return false;
+
+  const halfSpan = high / 2 - low / 2;
+  const roundoff = Number.EPSILON * Math.max(Math.abs(low), Math.abs(high)) * 16;
+  const tolerance = .045 * halfSpan + roundoff;
+  const limit = Math.max(3, Math.ceil(rows * cols / 48));
+  let deviations = 0;
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const a = samples[row][col].z, b = samples[row][col + 1].z;
+      const c = samples[row + 1][col + 1].z, d = samples[row + 1][col].z;
+      if (![a, b, c, d].every(Number.isFinite)) continue;
+      // Check the interior off the corner lattice as well as the cell center.
+      for (const [u, v] of [[.5, .5], [offsetProbe, 1 - offsetProbe]]) {
+        const x = gridCoordinate(xmin, xmax, col + u, cols);
+        const y = gridCoordinate(ymin, ymax, row + v, rows);
+        const z = evaluate(x, y);
+        if (!Number.isFinite(z)) {
+          if (++deviations >= limit) return true;
+          break;
+        }
+        const expected = (1 - v) * ((1 - u) * (a / 2) + u * (b / 2)) +
+          v * ((1 - u) * (d / 2) + u * (c / 2));
+        const difference = Math.abs(z / 2 - expected);
+        if (difference > 4 * tolerance) return true;
+        if (difference > tolerance) {
+          if (++deviations >= limit) return true;
+          break;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 export function surfaceCells(evaluate, domain, samples) {

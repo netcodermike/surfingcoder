@@ -13,6 +13,48 @@ p { line-height: 1.55; }
 .stage { min-width: 0; }
 canvas { display: block; width: 100%; height: auto; aspect-ratio: 810 / 475; min-height: 230px; border: 1px solid #5a456c; border-radius: 12px; background: #1d1729; }
 canvas[tabindex] { touch-action: none; cursor: grab; }
+canvas.dragging { cursor: grabbing; }
+.plot-frame { position: relative; }
+#plot-overlay {
+  position: absolute; inset: 1px; width: calc(100% - 2px); height: calc(100% - 2px);
+  margin: 0; min-height: 0; border: 0; border-radius: 11px; pointer-events: none; background: transparent;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+#series-inputs { display: grid; gap: 9px; }
+.series-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px; align-items: end; }
+.series-row button { font-size: .78rem; min-height: 35px; padding-inline: 8px; }
+.series-field { min-width: 0; }
+#add-series { justify-self: start; min-height: 34px; padding-block: 3px; }
+[data-series="0"] { --series-color: #77eadd; }
+[data-series="1"] { --series-color: #d7a0fc; }
+[data-series="2"] { --series-color: #ffc189; }
+[data-series="3"] { --series-color: #96b9ff; }
+.series-field span::before, #plot-legend li::before {
+  display: inline-block; content: ""; margin-inline-end: 7px; width: .7em; height: .7em;
+  border-radius: 50%; background: var(--series-color); box-shadow: 0 0 0 1px #31253b80;
+}
+#plot-legend {
+  display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 0; margin: 12px 0;
+  list-style: none; font-size: .94rem; font-weight: 650; overflow-wrap: anywhere;
+}
+.probe-panel {
+  display: flex; justify-content: space-between; align-items: start; gap: 6px 12px; flex-wrap: wrap;
+  padding: 9px 12px; border: 1px solid var(--sc-border, #594769); border-radius: 9px;
+  background: var(--sc-panel, #21192b);
+}
+.probe-panel p { margin: 2px 0 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.probe-panel button { min-height: 30px; font-size: .79rem; padding-block: 2px; }
+#probe-title { font-size: .85rem; }
+.solution-panel { margin: 13px 0 0; border-top: 1px solid var(--sc-border, #594769); padding-top: 9px; }
+.solution-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 15px; }
+.solution-heading h2 { font-size: .97rem; margin: 0; }
+#intersection-summary { margin: 5px 0; color: var(--sc-muted, #cec0d8); font-size: .85rem; }
+#solution-points { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 6px 0 0; padding: 0; }
+#solution-points li { max-width: 100%; }
+#solution-points button { min-height: 29px; font-size: .79rem; overflow-wrap: anywhere; text-align: start; }
 label { display: block; color: #decce8; font-size: .87rem; font-weight: 650; }
 output { float: right; color: #ffcfbc; font-variant-numeric: tabular-nums; }
 input, select, button { font: inherit; }

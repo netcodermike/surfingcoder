@@ -2,7 +2,7 @@
   {
     "name": "function-surface-grapher",
     "title": "Function and Surface Grapher",
-    "description": "Turn equations into interactive graphs. Pan and zoom 2D curves, spin color-shaded 3D surfaces, and explore presets from reciprocal curves to radial ripples. Built with JavaScript, HTML Canvas, and a custom math parser. Play now in your browser or download the offline Electron edition for Windows x64.",
+    "description": "Compare up to four equations in 2D or 3D. Read numeric axes, pin coordinates, and highlight where equations intersect. Pan and zoom curves or rotate surfaces on shared scales. Built with JavaScript, HTML Canvas, and a custom math parser. Play now in your browser or download the offline Electron edition for Windows x64.",
     "languages": [
       "JavaScript"
     ],
@@ -15,14 +15,14 @@
     "capture": {
       "name": "function-surface-grapher",
       "kind": "runtime",
-      "caption": "Radial ripple surface plot with the full plotting, zoom, and rotation controls.",
-      "capture_date": "2026-11-23T05:37:37.438269+00:00",
+      "caption": "Intersecting planes with numeric axes, a pinned solution, and the complete plotting controls.",
+      "capture_date": "2026-11-26T21:04:47.281893+00:00",
       "demo_data": true,
       "capture_method": "Chrome workspace capture at 2× device scale"
     },
     "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
     "applicationUrl": "/apps/function-surface-grapher/",
-    "downloadUrl": "https://github.com/netcodermike/function-surface-grapher/releases/download/v1.0.1/FunctionAndSurfaceGrapher-win-x64.zip"
+    "downloadUrl": "https://github.com/netcodermike/function-surface-grapher/releases/download/v1.1.0/FunctionAndSurfaceGrapher-win-x64.zip"
   },
   {
     "name": "SvdStudio",
