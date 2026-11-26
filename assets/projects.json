@@ -1061,6 +1061,51 @@
     "ci": "https://github.com/netcodermike/fractional-spline-sampler/actions/workflows/verify.yml"
   },
   {
+    "name": "stellar-parallax-viewer",
+    "title": "Stellar Parallax Viewer",
+    "description": "Compare a nearby star from two points in Earth's orbit and estimate its distance from its apparent shift.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/stellar-parallax-viewer",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 365,
+    "image": "assets/screenshots/stellar-parallax-viewer.webp",
+    "capture": {
+      "name": "stellar-parallax-viewer",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-26T02:34:56.570497+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/stellar-parallax-viewer/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/stellar-parallax-viewer/"
+  },
+  {
+    "name": "degree-sequence-witness",
+    "title": "Degree Sequence Witness",
+    "description": "Test whether a list of degrees can describe a simple undirected graph and build a concrete edge list when it can.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/degree-sequence-witness",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 373,
+    "image": "assets/screenshots/degree-sequence-witness.webp",
+    "capture": {
+      "name": "degree-sequence-witness",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:56.042292+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/degree-sequence-witness/actions/workflows/verify.yml"
+  },
+  {
     "name": "tiny-neural-network-playground",
     "title": "Tiny Neural Network Playground",
     "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
@@ -2286,6 +2331,94 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/museum-collection-condition-rollup/actions/workflows/verify.yml"
+  },
+  {
+    "name": "field-plot-stratified-sampler",
+    "title": "Field Plot Stratified Sampler",
+    "description": "Divide a field grid into sampling strata and draw a repeatable set of plots from every stratum while skipping inaccessible cells.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/field-plot-stratified-sampler",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 366,
+    "image": "assets/screenshots/field-plot-stratified-sampler.webp",
+    "capture": {
+      "name": "field-plot-stratified-sampler",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:31.744401+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/field-plot-stratified-sampler/actions/workflows/verify.yml"
+  },
+  {
+    "name": "coastal-transect-offsets",
+    "title": "Coastal Transect Offsets",
+    "description": "Project local survey observations onto a straight coastal transect to measure distance along the line and signed cross-track offsets.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/coastal-transect-offsets",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 369,
+    "image": "assets/screenshots/coastal-transect-offsets.webp",
+    "capture": {
+      "name": "coastal-transect-offsets",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:31.746408+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/coastal-transect-offsets/actions/workflows/verify.yml"
+  },
+  {
+    "name": "culvert-invert-survey-check",
+    "title": "Culvert Invert Survey Check",
+    "description": "Recalculate signed slopes from culvert survey notes and flag recorded slopes that disagree with the entered elevations and run.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/culvert-invert-survey-check",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 370,
+    "image": "assets/screenshots/culvert-invert-survey-check.webp",
+    "capture": {
+      "name": "culvert-invert-survey-check",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:56.074172+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/culvert-invert-survey-check/actions/workflows/verify.yml"
+  },
+  {
+    "name": "transit-stop-dwell-profile",
+    "title": "Transit Stop Dwell Profile",
+    "description": "Break a transit trip’s change in schedule delay into time gained or lost at each stop and between stops.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/transit-stop-dwell-profile",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 371,
+    "image": "assets/screenshots/transit-stop-dwell-profile.webp",
+    "capture": {
+      "name": "transit-stop-dwell-profile",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:36:18.862792+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/transit-stop-dwell-profile/actions/workflows/verify.yml"
   },
   {
     "name": "coinbase-ladder",
@@ -3657,6 +3790,116 @@
     "ci": "https://github.com/netcodermike/newsletter-run-of-show/actions/workflows/verify.yml"
   },
   {
+    "name": "referee-rotation-check",
+    "title": "Referee Rotation Check",
+    "description": "Audit a one-day officiating schedule for overlapping fixtures and breaks shorter than a rest window you set.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/referee-rotation-check",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 367,
+    "image": "assets/screenshots/referee-rotation-check.webp",
+    "capture": {
+      "name": "referee-rotation-check",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:31.734982+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/referee-rotation-check/actions/workflows/verify.yml"
+  },
+  {
+    "name": "pantry-case-allocation",
+    "title": "Pantry Case Allocation",
+    "description": "Split sealed cases of one item among partner pantries using equal shares, site requests, storage limits, and a central reserve.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/pantry-case-allocation",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 368,
+    "image": "assets/screenshots/pantry-case-allocation.webp",
+    "capture": {
+      "name": "pantry-case-allocation",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:31.736728+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/pantry-case-allocation/actions/workflows/verify.yml"
+  },
+  {
+    "name": "civic-bid-line-reconcile",
+    "title": "Civic Bid Line Reconcile",
+    "description": "Check a quoted bill of materials against the requested SKUs, quantities, units, and line arithmetic.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/civic-bid-line-reconcile",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 372,
+    "image": "assets/screenshots/civic-bid-line-reconcile.webp",
+    "capture": {
+      "name": "civic-bid-line-reconcile",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:56.162102+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/civic-bid-line-reconcile/actions/workflows/verify.yml"
+  },
+  {
+    "name": "makerspace-inspection-board",
+    "title": "Makerspace Inspection Board",
+    "description": "Turn recorded makerspace inspections into a dated checklist for missing records, upcoming checks, and open follow-up.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/makerspace-inspection-board",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 374,
+    "image": "assets/screenshots/makerspace-inspection-board.webp",
+    "capture": {
+      "name": "makerspace-inspection-board",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:34.265358+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/makerspace-inspection-board/actions/workflows/verify.yml"
+  },
+  {
+    "name": "stage-changeover-gap-audit",
+    "title": "Stage Changeover Gap Audit",
+    "description": "Check event schedules for overlapping acts and find where stages fall short of their allotted turnaround.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/stage-changeover-gap-audit",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 377,
+    "image": "assets/screenshots/stage-changeover-gap-audit.webp",
+    "capture": {
+      "name": "stage-changeover-gap-audit",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:40.332732+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/stage-changeover-gap-audit/actions/workflows/verify.yml"
+  },
+  {
     "name": "fractal-render-lab",
     "title": "Fractal Render Lab",
     "description": "Explore Mandelbrot views through center/zoom controls and export rendered PNGs.",
@@ -4888,6 +5131,51 @@
     "ci": "https://github.com/netcodermike/paper-marbling-palette/actions/workflows/verify.yml"
   },
   {
+    "name": "curb-use-strip-planner",
+    "title": "Curb Use Strip Planner",
+    "description": "Lay out loading, pickup, and parking segments along a block and spot gaps or overages on a scaled strip.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/curb-use-strip-planner",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 363,
+    "image": "assets/screenshots/curb-use-strip-planner.webp",
+    "capture": {
+      "name": "curb-use-strip-planner",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-26T02:34:56.166396+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/curb-use-strip-planner/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/curb-use-strip-planner/"
+  },
+  {
+    "name": "public-art-loan-return-board",
+    "title": "Public Art Loan Return Board",
+    "description": "Track public art loans by due date and return status, and flag missing outbound or return condition reports.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/public-art-loan-return-board",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 376,
+    "image": "assets/screenshots/public-art-loan-return-board.webp",
+    "capture": {
+      "name": "public-art-loan-return-board",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:38.289775+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/public-art-loan-return-board/actions/workflows/verify.yml"
+  },
+  {
     "name": "guitar-chord-desk",
     "title": "Guitar Chord Desk",
     "description": "Explore major, minor, and dominant seventh guitar chords with open and movable voicings, note labels, synthesized strums, and text export.",
@@ -6075,6 +6363,28 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/mandolin-scale-length-layout/actions/workflows/verify.yml"
+  },
+  {
+    "name": "orchestra-part-packet-check",
+    "title": "Orchestra Part Packet Check",
+    "description": "Build an orchestra print list from player counts, stand sharing, spare copies, and the parts already on hand.",
+    "languages": [
+      "PowerShell"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/orchestra-part-packet-check",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 375,
+    "image": "assets/screenshots/orchestra-part-packet-check.webp",
+    "capture": {
+      "name": "orchestra-part-packet-check",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-26T02:35:36.288883+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/orchestra-part-packet-check/actions/workflows/verify.yml"
   },
   {
     "name": "festival-set-planner",
@@ -7989,6 +8299,30 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/calendar-recurrence-puzzle/actions/workflows/verify.yml"
+  },
+  {
+    "name": "mirror-beacon-grid",
+    "title": "Mirror Beacon Grid",
+    "description": "Rotate mirrors to route a beam around a grid and light the beacon in two original puzzles.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/mirror-beacon-grid",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 364,
+    "image": "assets/screenshots/mirror-beacon-grid.webp",
+    "capture": {
+      "name": "mirror-beacon-grid",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-26T02:34:56.386619+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/mirror-beacon-grid/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/mirror-beacon-grid/",
+    "gameMenuLabel": "Mirror Beacon Grid"
   },
   {
     "name": "linux-backup-server",

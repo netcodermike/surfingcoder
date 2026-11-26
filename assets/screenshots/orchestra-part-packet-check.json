@@ -1,0 +1,7 @@
+{
+  "name": "orchestra-part-packet-check",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-26T02:35:36.288883+00:00",
+  "demo_data": true
+}
