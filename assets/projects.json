@@ -11,7 +11,7 @@
     "category": "Mathematics",
     "featured": true,
     "order": 0,
-    "image": "assets/screenshots/function-surface-grapher-workspace.webp",
+    "image": "assets/screenshots/function-surface-grapher-ripple-plane.webp",
     "capture": {
       "name": "function-surface-grapher",
       "kind": "runtime",
