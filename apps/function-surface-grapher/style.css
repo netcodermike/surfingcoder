@@ -28,10 +28,6 @@ canvas.dragging { cursor: grabbing; }
 .series-row button { font-size: .78rem; min-height: 35px; padding-inline: 8px; }
 .series-field { min-width: 0; }
 #add-series { justify-self: start; min-height: 34px; padding-block: 3px; }
-[data-series="0"] { --series-color: #77eadd; }
-[data-series="1"] { --series-color: #d7a0fc; }
-[data-series="2"] { --series-color: #ffc189; }
-[data-series="3"] { --series-color: #96b9ff; }
 .series-field span::before, #plot-legend li::before {
   display: inline-block; content: ""; margin-inline-end: 7px; width: .7em; height: .7em;
   border-radius: 50%; background: var(--series-color); box-shadow: 0 0 0 1px #31253b80;

@@ -1,5 +1,7 @@
-import { axisFraction, axisTicks, formatValue, seriesColors } from './coordinates.mjs?v=1.1.1';
-import { gridCoordinate } from './sampling.mjs?v=1.1.1';
+import { axisFraction, axisTicks, formatValue } from './coordinates.mjs?v=1.1.2';
+import { gridCoordinate } from './sampling.mjs?v=1.1.2';
+
+export const surfaceColors = ['#bb92ff', '#77eadd', '#ffc189', '#ff91b0'];
 
 const axisColors = ['#a8eee6', '#edc8ff', '#ffd5a1'];
 const interpolate = (min, max, fraction) => min * (1 - fraction) + max * fraction;
@@ -183,12 +185,13 @@ export function paintSurface(ctx, {series, limits, domain}, {width, height, yaw,
         screen: z === null ? null : projectPoint({x, y, z})};
     }));
     const byCell = new Map();
-    const color = seriesColors[index % seriesColors.length];
+    const color = surfaceColors[index];
     meshes.set(index, {rows, columns, byCell, evaluate});
     return cells.flatMap(([row, col]) => {
       const a = grid[row][col], b = grid[row][col + 1], c = grid[row + 1][col + 1], d = grid[row + 1][col];
       const zFraction = limits[0] === limits[1] ? .5 : (axisFraction(a.z, ...limits) + axisFraction(c.z, ...limits)) / 2;
-      const fill = tone(color, zFraction);
+      // Keep the original height-based ramp on the first surface, even in comparisons.
+      const fill = index === 0 ? `hsl(${192 + 87 * zFraction} 69% 50%)` : tone(color, zFraction);
       const local = [[a, b, c], [c, d, a]].map(world => {
         const screen = world.map(vertex => vertex.screen);
         return {world, screen, depth: screen.reduce((sum, point) => sum + point[2], 0), fill, seriesIndex: index};

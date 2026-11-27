@@ -1,4 +1,4 @@
-import { gridCoordinate } from './sampling.mjs?v=1.1.1';
+import { gridCoordinate } from './sampling.mjs?v=1.1.2';
 
 const curveSteps = 960;
 const maxCurveProbes = 16_000;

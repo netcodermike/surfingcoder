@@ -16,13 +16,13 @@
       "name": "function-surface-grapher",
       "kind": "runtime",
       "caption": "Intersecting planes with numeric axes, a pinned solution, and the complete plotting controls.",
-      "capture_date": "2026-11-26T21:04:47.281893+00:00",
+      "capture_date": "2026-11-27T06:47:57.369141+00:00",
       "demo_data": true,
       "capture_method": "Chrome workspace capture at 2× device scale"
     },
     "ci": "https://github.com/netcodermike/function-surface-grapher/actions/workflows/verify.yml",
     "applicationUrl": "/apps/function-surface-grapher/",
-    "downloadUrl": "https://github.com/netcodermike/function-surface-grapher/releases/download/v1.1.1/FunctionAndSurfaceGrapher-win-x64.zip"
+    "downloadUrl": "https://github.com/netcodermike/function-surface-grapher/releases/download/v1.1.2/FunctionAndSurfaceGrapher-win-x64.zip"
   },
   {
     "name": "SvdStudio",

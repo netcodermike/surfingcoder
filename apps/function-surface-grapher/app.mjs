@@ -1,7 +1,7 @@
-import { axisFraction, axisTicks, axisValue, formatValue, seriesColors } from './coordinates.mjs?v=1.1.1';
-import { gridCoordinate, needsFinerSurface, sampleCurve, surfaceCells } from './sampling.mjs?v=1.1.1';
-import { findCurveIntersections, findSurfaceIntersections } from './intersections.mjs?v=1.1.1';
-import { paintSurface } from './surface-view.mjs?v=1.1.1';
+import { axisFraction, axisTicks, axisValue, formatValue, seriesColors } from './coordinates.mjs?v=1.1.2';
+import { gridCoordinate, needsFinerSurface, sampleCurve, surfaceCells } from './sampling.mjs?v=1.1.2';
+import { findCurveIntersections, findSurfaceIntersections } from './intersections.mjs?v=1.1.2';
+import { paintSurface, surfaceColors } from './surface-view.mjs?v=1.1.2';
 
 const functions = {
   sin: Math.sin, cos: Math.cos, tan: Math.tan, sqrt: Math.sqrt, abs: Math.abs,
@@ -380,7 +380,8 @@ function initialize() {
     if (!inDomain || ![point.px, point.py].every(Number.isFinite)) return;
     overlay.beginPath();
     overlay.arc(point.px, point.py, 6, 0, Math.PI * 2);
-    overlay.fillStyle = point.pair ? '#ffe690' : seriesColors[point.seriesIndex];
+    const colors = is2d ? seriesColors : surfaceColors;
+    overlay.fillStyle = point.pair ? '#ffe690' : colors[point.seriesIndex];
     overlay.strokeStyle = '#f8f1fd';
     overlay.lineWidth = 2;
     overlay.fill();
@@ -443,6 +444,7 @@ function initialize() {
     }
     const { mode, series, domain, limits } = next;
     const surface = mode === '3d';
+    const colors = surface ? surfaceColors : seriesColors;
     $('error').textContent = '';
     $('reading').textContent = series.map(entry => entry.formula).join(' · ');
     $('plot-legend').replaceChildren(...series.map(entry => {
@@ -450,6 +452,7 @@ function initialize() {
       const status = surface ? (entry.cells.length ? '' : ' · no drawable cells') :
         (entry.paths.length ? '' : entry.hasFiniteSamples ? ' · outside the view' : ' · no finite values');
       item.dataset.series = entry.index;
+      item.style.setProperty('--series-color', colors[entry.index]);
       item.textContent = (entry.index + 1) + ' · ' + entry.formula + status;
       return item;
     }));
@@ -493,9 +496,11 @@ function initialize() {
 
   function syncInputs() {
     const inputs = inputFields();
+    const colors = $('mode').value === '3d' ? surfaceColors : seriesColors;
     inputs.forEach((input, index) => {
       const label = input.parentElement;
       label.dataset.series = index;
+      label.style.setProperty('--series-color', colors[index]);
       label.querySelector('span').textContent = 'Expression ' + (index + 1);
       label.parentElement.querySelector('button[data-remove-series]')?.setAttribute('aria-label',
         'Remove expression ' + (index + 1));
@@ -644,6 +649,7 @@ function initialize() {
   $('example').addEventListener('change', () => setExample($('example').value));
   $('mode').addEventListener('change', () => {
     $('example').value = '';
+    syncInputs();
     refresh();
   });
   $('controls').addEventListener('input', event => {
