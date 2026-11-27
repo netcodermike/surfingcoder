@@ -1,0 +1,89 @@
+#buoy-picker { margin-top: 7px; }
+#buoy-comparison {
+  --comparison-model: var(--surf-swell, #bb95f2);
+  --comparison-observed: var(--surf-combined-sea, #79bfff);
+  padding: 18px 0;
+  margin: 0 0 18px;
+  border-block: 1px solid var(--border);
+}
+.comparison-station {
+  color: var(--ink);
+  font-size: .92rem;
+  font-weight: 650;
+  margin: 4px 0 1px;
+}
+.comparison-subtitle, .comparison-note {
+  color: var(--text-secondary);
+  font-size: .84rem;
+  margin: 3px 0 0;
+}
+.comparison-note { margin-top: 10px; }
+.comparison-model { color: var(--comparison-model); }
+.comparison-observed { color: var(--comparison-observed); }
+.comparison-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  list-style: none;
+  margin: 12px 0 9px;
+  padding: 0;
+}
+.comparison-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .87rem;
+  font-weight: 650;
+}
+.comparison-legend li::before {
+  content: '';
+  flex: none;
+  width: 22px;
+  border-top: 3px solid currentColor;
+}
+.comparison-legend .comparison-model::before { border-top-style: dashed; }
+.comparison-chart { cursor: crosshair; }
+.comparison-axis { font-size: 11px; font-variant-numeric: tabular-nums; }
+.comparison-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.35px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.comparison-model .comparison-line { stroke-dasharray: 5 5; }
+.comparison-cursor { stroke: var(--surf-selected-cursor, #f0eaf6); opacity: .6; stroke-dasharray: 2 3; }
+.comparison-marker {
+  fill: currentColor;
+  stroke: var(--surf-plot-night, var(--canvas-bg));
+  stroke-width: 1.5px;
+}
+.comparison-inspector > label {
+  font-size: .84rem;
+  margin: 8px 0 2px;
+}
+#buoy-comparison-hour { padding: 0; }
+.comparison-readout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px 15px;
+  margin: 3px 0 0;
+  padding: 9px 12px;
+  background: var(--surf-plot-night, var(--canvas-bg));
+  border-radius: 8px;
+}
+.comparison-valid, .comparison-reading { display: grid; align-content: start; }
+.comparison-reading-label { font-size: .79rem; font-weight: 650; }
+.comparison-valid time, .comparison-reading time {
+  font-size: .82rem;
+  color: var(--text-secondary);
+}
+.comparison-reading strong {
+  font-size: 1rem;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 640px) {
+  .comparison-readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .comparison-valid { grid-column: 1 / -1; }
+}

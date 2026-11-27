@@ -1,4 +1,4 @@
-import { setupBuoyView } from './src/buoys.js?v=20261124-five-days';
+import { setupBuoyView } from './src/buoys.js?v=20261127-buoy-comparison';
 import { weekly } from './weekly.js?v=20261127-period-control';
 import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261124-five-days';
 import { $, field, select, button, on, download } from './ui.js?v=20261124-review';
@@ -210,9 +210,12 @@ async function load(lat, lon, label) {
     showForecastStatus();
   } catch (error) {
     if (request !== controller) return;
-    request.abort();
     forecastMessage = 'Could not load the marine forecast. ' + (error.name === 'TimeoutError' ? 'Request timed out.' : error.message);
     showForecastStatus();
+    const weatherData = await weather;
+    if (request === controller && weatherData?.timezone) {
+      buoyView.setTimeZone(locationTimeZone(weatherData.timezone));
+    }
   }
 }
 

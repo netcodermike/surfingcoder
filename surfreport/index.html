@@ -1,6 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<script src="/site-theme.js?v=a59f6f0e32de"></script><meta name="viewport" content="width=device-width,initial-scale=1"><title>Regional Surf Data</title><meta name="description" content="Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261127-period-control"><script type="module" src="app.js?v=20261127-period-control"></script><link rel="stylesheet" href="../theme.css?v=2ff094ac0641"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<script src="/site-theme.js?v=a59f6f0e32de"></script><meta name="viewport" content="width=device-width,initial-scale=1"><title>Regional Surf Data</title><meta name="description" content="Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys."><link rel="stylesheet" href="style.css?v=20261127-period-control"><script type="module" src="app.js?v=20261127-buoy-comparison"></script><link rel="stylesheet" href="../theme.css?v=2ff094ac0641"><meta name="theme-color" content="#18161e"><link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+<link rel="stylesheet" href="buoy-comparison.css?v=20261127-buoy-comparison">
 </head><body>
 <!-- SITE NAVIGATION START -->
 <div class="sc-site-header" role="banner">
@@ -85,14 +86,17 @@
 <main class="surf-report"><h1>Regional Surf Data</h1><p>Compare seven-day swell, tide, and wind forecasts with recent observations from nearby wave buoys.</p><div class="workspace"><section class="panel" aria-label="Controls" id="controls"></section><section class="panel" aria-label="Results"><section id="weekly" aria-labelledby="swell-heading"></section>
   <div id="status" class="status" role="status"></div>
 <section id="buoy-view" aria-labelledby="buoy-heading">
-  <h3 id="buoy-heading">Recent buoy observations</h3>
-  <p class="buoy-intro">Offshore measurements from NOAA-listed wave buoys.</p>
+  <h3 id="buoy-heading">Nearby wave buoy</h3>
   <div id="buoy-picker" hidden>
-    <label for="buoy-station">Nearby wave buoy</label>
-    <select id="buoy-station"></select>
+    <select id="buoy-station" aria-labelledby="buoy-heading"></select>
   </div>
   <p id="buoy-note" role="status"></p>
-  <div id="buoy-readings"></div>
+  <section id="buoy-comparison" aria-labelledby="buoy-comparison-heading" hidden></section>
+  <section aria-labelledby="buoy-readings-heading">
+    <h3 id="buoy-readings-heading">Recent buoy observations</h3>
+    <p class="buoy-intro">Offshore measurements from NOAA-listed wave buoys.</p>
+    <div id="buoy-readings"></div>
+  </section>
   <div class="buoy-actions">
     <button id="reload-buoy" class="secondary" type="button" disabled>Refresh buoy data</button>
     <a id="buoy-station-link" target="_blank" rel="noopener noreferrer" hidden>Station and recent history ↗</a>
@@ -108,7 +112,7 @@
 <footer>
   <a href="https://open-meteo.com/">Weather data by Open-Meteo</a> · <a href="https://open-meteo.com/en/docs/marine-weather-api">Marine API and data sources</a>
   <a id="tide-source" hidden></a>
-  <p>Offshore model cells and buoy stations sample different locations. The forecast shows the model’s wave period, while the buoy reports the measured peak period for combined sea.</p>
+  <p>The beach forecast describes the selected beach. The buoy comparison uses model wave heights queried at the selected buoy’s coordinates alongside measurements from that station.</p>
   <p>Offshore forecasts cannot resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.</p>
 </footer>
 <!-- SITE FOOTER START -->

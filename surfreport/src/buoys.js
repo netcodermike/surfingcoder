@@ -1,11 +1,14 @@
 import { compass, distanceKm, height } from './core.js?v=20261124-review';
 import { drawBuoyChart } from './buoy-chart.js?v=20261124-five-days';
+import { renderBuoyComparison } from './buoy-comparison-chart.js?v=20261127-buoy-comparison';
+import { loadBuoyModel, matchBuoyObservations } from './buoy-comparison.js?v=20261127-buoy-comparison';
 import { DAY_SECONDS, MAX_RANGE_DAYS, formatDayRange } from './chart-ranges.js?v=20261124-five-days';
 
 const HOUR = 3600000;
 const MINUTE = 60000;
 const HISTORY_HOURS = MAX_RANGE_DAYS * 24 + 12;
 const FRESH_HOURS = 2;
+const COMPARISON_DAYS = 2;
 const HISTORY_QUERY = `&time%3Enow-${HISTORY_HOURS}hours`;
 const RADIUS_KM = 250;
 const NDBC = 'https://www.ndbc.noaa.gov';
@@ -215,6 +218,7 @@ export function mergeWaveReadings(standard, detailed, source = COASTWATCH + '.ht
 export function setupBuoyView(getUnits) {
   const get = id => document.getElementById(id);
   const picker = get('buoy-station');
+  const comparison = get('buoy-comparison');
   const observation = get('buoy-readings');
   const note = get('buoy-note');
   const stationLink = get('buoy-station-link');
@@ -228,6 +232,10 @@ export function setupBuoyView(getUnits) {
   let standard = [];
   let native = [];
   let standardSource = COASTWATCH + '.html';
+  let modelRows = [];
+  let modelLoading = false;
+  let modelStatus = '';
+  let comparisonWidth = 0;
   let chartWidth = 0;
   let chart;
   let observationDays = 2;
@@ -293,6 +301,25 @@ export function setupBuoyView(getUnits) {
       },
     });
   }
+
+  function drawComparison() {
+    comparisonWidth = comparison.clientWidth;
+    // SECOORA timestamps for 41159 differ from NOAA's. Compare at the original NDBC timestamps.
+    const noaaReadings = standardSource === ONSLOW_DATASET + '.html' ? native : readings ?? [];
+    renderBuoyComparison(comparison, {
+      station: displayedStation,
+      rows: matchBuoyObservations(modelRows, noaaReadings),
+      units: getUnits(),
+      timeZone: date.resolvedOptions().timeZone,
+      width: comparisonWidth || undefined,
+      status: modelStatus,
+      loading: (!modelRows.length && modelLoading) || readings === undefined,
+    });
+  }
+
+  new ResizeObserver(() => {
+    if (comparison.clientWidth && comparisonWidth !== comparison.clientWidth) drawComparison();
+  }).observe(comparison);
 
   new ResizeObserver(() => {
     if (!chart?.isConnected || !observation.clientWidth || chartWidth === observation.clientWidth) return;
@@ -369,7 +396,28 @@ export function setupBuoyView(getUnits) {
     standard = [];
     native = [];
     standardSource = COASTWATCH + '.html';
+    modelRows = [];
+    modelLoading = false;
+    modelStatus = '';
     selectedTime = undefined;
+  }
+
+  async function updateComparisonModel(station, signal) {
+    try {
+      const next = await loadBuoyModel(station, signal, { days: COMPARISON_DAYS });
+      if (signal.aborted) return;
+      modelRows = next;
+    } catch {
+      if (signal.aborted) return;
+      modelStatus = modelRows.length
+        ? 'Could not refresh Open-Meteo. Showing the previous model estimate.'
+        : 'Open-Meteo’s historical model estimate is temporarily unavailable for this buoy.';
+    } finally {
+      if (!signal.aborted) {
+        modelLoading = false;
+        drawComparison();
+      }
+    }
   }
 
   function showStation(refresh = false) {
@@ -382,13 +430,18 @@ export function setupBuoyView(getUnits) {
       request = undefined;
       displayedStation = undefined;
       clearSources();
+      drawComparison();
       drawReadings();
       return;
     }
     stationLink.href = NDBC + '/station_page.php?station=' + encodeURIComponent(buoy.id);
     note.textContent = formatDistance(buoy.km, getUnits()) + ' from ' + location.label;
     const sameStation = buoy.id === displayedStation?.id;
-    if (sameStation && !refresh) { drawReadings(); return; }
+    if (sameStation && !refresh) {
+      drawComparison();
+      drawReadings();
+      return;
+    }
     request?.abort();
     const controller = new AbortController();
     request = controller;
@@ -399,7 +452,13 @@ export function setupBuoyView(getUnits) {
       dataLink.href = COASTWATCH + '.html';
       drawReadings();
     }
-    Promise.allSettled([readObservations(buoy.id, controller.signal), readDetailedWaves(buoy.id, controller.signal)]).then(([basic, detailed]) => {
+    modelLoading = true;
+    modelStatus = '';
+    drawComparison();
+    const modelRequest = updateComparisonModel(buoy, controller.signal);
+    const observationRequest = Promise.allSettled([
+      readObservations(buoy.id, controller.signal), readDetailedWaves(buoy.id, controller.signal),
+    ]).then(([basic, detailed]) => {
       if (controller.signal.aborted) return;
       const now = Date.now();
       standard = mergeReadingBatches(standard, [], now);
@@ -417,12 +476,15 @@ export function setupBuoyView(getUnits) {
       dataLink.href = native.length
         ? NDBC + '/data/realtime2/' + encodeURIComponent(buoy.id) + (native.some(hasSpectralData) ? '.spec' : '.txt')
         : standardSource;
+      drawComparison();
       drawReadings();
     }).catch(() => {
       if (controller.signal.aborted) return;
       if (!sameStation || !readings?.length) readings = [];
+      drawComparison();
       drawReadings();
-    }).finally(() => {
+    });
+    void Promise.allSettled([modelRequest, observationRequest]).then(() => {
       if (request === controller) request = undefined;
     });
   }
@@ -487,6 +549,7 @@ export function setupBuoyView(getUnits) {
       }
       if (next.resolvedOptions().timeZone !== date.resolvedOptions().timeZone) {
         date = next;
+        drawComparison();
         drawReadings();
       }
     },
