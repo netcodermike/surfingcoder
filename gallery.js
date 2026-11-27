@@ -37,23 +37,56 @@ function initPreviewAnimations(dialog) {
   if (typeof IntersectionObserver !== 'function') return () => {};
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const previews = new Map();
+  const dialogView = {
+    preview: $('dialog-preview'),
+    image: $('dialog-motion'),
+    button: $('dialog-motion-toggle'),
+  };
+  let active;
   const wantsMotion = state => state.choice ?? !reducedMotion.matches;
 
-  function updatePreview(state) {
-    const { card, project, preview, image, button } = state;
-    const enabled = wantsMotion(state);
-    const shouldPlay = enabled && state.visible && !state.failed && !card.hidden &&
-      !document.hidden && !dialog.open;
-    if (shouldPlay) {
-      if (!image.hasAttribute('src')) image.src = project.previewAnimation;
-    } else if (image.hasAttribute('src')) {
-      image.removeAttribute('src');
+  function renderMotion({ preview, image, button }, state, inView) {
+    const enabled = state && wantsMotion(state);
+    const source = enabled && inView && !document.hidden && !state.failed ? state.project.previewAnimation : null;
+    if (image.getAttribute('src') !== source) {
+      if (source) image.src = source;
+      else image.removeAttribute('src');
     }
-    const playing = shouldPlay && image.complete && image.naturalWidth > 0;
+    const playing = Boolean(source && image.complete && image.naturalWidth > 0 &&
+      image.currentSrc === new URL(source, document.baseURI).href);
     preview.classList.toggle('is-animated', playing);
     image.hidden = !playing;
-    button.textContent = enabled ? 'Pause motion' : 'Play motion';
-    button.setAttribute('aria-label', `${button.textContent} for ${project.title}`);
+    button.hidden = !state || state.failed;
+    if (state) {
+      button.textContent = enabled ? 'Pause motion' : 'Play motion';
+      button.setAttribute('aria-label', `${button.textContent} for ${state.project.title}`);
+    }
+  }
+
+  function updatePreview(state) {
+    renderMotion(state.view, state, state.visible && !state.card.hidden && !dialog.open);
+  }
+
+  function updateDialog() {
+    renderMotion(dialogView, active, dialog.open);
+  }
+
+  function refresh() {
+    previews.forEach(updatePreview);
+    updateDialog();
+  }
+
+  function toggleMotion(state) {
+    if (!state) return;
+    state.choice = !wantsMotion(state);
+    refresh();
+  }
+
+  function reportLoadFailure(state, image) {
+    if (state && image.getAttribute('src') === state.project.previewAnimation && image.complete && !image.naturalWidth) {
+      state.failed = true;
+      refresh();
+    }
   }
 
   const observer = new IntersectionObserver(entries => {
@@ -70,25 +103,18 @@ function initPreviewAnimations(dialog) {
     const image = preview.querySelector('.preview-motion');
     const button = card.querySelector('.preview-motion-toggle');
     if (!image || !button) continue;
-    const state = { card, project, preview, image, button, visible: false, choice: null, failed: false };
+    const state = { card, project, view: { preview, image, button }, visible: false, choice: null, failed: false };
     previews.set(preview, state);
     image.addEventListener('load', () => updatePreview(state));
-    image.addEventListener('error', () => {
-      if (!image.hasAttribute('src')) return;
-      state.failed = true;
-      button.hidden = true;
-      updatePreview(state);
-    });
-    button.addEventListener('click', () => {
-      state.choice = !wantsMotion(state);
-      updatePreview(state);
-    });
+    image.addEventListener('error', () => reportLoadFailure(state, image));
+    button.addEventListener('click', () => toggleMotion(state));
     updatePreview(state);
-    button.hidden = false;
     observer.observe(preview);
   }
 
-  const refresh = () => previews.forEach(updatePreview);
+  dialogView.image.addEventListener('load', updateDialog);
+  dialogView.image.addEventListener('error', () => reportLoadFailure(active, dialogView.image));
+  dialogView.button.addEventListener('click', () => toggleMotion(active));
   reducedMotion.addEventListener('change', () => {
     if (reducedMotion.matches) {
       for (const state of previews.values()) {
@@ -98,16 +124,22 @@ function initPreviewAnimations(dialog) {
     refresh();
   });
   document.addEventListener('visibilitychange', refresh);
-  dialog.addEventListener('close', refresh);
-  return refresh;
+  dialog.addEventListener('close', () => {
+    if (!dialog.open) active = undefined;
+    refresh();
+  });
+  return preview => {
+    active = previews.get(preview);
+    refresh();
+  };
 }
 
 function update(){
   const q=$('search').value.trim().toLocaleLowerCase(),language=$('language').value;let count=0;cards.forEach(card=>{const p=lookup.get(card.dataset.name),matches=(!q||`${p.title} ${p.description} ${p.name} ${p.category} ${p.languages.join(' ')} ${p.platform}`.toLocaleLowerCase().includes(q))&&matchesCategory(p)&&(language==='all'||p.languages.includes(language));card.hidden=!matches;if(matches)count++;});const sort=$('sort').value;[...cards].sort((a,b)=>sort==='name'?a.dataset.title.localeCompare(b.dataset.title):sort==='language'?a.dataset.languages.localeCompare(b.dataset.languages)||a.dataset.title.localeCompare(b.dataset.title):compareCurated(a,b)).forEach(card=>grid.append(card));$('result-count').innerHTML=`<strong>${count}</strong> ${count===1?'repository':'repositories'}${q||category!=='all'||language!=='all'?' found':' to explore'}`;$('empty-state').hidden=count!==0;$('clear-filters').hidden=!q&&category==='all'&&language==='all';document.querySelectorAll('.filter-chip').forEach(b=>{const active=b.dataset.category===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});grid.classList.toggle('list',view==='list');$('grid-view').setAttribute('aria-pressed',String(view==='grid'));$('list-view').setAttribute('aria-pressed',String(view==='list'));const next=new URLSearchParams();if(q)next.set('q',$('search').value.trim());if(language!=='all')next.set('language',language);if(category!==defaultCategory||requestedCategory===defaultCategory)next.set('category',category);if(sort!=='featured')next.set('sort',sort);if(view!=='grid')next.set('view',view);history.replaceState(null,'',location.pathname+(next.size?'?'+next:'')+location.hash);}
 function reset(){category='all';$('search').value='';$('language').value='all';update();}$('search').addEventListener('input',update);$('language').addEventListener('change',update);$('sort').addEventListener('change',update);document.querySelectorAll('.filter-chip').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;update();}));$('clear-filters').onclick=reset;$('reset-empty').onclick=reset;function setView(v){view=v;try{localStorage.setItem('surfingcoder-view',v);}catch{}update();}$('grid-view').onclick=()=>setView('grid');$('list-view').onclick=()=>setView('list');document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)&&!$('project-dialog').open){e.preventDefault();$('search').focus();}});
-const dialog=$('project-dialog');const refreshPreviewAnimations=initPreviewAnimations(dialog);let opener;document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=lookup.get(button.dataset.project);opener=button;$('dialog-title').textContent=p.title;$('dialog-category').textContent=p.category+' · '+p.languages.join(' / ');$('dialog-image').src=p.image;$('dialog-image').alt=p.title+' — '+p.capture.caption;$('dialog-description').textContent=p.description;$('dialog-caption').textContent=(p.capture.kind==='source-preview'?'Source preview — ':p.capture.kind==='terminal'?'Terminal capture — ':'Runtime capture — ')+(p.capture.caption||'Actual interface with demo data.');const play=$('dialog-play');play.hidden=!p.applicationUrl;if(p.applicationUrl)play.href=p.applicationUrl;else play.removeAttribute('href');
+const dialog=$('project-dialog');const selectPreviewMotion=initPreviewAnimations(dialog);let opener;document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=lookup.get(button.dataset.project);opener=button;$('dialog-title').textContent=p.title;$('dialog-category').textContent=p.category+' · '+p.languages.join(' / ');$('dialog-image').src=p.image;$('dialog-image').alt=p.title+' — '+p.capture.caption;$('dialog-description').textContent=p.description;$('dialog-caption').textContent=(p.capture.kind==='source-preview'?'Source preview — ':p.capture.kind==='terminal'?'Terminal capture — ':'Runtime capture — ')+(p.capture.caption||'Actual interface with demo data.');const play=$('dialog-play');play.hidden=!p.applicationUrl;if(p.applicationUrl)play.href=p.applicationUrl;else play.removeAttribute('href');
 const download = $('dialog-download');
 download.hidden = !p.downloadUrl;
 if (p.downloadUrl) download.href = p.downloadUrl;
 else download.removeAttribute('href');
-$('dialog-repo').href=p.url;$('dialog-ci').href=p.ci;dialog.showModal();refreshPreviewAnimations();}));$('close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>opener?.focus());update();})();
+$('dialog-repo').href=p.url;$('dialog-ci').href=p.ci;dialog.showModal();selectPreviewMotion(button);}));$('close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>{if(!dialog.open)opener?.focus();});update();})();
