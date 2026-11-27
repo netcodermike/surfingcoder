@@ -17,7 +17,7 @@ def card(p,i):
  play=f'<a class="play-now" href="{esc(p["applicationUrl"])}">Play Now!</a>' if p.get('applicationUrl') else ''
  download=f'<a class="download-now" href="{esc(p["downloadUrl"])}">Download Now!</a>' if p.get('downloadUrl') else ''
  animation = p.get('previewAnimation')
- media = f'<video class="preview-motion" poster="{esc(p["image"])}" preload="none" muted loop playsinline aria-hidden="true" hidden></video>' if animation else ''
+ media = '<img class="preview-motion" alt="" aria-hidden="true" hidden>' if animation else ''
  load = 'fetchpriority="high"' if i < 2 else 'loading="lazy"'
  preview = (
      f'<button class="preview" data-project="{esc(p["name"])}" aria-label="Enlarge {esc(p["title"])} screenshot">'

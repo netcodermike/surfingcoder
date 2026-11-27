@@ -34,63 +34,59 @@ function matchesCategory(project) {
 }
 
 function initPreviewAnimations(dialog) {
-  const dialogPreview = $('dialog-preview');
-  const dialogButton = $('dialog-motion-toggle');
-  if (!dialogPreview || !dialogButton || typeof IntersectionObserver !== 'function') return () => {};
+  if (typeof IntersectionObserver !== 'function') return () => {};
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const previews = new Map();
+  const dialogView = {
+    preview: $('dialog-preview'),
+    image: $('dialog-motion'),
+    button: $('dialog-motion-toggle'),
+  };
   let active;
   const wantsMotion = state => state.choice ?? !reducedMotion.matches;
-  const inView = state => !document.hidden &&
-    (dialog.open ? active === state : state.visible && !state.card.hidden);
-  const shouldPlay = state => inView(state) && wantsMotion(state) && !state.failed;
 
-  function updateButton(button, state) {
+  function renderMotion({ preview, image, button }, state, inView) {
+    const enabled = state && wantsMotion(state);
+    const source = enabled && inView && !document.hidden && !state.failed ? state.project.previewAnimation : null;
+    if (image.getAttribute('src') !== source) {
+      if (source) image.src = source;
+      else image.removeAttribute('src');
+    }
+    const playing = Boolean(source && image.complete && image.naturalWidth > 0 &&
+      image.currentSrc === new URL(source, document.baseURI).href);
+    preview.classList.toggle('is-animated', playing);
+    image.hidden = !playing;
     button.hidden = !state || state.failed;
-    if (!state) return;
-    button.textContent = wantsMotion(state) ? 'Pause motion' : 'Play motion';
-    button.setAttribute('aria-label', `${button.textContent} for ${state.project.title}`);
+    if (state) {
+      button.textContent = enabled ? 'Pause motion' : 'Play motion';
+      button.setAttribute('aria-label', `${button.textContent} for ${state.project.title}`);
+    }
   }
 
   function updatePreview(state) {
-    const { preview, video, button } = state;
-    const host = dialog.open && state === active ? dialogPreview : preview;
-    // Moving the same video keeps its frame and playback position in either view.
-    if (video.parentElement !== host) {
-      video.parentElement.classList.remove('is-animated');
-      host.firstElementChild.after(video);
-    }
-    const play = shouldPlay(state);
-    const hasVisibleFrame = inView(state) && state.hasFrame && !state.failed;
-    host.classList.toggle('is-animated', hasVisibleFrame);
-    video.hidden = !play && !hasVisibleFrame;
-    if (play) {
-      if (!video.hasAttribute('src')) video.src = state.source;
-      if (video.paused) video.play().catch(error => {
-        if (!shouldPlay(state) || error.name === 'AbortError') return;
-        if (error.name === 'NotAllowedError') state.choice = false;
-        else state.failed = true;
-        refresh();
-      });
-    } else if (!video.paused) {
-      video.pause();
-    }
-    updateButton(button, state);
+    renderMotion(state.view, state, state.visible && !state.card.hidden && !dialog.open);
+  }
+
+  function updateDialog() {
+    renderMotion(dialogView, active, dialog.open);
   }
 
   function refresh() {
-    // Return a previously expanded video to its card before moving in another.
-    for (const state of previews.values()) {
-      if (state !== active) updatePreview(state);
-    }
-    if (active) updatePreview(active);
-    updateButton(dialogButton, dialog.open ? active : undefined);
+    previews.forEach(updatePreview);
+    updateDialog();
   }
 
   function toggleMotion(state) {
     if (!state) return;
     state.choice = !wantsMotion(state);
     refresh();
+  }
+
+  function reportLoadFailure(state, image) {
+    if (state && image.getAttribute('src') === state.project.previewAnimation && image.complete && !image.naturalWidth) {
+      state.failed = true;
+      refresh();
+    }
   }
 
   const observer = new IntersectionObserver(entries => {
@@ -104,29 +100,21 @@ function initPreviewAnimations(dialog) {
     const project = lookup.get(card.dataset.name);
     if (!project.previewAnimation) continue;
     const preview = card.querySelector('.preview');
-    const video = preview.querySelector('video.preview-motion');
+    const image = preview.querySelector('.preview-motion');
     const button = card.querySelector('.preview-motion-toggle');
-    if (!video || !button) continue;
-    const supportsHd = project.previewAnimationHd && video.canPlayType('video/mp4; codecs="avc1.640028"');
-    const source = supportsHd ? project.previewAnimationHd : project.previewAnimation;
-    if (!supportsHd && !video.canPlayType('video/mp4; codecs="avc1.42c020"')) continue;
-    video.muted = true;
-    const state = { card, project, preview, video, button, source, visible: false, choice: null, failed: false, hasFrame: false };
+    if (!image || !button) continue;
+    const state = { card, project, view: { preview, image, button }, visible: false, choice: null, failed: false };
     previews.set(preview, state);
-    video.addEventListener('playing', () => {
-      if (!video.paused) state.hasFrame = true;
-      updatePreview(state);
-    });
-    video.addEventListener('error', () => {
-      state.failed = true;
-      refresh();
-    });
+    image.addEventListener('load', () => updatePreview(state));
+    image.addEventListener('error', () => reportLoadFailure(state, image));
     button.addEventListener('click', () => toggleMotion(state));
     updatePreview(state);
     observer.observe(preview);
   }
 
-  dialogButton.addEventListener('click', () => toggleMotion(active));
+  dialogView.image.addEventListener('load', updateDialog);
+  dialogView.image.addEventListener('error', () => reportLoadFailure(active, dialogView.image));
+  dialogView.button.addEventListener('click', () => toggleMotion(active));
   reducedMotion.addEventListener('change', () => {
     if (reducedMotion.matches) {
       for (const state of previews.values()) {
