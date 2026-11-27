@@ -13,6 +13,7 @@
     "order": 0,
     "image": "assets/screenshots/function-surface-grapher-ripple-plane.webp",
     "previewAnimation": "assets/screenshots/function-surface-grapher-wide-orbit.mp4",
+    "previewAnimationHd": "assets/screenshots/function-surface-grapher-wide-orbit-hd.mp4",
     "capture": {
       "name": "function-surface-grapher",
       "kind": "runtime",
@@ -39,6 +40,7 @@
     "order": 1,
     "image": "assets/screenshots/SvdStudio-geometry-wide-1.0.3.webp",
     "previewAnimation": "assets/screenshots/svd-studio-ellipse-loop.mp4",
+    "previewAnimationHd": "assets/screenshots/svd-studio-ellipse-loop-hd.mp4",
     "capture": {
       "name": "SvdStudio",
       "kind": "runtime",

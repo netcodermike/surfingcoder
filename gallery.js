@@ -65,7 +65,7 @@ function initPreviewAnimations(dialog) {
     host.classList.toggle('is-animated', hasVisibleFrame);
     video.hidden = !play && !hasVisibleFrame;
     if (play) {
-      if (!video.hasAttribute('src')) video.src = state.project.previewAnimation;
+      if (!video.hasAttribute('src')) video.src = state.source;
       if (video.paused) video.play().catch(error => {
         if (!shouldPlay(state) || error.name === 'AbortError') return;
         if (error.name === 'NotAllowedError') state.choice = false;
@@ -106,9 +106,12 @@ function initPreviewAnimations(dialog) {
     const preview = card.querySelector('.preview');
     const video = preview.querySelector('video.preview-motion');
     const button = card.querySelector('.preview-motion-toggle');
-    if (!video || !button || !video.canPlayType('video/mp4; codecs="avc1.42c020"')) continue;
+    if (!video || !button) continue;
+    const supportsHd = project.previewAnimationHd && video.canPlayType('video/mp4; codecs="avc1.640028"');
+    const source = supportsHd ? project.previewAnimationHd : project.previewAnimation;
+    if (!supportsHd && !video.canPlayType('video/mp4; codecs="avc1.42c020"')) continue;
     video.muted = true;
-    const state = { card, project, preview, video, button, visible: false, choice: null, failed: false, hasFrame: false };
+    const state = { card, project, preview, video, button, source, visible: false, choice: null, failed: false, hasFrame: false };
     previews.set(preview, state);
     video.addEventListener('playing', () => {
       if (!video.paused) state.hasFrame = true;

@@ -4,12 +4,11 @@ import json, re, html
 from html.parser import HTMLParser
 ROOT = Path(__file__).resolve().parents[1]
 
-def check_animation(project):
-    source = project['previewAnimation']
+def check_animation(project, source, size_limit):
     image = (ROOT / source).resolve()
     label = f"{project['name']}: invalid motion clip"
     assert image.is_relative_to(ROOT) and image.is_file() and image.suffix == '.mp4', label
-    assert source != project['image'] and 100 < image.stat().st_size <= 800_000, label
+    assert source != project['image'] and 100 < image.stat().st_size <= size_limit, label
     data = image.read_bytes()
     offset = 0
     boxes = set()
@@ -70,7 +69,10 @@ for p in projects:
     assert metadata['kind'] in ('runtime','terminal'), p['name']+': capture needs to be completed'
     assert metadata.get('caption'), p['name']+': missing capture description'
     if 'previewAnimation' in p:
-        check_animation(p)
+        check_animation(p, p['previewAnimation'], 800_000)
+    if 'previewAnimationHd' in p:
+        assert p['previewAnimationHd'] != p['previewAnimation'], p['name']+': use a separate HD clip'
+        check_animation(p, p['previewAnimationHd'], 4_000_000)
 assert all(p['languages'] for p in projects), 'Every project needs a language'
 language_select=re.search(r'<select id="language">(.*?)</select>',page,re.S)[1]
 options={html.unescape(v) for v in re.findall(r'<option value="([^"]+)"',language_select) if v!='all'}
