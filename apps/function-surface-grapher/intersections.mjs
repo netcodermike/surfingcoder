@@ -1,4 +1,4 @@
-import { gridCoordinate } from './sampling.mjs?v=1.1.2';
+import { gridCoordinate } from './sampling.mjs?v=1.1.3';
 
 const curveSteps = 960;
 const maxCurveProbes = 16_000;
@@ -198,6 +198,72 @@ function interpolatedContact(a, b) {
   return { id, point: [lerp(a.x, b.x, t), lerp(a.y, b.y, t), lerp(a.z, b.z, t)] };
 }
 
+const surfaceDirections = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+const contactResolution = 2 ** -38;
+
+function surfaceBend(center, ring, gap) {
+  if (ring.some(probe => !probe)) return null;
+  const scale = Math.max(Math.abs(gap(center)), ...ring.map(probe => Math.abs(gap(probe))));
+  if (!scale) return null;
+  const [nw, n, ne, w, e, sw, s, se] = ring.map(probe => gap(probe) / scale);
+  const middle = gap(center) / scale;
+  const xx = w + e - 2 * middle, yy = n + s - 2 * middle;
+  const xy = (nw + se - ne - sw) / 4;
+  const determinant = xx * yy - xy * xy;
+  if (xx <= 0 || yy <= 0 || determinant <= 1e-8 * xx * yy) return null;
+  return { xx, yy, xy, determinant, dx: (e - w) / 2, dy: (s - n) / 2 };
+}
+
+function refineSurfaceContact(seed, bounds, at, variation) {
+  const { top, bottom, left, right } = bounds;
+  const gap = sample => seed.sign * sample.delta;
+  // Search in grid coordinates so the step is comparable on axes with different scales.
+  function* neighbors(center, step) {
+    for (const [dr, dc] of surfaceDirections) {
+      const row = Math.max(top, Math.min(bottom, center.row + dr * step));
+      const col = Math.max(left, Math.min(right, center.col + dc * step));
+      if (row !== center.row || col !== center.col) yield at(row, col);
+    }
+  }
+  const fits = (center, step) => center.row - top >= step && bottom - center.row >= step &&
+    center.col - left >= step && right - center.col >= step;
+  let best = seed, step = .5;
+  // A local quadratic estimate gives narrow or tilted minima a better starting point.
+  const radius = 1 / 4;
+  if (fits(seed, radius)) {
+    const bend = surfaceBend(seed, [...neighbors(seed, radius)], gap);
+    if (bend) {
+      const { xx, yy, xy, determinant, dx, dy } = bend;
+      const col = seed.col + radius * (xy * dy - yy * dx) / determinant;
+      const row = seed.row + radius * (xy * dx - xx * dy) / determinant;
+      if (row >= top && row <= bottom && col >= left && col <= right) {
+        const estimate = at(row, col);
+        if (estimate && estimate.sign !== -seed.sign && gap(estimate) < gap(best)) best = estimate;
+      }
+    }
+  }
+  for (let i = 0; i < 112 && step > contactResolution; i++) {
+    let next = best;
+    for (const probe of neighbors(best, step)) {
+      if (!probe || probe.sign === -seed.sign) return null;
+      if (gap(probe) < gap(next)) next = probe;
+    }
+    if (next === best) step /= 2;
+    else best = next;
+  }
+  // A zero-height tangent may need to be rounded in x and y, leaving a
+  // quadratic residual even though the search reached the contact.
+  const tolerance = variation * (8 * contactResolution) ** 2;
+  if (best.sign && (step > contactResolution || gap(best) > tolerance)) return null;
+  const checkRadius = 1 / 32;
+  const ring = [...neighbors(best, checkRadius)];
+  if (ring.some(probe => !probe || probe.sign !== seed.sign || gap(probe) <= tolerance)) return null;
+  // On a full stencil, check mixed curvature as well as axis curvature.
+  // A tilted ridge can rise along every sampled direction and still have no isolated minimum.
+  if (fits(best, checkRadius) && !surfaceBend(best, ring, gap)) return null;
+  return best;
+}
+
 export function findSurfaceIntersections(series, domain) {
   const { xmin, xmax, ymin, ymax } = domain;
   const segments = [], overlaps = [], points = [];
@@ -208,14 +274,30 @@ export function findSurfaceIntersections(series, domain) {
       throw Error('Surface intersection meshes must use a shared grid.');
     }
     const secondCells = new Set(second.cells.map(cell => cell.join(',')));
+    const sharedCells = new Set();
+    const vertices = new Map();
     const edges = new Set();
     const isolated = new Map();
     const verticesOnSegments = new Set();
     let hasCoincidence = false, hasDistinct = false;
+    function location(row, col) {
+      return { x: gridCoordinate(xmin, xmax, col, cols - 1),
+        y: gridCoordinate(ymin, ymax, row, rows - 1) };
+    }
+    function sample(row, col, { x, y }, z, otherZ) {
+      return { row, col, id: row + ',' + col, x, y, z, otherZ, sign: sign(z, otherZ), delta: difference(z, otherZ) };
+    }
     function vertex(row, col) {
-      const z = first.samples[row][col].z, otherZ = second.samples[row][col].z;
-      return { id: row + ',' + col, x: gridCoordinate(xmin, xmax, col, cols - 1),
-        y: gridCoordinate(ymin, ymax, row, rows - 1), z, otherZ, sign: sign(z, otherZ) };
+      const id = row + ',' + col;
+      if (!vertices.has(id)) {
+        vertices.set(id, sample(row, col, location(row, col), first.samples[row][col].z, second.samples[row][col].z));
+      }
+      return vertices.get(id);
+    }
+    function at(row, col) {
+      const { x, y } = location(row, col);
+      const z = first.evaluate(x, y), otherZ = second.evaluate(x, y);
+      return Number.isFinite(z) && Number.isFinite(otherZ) ? sample(row, col, { x, y }, z, otherZ) : null;
     }
     function contour(triangle) {
       if (triangle.every(p => !p.sign)) {
@@ -240,7 +322,9 @@ export function findSurfaceIntersections(series, domain) {
       }
     }
     for (const [row, col] of first.cells) {
-      if (!secondCells.has(row + ',' + col)) continue;
+      const id = row + ',' + col;
+      if (!secondCells.has(id)) continue;
+      sharedCells.add(id);
       const a = vertex(row, col), b = vertex(row, col + 1);
       const c = vertex(row + 1, col + 1), d = vertex(row + 1, col);
       contour([a, b, c]);
@@ -249,6 +333,29 @@ export function findSurfaceIntersections(series, domain) {
     if (hasCoincidence && !hasDistinct) overlaps.push(pair);
     for (const [id, point] of isolated) {
       if (!verticesOnSegments.has(id)) points.push({ pair, point });
+    }
+    const contacts = [];
+    for (const seed of vertices.values()) {
+      if (!seed.sign) continue;
+      const { row, col } = seed;
+      const bounds = { top: Math.max(0, row - 1), bottom: Math.min(rows - 1, row + 1),
+        left: Math.max(0, col - 1), right: Math.min(cols - 1, col + 1) };
+      // Only refine when the full neighborhood is drawable on both meshes.
+      const neighbors = [];
+      let drawable = true;
+      for (let r = bounds.top; r <= bounds.bottom; r++) {
+        for (let c = bounds.left; c <= bounds.right; c++) {
+          if (r < bounds.bottom && c < bounds.right && !sharedCells.has(r + ',' + c)) drawable = false;
+          if (r !== row || c !== col) neighbors.push(vertices.get(r + ',' + c));
+        }
+      }
+      if (!drawable || neighbors.some(probe => probe?.sign !== seed.sign || seed.sign * probe.delta < Math.abs(seed.delta))) continue;
+      const variation = Math.max(...neighbors.map(probe => Math.abs(probe.delta) - Math.abs(seed.delta)));
+      if (!(variation > 0) || Math.abs(seed.delta) > variation) continue;
+      const contact = refineSurfaceContact(seed, bounds, at, variation);
+      if (!contact || contacts.some(p => Math.hypot(p.row - contact.row, p.col - contact.col) < 1e-5)) continue;
+      contacts.push(contact);
+      points.push({ pair, point: [contact.x, contact.y, contact.z] });
     }
   }
   return { segments, overlaps, points };

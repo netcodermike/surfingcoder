@@ -1,5 +1,5 @@
-import { axisFraction, axisTicks, formatValue } from './coordinates.mjs?v=1.1.2';
-import { gridCoordinate } from './sampling.mjs?v=1.1.2';
+import { axisFraction, axisTicks, formatValue } from './coordinates.mjs?v=1.1.3';
+import { gridCoordinate } from './sampling.mjs?v=1.1.3';
 
 export const surfaceColors = ['#bb92ff', '#77eadd', '#ffc189', '#ff91b0'];
 

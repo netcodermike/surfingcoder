@@ -1,7 +1,7 @@
-import { axisFraction, axisTicks, axisValue, formatValue, seriesColors } from './coordinates.mjs?v=1.1.2';
-import { gridCoordinate, needsFinerSurface, sampleCurve, surfaceCells } from './sampling.mjs?v=1.1.2';
-import { findCurveIntersections, findSurfaceIntersections } from './intersections.mjs?v=1.1.2';
-import { paintSurface, surfaceColors } from './surface-view.mjs?v=1.1.2';
+import { axisFraction, axisTicks, axisValue, formatValue, seriesColors } from './coordinates.mjs?v=1.1.3';
+import { gridCoordinate, needsFinerSurface, sampleCurve, surfaceCells } from './sampling.mjs?v=1.1.3';
+import { findCurveIntersections, findSurfaceIntersections } from './intersections.mjs?v=1.1.3';
+import { paintSurface, surfaceColors } from './surface-view.mjs?v=1.1.3';
 
 const functions = {
   sin: Math.sin, cos: Math.cos, tan: Math.tan, sqrt: Math.sqrt, abs: Math.abs,
@@ -143,7 +143,12 @@ export function buildModel({ mode, sources }, domain) {
   });
   const available = series.filter(entry => entry.cells.length);
   if (!available.length) throw Error('No drawable surface cells. Try smaller bounds with finite values.');
-  return { ...model, series, limits: [low, high], intersections: findSurfaceIntersections(available, domain) };
+  const intersections = findSurfaceIntersections(available, domain);
+  for (const { point: [, , z] } of intersections.points) {
+    low = Math.min(low, z);
+    high = Math.max(high, z);
+  }
+  return { ...model, series, limits: [low, high], intersections };
 }
 
 export function curveViewport(domain, box, equalUnits = false) {
@@ -408,20 +413,23 @@ function initialize() {
     }
     const overlaps = intersections.overlaps?.length ?? 0;
     const entries = is2d ? intersections.points.map(({ x, y, pair }) => solutionAtPoint([x, y], pair)) :
-      [...new Map([
-        ...(intersections.points ?? []).map(({ point, pair }) => [pair.join(','), solutionAtPoint(point, pair)]),
-        ...intersections.segments.map(({ points, pair }) => [pair.join(','), solutionAtPoint(points[0], pair)]),
-      ]).values()];
+      intersections.points.map(({ point, pair }) => solutionAtPoint(point, pair));
+    if (!is2d) {
+      const traces = new Map(intersections.segments.map(({ points, pair }) => [pair.join(','), solutionAtPoint(points[0], pair)]));
+      entries.push(...traces.values());
+    }
     const count = entries.length;
-    const canExpand = is2d && count > initialSolutionCount;
+    const canExpand = count > initialSolutionCount;
     const expanded = canExpand && showAllSolutions;
     toggle.hidden = !canExpand;
     toggle.setAttribute('aria-expanded', String(expanded));
     if (canExpand) toggle.textContent = expanded ? 'Show first ' + initialSolutionCount : 'Show all ' + count;
     const overlapText = overlaps ? ' ' + overlaps + ' expression ' + (overlaps === 1 ? 'pair overlaps' : 'pairs overlap') + ' in sampled regions.' : '';
-    $('intersection-summary').textContent = (is2d ?
-      (count ? count + (count === 1 ? ' intersection point' : ' intersection points') + ' found in this view.' : 'No isolated intersections found in this view.') :
-      (count ? 'Traces and points show where the sampled surfaces meet. Inspect one on the graph or below.' : 'No intersections found on the sampled surfaces.')) +
+    const pointCount = intersections.points.length;
+    const summary = pointCount ? pointCount + (pointCount === 1 ? ' intersection point' : ' intersection points') + ' found in this view.'
+      : is2d ? 'No isolated intersections found in this view.' : '';
+    const traceText = !is2d && intersections.segments.length ? 'Traces show where the sampled surfaces meet. Inspect one on the graph or below.' : '';
+    $('intersection-summary').textContent = ([summary, traceText].filter(Boolean).join(' ') || (overlaps ? '' : 'No intersections found on the sampled surfaces.')) +
       overlapText + (canExpand && !expanded ? ' Showing the first ' + initialSolutionCount + '.' : '') +
       (intersections.limited ? ' Narrow the bounds to search a smaller region.' : '');
     for (const point of expanded ? entries : entries.slice(0, initialSolutionCount)) {
