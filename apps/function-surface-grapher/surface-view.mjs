@@ -1,5 +1,5 @@
-import { axisFraction, axisTicks, formatValue, seriesColors } from './coordinates.mjs?v=1.1.0';
-import { gridCoordinate } from './sampling.mjs?v=1.1.0';
+import { axisFraction, axisTicks, formatValue, seriesColors } from './coordinates.mjs?v=1.1.1';
+import { gridCoordinate } from './sampling.mjs?v=1.1.1';
 
 const axisColors = ['#a8eee6', '#edc8ff', '#ffd5a1'];
 const interpolate = (min, max, fraction) => min * (1 - fraction) + max * fraction;

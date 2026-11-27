@@ -52,6 +52,7 @@ canvas.dragging { cursor: grabbing; }
 .solution-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 15px; }
 .solution-heading h2 { font-size: .97rem; margin: 0; }
 #intersection-summary { margin: 5px 0; color: var(--sc-muted, #cec0d8); font-size: .85rem; }
+#toggle-solutions { min-height: 34px; margin: 2px 0; font-size: .82rem; }
 #solution-points { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 6px 0 0; padding: 0; }
 #solution-points li { max-width: 100%; }
 #solution-points button { min-height: 29px; font-size: .79rem; overflow-wrap: anywhere; text-align: start; }

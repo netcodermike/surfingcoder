@@ -16,6 +16,18 @@ function pointFits(start, middle, end, tolerance, fraction = .5) {
   return deviation <= tolerance + .27 * change + roundoff;
 }
 
+function smoothBend(start, middle, end, middleFraction, variation, tolerance, probes) {
+  const left = start / 2, center = middle / 2, right = end / 2;
+  const bend = center - ((1 - middleFraction) * left + middleFraction * right);
+  if (Math.abs(bend) > tolerance || middleFraction <= 0 || middleFraction >= 1) return false;
+  const curvature = bend / (middleFraction * (1 - middleFraction));
+  const error = .01 * variation + Number.EPSILON * Math.max(Math.abs(start), Math.abs(middle), Math.abs(end)) * 4;
+  return probes.every(([fraction, value]) => {
+    const predicted = (1 - fraction) * left + fraction * right + curvature * fraction * (1 - fraction);
+    return Number.isFinite(value) && Math.abs(value / 2 - predicted) <= error;
+  });
+}
+
 function clipSegment(x0, y0, x1, y1, min, max) {
   if ((y0 < min && y1 < min) || (y0 > max && y1 > max)) return null;
   const scale = Number.isFinite(y1 - y0) ? 1 : .5;
@@ -73,14 +85,22 @@ export function sampleCurve(evaluate, domain, steps = 960) {
       // don't pass the continuity check just because the y-axis is wide.
       const change = Math.max(Math.abs(y0 / 2 - middleY / 2), Math.abs(y1 / 2 - middleY / 2));
       const localTolerance = Math.min(tolerance, .01 * change);
-      if (pointFits(y0, middleY, y1, localTolerance, (middleX - x0) / width)) {
-        const offsetX = x0 + width * offsetProbe;
-        const offsetY = sample(offsetX);
-        if (Number.isFinite(offsetY) &&
-            pointFits(y0, offsetY, y1, localTolerance, (offsetX - x0) / width)) {
-          append(x0, y0, x1, y1);
-          return;
-        }
+      const middleFraction = (middleX - x0) / width;
+      const offsetX = x0 + width * offsetProbe;
+      const offsetY = sample(offsetX);
+      if (Number.isFinite(offsetY) && pointFits(y0, middleY, y1, localTolerance, middleFraction) &&
+          pointFits(y0, offsetY, y1, localTolerance, (offsetX - x0) / width)) {
+        append(x0, y0, x1, y1);
+        return;
+      }
+      const otherX = x1 - width * offsetProbe;
+      // A well-resolved turn can have equal end heights. Check its curvature
+      // at two off-center positions and retain the turn instead of opening a gap.
+      if (smoothBend(y0, middleY, y1, middleFraction, change, tolerance,
+        [[(offsetX - x0) / width, offsetY], [(otherX - x0) / width, sample(otherX)]])) {
+        append(x0, y0, middleX, middleY);
+        append(middleX, middleY, x1, y1);
+        return;
       }
     }
     if (refinements > 0 && remainingSplits > 0 && middleX > x0 && middleX < x1 &&

@@ -1,4 +1,4 @@
-import { gridCoordinate } from './sampling.mjs';
+import { gridCoordinate } from './sampling.mjs?v=1.1.1';
 
 const curveSteps = 960;
 const maxCurveProbes = 16_000;
@@ -36,7 +36,12 @@ function* sharedCurveSpans(first, second) {
 }
 
 function refineCrossing(left, right, at) {
-  const tolerance = 32 * Number.EPSILON * Math.max(Math.abs(left.delta), Math.abs(right.delta));
+  const width = right.x - left.x;
+  const scale = Math.max(Math.abs(left.delta), Math.abs(right.delta));
+  // A root can lie between two representable x values. Allow the residual
+  // implied by rounding x, using the original bracket as the local slope scale.
+  const xRoundoff = Number.EPSILON * Math.max(Math.abs(left.x), Math.abs(right.x), width);
+  const tolerance = scale * Math.min(1 / 64, 32 * Number.EPSILON + 16 * xRoundoff / width);
   for (let i = 0; i < 58; i++) {
     const x = left.x + (right.x - left.x) / 2;
     if (x <= left.x || x >= right.x) break;
@@ -46,24 +51,40 @@ function refineCrossing(left, right, at) {
     if (middle.sign === left.sign) left = middle;
     else right = middle;
   }
-  const best = Math.abs(left.delta) <= Math.abs(right.delta) ? left : right;
-  // A sign change alone is also consistent with a jump or pole.
-  return Math.abs(best.delta) <= tolerance ? best : null;
+  // Require convergence on both sides. One close value can also occur beside a jump.
+  if (Math.max(Math.abs(left.delta), Math.abs(right.delta)) > tolerance) return null;
+  return Math.abs(left.delta) <= Math.abs(right.delta) ? left : right;
 }
 
-function refineTouch(left, seed, right, at) {
+function crossingBesideZero(zero, other, at) {
+  const width = Math.abs(other.x - zero.x);
+  const direction = Math.sign(other.x - zero.x);
+  let offset = 8 * Number.EPSILON * Math.max(Math.abs(zero.x), Math.abs(other.x), width);
+  // Check the sign just inside the interval. A second crossing can occur
+  // before the next grid sample, even when the first endpoint is a root.
+  for (let i = 0; i < 10 && offset < width; i++, offset *= 4) {
+    const inside = at(zero.x + direction * offset);
+    if (!inside) return null;
+    if (!inside.sign) continue;
+    if (inside.sign === other.sign) return null;
+    return direction > 0 ? refineCrossing(inside, other, at) : refineCrossing(other, inside, at);
+  }
+  return null;
+}
+
+function refineExtremum(left, seed, right, at) {
   const tolerance = 1e-10 * Math.max(Math.abs(left.delta), Math.abs(right.delta));
+  const score = point => seed.sign * point.delta;
   let low = left.x, high = right.x, best = seed;
   let a = at(high - golden * (high - low));
   let b = at(low + golden * (high - low));
   for (let i = 0; i < 44; i++) {
-    if (!a || !b) return null;
+    if (!a || !b) return [];
     for (const point of [a, b]) {
-      if (!point.sign) return point;
-      if (Math.abs(point.delta) < Math.abs(best.delta)) best = point;
+      if (score(point) < score(best)) best = point;
     }
     if (a.x <= low || b.x >= high || a.x >= b.x) break;
-    if (Math.abs(a.delta) <= Math.abs(b.delta)) {
+    if (score(a) <= score(b)) {
       high = b.x;
       b = a;
       a = at(high - golden * (high - low));
@@ -73,7 +94,10 @@ function refineTouch(left, seed, right, at) {
       b = at(low + golden * (high - low));
     }
   }
-  return !best.sign || Math.abs(best.delta) <= tolerance ? best : null;
+  if (!best.sign || (best.sign === seed.sign && Math.abs(best.delta) <= tolerance)) return [best];
+  if (best.sign === seed.sign) return [];
+  // Two crossings can surround an extremum between samples of the same sign.
+  return [refineCrossing(left, best, at), refineCrossing(best, right, at)];
 }
 
 export function findCurveIntersections(series, domain) {
@@ -123,8 +147,10 @@ export function findCurveIntersections(series, domain) {
           inOverlap.add(i);
         } else {
           shared = undefined;
-          if (a?.sign && b?.sign && a.sign !== b.sign && candidates.length < maxCurveMarkers) {
-            marker(refineCrossing(a, b, at));
+          if (a && b && a.sign !== b.sign && candidates.length < maxCurveMarkers) {
+            if (!a.sign) marker(crossingBesideZero(a, b, at));
+            else if (!b.sign) marker(crossingBesideZero(b, a, at));
+            else marker(refineCrossing(a, b, at));
           }
         }
       }
@@ -138,7 +164,7 @@ export function findCurveIntersections(series, domain) {
         const a = samples[i - 1], b = samples[i + 1];
         if (a?.sign === current.sign && b?.sign === current.sign &&
             Math.abs(current.delta) < Math.abs(a.delta) && Math.abs(current.delta) <= Math.abs(b.delta)) {
-          marker(refineTouch(a, current, b, at));
+          for (const contact of refineExtremum(a, current, b, at)) marker(contact);
         }
       }
     }

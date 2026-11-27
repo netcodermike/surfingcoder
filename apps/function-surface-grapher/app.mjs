@@ -1,7 +1,7 @@
-import { axisFraction, axisTicks, axisValue, formatValue, seriesColors } from './coordinates.mjs?v=1.1.0';
-import { gridCoordinate, needsFinerSurface, sampleCurve, surfaceCells } from './sampling.mjs?v=1.1.0';
-import { findCurveIntersections, findSurfaceIntersections } from './intersections.mjs?v=1.1.0';
-import { paintSurface } from './surface-view.mjs?v=1.1.0';
+import { axisFraction, axisTicks, axisValue, formatValue, seriesColors } from './coordinates.mjs?v=1.1.1';
+import { gridCoordinate, needsFinerSurface, sampleCurve, surfaceCells } from './sampling.mjs?v=1.1.1';
+import { findCurveIntersections, findSurfaceIntersections } from './intersections.mjs?v=1.1.1';
+import { paintSurface } from './surface-view.mjs?v=1.1.1';
 
 const functions = {
   sin: Math.sin, cos: Math.cos, tan: Math.tan, sqrt: Math.sqrt, abs: Math.abs,
@@ -178,6 +178,8 @@ function initialize() {
   const range = (min, max) => fmt(min) + ' to ' + fmt(max);
   let W = 0, H = 0, pixelRatio = 0;
   let model, home, view, yaw = -.65, pitch = .57, drag, hover, pin;
+  const initialSolutionCount = 16;
+  let showAllSolutions = false;
   let projectedSolutions = [];
 
   function line(context, points, color, width = 1) {
@@ -396,9 +398,13 @@ function initialize() {
     const { intersections, sources: plotted } = model;
     const is2d = model.mode === '2d';
     $('solution-panel').hidden = plotted.length < 2;
-    const list = $('solution-points');
+    const list = $('solution-points'), toggle = $('toggle-solutions');
     list.replaceChildren();
-    if (plotted.length < 2) return;
+    if (plotted.length < 2) {
+      toggle.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      return;
+    }
     const overlaps = intersections.overlaps?.length ?? 0;
     const entries = is2d ? intersections.points.map(({ x, y, pair }) => solutionAtPoint([x, y], pair)) :
       [...new Map([
@@ -406,13 +412,18 @@ function initialize() {
         ...intersections.segments.map(({ points, pair }) => [pair.join(','), solutionAtPoint(points[0], pair)]),
       ]).values()];
     const count = entries.length;
+    const canExpand = is2d && count > initialSolutionCount;
+    const expanded = canExpand && showAllSolutions;
+    toggle.hidden = !canExpand;
+    toggle.setAttribute('aria-expanded', String(expanded));
+    if (canExpand) toggle.textContent = expanded ? 'Show first ' + initialSolutionCount : 'Show all ' + count;
     const overlapText = overlaps ? ' ' + overlaps + ' expression ' + (overlaps === 1 ? 'pair overlaps' : 'pairs overlap') + ' in sampled regions.' : '';
     $('intersection-summary').textContent = (is2d ?
       (count ? count + (count === 1 ? ' intersection point' : ' intersection points') + ' found in this view.' : 'No isolated intersections found in this view.') :
       (count ? 'Traces and points show where the sampled surfaces meet. Inspect one on the graph or below.' : 'No intersections found on the sampled surfaces.')) +
-      overlapText + (count > 16 ? ' Showing the first 16.' : '') +
+      overlapText + (canExpand && !expanded ? ' Showing the first ' + initialSolutionCount + '.' : '') +
       (intersections.limited ? ' Narrow the bounds to search a smaller region.' : '');
-    for (const point of entries.slice(0, 16)) {
+    for (const point of expanded ? entries : entries.slice(0, initialSolutionCount)) {
       const item = document.createElement('li');
       const button = document.createElement('button');
       button.type = 'button';
@@ -426,7 +437,10 @@ function initialize() {
   function showPlot(next, resetProbe = false) {
     model = next;
     hover = undefined;
-    if (resetProbe) pin = undefined;
+    if (resetProbe) {
+      pin = undefined;
+      showAllSolutions = false;
+    }
     const { mode, series, domain, limits } = next;
     const surface = mode === '3d';
     $('error').textContent = '';
@@ -650,6 +664,10 @@ function initialize() {
   });
   $('axis-scale').addEventListener('change', () => { hover = undefined; paint(); });
   $('show-intersections').addEventListener('change', () => { hover = undefined; paint(); });
+  $('toggle-solutions').addEventListener('click', () => {
+    showAllSolutions = !showAllSolutions;
+    syncSolutions();
+  });
   $('clear-pin').addEventListener('click', () => { setPin(); chart.focus(); });
   $('zoom-in').addEventListener('click', () => zoom(.8));
   $('zoom-out').addEventListener('click', () => zoom(1.25));
