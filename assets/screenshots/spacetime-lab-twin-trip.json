@@ -1,0 +1,8 @@
+{
+  "name": "spacetime-lab",
+  "kind": "runtime",
+  "caption": "The Twin Trip diagram shows 10 Earth years and 6 ship years after a round trip of 4 light-years each way at 0.8c.",
+  "capture_date": "2026-11-27T10:17:53.893187+00:00",
+  "demo_data": true,
+  "capture_method": "Chrome workspace capture at 2x device scale"
+}

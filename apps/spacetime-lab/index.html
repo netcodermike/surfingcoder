@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore relativity with twin journeys, spacetime diagrams, and clocks at different altitudes.">
+  <title>Spacetime Lab · SurfingCoder</title>
+  <link rel="stylesheet" href="./style.css?v=1">
+  <script type="module" src="./app.js?v=1"></script>
+<link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+</head>
+<body data-layout="spacetime-lab">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/hex-dominance-puzzle/">Hex Dominance Puzzle</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/mirror-beacon-grid/">Mirror Beacon Grid</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-surf-cams" name="surfingcoder-menu">
+        <summary>Surf Cams</summary>
+        <ul class="sc-dropdown-links sc-surf-cams-links">
+          <li><a href="https://atlanticparksurf.com/aps-live-cam" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantic-park-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Park Surf · Virginia Beach</a></li>
+          <li><a href="https://www.ncaquariums.com/current-conditions" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/nc-aquariums.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · NC Aquariums</a></li>
+          <li><a href="https://surfchex.com/cams/nags-head-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · SurfChex</a></li>
+          <li><a href="https://www.ablivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Beach · ABLiveSurf</a></li>
+          <li><a href="https://atlantislodge.com/webcam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantis-lodge.png" alt="" width="22" height="22" loading="lazy">Pine Knoll Shores · Atlantis Lodge</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Eastern Beach Access</a></li>
+          <li><a href="https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/bogue-inlet-pier.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · Pier Cam</a></li>
+          <li><a href="https://www.eilivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · EILiveSurf</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Western Beach Access</a></li>
+          <li><a href="https://surfchex.com/cams/north-topsail-island-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">North Topsail Beach</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-north/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · North</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-south/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · South</a></li>
+          <li><a href="https://surfchex.com/cams/wrightsville-beach/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Wrightsville Beach</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Data</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
+  </div>
+</div>
+<script defer src="/navigation.js?v=07e2a726d1de"></script>
+<script defer src="/surf-cams.js?v=fb479f63e9da"></script>
+<!-- SITE NAVIGATION END -->
+
+<main class="lab" id="lab">
+  <div class="lab-intro">
+    <div>
+      <h1>Spacetime <span>Lab</span></h1>
+      <p>Fly a round trip, change reference frames, and compare how fast clocks tick.</p>
+    </div>
+    <a href="https://github.com/netcodermike/spacetime-lab" class="source-link">Project source</a>
+  </div>
+  <div class="lab-tabs" role="tablist" aria-label="Experiments">
+    <button id="trip-tab" role="tab" type="button" aria-selected="true" aria-controls="trip-panel">Twin trip</button>
+    <button id="event-tab" role="tab" type="button" aria-selected="false" aria-controls="event-panel" tabindex="-1">Event order</button>
+    <button id="gravity-tab" role="tab" type="button" aria-selected="false" aria-controls="gravity-panel" tabindex="-1">Gravity clocks</button>
+  </div>
+
+  <section id="trip-panel" role="tabpanel" aria-labelledby="trip-tab">
+    <div class="workspace">
+      <div class="panel visual">
+        <div class="visual-heading">
+          <h2>Round trip through spacetime</h2>
+          <span id="trip-phase" class="phase">Reunited on Earth</span>
+        </div>
+        <div class="stat-grid trip-stats">
+          <div class="stat" data-tone="earth">
+            <span class="stat-label">Earth clock</span>
+            <strong id="earth-clock">10.00 <small>yr</small></strong>
+          </div>
+          <div class="stat" data-tone="ship">
+            <span class="stat-label">Ship clock</span>
+            <strong id="ship-clock">6.00 <small>yr</small></strong>
+          </div>
+          <div class="stat" data-tone="warm">
+            <span class="stat-label">Age gap</span>
+            <strong id="age-gap">4.00 <small>yr</small></strong>
+          </div>
+        </div>
+        <svg id="trip-chart" class="diagram" role="img" aria-label="Time versus position for Earth, the ship’s out-and-back path, and light from departure"></svg>
+        <ul class="legend" aria-label="Diagram legend">
+          <li><span class="key" data-tone="earth"></span>Earth</li>
+          <li><span class="key" data-tone="ship"></span>Ship</li>
+          <li><span class="key dashed" data-tone="warm"></span>Light from launch</li>
+          <li id="frame-key" hidden><span class="key dashed" data-tone="ship"></span>Ship’s simultaneity</li>
+        </ul>
+        <div class="timeline">
+          <div class="timeline-label">
+            <label for="trip-time">Journey timeline</label>
+            <output for="trip-time" id="trip-time-label">10.00 of 10.00 Earth yr</output>
+          </div>
+          <input id="trip-time" type="range" min="0" max="1000" step="1" value="1000">
+          <div class="actions">
+            <button id="trip-play" class="primary" type="button">Play journey</button>
+            <button id="trip-restart" type="button">Restart</button>
+          </div>
+        </div>
+      </div>
+      <aside class="panel controls" aria-labelledby="trip-controls-heading">
+        <div>
+          <h2 id="trip-controls-heading">Trip settings</h2>
+          <p class="muted">Set the destination and cruise speed in Earth’s frame.</p>
+        </div>
+        <label class="field" for="trip-preset">Example
+          <select id="trip-preset">
+            <option value="nearby">Nearby star</option>
+            <option value="fast">Fast return</option>
+            <option value="long">Long voyage</option>
+            <option value="custom">Custom trip</option>
+          </select>
+        </label>
+        <label class="field" for="trip-distance">One-way distance (light-years)
+          <input id="trip-distance" type="number" min="0.25" max="60" step="0.01" value="4">
+        </label>
+        <div class="control">
+          <div class="timeline-label">
+            <label for="trip-speed">Cruise speed</label>
+            <output for="trip-speed" id="trip-speed-text">0.800c</output>
+          </div>
+          <input id="trip-speed" type="range" min="0.050" max="0.999" step="0.001" value="0.800">
+          <div class="range-labels" aria-hidden="true"><span>0.05c</span><span>0.999c</span></div>
+        </div>
+        <div class="readout">
+          <div class="formula" aria-label="Ship time equals Earth time divided by the Lorentz factor">τ = t / γ</div>
+          <p id="trip-math">γ = 1.667 · 10.00 yr / 1.667 = 6.00 yr</p>
+        </div>
+        <label class="check-line" for="show-ship-frame">
+          <input type="checkbox" id="show-ship-frame"> Show the ship’s simultaneity line
+        </label>
+        <p id="trip-frame-text" class="chart-note" hidden></p>
+        <details class="lab-details">
+          <summary>100-year challenge</summary>
+          <p>Return at least 100 Earth years after launch while aging at most 10 years. Adjust the distance and speed to meet both targets.</p>
+          <p id="trip-challenge" class="challenge-progress" role="status"></p>
+        </details>
+        <p class="chart-note">The model uses constant speed on each leg and an instantaneous turnaround. <a href="https://openstax.org/books/university-physics-volume-3/pages/5-5-the-lorentz-transformation">Lorentz transformation reference</a></p>
+      </aside>
+    </div>
+  </section>
+  <section class="workspace" id="event-panel" role="tabpanel" aria-labelledby="event-tab" hidden>
+  <div class="panel visual">
+    <h2 id="event-title">What happened first?</h2>
+    <div class="stat-grid event-stats">
+      <div class="stat"><span>Earth frame</span><strong id="event-earth-order">A before B</strong></div>
+      <div class="stat"><span>Moving frame</span><strong id="event-moving-order" aria-live="polite">B before A</strong></div>
+      <div class="stat"><span>Moving time gap Δt′</span><strong id="event-delta-t">−1.155 yr</strong></div>
+      <div class="stat"><span>Invariant interval s²</span><strong id="event-interval">−15 ly²</strong></div>
+    </div>
+    <svg class="diagram event-diagram" id="event-diagram" role="img" aria-label="Spacetime diagram for Events A and B" aria-describedby="event-graph-help"></svg>
+    <p class="chart-note" id="event-graph-help">The shaded regions are Event A’s light cones. The dashed line shows which events are simultaneous with A in the moving frame.</p>
+    <p class="readout" id="event-separation"><strong>Spacelike</strong> · The events are too far apart to influence each other at or below light speed. Their order can change with the reference frame.</p>
+  </div>
+  <div class="panel controls">
+    <h3>Set the events</h3>
+    <div class="actions" aria-label="Event presets">
+      <button class="chip" type="button" data-event-preset="spacelike" aria-pressed="true">Distant flashes</button>
+      <button class="chip" type="button" data-event-preset="lightlike" aria-pressed="false">Light signal</button>
+      <button class="chip" type="button" data-event-preset="timelike" aria-pressed="false">Same location</button>
+    </div>
+    <div class="control">
+      <label for="event-speed">Frame velocity <output id="event-speed-value" for="event-speed">+0.50 c</output></label>
+      <input id="event-speed" type="range" min="-0.95" max="0.95" step="0.01" value="0.5">
+    </div>
+    <fieldset class="event-fields">
+      <legend>Event A</legend>
+      <div class="grid-fields">
+        <label class="field" for="event-a-x">Position (ly)<input id="event-a-x" type="number" min="-5" max="5" step="0.1" value="-2"></label>
+        <label class="field" for="event-a-t">Time (yr)<input id="event-a-t" type="number" min="-3" max="3" step="0.1" value="0"></label>
+      </div>
+    </fieldset>
+    <fieldset class="event-fields">
+      <legend>Event B</legend>
+      <div class="grid-fields">
+        <label class="field" for="event-b-x">Position (ly)<input id="event-b-x" type="number" min="-5" max="5" step="0.1" value="2"></label>
+        <label class="field" for="event-b-t">Time (yr)<input id="event-b-t" type="number" min="-3" max="3" step="0.1" value="1"></label>
+      </div>
+    </fieldset>
+    <p class="chart-note">Drag A or B on the chart, or enter its coordinates here.</p>
+    <details>
+      <summary>How event order is calculated</summary>
+      <p class="formula">Δt′ = γ(Δt − βΔx)<br>s² = Δt² − Δx²</p>
+      <p>With years and light-years, light travels one unit of distance per unit of time. The time gap is B’s time minus A’s time in the chosen frame. A signal from either event still takes time to reach an observer.</p>
+      <p><a href="https://ocw.mit.edu/courses/8-20-introduction-to-special-relativity-january-iap-2021/resources/lecture-5-4/" target="_blank" rel="noopener noreferrer">MIT lecture on causality</a></p>
+    </details>
+  </div>
+</section>
+  <section id="gravity-panel" class="workspace" role="tabpanel" aria-labelledby="gravity-tab" hidden>
+      <div class="visual panel">
+        <h2>Gravity clocks</h2>
+        <p class="chart-note">Compare a clock at altitude with one at rest on Earth's surface.</p>
+        <div class="stat-grid">
+          <div class="stat"><span>Gravity gain</span><strong id="gravity-gain">—</strong></div>
+          <div class="stat"><span>Motion loss</span><strong id="gravity-loss">—</strong></div>
+          <div class="stat"><span>Net difference</span><strong id="gravity-net">—</strong></div>
+        </div>
+        <svg class="diagram" id="gravity-diagram" role="img" aria-label="Clock-rate differences by altitude"></svg>
+        <ul class="gravity-key" aria-label="Chart legend">
+          <li><svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M 1 5 H 23" stroke="var(--warm)" stroke-width="3"/></svg>Gravity</li>
+          <li id="gravity-motion-key"><svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M 1 5 H 23" stroke="var(--earth)" stroke-width="3" stroke-dasharray="5 3"/></svg>Motion</li>
+          <li id="gravity-net-key"><svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M 1 5 H 23" stroke="var(--ship)" stroke-width="4"/></svg>Net</li>
+        </ul>
+        <p class="chart-note" id="gravity-chart-note"></p>
+      </div>
+      <div class="controls panel">
+        <h3>Clock settings</h3>
+        <div class="actions" aria-label="Altitude presets">
+          <button type="button" class="chip" data-gravity-preset="mountain" aria-pressed="false">4 km elevation</button>
+          <button type="button" class="chip" data-gravity-preset="leo" aria-pressed="false">Low Earth orbit</button>
+          <button type="button" class="chip" data-gravity-preset="gps" aria-pressed="true">GPS orbit</button>
+        </div>
+        <div class="control">
+          <label for="gravity-altitude-range">Altitude <span id="gravity-altitude-summary" aria-hidden="true">20,200 km</span></label>
+          <input id="gravity-altitude-range" type="range" min="0" max="40000" step="1" value="20200">
+        </div>
+        <div class="field">
+          <label for="gravity-altitude">Altitude in kilometers</label>
+          <input id="gravity-altitude" type="number" min="0" max="40000" step="1" value="20200" inputmode="numeric" required>
+        </div>
+        <label class="gravity-orbit"><input id="gravity-orbit" type="checkbox" checked> Include circular orbital motion</label>
+        <div class="readout">
+          <span>Clock motion</span>
+          <strong id="gravity-speed">—</strong>
+        </div>
+        <p class="chart-note">Each reading is the clock's gain or loss over one day at Earth's surface.</p>
+        <p class="chart-note">The model uses a spherical, nonrotating Earth and ideal circular orbits. <a href="https://www.nist.gov/atomic-clocks/a-powerful-tool-for-science/putting-einstein-test" target="_blank" rel="noopener noreferrer">NIST on GPS and relativity</a></p>
+      </div>
+    </section>
+  <noscript><p>Enable JavaScript to run the relativity experiments.</p></noscript>
+</main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

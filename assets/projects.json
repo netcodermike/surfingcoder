@@ -1106,6 +1106,29 @@
     "ci": "https://github.com/netcodermike/degree-sequence-witness/actions/workflows/verify.yml"
   },
   {
+    "name": "spacetime-lab",
+    "title": "Spacetime Lab",
+    "description": "Explore relativity by flying a round trip and seeing who ages less on return. Drag events to test simultaneity, compare GPS clock effects, and try the 100-year challenge. Built with JavaScript and SVG.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/spacetime-lab",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 393,
+    "image": "assets/screenshots/spacetime-lab-twin-trip.webp",
+    "capture": {
+      "name": "spacetime-lab",
+      "kind": "runtime",
+      "caption": "The Twin Trip diagram shows 10 Earth years and 6 ship years after a round trip of 4 light-years each way at 0.8c.",
+      "capture_date": "2026-11-27T10:17:53.893187+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "applicationUrl": "/apps/spacetime-lab/"
+  },
+  {
     "name": "tiny-neural-network-playground",
     "title": "Tiny Neural Network Playground",
     "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
