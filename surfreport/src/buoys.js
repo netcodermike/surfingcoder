@@ -232,6 +232,7 @@ export function setupBuoyView(getUnits) {
   let standard = [];
   let native = [];
   let standardSource = COASTWATCH + '.html';
+  let comparisonArchive = [];
   let modelRows = [];
   let modelLoading = false;
   let modelStatus = '';
@@ -305,7 +306,9 @@ export function setupBuoyView(getUnits) {
   function drawComparison() {
     comparisonWidth = comparison.clientWidth;
     // SECOORA timestamps for 41159 differ from NOAA's. Compare at the original NDBC timestamps.
-    const noaaReadings = standardSource === ONSLOW_DATASET + '.html' ? native : readings ?? [];
+    const noaaReadings = standardSource === ONSLOW_DATASET + '.html'
+      ? mergeReadingBatches(comparisonArchive, native)
+      : readings ?? [];
     renderBuoyComparison(comparison, {
       station: displayedStation,
       rows: matchBuoyObservations(modelRows, noaaReadings),
@@ -396,6 +399,7 @@ export function setupBuoyView(getUnits) {
     standard = [];
     native = [];
     standardSource = COASTWATCH + '.html';
+    comparisonArchive = [];
     modelRows = [];
     modelLoading = false;
     modelStatus = '';
@@ -417,6 +421,20 @@ export function setupBuoyView(getUnits) {
         modelLoading = false;
         drawComparison();
       }
+    }
+  }
+
+  async function fillComparisonFromNoaa(station, signal) {
+    if (standardSource !== ONSLOW_DATASET + '.html') return;
+    const latestWave = rows => rows.find(row => Number.isFinite(row.wave))?.time ?? -Infinity;
+    if (Math.max(latestWave(native), latestWave(comparisonArchive)) >= latestWave(standard)) return;
+    try {
+      const rows = await readStation(station.id, signal);
+      if (signal.aborted) return;
+      comparisonArchive = mergeReadingBatches(comparisonArchive, rows);
+      drawComparison();
+    } catch {
+      // The comparison can still use any NDBC observations already loaded.
     }
   }
 
@@ -478,6 +496,7 @@ export function setupBuoyView(getUnits) {
         : standardSource;
       drawComparison();
       drawReadings();
+      return fillComparisonFromNoaa(buoy, controller.signal);
     }).catch(() => {
       if (controller.signal.aborted) return;
       if (!sameStation || !readings?.length) readings = [];

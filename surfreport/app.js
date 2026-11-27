@@ -1,4 +1,4 @@
-import { setupBuoyView } from './src/buoys.js?v=20261127-buoy-comparison';
+import { setupBuoyView } from './src/buoys.js?v=20261127-noaa-fallback';
 import { weekly } from './weekly.js?v=20261127-period-control';
 import { MAX_RANGE_DAYS } from './src/chart-ranges.js?v=20261124-five-days';
 import { $, field, select, button, on, download } from './ui.js?v=20261124-review';
