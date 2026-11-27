@@ -32,12 +32,82 @@ function matchesCategory(project) {
   return category === 'all' || project.category === category ||
     (category === gamesCategory && project.gameMenuLabel && project.gamesListed !== false);
 }
+
+function initPreviewAnimations(dialog) {
+  if (typeof IntersectionObserver !== 'function') return () => {};
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const previews = new Map();
+  const wantsMotion = state => state.choice ?? !reducedMotion.matches;
+
+  function updatePreview(state) {
+    const { card, project, preview, image, button } = state;
+    const enabled = wantsMotion(state);
+    const shouldPlay = enabled && state.visible && !state.failed && !card.hidden &&
+      !document.hidden && !dialog.open;
+    if (shouldPlay) {
+      if (!image.hasAttribute('src')) image.src = project.previewAnimation;
+    } else if (image.hasAttribute('src')) {
+      image.removeAttribute('src');
+    }
+    const playing = shouldPlay && image.complete && image.naturalWidth > 0;
+    preview.classList.toggle('is-animated', playing);
+    image.hidden = !playing;
+    button.textContent = enabled ? 'Pause motion' : 'Play motion';
+    button.setAttribute('aria-label', `${button.textContent} for ${project.title}`);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    for (const { target, isIntersecting } of entries) {
+      const state = previews.get(target);
+      state.visible = isIntersecting;
+      updatePreview(state);
+    }
+  });
+  for (const card of cards) {
+    const project = lookup.get(card.dataset.name);
+    if (!project.previewAnimation) continue;
+    const preview = card.querySelector('.preview');
+    const image = preview.querySelector('.preview-motion');
+    const button = card.querySelector('.preview-motion-toggle');
+    if (!image || !button) continue;
+    const state = { card, project, preview, image, button, visible: false, choice: null, failed: false };
+    previews.set(preview, state);
+    image.addEventListener('load', () => updatePreview(state));
+    image.addEventListener('error', () => {
+      if (!image.hasAttribute('src')) return;
+      state.failed = true;
+      button.hidden = true;
+      updatePreview(state);
+    });
+    button.addEventListener('click', () => {
+      state.choice = !wantsMotion(state);
+      updatePreview(state);
+    });
+    updatePreview(state);
+    button.hidden = false;
+    observer.observe(preview);
+  }
+
+  const refresh = () => previews.forEach(updatePreview);
+  reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) {
+      for (const state of previews.values()) {
+        if (state.choice === true) state.choice = null;
+      }
+    }
+    refresh();
+  });
+  document.addEventListener('visibilitychange', refresh);
+  dialog.addEventListener('close', refresh);
+  return refresh;
+}
+
 function update(){
   const q=$('search').value.trim().toLocaleLowerCase(),language=$('language').value;let count=0;cards.forEach(card=>{const p=lookup.get(card.dataset.name),matches=(!q||`${p.title} ${p.description} ${p.name} ${p.category} ${p.languages.join(' ')} ${p.platform}`.toLocaleLowerCase().includes(q))&&matchesCategory(p)&&(language==='all'||p.languages.includes(language));card.hidden=!matches;if(matches)count++;});const sort=$('sort').value;[...cards].sort((a,b)=>sort==='name'?a.dataset.title.localeCompare(b.dataset.title):sort==='language'?a.dataset.languages.localeCompare(b.dataset.languages)||a.dataset.title.localeCompare(b.dataset.title):compareCurated(a,b)).forEach(card=>grid.append(card));$('result-count').innerHTML=`<strong>${count}</strong> ${count===1?'repository':'repositories'}${q||category!=='all'||language!=='all'?' found':' to explore'}`;$('empty-state').hidden=count!==0;$('clear-filters').hidden=!q&&category==='all'&&language==='all';document.querySelectorAll('.filter-chip').forEach(b=>{const active=b.dataset.category===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});grid.classList.toggle('list',view==='list');$('grid-view').setAttribute('aria-pressed',String(view==='grid'));$('list-view').setAttribute('aria-pressed',String(view==='list'));const next=new URLSearchParams();if(q)next.set('q',$('search').value.trim());if(language!=='all')next.set('language',language);if(category!==defaultCategory||requestedCategory===defaultCategory)next.set('category',category);if(sort!=='featured')next.set('sort',sort);if(view!=='grid')next.set('view',view);history.replaceState(null,'',location.pathname+(next.size?'?'+next:'')+location.hash);}
 function reset(){category='all';$('search').value='';$('language').value='all';update();}$('search').addEventListener('input',update);$('language').addEventListener('change',update);$('sort').addEventListener('change',update);document.querySelectorAll('.filter-chip').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;update();}));$('clear-filters').onclick=reset;$('reset-empty').onclick=reset;function setView(v){view=v;try{localStorage.setItem('surfingcoder-view',v);}catch{}update();}$('grid-view').onclick=()=>setView('grid');$('list-view').onclick=()=>setView('list');document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)&&!$('project-dialog').open){e.preventDefault();$('search').focus();}});
-const dialog=$('project-dialog');let opener;document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=lookup.get(button.dataset.project);opener=button;$('dialog-title').textContent=p.title;$('dialog-category').textContent=p.category+' · '+p.languages.join(' / ');$('dialog-image').src=p.image;$('dialog-image').alt=p.title+' — '+p.capture.caption;$('dialog-description').textContent=p.description;$('dialog-caption').textContent=(p.capture.kind==='source-preview'?'Source preview — ':p.capture.kind==='terminal'?'Terminal capture — ':'Runtime capture — ')+(p.capture.caption||'Actual interface with demo data.');const play=$('dialog-play');play.hidden=!p.applicationUrl;if(p.applicationUrl)play.href=p.applicationUrl;else play.removeAttribute('href');
+const dialog=$('project-dialog');const refreshPreviewAnimations=initPreviewAnimations(dialog);let opener;document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=lookup.get(button.dataset.project);opener=button;$('dialog-title').textContent=p.title;$('dialog-category').textContent=p.category+' · '+p.languages.join(' / ');$('dialog-image').src=p.image;$('dialog-image').alt=p.title+' — '+p.capture.caption;$('dialog-description').textContent=p.description;$('dialog-caption').textContent=(p.capture.kind==='source-preview'?'Source preview — ':p.capture.kind==='terminal'?'Terminal capture — ':'Runtime capture — ')+(p.capture.caption||'Actual interface with demo data.');const play=$('dialog-play');play.hidden=!p.applicationUrl;if(p.applicationUrl)play.href=p.applicationUrl;else play.removeAttribute('href');
 const download = $('dialog-download');
 download.hidden = !p.downloadUrl;
 if (p.downloadUrl) download.href = p.downloadUrl;
 else download.removeAttribute('href');
-$('dialog-repo').href=p.url;$('dialog-ci').href=p.ci;dialog.showModal();}));$('close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>opener?.focus());update();})();
+$('dialog-repo').href=p.url;$('dialog-ci').href=p.ci;dialog.showModal();refreshPreviewAnimations();}));$('close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>opener?.focus());update();})();
