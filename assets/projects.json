@@ -15,8 +15,8 @@
     "capture": {
       "name": "function-surface-grapher",
       "kind": "runtime",
-      "caption": "Intersecting planes with numeric axes, a pinned solution, and the complete plotting controls.",
-      "capture_date": "2026-11-27T06:47:57.369141+00:00",
+      "caption": "A blue-purple radial ripple and a tilted mint plane with their intersections traced in gold.",
+      "capture_date": "2026-11-27T07:11:57.316372+00:00",
       "demo_data": true,
       "capture_method": "Chrome workspace capture at 2× device scale"
     },
