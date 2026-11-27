@@ -88,7 +88,8 @@
 .week-daylight-key::before { content: ''; width: 24px; height: 10px; border: 1px solid var(--border-strong); border-radius: 2px; background: linear-gradient(90deg, var(--surf-plot-night, var(--canvas-bg)) 25%, var(--daylight-fill) 25% 75%, var(--surf-plot-night, var(--canvas-bg)) 75%); }
 .week-daylight-times { display: block; color: var(--text-secondary); font-size: .84rem; grid-column: 1 / -1; }
 .week-tooltip .week-daylight-times { margin-top: 5px; }
-.week-period-options { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: -3px 0 10px; }
+.week-period-options { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 8px 0 4px; }
+.week-period-options + .week-legend { margin-top: 4px; }
 .week-period-options label { display: inline-flex; align-items: center; gap: 7px; margin: 0; font-size: .88rem; font-weight: 700; }
 .week-period-options label::before { content: '● ↗'; }
 .week-period-options select { width: auto; max-width: 100%; padding: 6px 8px; font-size: .86rem; }

@@ -107,7 +107,6 @@ export function weekly(forecastRows,options){
   weekly(forecastRows, options);
  };
  const legend = seriesLegend(series, enabled, toggleLayer, 'Wave forecast layers');
- root.append(legend);
  const shown = series.filter(s => s.available && enabled.has(s.key));
  const interval = DIRECTION_INTERVAL_SECONDS;
  const canDrawDirection = (row, value, key) => (row.time - firstForecastHour) % interval === 0 &&
@@ -255,6 +254,7 @@ export function weekly(forecastRows,options){
   picker.append(periodLabel,periodSelect);
   root.append(picker);
  }
+ root.append(legend);
  let selected = Math.max(0, rows.findIndex(row => row.time === selectedTime));
  const charts = [];
  const tooltip = document.createElement('div');
