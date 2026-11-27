@@ -1,0 +1,7 @@
+{
+  "name": "archive-ocr-review-queue",
+  "kind": "terminal",
+  "caption": "Excerpt from actual sample command output using synthetic inputs.",
+  "capture_date": "2026-11-27T03:46:35.908113+00:00",
+  "demo_data": true
+}

@@ -2421,6 +2421,116 @@
     "ci": "https://github.com/netcodermike/transit-stop-dwell-profile/actions/workflows/verify.yml"
   },
   {
+    "name": "bridge-span-photo-index",
+    "title": "Bridge Span Photo Index",
+    "description": "Organize bridge survey photo records by measured span and flag missing requested views or photos recorded outside the span ranges.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/bridge-span-photo-index",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 383,
+    "image": "assets/screenshots/bridge-span-photo-index.webp",
+    "capture": {
+      "name": "bridge-span-photo-index",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:35.924116+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/bridge-span-photo-index/actions/workflows/verify.yml"
+  },
+  {
+    "name": "archive-ocr-review-queue",
+    "title": "Archive OCR Review Queue",
+    "description": "Rank digitized pages for proofreading using exported OCR word confidence, with the exact low-confidence words and their reading positions.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/archive-ocr-review-queue",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 384,
+    "image": "assets/screenshots/archive-ocr-review-queue.webp",
+    "capture": {
+      "name": "archive-ocr-review-queue",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:35.908113+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/archive-ocr-review-queue/actions/workflows/verify.yml"
+  },
+  {
+    "name": "tide-pool-survey-effort",
+    "title": "Tide Pool Survey Effort",
+    "description": "Compare recorded tide pool encounters across sites after accounting for survey effort and visits with no sightings.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/tide-pool-survey-effort",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 385,
+    "image": "assets/screenshots/tide-pool-survey-effort.webp",
+    "capture": {
+      "name": "tide-pool-survey-effort",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.253757+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/tide-pool-survey-effort/actions/workflows/verify.yml"
+  },
+  {
+    "name": "aerial-photo-strip-gaps",
+    "title": "Aerial Photo Strip Gaps",
+    "description": "Merge frame footprints along an aerial photo strip, find uncovered stretches, and measure repeated coverage from exported station metadata.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/aerial-photo-strip-gaps",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 389,
+    "image": "assets/screenshots/aerial-photo-strip-gaps.webp",
+    "capture": {
+      "name": "aerial-photo-strip-gaps",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.815134+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/aerial-photo-strip-gaps/actions/workflows/verify.yml"
+  },
+  {
+    "name": "historic-map-scale-calibrator",
+    "title": "Historic Map Scale Calibrator",
+    "description": "Estimate a historic map's distance scale from landmark baselines and inspect residuals before trusting the same scale across the sheet.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/historic-map-scale-calibrator",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 391,
+    "image": "assets/screenshots/historic-map-scale-calibrator.webp",
+    "capture": {
+      "name": "historic-map-scale-calibrator",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.983827+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/historic-map-scale-calibrator/actions/workflows/verify.yml"
+  },
+  {
     "name": "coinbase-ladder",
     "title": "Coinbase Ladder",
     "description": "A local-first trading workstation with percentage ladders, preview-bound orders, price triggers, audit history, and a React + Python workspace.",
@@ -3900,6 +4010,95 @@
     "ci": "https://github.com/netcodermike/stage-changeover-gap-audit/actions/workflows/verify.yml"
   },
   {
+    "name": "interpretive-panel-draft",
+    "title": "Interpretive Panel Draft",
+    "description": "Draft a heritage display panel, preview two sizes, and check the word budget and estimated reading time.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/interpretive-panel-draft",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 380,
+    "image": "assets/screenshots/interpretive-panel-draft.webp",
+    "capture": {
+      "name": "interpretive-panel-draft",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-27T03:46:39.792342+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/interpretive-panel-draft/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/interpretive-panel-draft/"
+  },
+  {
+    "name": "trail-segment-service-ledger",
+    "title": "Trail Segment Service Ledger",
+    "description": "Turn a trail crew's completed visits and chosen service cadence into a follow-up worklist, with overdue segments and past scheduling slips.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/trail-segment-service-ledger",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 382,
+    "image": "assets/screenshots/trail-segment-service-ledger.webp",
+    "capture": {
+      "name": "trail-segment-service-ledger",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:35.938730+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/trail-segment-service-ledger/actions/workflows/verify.yml"
+  },
+  {
+    "name": "reusable-crate-load-plan",
+    "title": "Reusable Crate Load Plan",
+    "description": "Assign differently weighted items to reusable crates while keeping handling groups separate and reporting items that exceed the entered capacity.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/reusable-crate-load-plan",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 386,
+    "image": "assets/screenshots/reusable-crate-load-plan.webp",
+    "capture": {
+      "name": "reusable-crate-load-plan",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.159097+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/reusable-crate-load-plan/actions/workflows/verify.yml"
+  },
+  {
+    "name": "punchboard-quantity-audit",
+    "title": "Punchboard Quantity Audit",
+    "description": "Compare usable punchboard sheet yields with a board game's bill of materials to find short components, surplus pieces, and feasible single-sheet-type reprints.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/punchboard-quantity-audit",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 392,
+    "image": "assets/screenshots/punchboard-quantity-audit.webp",
+    "capture": {
+      "name": "punchboard-quantity-audit",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.923102+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/punchboard-quantity-audit/actions/workflows/verify.yml"
+  },
+  {
     "name": "fractal-render-lab",
     "title": "Fractal Render Lab",
     "description": "Explore Mandelbrot views through center/zoom controls and export rendered PNGs.",
@@ -5174,6 +5373,118 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/public-art-loan-return-board/actions/workflows/verify.yml"
+  },
+  {
+    "name": "floorplan-sightline-sketch",
+    "title": "Floorplan Sightline Sketch",
+    "description": "Move a viewpoint around two sample floor plans and see which parts of the room remain in sight.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/floorplan-sightline-sketch",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 378,
+    "image": "assets/screenshots/floorplan-sightline-sketch.webp",
+    "capture": {
+      "name": "floorplan-sightline-sketch",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-27T03:46:39.280268+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/floorplan-sightline-sketch/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/floorplan-sightline-sketch/"
+  },
+  {
+    "name": "ceramic-blend-ladder",
+    "title": "Ceramic Blend Ladder",
+    "description": "Plan a line of ceramic test blends with a fixed weight per sample, then export the weighing sheet as CSV.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/ceramic-blend-ladder",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 379,
+    "image": "assets/screenshots/ceramic-blend-ladder.webp",
+    "capture": {
+      "name": "ceramic-blend-ladder",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-27T03:46:39.435286+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/ceramic-blend-ladder/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/ceramic-blend-ladder/"
+  },
+  {
+    "name": "reclaimed-hardware-fit-match",
+    "title": "Reclaimed Hardware Fit Match",
+    "description": "Match rescued hardware to mounting slots by measured dimensions and clearance, maximizing the number of slots filled.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/reclaimed-hardware-fit-match",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 387,
+    "image": "assets/screenshots/reclaimed-hardware-fit-match.webp",
+    "capture": {
+      "name": "reclaimed-hardware-fit-match",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.163099+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/reclaimed-hardware-fit-match/actions/workflows/verify.yml"
+  },
+  {
+    "name": "oral-history-date-crosscheck",
+    "title": "Oral History Date Crosscheck",
+    "description": "Turn differently precise dates from oral histories and records into comparable windows and surface incompatible accounts.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/oral-history-date-crosscheck",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 388,
+    "image": "assets/screenshots/oral-history-date-crosscheck.webp",
+    "capture": {
+      "name": "oral-history-date-crosscheck",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.256002+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/oral-history-date-crosscheck/actions/workflows/verify.yml"
+  },
+  {
+    "name": "exposure-stack-pair-check",
+    "title": "Exposure Stack Pair Check",
+    "description": "Match exposure-bracketed photos to the intended EV steps for each scene and flag missing slots, duplicates, and off-bracket frames.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/exposure-stack-pair-check",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 390,
+    "image": "assets/screenshots/exposure-stack-pair-check.webp",
+    "capture": {
+      "name": "exposure-stack-pair-check",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:41.891119+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/exposure-stack-pair-check/actions/workflows/verify.yml"
   },
   {
     "name": "guitar-chord-desk",
@@ -8323,6 +8634,28 @@
     "ci": "https://github.com/netcodermike/mirror-beacon-grid/actions/workflows/verify.yml",
     "applicationUrl": "/apps/mirror-beacon-grid/",
     "gameMenuLabel": "Mirror Beacon Grid"
+  },
+  {
+    "name": "museum-handling-kit-routes",
+    "title": "Museum Handling Kit Routes",
+    "description": "Assign finite sets of teaching replicas to simultaneous museum activities, then see what each station receives and which roles are still unfilled.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/museum-handling-kit-routes",
+    "category": "Games & learning",
+    "featured": false,
+    "order": 381,
+    "image": "assets/screenshots/museum-handling-kit-routes.webp",
+    "capture": {
+      "name": "museum-handling-kit-routes",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-27T03:46:35.915494+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/museum-handling-kit-routes/actions/workflows/verify.yml"
   },
   {
     "name": "linux-backup-server",
