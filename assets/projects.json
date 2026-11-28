@@ -1223,6 +1223,54 @@
     "ci": "https://github.com/netcodermike/degree-sequence-witness/actions/workflows/verify.yml"
   },
   {
+    "name": "spring-resonance-sweep",
+    "title": "Spring Resonance Sweep",
+    "description": "Explore the amplitude response of a driven, damped oscillator and adjust natural frequency and damping.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/spring-resonance-sweep",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 399,
+    "image": "assets/screenshots/spring-resonance-sweep.webp",
+    "capture": {
+      "name": "spring-resonance-sweep",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-28T02:37:33.081063+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "ci": "https://github.com/netcodermike/spring-resonance-sweep/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/spring-resonance-sweep/"
+  },
+  {
+    "name": "thin-lens-ray-desk",
+    "title": "Thin Lens Ray Desk",
+    "description": "Move an object and change focal length to see where rays meet, including virtual and real images.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/thin-lens-ray-desk",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 400,
+    "image": "assets/screenshots/thin-lens-ray-desk.webp",
+    "capture": {
+      "name": "thin-lens-ray-desk",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-28T02:37:33.397535+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "ci": "https://github.com/netcodermike/thin-lens-ray-desk/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/thin-lens-ray-desk/"
+  },
+  {
     "name": "tiny-neural-network-playground",
     "title": "Tiny Neural Network Playground",
     "description": "Train a two-layer neural network on XOR and inspect its decision boundary and loss.",
@@ -2646,6 +2694,72 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/historic-map-scale-calibrator/actions/workflows/verify.yml"
+  },
+  {
+    "name": "cafe-dial-in-log",
+    "title": "Cafe Dial-in Log",
+    "description": "Summarize measured espresso dose, yield ratio, shot time and variability by recipe across explicit target ranges.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/cafe-dial-in-log",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 401,
+    "image": "assets/screenshots/cafe-dial-in-log.webp",
+    "capture": {
+      "name": "cafe-dial-in-log",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.002046+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/cafe-dial-in-log/actions/workflows/verify.yml"
+  },
+  {
+    "name": "nest-box-occupancy-streaks",
+    "title": "Nest Box Occupancy Streaks",
+    "description": "Calculate each box’s occupied share of surveyed dates and its longest uninterrupted occupied streak, accounting for missing visits.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/nest-box-occupancy-streaks",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 405,
+    "image": "assets/screenshots/nest-box-occupancy-streaks.webp",
+    "capture": {
+      "name": "nest-box-occupancy-streaks",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.662183+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/nest-box-occupancy-streaks/actions/workflows/verify.yml"
+  },
+  {
+    "name": "sheet-edge-offcut-counter",
+    "title": "Sheet Edge Offcut Counter",
+    "description": "Compute usable offcuts from simple guillotine trim layouts without counting corner scraps twice.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/sheet-edge-offcut-counter",
+    "category": "Data & analysis",
+    "featured": false,
+    "order": 407,
+    "image": "assets/screenshots/sheet-edge-offcut-counter.webp",
+    "capture": {
+      "name": "sheet-edge-offcut-counter",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.690997+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/sheet-edge-offcut-counter/actions/workflows/verify.yml"
   },
   {
     "name": "coinbase-ladder",
@@ -4216,6 +4330,94 @@
     "ci": "https://github.com/netcodermike/punchboard-quantity-audit/actions/workflows/verify.yml"
   },
   {
+    "name": "shared-tool-return-chain",
+    "title": "Shared Tool Return Chain",
+    "description": "Check requested loans against booked windows, overdue returns and preparation time between borrowers.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/shared-tool-return-chain",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 403,
+    "image": "assets/screenshots/shared-tool-return-chain.webp",
+    "capture": {
+      "name": "shared-tool-return-chain",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.008798+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/shared-tool-return-chain/actions/workflows/verify.yml"
+  },
+  {
+    "name": "planetarium-seat-buffer",
+    "title": "Planetarium Seat Buffer",
+    "description": "Allocate consecutive seat blocks while honoring reserved empty gaps, then report groups that do not fit.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/planetarium-seat-buffer",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 404,
+    "image": "assets/screenshots/planetarium-seat-buffer.webp",
+    "capture": {
+      "name": "planetarium-seat-buffer",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.010805+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/planetarium-seat-buffer/actions/workflows/verify.yml"
+  },
+  {
+    "name": "orchard-harvest-overlap",
+    "title": "Orchard Harvest Overlap",
+    "description": "Sweep overlapping inclusive harvest windows to find days over the crew’s estimated load limit.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/orchard-harvest-overlap",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 408,
+    "image": "assets/screenshots/orchard-harvest-overlap.webp",
+    "capture": {
+      "name": "orchard-harvest-overlap",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.644220+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/orchard-harvest-overlap/actions/workflows/verify.yml"
+  },
+  {
+    "name": "trail-sign-arrow-index",
+    "title": "Trail Sign Arrow Index",
+    "description": "Compare a trail intersection adjacency list with a proposed sign inventory and identify missing or conflicting directions.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/trail-sign-arrow-index",
+    "category": "Work & productivity",
+    "featured": false,
+    "order": 409,
+    "image": "assets/screenshots/trail-sign-arrow-index.webp",
+    "capture": {
+      "name": "trail-sign-arrow-index",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:14.303408+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/trail-sign-arrow-index/actions/workflows/verify.yml"
+  },
+  {
     "name": "fractal-render-lab",
     "title": "Fractal Render Lab",
     "description": "Explore Mandelbrot views through center/zoom controls and export rendered PNGs.",
@@ -5604,6 +5806,50 @@
     "ci": "https://github.com/netcodermike/exposure-stack-pair-check/actions/workflows/verify.yml"
   },
   {
+    "name": "warp-thread-color-count",
+    "title": "Warp Thread Color Count",
+    "description": "Expand repeated thread-color sequences to a specific end count, reporting per-color usage and where a short repeat stops.",
+    "languages": [
+      "Python"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/warp-thread-color-count",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 406,
+    "image": "assets/screenshots/warp-thread-color-count.webp",
+    "capture": {
+      "name": "warp-thread-color-count",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:13.637256+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/warp-thread-color-count/actions/workflows/verify.yml"
+  },
+  {
+    "name": "storybook-spread-check",
+    "title": "Storybook Spread Check",
+    "description": "Check page assignments for repeated or missing slots, unsheltered full-spread art and front-matter placement.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/storybook-spread-check",
+    "category": "Creative tools",
+    "featured": false,
+    "order": 410,
+    "image": "assets/screenshots/storybook-spread-check.webp",
+    "capture": {
+      "name": "storybook-spread-check",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:14.287770+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/storybook-spread-check/actions/workflows/verify.yml"
+  },
+  {
     "name": "guitar-chord-desk",
     "title": "Guitar Chord Desk",
     "description": "Explore major, minor, and dominant seventh guitar chords with open and movable voicings, note labels, synthesized strums, and text export.",
@@ -6815,6 +7061,52 @@
     "ci": "https://github.com/netcodermike/orchestra-part-packet-check/actions/workflows/verify.yml"
   },
   {
+    "name": "stereo-pan-law-desk",
+    "title": "Stereo Pan Law Desk",
+    "description": "Compare left/right gain and total power for linear and constant-power pan laws and inspect any pan position.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/stereo-pan-law-desk",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 398,
+    "image": "assets/screenshots/stereo-pan-law-desk.webp",
+    "capture": {
+      "name": "stereo-pan-law-desk",
+      "kind": "runtime",
+      "caption": "Browser capture of the running application.",
+      "capture_date": "2026-11-28T02:37:32.713704+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "ci": "https://github.com/netcodermike/stereo-pan-law-desk/actions/workflows/verify.yml",
+    "applicationUrl": "/apps/stereo-pan-law-desk/"
+  },
+  {
+    "name": "stage-light-address-map",
+    "title": "Stage Light Address Map",
+    "description": "Check fixture address footprints within DMX universes, list collisions and identify the largest free address ranges.",
+    "languages": [
+      "C#"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/stage-light-address-map",
+    "category": "Music & audio",
+    "featured": false,
+    "order": 402,
+    "image": "assets/screenshots/stage-light-address-map.webp",
+    "capture": {
+      "name": "stage-light-address-map",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:12.959093+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/stage-light-address-map/actions/workflows/verify.yml"
+  },
+  {
     "name": "festival-set-planner",
     "title": "Festival Set Planner",
     "description": "Build a festival itinerary around favorite sets while accounting for walking time between stages.",
@@ -7902,6 +8194,50 @@
       "demo_data": true
     },
     "ci": "https://github.com/netcodermike/rainwater-barrel-overflow/actions/workflows/verify.yml"
+  },
+  {
+    "name": "reusable-jar-deposit-ledger",
+    "title": "Reusable Jar Deposit Ledger",
+    "description": "Reconcile deposit charges and returns by jar type using integer cents and flag a return with no matching outstanding container.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/reusable-jar-deposit-ledger",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 411,
+    "image": "assets/screenshots/reusable-jar-deposit-ledger.webp",
+    "capture": {
+      "name": "reusable-jar-deposit-ledger",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:14.313024+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/reusable-jar-deposit-ledger/actions/workflows/verify.yml"
+  },
+  {
+    "name": "library-hold-shelf-expiry",
+    "title": "Library Hold Shelf Expiry",
+    "description": "Use collection dates, open weekdays and holiday closures to compute hold expiries and list items due on a chosen date.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Cross-platform CLI",
+    "url": "https://github.com/netcodermike/library-hold-shelf-expiry",
+    "category": "Everyday apps",
+    "featured": false,
+    "order": 412,
+    "image": "assets/screenshots/library-hold-shelf-expiry.webp",
+    "capture": {
+      "name": "library-hold-shelf-expiry",
+      "kind": "terminal",
+      "caption": "Excerpt from actual sample command output using synthetic inputs.",
+      "capture_date": "2026-11-28T02:36:14.393672+00:00",
+      "demo_data": true
+    },
+    "ci": "https://github.com/netcodermike/library-hold-shelf-expiry/actions/workflows/verify.yml"
   },
   {
     "name": "surfingcoder-arcade",

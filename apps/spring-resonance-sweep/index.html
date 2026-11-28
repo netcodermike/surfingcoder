@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the amplitude response of a driven, damped oscillator and adjust natural frequency and damping.">
+  <title>Spring Resonance Sweep</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+</head>
+<body data-layout="spring-resonance-sweep">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/hex-dominance-puzzle/">Hex Dominance Puzzle</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/mirror-beacon-grid/">Mirror Beacon Grid</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-surf-cams" name="surfingcoder-menu">
+        <summary>Surf Cams</summary>
+        <ul class="sc-dropdown-links sc-surf-cams-links">
+          <li><a href="https://atlanticparksurf.com/aps-live-cam" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantic-park-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Park Surf · Virginia Beach</a></li>
+          <li><a href="https://www.ncaquariums.com/current-conditions" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/nc-aquariums.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · NC Aquariums</a></li>
+          <li><a href="https://surfchex.com/cams/nags-head-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · SurfChex</a></li>
+          <li><a href="https://www.ablivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Beach · ABLiveSurf</a></li>
+          <li><a href="https://atlantislodge.com/webcam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantis-lodge.png" alt="" width="22" height="22" loading="lazy">Pine Knoll Shores · Atlantis Lodge</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Eastern Beach Access</a></li>
+          <li><a href="https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/bogue-inlet-pier.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · Pier Cam</a></li>
+          <li><a href="https://www.eilivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · EILiveSurf</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Western Beach Access</a></li>
+          <li><a href="https://surfchex.com/cams/north-topsail-island-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">North Topsail Beach</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-north/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · North</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-south/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · South</a></li>
+          <li><a href="https://surfchex.com/cams/wrightsville-beach/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Wrightsville Beach</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Data</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
+  </div>
+</div>
+<script defer src="/navigation.js?v=07e2a726d1de"></script>
+<script defer src="/surf-cams.js?v=fb479f63e9da"></script>
+<!-- SITE NAVIGATION END -->
+
+<main class="nightly-lab">
+  <div class="intro"><div><h1>Spring Resonance Sweep</h1><p>Explore the amplitude response of a driven, damped oscillator and adjust natural frequency and damping.</p></div>
+    <a href="https://github.com/netcodermike/spring-resonance-sweep">Project source ↗</a>
+  </div>
+  <div class="workspace">
+    <section class="panel" aria-labelledby="graph-title">
+      <h2 id="graph-title">Steady-state displacement versus frequency</h2>
+      <ul class="legend" aria-label="Chart legend"><li class="cyan">Displacement</li><li class="amber">Drive frequency</li><li class="violet">Peak</li><li class="quiet">Static response</li></ul>
+      <svg id="plot" viewBox="0 0 680 348" role="img" aria-label="Steady-state displacement versus frequency" aria-describedby="reading"></svg>
+      <dl id="stats"></dl>
+      <p id="reading"></p>
+    </section>
+    <section class="panel" aria-labelledby="settings-title">
+      <h2 id="settings-title">Experiment settings</h2>
+      <form id="experiment-options"><label for="natural">Natural frequency <output for="natural" id="natural-value"></output><input id="natural" type="range" min="5" max="85" step="1" value="45"></label><label for="damping">Damping ratio <output for="damping" id="damping-value"></output><input id="damping" type="range" min=".05" max="1.5" step=".01" value=".14"></label><label for="drive">Drive frequency <output for="drive" id="drive-value"></output><input id="drive" type="range" min="0" max="150" step="1" value="40"></label></form>
+      <details class="details"><summary>Model and assumptions</summary>
+        <p>The steady-state response of a linear spring and mass is normalized to its static displacement. The amplitude ratio is 1/√((1 − r²)² + (2ζr)²), with frequency ratio r and damping ratio ζ. The plot describes sinusoidal forcing after the transient has decayed.</p><p><a href="https://openstax.org/books/university-physics-volume-1/pages/15-6-forced-oscillations">Model reference ↗</a></p>
+      </details>
+    </section>
+  </div>
+</main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

@@ -1,0 +1,59 @@
+:root { color-scheme: dark; }
+body { margin: 0; min-height: 100vh; background: var(--sc-page, #18161f); color: var(--sc-ink, #f7edfb); font-family: var(--sc-font-ui, "Segoe UI", system-ui, sans-serif); }
+.nightly-lab, .nightly-lab * { box-sizing: border-box; }
+.nightly-lab {
+  --panel: var(--sc-panel, #272130); --surface: var(--sc-surface, #1b1725);
+  --border: var(--sc-border, #584664); --muted: var(--sc-muted, #c9bed6);
+  --violet: #d8aaf9; --cyan: #78e4dd; --amber: #fbce87; --pink: #f7a4be;
+  width: min(1180px, calc(100% - 40px)); margin: auto; padding: clamp(24px, 5vw, 56px) 0 45px;
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="light"] .nightly-lab { --violet: #713da1; --cyan: #087267; --amber: #89510c; --pink: #a93460; }
+.nightly-lab .intro { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: end; gap: 10px 16px; margin-bottom: 18px; }
+.nightly-lab .intro h1 { margin: 0; font-size: clamp(2rem, 5vw, 4.2rem); letter-spacing: -.052em; }
+.nightly-lab .intro p, .details p { margin: 6px 0 0; color: var(--muted); line-height: 1.5; }
+.nightly-lab a { color: var(--violet); text-underline-offset: .2em; }
+.nightly-lab .workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(245px, 300px); gap: 14px; align-items: start; }
+.nightly-lab .panel { min-width: 0; padding: clamp(12px, 1.9vw, 22px); border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
+.nightly-lab h2 { margin: 0 0 12px; font-size: 1.05rem; }
+.nightly-lab #plot { display: block; width: 100%; height: auto; border-radius: 9px; color: inherit; background: var(--surface); }
+.nightly-lab .box { fill: none; stroke: var(--border); }
+.nightly-lab .grid { stroke: var(--border); opacity: .7; }
+.nightly-lab .tick { fill: var(--muted); font-size: 13px; }
+.nightly-lab #plot :is(path,circle) { --plot-line: var(--muted); }
+.nightly-lab #plot .violet { --plot-line: var(--violet); }
+.nightly-lab #plot .cyan { --plot-line: var(--cyan); }
+.nightly-lab #plot .amber { --plot-line: var(--amber); }
+.nightly-lab #plot .pink { --plot-line: var(--pink); }
+.nightly-lab #plot .paper { --plot-line: currentColor; }
+.nightly-lab #plot path { fill: none; stroke: var(--plot-line); stroke-width: 2.3; }
+.nightly-lab #plot circle { fill: var(--plot-line); stroke: var(--surface); stroke-width: 1.5; }
+.nightly-lab #plot .dashed { stroke-dasharray: 6 5; }
+.nightly-lab #plot .quiet { opacity: .55; }
+.nightly-lab .legend { display: flex; flex-wrap: wrap; gap: 4px 15px; list-style: none; margin: 0 0 8px; padding: 0; font-size: .82rem; }
+.nightly-lab .legend li { display: inline-flex; align-items: center; gap: 5px; }
+.nightly-lab .legend li::before { width: 16px; border-top: 2px solid currentColor; content: ""; }
+.nightly-lab .legend .violet { color: var(--violet); }
+.nightly-lab .legend .cyan { color: var(--cyan); }
+.nightly-lab .legend .amber { color: var(--amber); }
+.nightly-lab .legend .pink { color: var(--pink); }
+.nightly-lab .legend .quiet { color: var(--muted); }
+.nightly-lab .legend .quiet::before { border-top-style: dashed; }
+.nightly-lab #stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin: 12px 0 0; }
+.nightly-lab #stats > div { padding: 8px 9px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+.nightly-lab #stats dt { color: var(--muted); font-size: .82rem; }
+.nightly-lab #stats dd { margin: 4px 0 0; font-size: clamp(.86rem, 2vw, 1.18rem); font-weight: 730; font-variant-numeric: tabular-nums; }
+.nightly-lab #reading { margin: 10px 0 0; color: var(--muted); font-size: .87rem; line-height: 1.4; }
+.nightly-lab #experiment-options { display: grid; gap: 14px; }
+.nightly-lab label { color: var(--muted); font-size: .9rem; font-weight: 640; }
+.nightly-lab select, .nightly-lab input { width: 100%; min-width: 0; margin: 4px 0 0; accent-color: var(--violet); }
+.nightly-lab select { font: inherit; padding: 8px; background: var(--surface); color: inherit; border: 1px solid var(--border); border-radius: 7px; }
+.nightly-lab output { float: right; color: var(--violet); font-variant-numeric: tabular-nums; }
+.nightly-lab .details { margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--border); font-size: .87rem; }
+.nightly-lab summary { cursor: pointer; font-weight: 650; }
+.nightly-lab :where(input, select, a, summary):focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
+@media (max-width: 720px) {
+  .nightly-lab { width: calc(100% - 22px); }
+  .nightly-lab .workspace { grid-template-columns: minmax(0, 1fr); }
+  .nightly-lab .tick { font-size: 17px; }
+}
