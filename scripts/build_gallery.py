@@ -16,19 +16,13 @@ def card(p,i):
  heading=f'<div class="card-meta"><span>{esc(p["category"])}</span>{badge}</div><h2><a href="{esc(p["url"])}" target="_blank" rel="noopener noreferrer">{esc(p["title"])}<span aria-hidden="true">↗</span></a></h2>'
  play=f'<a class="play-now" href="{esc(p["applicationUrl"])}">Play Now!</a>' if p.get('applicationUrl') else ''
  download=f'<a class="download-now" href="{esc(p["downloadUrl"])}">Download Now!</a>' if p.get('downloadUrl') else ''
- animation = p.get('previewAnimation')
- media = '<img class="preview-motion" alt="" aria-hidden="true" hidden>' if animation else ''
+ media = '<img class="preview-motion" alt="" aria-hidden="true" hidden>' if p.get('previewAnimation') else ''
  load = 'fetchpriority="high"' if i < 2 else 'loading="lazy"'
  preview = (
      f'<button class="preview" data-project="{esc(p["name"])}" aria-label="Enlarge {esc(p["title"])} screenshot">'
      f'<img src="{esc(p["image"])}" alt="{esc(p["title"])} — {esc(capture.get("caption", "Application interface"))}" width="1200" height="780" {load}>'
      f'{media}<span class="preview-tag">{label}</span><span class="expand" aria-hidden="true">↗</span></button>'
  )
- if animation:
-     preview = (
-         f'<div class="preview-with-motion">{preview}'
-         '<button class="preview-motion-toggle" type="button" hidden>Play motion</button></div>'
-     )
  return f'''<article class="project-card {'featured'if p['featured']else''}" {attrs}>
  {'<div class="featured-card-heading">'+heading+'</div>'if p['featured']else''}
  {preview}

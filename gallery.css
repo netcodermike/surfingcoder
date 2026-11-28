@@ -32,17 +32,7 @@
   height: 94%;
 }
 
-.preview-with-motion {
-  position: relative;
-  min-width: 0;
-}
-
-.project-grid.list .featured .preview-with-motion {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-
-.preview-with-motion .preview img {
+.preview:has(.preview-motion) img {
   grid-area: 1 / 1;
 }
 
@@ -50,44 +40,13 @@
   visibility: hidden;
 }
 
-.preview-motion[hidden],
-.preview-motion-toggle[hidden] {
+.preview-motion[hidden] {
   display: none;
-}
-
-.preview-motion-toggle {
-  position: absolute;
-  z-index: 1;
-  right: 9px;
-  bottom: 9px;
-  max-width: calc(100% - 18px);
-  min-height: 29px;
-  padding: 5px 8px;
-  border: 1px solid var(--border-strong);
-  border-radius: 5px;
-  background: var(--panel-bg);
-  color: var(--ink);
-  font-size: .73rem;
-  font-weight: 650;
-  line-height: 1.15;
-}
-
-.preview-motion-toggle:hover {
-  border-color: var(--accent-light);
-  background: var(--hover);
 }
 
 .dialog-toolbar { gap: 12px; }
 .dialog-toolbar > :first-child { min-width: 0; overflow-wrap: anywhere; }
-.dialog-actions { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
-#dialog-motion-toggle {
-  width: auto;
-  padding: 0 10px;
-  border-radius: 7px;
-  font-size: .8rem;
-  font-weight: 650;
-  color: var(--ink);
-}
+#close-dialog { flex: none; }
 
 #dialog-preview {
   --dialog-image-inset: 20px;
