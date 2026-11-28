@@ -1,0 +1,231 @@
+body[data-layout="qubit-workbench"] {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--sc-ink, #f2eaf7);
+  background: radial-gradient(ellipse at 65% -18%, #382546, transparent 51rem), var(--sc-page, #18161e);
+  font-family: var(--sc-font-ui, "Segoe UI", system-ui, sans-serif);
+  color-scheme: dark;
+}
+
+body[data-layout="qubit-workbench"] #workbench {
+  --ink: var(--sc-ink, #f2eaf7);
+  --muted: var(--sc-muted, #c7b9d7);
+  --line: var(--sc-border, #4b3c5b);
+  --panel: var(--sc-panel, #272032);
+  --input: var(--sc-input, #21182e);
+  --raised: var(--sc-raised, #382847);
+  --focus: var(--sc-focus, #f7ce89);
+  --plot: #151220;
+  --sphere-center: #37285b;
+  --sphere-edge: #221936;
+  --grid: #8068b0;
+  --axis-x: #70caff;
+  --axis-y: #62dfc9;
+  --axis-z: #d4a9ff;
+  --pointer: #ffd27a;
+  --selection: #cba6f7;
+  --selection-ink: #21132b;
+  --bar: #62dfc9;
+  width: min(1160px, calc(100% - 40px));
+  margin-inline: auto;
+  padding: clamp(28px, 4vw, 56px) 0 44px;
+}
+
+:root[data-theme="light"] body[data-layout="qubit-workbench"] { color-scheme: light; }
+
+:root[data-theme="light"] body[data-layout="qubit-workbench"] #workbench {
+  --plot: #fbf7ff;
+  --sphere-center: #f8f1ff;
+  --sphere-edge: #e3d3f4;
+  --grid: #8663a5;
+  --axis-x: #27588d;
+  --axis-y: #136953;
+  --axis-z: #6924a7;
+  --pointer: #8f5500;
+  --selection: #5c318b;
+  --selection-ink: #fff;
+  --bar: #17705a;
+}
+
+:root[data-theme="dusk"] body[data-layout="qubit-workbench"] #workbench {
+  --plot: #191f31;
+  --sphere-center: #39456b;
+  --sphere-edge: #2a2949;
+  --grid: #8680b6;
+}
+
+#workbench *, #workbench *::before, #workbench *::after { box-sizing: border-box; }
+#workbench :is(h1, h2, p) { margin: 0; }
+#workbench p { line-height: 1.55; }
+#workbench :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+#workbench .intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-bottom: 24px;
+}
+
+#workbench h1 {
+  margin-bottom: 9px;
+  font-size: clamp(2.75rem, 7vw, 4.8rem);
+  font-weight: 790;
+  line-height: 1;
+  letter-spacing: -.075em;
+}
+
+#workbench h1 span, #workbench .intro a { color: var(--axis-z); }
+#workbench .intro p { color: var(--muted); font-size: 1rem; }
+#workbench .intro a { padding: 6px 0; font-size: .9rem; font-weight: 680; text-underline-offset: .18em; }
+#workbench h2 { font-size: 1.08rem; letter-spacing: -.025em; }
+
+#workbench .workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(315px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+#workbench .panel {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: clamp(15px, 2vw, 22px);
+}
+
+#workbench .instrument { display: grid; gap: 12px; min-width: 0; }
+#workbench .panel-heading { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 11px; }
+#workbench :is(button, select, input) { font: inherit; }
+
+#workbench :is(button, select) {
+  min-height: 39px;
+  padding: 6px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--raised);
+  color: var(--ink);
+  font-size: .9rem;
+  font-weight: 620;
+}
+
+#workbench button { cursor: pointer; }
+#workbench button:hover:not(:disabled) { border-color: var(--selection); }
+#workbench .small { min-height: 33px; font-size: .8rem; }
+#workbench .primary { background: var(--selection); border-color: var(--selection); color: var(--selection-ink); }
+#workbench button:disabled { opacity: .55; cursor: default; }
+#workbench select { background: var(--input); width: 100%; max-width: 100%; min-width: 0; }
+
+#sphere {
+  display: block;
+  width: 100%;
+  aspect-ratio: 600 / 380;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: radial-gradient(ellipse at 48% 40%, color-mix(in srgb, var(--axis-z) 9%, transparent), transparent 74%), var(--plot);
+  touch-action: none;
+  cursor: grab;
+}
+
+#sphere:active { cursor: grabbing; }
+#sphere .surface { fill: url(#sphere-light); stroke: var(--grid); stroke-width: 1.2; }
+#sphere .sphere-center { stop-color: var(--sphere-center); }
+#sphere .sphere-edge { stop-color: var(--sphere-edge); }
+#sphere .mesh { fill: none; stroke: var(--grid); stroke-width: .85; opacity: .56; }
+#sphere .mesh.behind { stroke-dasharray: 3 6; opacity: .46; }
+#sphere .equator { stroke-width: 1.35; }
+#sphere .x-axis { color: var(--axis-x); }
+#sphere .y-axis { color: var(--axis-y); }
+#sphere .z-axis { color: var(--axis-z); }
+#sphere .axis-line { stroke: currentColor; stroke-width: 1.5; opacity: .8; }
+#sphere .axis-line.negative { opacity: .39; stroke-dasharray: 4 5; }
+#sphere .axis-tick { fill: currentColor; }
+#sphere .axis-label { fill: currentColor; font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; font-weight: 700; }
+#sphere .state-trace { stroke: var(--pointer); opacity: .29; stroke-width: 1.1; stroke-dasharray: 4 6; fill: none; }
+#sphere .state-line { stroke: var(--pointer); stroke-width: 3.5; marker-end: url(#arrowhead); filter: drop-shadow(0 0 5px color-mix(in srgb, var(--pointer) 49%, transparent)); }
+#sphere .arrow-tip, #sphere .origin { fill: var(--pointer); }
+#sphere .state-aligned { fill: none; stroke: var(--pointer); stroke-width: 1.5; }
+
+#workbench .chart-help, #workbench .measure-help {
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+#workbench .chart-help { margin-top: 9px; }
+#workbench .equation-box {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 11px;
+  background: var(--plot);
+  overflow-wrap: anywhere;
+}
+
+#workbench .equation-box p {
+  display: grid;
+  grid-template-columns: 6.7rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 5px 12px;
+  padding: 4px 0;
+  font-size: .85rem;
+}
+
+#workbench .equation-box span { color: var(--muted); }
+#workbench .mono { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; font-variant-numeric: tabular-nums; }
+#ket { color: var(--pointer); }
+#coordinates { color: var(--axis-y); }
+
+#workbench .field { display: grid; gap: 5px; min-width: 0; }
+#workbench :is(.field label, legend, summary) { color: var(--ink); font-size: .85rem; font-weight: 630; }
+#workbench .controls > .field, #workbench .measure-settings { margin-top: 10px; }
+#workbench .angles { margin-top: 9px; }
+#workbench summary { cursor: pointer; }
+
+#workbench .angle {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px;
+  align-items: center;
+  padding-top: 8px;
+  font-size: .84rem;
+}
+
+#workbench .angle output { color: var(--axis-z); font-variant-numeric: tabular-nums; }
+#workbench .angle input { grid-column: 1 / -1; width: 100%; accent-color: var(--selection); }
+#workbench fieldset { margin: 12px 0 0; padding: 0; border: 0; min-width: 0; }
+#workbench legend { margin-bottom: 6px; padding: 0; }
+#workbench .gate-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; }
+#workbench [data-gate] { padding: 4px; color: var(--axis-z); font-family: Consolas, monospace; font-size: 1rem; }
+#workbench .operation { margin-top: 8px; color: var(--muted); font-size: .8rem; min-height: 1.25em; }
+
+#workbench .measure-settings { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8px; }
+#workbench .measure-actions { display: flex; flex-wrap: wrap; gap: 7px; margin: 9px 0 6px; }
+#workbench .legend { display: flex; flex-wrap: wrap; gap: 5px 14px; margin-top: 12px; font-size: .78rem; }
+#workbench .legend span { display: inline-flex; align-items: center; gap: 5px; }
+#workbench .legend span::before { content: ""; display: inline-block; height: 9px; }
+#workbench .prediction-key::before { width: 2px; background: var(--pointer); }
+#workbench .observed-key::before { width: 12px; border-radius: 2px; background: var(--bar); }
+#workbench .histogram { display: grid; gap: 7px; margin-top: 7px; }
+#workbench .outcome { min-width: 0; }
+#workbench .outcome-label { display: flex; align-items: baseline; flex-wrap: wrap; justify-content: space-between; gap: 3px 6px; margin-bottom: 4px; font-size: .84rem; }
+#workbench .outcome-label output { color: var(--muted); font-variant-numeric: tabular-nums; }
+#workbench .track { position: relative; height: 10px; border-radius: 4px; background: var(--plot); }
+#workbench .track span { display: block; height: 100%; width: 0; border-radius: 4px; background: var(--bar); }
+#workbench .track i { position: absolute; bottom: -2px; top: -2px; left: 0; width: 2px; border-radius: 2px; background: var(--pointer); transform: translateX(-50%); }
+#workbench .shot-status { color: var(--muted); margin-top: 9px; font-size: .8rem; }
+#workbench .math-note { color: var(--muted); margin-top: 16px; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+#workbench .math-note p { margin-top: 7px; max-width: 90ch; font-size: .88rem; }
+
+@media (max-width: 740px) {
+  #workbench .workspace { grid-template-columns: minmax(0, 1fr); }
+  #sphere { aspect-ratio: 460 / 380; }
+  #sphere .axis-label { font-size: 19px; }
+  #workbench :is(button, select) { min-height: 44px; }
+}
+
+@media (max-width: 360px) {
+  body[data-layout="qubit-workbench"] #workbench { width: calc(100% - 24px); }
+  #workbench .equation-box p { grid-template-columns: 1fr; gap: 1px; }
+}

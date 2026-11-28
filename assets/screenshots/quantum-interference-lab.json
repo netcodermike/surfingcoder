@@ -1,0 +1,8 @@
+{
+  "name": "quantum-interference-lab",
+  "kind": "runtime",
+  "caption": "Simulated electron impacts form interference fringes above the measured histogram and predicted probability curve.",
+  "capture_date": "2026-11-28T01:50:10.769375+00:00",
+  "demo_data": true,
+  "capture_method": "Chrome workspace capture at 2x device scale"
+}

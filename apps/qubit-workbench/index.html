@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prepare a qubit, apply quantum gates, and compare measured outcomes with predictions on a rotatable Bloch sphere.">
+  <title>Qubit Workbench · SurfingCoder</title>
+  <link rel="stylesheet" href="./style.css?v=1">
+  <script type="module" src="./app.mjs?v=1"></script>
+<link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+</head>
+<body data-layout="qubit-workbench">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/hex-dominance-puzzle/">Hex Dominance Puzzle</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/mirror-beacon-grid/">Mirror Beacon Grid</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-surf-cams" name="surfingcoder-menu">
+        <summary>Surf Cams</summary>
+        <ul class="sc-dropdown-links sc-surf-cams-links">
+          <li><a href="https://atlanticparksurf.com/aps-live-cam" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantic-park-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Park Surf · Virginia Beach</a></li>
+          <li><a href="https://www.ncaquariums.com/current-conditions" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/nc-aquariums.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · NC Aquariums</a></li>
+          <li><a href="https://surfchex.com/cams/nags-head-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · SurfChex</a></li>
+          <li><a href="https://www.ablivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Beach · ABLiveSurf</a></li>
+          <li><a href="https://atlantislodge.com/webcam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantis-lodge.png" alt="" width="22" height="22" loading="lazy">Pine Knoll Shores · Atlantis Lodge</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Eastern Beach Access</a></li>
+          <li><a href="https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/bogue-inlet-pier.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · Pier Cam</a></li>
+          <li><a href="https://www.eilivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · EILiveSurf</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Western Beach Access</a></li>
+          <li><a href="https://surfchex.com/cams/north-topsail-island-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">North Topsail Beach</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-north/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · North</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-south/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · South</a></li>
+          <li><a href="https://surfchex.com/cams/wrightsville-beach/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Wrightsville Beach</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Data</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
+  </div>
+</div>
+<script defer src="/navigation.js?v=07e2a726d1de"></script>
+<script defer src="/surf-cams.js?v=fb479f63e9da"></script>
+<!-- SITE NAVIGATION END -->
+<main id="workbench">
+  <header class="intro">
+    <div>
+      <h1>Qubit <span>Workbench</span></h1>
+      <p>Prepare a qubit, turn it with quantum gates, then see what a measurement reveals.</p>
+    </div>
+    <a href="https://github.com/netcodermike/qubit-workbench">Project source <span aria-hidden="true">↗</span></a>
+  </header>
+  <div class="workspace">
+    <section class="panel visual" aria-labelledby="sphere-heading">
+      <div class="panel-heading">
+        <h2 id="sphere-heading">Bloch sphere</h2>
+        <button id="reset-view" type="button" class="small">Reset view</button>
+      </div>
+      <svg id="sphere" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" tabindex="0" role="img"
+           aria-labelledby="sphere-title" aria-describedby="sphere-help">
+        <title id="sphere-title">Three-dimensional Bloch sphere</title>
+        <defs>
+          <radialGradient id="sphere-light" cx=".38" cy=".28" r=".85">
+            <stop class="sphere-center" offset="0"/>
+            <stop class="sphere-edge" offset="1"/>
+          </radialGradient>
+          <marker id="arrowhead" orient="auto" markerWidth="12" markerHeight="12"
+                  refX="9" refY="5" viewBox="0 0 10 10" markerUnits="userSpaceOnUse">
+            <path d="M0 0L10 5L0 10L2.6 5Z" class="arrow-tip"/>
+          </marker>
+        </defs>
+        <circle class="surface" cx="300" cy="190" r="142"/>
+        <g id="mesh"></g>
+        <g id="axes"></g>
+        <g id="vector"></g>
+      </svg>
+      <p class="chart-help" id="sphere-help">Drag the sphere or use the arrow keys to rotate the view. The gold arrow represents the qubit.</p>
+      <div class="equation-box">
+        <p><span>State</span> <output id="ket" class="mono" aria-live="polite"></output></p>
+        <p><span>Bloch vector</span> <output id="coordinates" class="mono"></output></p>
+      </div>
+    </section>
+
+    <div class="instrument">
+      <section class="panel controls" aria-labelledby="prepare-heading">
+        <h2 id="prepare-heading">Prepare and transform</h2>
+        <div class="field">
+          <label for="preset">Starting state</label>
+          <select id="preset">
+            <option value="tilted">Tilted state</option>
+            <option value="zero">|0⟩ · +Z</option>
+            <option value="one">|1⟩ · −Z</option>
+            <option value="plus">|+⟩ · +X</option>
+            <option value="minus">|−⟩ · −X</option>
+            <option value="plusI">|+i⟩ · +Y</option>
+            <option value="minusI">|−i⟩ · −Y</option>
+            <option value="custom" disabled>Custom state</option>
+          </select>
+        </div>
+        <details class="angles">
+          <summary>Set state angles</summary>
+          <div class="angle">
+            <label for="theta">Polar angle θ</label><output id="theta-value" for="theta">62°</output>
+            <input id="theta" type="range" min="0" max="180" value="62">
+          </div>
+          <div class="angle">
+            <label for="phi">Azimuth φ</label><output id="phi-value" for="phi">55°</output>
+            <input id="phi" type="range" min="0" max="359" value="55">
+          </div>
+        </details>
+        <fieldset>
+          <legend>Apply a gate</legend>
+          <div class="gate-grid">
+            <button type="button" data-gate="X" title="Pauli X · Bit flip">X</button>
+            <button type="button" data-gate="Y" title="Pauli Y · Bit and phase flip">Y</button>
+            <button type="button" data-gate="Z" title="Pauli Z · Phase flip">Z</button>
+            <button type="button" data-gate="H" title="Hadamard · Swap X and Z bases">H</button>
+            <button type="button" data-gate="S" title="S · 90 degree phase rotation">S</button>
+            <button type="button" data-gate="T" title="T · 45 degree phase rotation">T</button>
+          </div>
+        </fieldset>
+        <p id="operation" class="operation" role="status">Tilted state prepared.</p>
+      </section>
+
+      <section class="panel measurements" aria-labelledby="measurement-heading">
+        <h2 id="measurement-heading">Measurement</h2>
+        <div class="measure-settings">
+          <div class="field">
+            <label for="basis">Basis</label>
+            <select id="basis">
+              <option value="Z">Z · 0 / 1</option>
+              <option value="X">X · + / −</option>
+              <option value="Y">Y · +i / −i</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="shots">Shots per run</label>
+            <select id="shots">
+              <option value="32">32</option>
+              <option value="128" selected>128</option>
+              <option value="512">512</option>
+              <option value="2048">2,048</option>
+            </select>
+          </div>
+        </div>
+        <div class="measure-actions">
+          <button type="button" id="measure" class="primary">Measure qubits</button>
+          <button type="button" id="clear">Clear counts</button>
+        </div>
+        <p class="measure-help">Each shot starts with a freshly prepared copy of the state.</p>
+        <div class="legend"><span class="prediction-key">Predicted</span><span class="observed-key">Observed</span></div>
+        <div id="histogram" class="histogram" aria-label="Measurement outcomes">
+          <div class="outcome">
+            <div class="outcome-label"><strong id="label-0">|0⟩</strong><output id="result-0"></output></div>
+            <div class="track" aria-hidden="true"><span id="observed-0"></span><i id="prediction-0"></i></div>
+          </div>
+          <div class="outcome">
+            <div class="outcome-label"><strong id="label-1">|1⟩</strong><output id="result-1"></output></div>
+            <div class="track" aria-hidden="true"><span id="observed-1"></span><i id="prediction-1"></i></div>
+          </div>
+        </div>
+        <p id="shot-status" class="shot-status" role="status">No shots yet.</p>
+      </section>
+    </div>
+  </div>
+  <details class="math-note">
+    <summary>How the probabilities work</summary>
+    <p>A pure qubit is a pair of complex amplitudes, α|0⟩ + β|1⟩, with |α|² + |β|² = 1. The Bloch vector is (2 Re(α*β), 2 Im(α*β), |α|² − |β|²), where α* is the complex conjugate of α.</p>
+    <p>The chance of the positive outcome in the selected basis is (1 + r)/2, where r is that basis’s Bloch coordinate. Each shot independently samples these probabilities. Changing the state or basis starts a fresh tally.</p>
+  </details>
+</main>
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

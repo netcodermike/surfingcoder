@@ -1,0 +1,8 @@
+{
+  "name": "bell-test-challenge",
+  "kind": "runtime",
+  "caption": "Alice and Bob’s analyzers use the optimal CHSH angles and compare a thousand simulated entangled and classical trials.",
+  "capture_date": "2026-11-28T01:50:12.456212+00:00",
+  "demo_data": true,
+  "capture_method": "Chrome workspace capture at 2x device scale"
+}

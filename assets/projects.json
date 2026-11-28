@@ -76,6 +76,98 @@
     "applicationUrl": "/apps/spacetime-lab/"
   },
   {
+    "name": "quantum-interference-lab",
+    "title": "Quantum Interference Lab",
+    "description": "Fire electrons one at a time and watch interference fringes emerge. Tune the slits and wavelength, switch on a which-path detector, and compare detections with the probability curve. Built with JavaScript and Canvas.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/quantum-interference-lab",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 394,
+    "image": "assets/screenshots/quantum-interference-lab.webp",
+    "capture": {
+      "name": "quantum-interference-lab",
+      "kind": "runtime",
+      "caption": "Simulated electron impacts form interference fringes above the measured histogram and predicted probability curve.",
+      "capture_date": "2026-11-28T01:50:10.769375+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "applicationUrl": "/apps/quantum-interference-lab/"
+  },
+  {
+    "name": "quantum-tunneling-lab",
+    "title": "Quantum Tunneling Lab",
+    "description": "Send a quantum wave packet into a barrier and track reflected and transmitted probability. Change the barrier height, width, and packet energy in a browser-based Schrödinger simulation.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/quantum-tunneling-lab",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 395,
+    "image": "assets/screenshots/quantum-tunneling-lab.webp",
+    "capture": {
+      "name": "quantum-tunneling-lab",
+      "kind": "runtime",
+      "caption": "A scattered wave packet shows probability on each side of a rectangular barrier, with a separate plane-wave transmission prediction.",
+      "capture_date": "2026-11-28T01:50:11.604211+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "applicationUrl": "/apps/quantum-tunneling-lab/"
+  },
+  {
+    "name": "qubit-workbench",
+    "title": "Qubit Workbench",
+    "description": "Prepare a qubit, rotate its 3D Bloch sphere, apply quantum gates, and compare repeated measurements with their predicted probabilities.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/qubit-workbench",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 396,
+    "image": "assets/screenshots/qubit-workbench.webp",
+    "capture": {
+      "name": "qubit-workbench",
+      "kind": "runtime",
+      "caption": "An interactive Bloch sphere displays a qubit state alongside gates, measurement settings, and sampled outcomes.",
+      "capture_date": "2026-11-28T01:50:12.055584+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "applicationUrl": "/apps/qubit-workbench/"
+  },
+  {
+    "name": "bell-test-challenge",
+    "title": "Bell Test Challenge",
+    "description": "Tune Alice and Bob’s measurement angles and simulate the CHSH game with entangled qubits. Compare the observed win rates with the classical 75% ceiling.",
+    "languages": [
+      "JavaScript"
+    ],
+    "platform": "Web",
+    "url": "https://github.com/netcodermike/bell-test-challenge",
+    "category": "Mathematics",
+    "featured": false,
+    "order": 397,
+    "image": "assets/screenshots/bell-test-challenge.webp",
+    "capture": {
+      "name": "bell-test-challenge",
+      "kind": "runtime",
+      "caption": "Alice and Bob’s analyzers use the optimal CHSH angles and compare a thousand simulated entangled and classical trials.",
+      "capture_date": "2026-11-28T01:50:12.456212+00:00",
+      "demo_data": true,
+      "capture_method": "Chrome workspace capture at 2x device scale"
+    },
+    "applicationUrl": "/apps/bell-test-challenge/"
+  },
+  {
     "name": "wave-pool-lab",
     "title": "Wave Pool Lab",
     "description": "Send a wave set through a virtual pool, shape the beach, and compare two designs using live gauge plots.",

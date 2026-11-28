@@ -1,0 +1,8 @@
+{
+  "name": "qubit-workbench",
+  "kind": "runtime",
+  "caption": "An interactive Bloch sphere displays a qubit state alongside gates, measurement settings, and sampled outcomes.",
+  "capture_date": "2026-11-28T01:50:12.055584+00:00",
+  "demo_data": true,
+  "capture_method": "Chrome workspace capture at 2x device scale"
+}

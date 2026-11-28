@@ -1,0 +1,213 @@
+body[data-layout="quantum-tunneling-lab"] {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 81% 0%, #332440, transparent 47rem), #18161e;
+  color: var(--sc-ink, #f3edf8);
+  font-family: var(--sc-font-ui, "Segoe UI", system-ui, sans-serif);
+  color-scheme: dark;
+}
+
+.tunnel-lab {
+  --ink: var(--sc-ink, #f3edf8);
+  --muted: var(--sc-muted, #c8b9d6);
+  --panel: var(--sc-panel, #292233);
+  --surface: var(--sc-surface, #201929);
+  --line: var(--sc-border, #4d405d);
+  --raised: var(--sc-raised, #372b45);
+  --accent: #ddb4fa;
+  --button: #d5a9f1;
+  --button-ink: #21172d;
+  --plot: #171523;
+  --grid: #39324b;
+  --edge: #746687;
+  --density: #73decf;
+  --density-wash: #73decf1c;
+  --barrier: #efb86f;
+  --barrier-wash: #efb86f25;
+  --energy: #d1aaee;
+  --left: #b38ae5;
+  --focus: var(--sc-focus, #f1d399);
+  width: min(1220px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 57px) 0 42px;
+}
+
+:root[data-theme="light"] body[data-layout="quantum-tunneling-lab"] { color-scheme: light; }
+:root[data-theme="light"] .tunnel-lab {
+  --accent: #6c378e;
+  --button: #73489c;
+  --button-ink: #fff;
+  --plot: #fffbff;
+  --grid: #ddd1e8;
+  --edge: #92809d;
+  --density: #0c7064;
+  --density-wash: #109e8b20;
+  --barrier: #8e570b;
+  --barrier-wash: #dc971831;
+  --energy: #7332aa;
+  --left: #8152b5;
+}
+:root[data-theme="dusk"] .tunnel-lab {
+  --plot: #192133;
+  --grid: #3c4760;
+  --edge: #7984a1;
+}
+
+.tunnel-lab *, .tunnel-lab *::before, .tunnel-lab *::after { box-sizing: border-box; }
+.tunnel-lab h1, .tunnel-lab h2, .tunnel-lab h3, .tunnel-lab p { margin: 0; }
+.tunnel-lab p { line-height: 1.55; }
+.tunnel-lab a { color: var(--accent); text-underline-offset: .23em; }
+.tunnel-lab :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+.tunnel-lab .lab-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-bottom: 23px;
+}
+.tunnel-lab .lab-intro h1 {
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  letter-spacing: -.065em;
+  line-height: 1.01;
+  margin-bottom: 10px;
+}
+.tunnel-lab .lab-intro h1 span { color: var(--accent); }
+.tunnel-lab .lab-intro p { color: var(--muted); font-size: 1.03rem; }
+.tunnel-lab .lab-intro a { font-size: .88rem; font-weight: 700; padding-bottom: 3px; }
+
+.tunnel-lab .workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(245px, 315px);
+  align-items: start;
+  gap: 14px;
+}
+.tunnel-lab .panel {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--panel), var(--surface));
+  padding: clamp(12px, 2.2vw, 22px);
+}
+.tunnel-lab .panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  margin-bottom: 12px;
+}
+.tunnel-lab h2 { font-size: 1.07rem; font-weight: 720; }
+.tunnel-lab .clock, .tunnel-lab .norm {
+  color: var(--muted);
+  font-size: .86rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+#plot {
+  display: block;
+  width: 100%;
+  height: clamp(250px, 29vw, 350px);
+  background: var(--plot);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.tunnel-lab .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 16px;
+  margin: 10px 0 14px;
+  list-style: none;
+  padding: 0;
+  color: var(--muted);
+  font-size: .83rem;
+}
+.tunnel-lab .legend li { display: flex; align-items: center; gap: 7px; }
+.tunnel-lab .key { width: 18px; border-top: 3px solid; }
+.tunnel-lab .key.density { color: var(--density); }
+.tunnel-lab .key.potential { color: var(--barrier); }
+.tunnel-lab .key.energy { color: var(--energy); border-top-style: dashed; }
+
+.tunnel-lab button, .tunnel-lab select { font: inherit; }
+.tunnel-lab button, .tunnel-lab select {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--raised);
+  color: var(--ink);
+  font-size: .86rem;
+  font-weight: 660;
+  padding: 6px 11px;
+}
+.tunnel-lab button { cursor: pointer; }
+.tunnel-lab button:not(:disabled):hover, .tunnel-lab select:hover { border-color: var(--accent); }
+.tunnel-lab button.primary { background: var(--button); color: var(--button-ink); border-color: transparent; }
+.tunnel-lab button:disabled { opacity: .52; cursor: default; }
+.tunnel-lab .playback { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.tunnel-lab .playback label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  margin-left: auto;
+  font-size: .83rem;
+}
+.tunnel-lab .progress, .tunnel-lab .distribution {
+  height: 6px;
+  background: var(--plot);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.tunnel-lab .progress { margin: 12px 0 8px; }
+.tunnel-lab .progress span { display: block; height: 100%; width: 0; background: var(--density); }
+.tunnel-lab .plot-note,
+.tunnel-lab .relaunch-note,
+.tunnel-lab .probabilities > p { color: var(--muted); font-size: .84rem; }
+
+.tunnel-lab .controls { grid-column: 2; grid-row: 1; align-self: stretch; }
+.tunnel-lab .controls h2 { margin-bottom: 16px; }
+.tunnel-lab .controls label { color: var(--muted); font-size: .86rem; font-weight: 650; }
+.tunnel-lab .controls select { width: 100%; margin: 5px 0 15px; }
+.tunnel-lab .slider { margin-bottom: 13px; }
+.tunnel-lab .slider > div { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 5px; }
+.tunnel-lab .slider output { color: var(--accent); font-weight: 730; font-size: .86rem; font-variant-numeric: tabular-nums; }
+.tunnel-lab input[type="range"] { display: block; width: 100%; margin: 0; min-height: 24px; accent-color: var(--button); }
+.tunnel-lab .prediction {
+  margin-top: 17px;
+  padding: 12px;
+  background: var(--plot);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.tunnel-lab .prediction h3 { font-size: .87rem; margin-bottom: 4px; }
+.tunnel-lab .prediction strong { font-size: 1.7rem; color: var(--barrier); margin-right: 4px; }
+.tunnel-lab .prediction p { color: var(--muted); font-size: .82rem; }
+
+.tunnel-lab .probabilities { grid-column: 1 / -1; }
+.tunnel-lab .distribution { display: flex; height: 8px; }
+.tunnel-lab .distribution span { display: block; height: 100%; width: 0; }
+.tunnel-lab .distribution .tone-left { width: 100%; }
+.tunnel-lab .tone-left { background: var(--left); }
+.tunnel-lab .tone-inside { background: var(--barrier); }
+.tunnel-lab .tone-right { background: var(--density); }
+.tunnel-lab .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin: 10px 0; }
+.tunnel-lab .metrics > div { background: var(--plot); padding: 10px; border-radius: 7px; }
+.tunnel-lab .metrics dt { color: var(--muted); font-size: .8rem; }
+.tunnel-lab .metrics dd { color: var(--ink); font-weight: 700; font-size: 1.24rem; margin: 3px 0 0; font-variant-numeric: tabular-nums; }
+.tunnel-lab .point { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; }
+.tunnel-lab .model-note { color: var(--muted); font-size: .87rem; margin-top: 18px; }
+.tunnel-lab .model-note summary { color: var(--ink); cursor: pointer; font-weight: 680; }
+.tunnel-lab .model-note p { margin-top: 6px; max-width: 75ch; }
+
+@media (max-width: 780px) {
+  .tunnel-lab { width: calc(100% - 28px); }
+  .tunnel-lab .workspace { grid-template-columns: minmax(0, 1fr); }
+  .tunnel-lab .controls { grid-column: auto; grid-row: auto; }
+}
+@media (max-width: 410px) {
+  .tunnel-lab .playback label { margin-left: 0; }
+  .tunnel-lab .metrics > div { padding: 7px; }
+  .tunnel-lab .metrics dt { min-height: 2.1em; }
+  .tunnel-lab .metrics dd { font-size: 1.05rem; }
+}

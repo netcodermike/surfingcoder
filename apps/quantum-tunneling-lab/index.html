@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<script src="/site-theme.js?v=a59f6f0e32de"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scatter a quantum wave packet from an adjustable barrier and compare live probabilities with the plane-wave prediction.">
+  <title>Quantum Tunneling Lab | SurfingCoder</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+<link rel="stylesheet" href="/navigation.css?v=4f84e47f4f3c">
+<link rel="stylesheet" href="/app-themes.css?v=f29445a49e78">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/surfingcoder-favicon.png?v=20261118-clear">
+</head>
+<body data-layout="quantum-tunneling-lab">
+<!-- SITE NAVIGATION START -->
+<div class="sc-site-header" role="banner">
+  <div class="sc-nav-wrap">
+    <a class="sc-brand" href="/" aria-label="SurfingCoder home"><img class="sc-brand-mark" src="/assets/surfingcoder-mark-nav.png" alt="" width="96" height="75"><span class="sc-wordmark">Surfing<span>Coder</span></span></a>
+    <nav class="sc-nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <details class="sc-dropdown sc-games" name="surfingcoder-menu">
+        <summary>Games</summary>
+        <ul class="sc-dropdown-links sc-games-links">
+          <li><a href="/20-questions/">20 Questions</a></li>
+          <li><a href="/arcade/">Arcade</a></li>
+          <li><a href="/board-games/">Board Games</a></li>
+          <li><a href="/cards/">Cards</a></li>
+          <li><a href="/apps/chess-tactics-trainer/">Chess Tactics Trainer</a></li>
+          <li><a href="/apps/hex-dominance-puzzle/">Hex Dominance Puzzle</a></li>
+          <li><a href="/apps/interval-ear-gym/">Interval Ear Gym</a></li>
+          <li><a href="/apps/island-flood-puzzle/">Island Flood Puzzle</a></li>
+          <li><a href="/apps/karnaugh-map-simplifier/">Karnaugh Map Simplifier</a></li>
+          <li><a href="/apps/maze-forge/">Maze Forge</a></li>
+          <li><a href="/apps/mirror-beacon-grid/">Mirror Beacon Grid</a></li>
+          <li><a href="/apps/modular-arithmetic-arcade/">Modular Arithmetic Arcade</a></li>
+          <li><a href="/apps/nonogram-line-enumerator/">Nonogram Line Puzzle</a></li>
+          <li><a href="/number-swell/">Number Swell</a></li>
+          <li><a href="/apps/pathfinding-playground/">Pathfinding Playground</a></li>
+          <li><a href="/pinball/">Pinball</a></li>
+          <li><a href="/apps/procedural-planet-explorer/">Procedural Planet Explorer</a></li>
+          <li><a href="/apps/spaced-repetition-adventure/">Recall Quest</a></li>
+          <li><a href="/apps/robot-grid-command-replay/">Robot Grid Challenge</a></li>
+          <li><a href="/apps/sixteen-card-square/">Sixteen Card Square</a></li>
+          <li><a href="/slots/">Slots</a></li>
+          <li><a href="/apps/sudoku-studio-desktop/">Sudoku Studio</a></li>
+          <li><a href="/apps/multiplayer-escape-room/">The Last Door (Solo)</a></li>
+          <li><a href="/apps/transversal-hunt/">Transversal Hunt</a></li>
+          <li><a href="/apps/wave-pool-lab/">Wave Pool Lab</a></li>
+          <li><a href="/apps/word-ladder-generator/">Word Ladder</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-guitar" name="surfingcoder-menu">
+        <summary>Guitar</summary>
+        <ul class="sc-dropdown-links sc-guitar-links">
+          <li><a href="/apps/blues-progression-atlas/">Blues Progression Atlas</a></li>
+          <li><a href="/apps/chord-voicing-lab/">Chord Voicing Lab</a></li>
+          <li><a href="/guitar-chords/">Guitar Chord Workshop</a></li>
+          <li><a href="/guitar-tuner/">Guitar Tuner</a></li>
+        </ul>
+      </details>
+      <details class="sc-dropdown sc-surf-cams" name="surfingcoder-menu">
+        <summary>Surf Cams</summary>
+        <ul class="sc-dropdown-links sc-surf-cams-links">
+          <li><a href="https://atlanticparksurf.com/aps-live-cam" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantic-park-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Park Surf · Virginia Beach</a></li>
+          <li><a href="https://www.ncaquariums.com/current-conditions" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/nc-aquariums.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · NC Aquariums</a></li>
+          <li><a href="https://surfchex.com/cams/nags-head-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Jennette’s Pier · SurfChex</a></li>
+          <li><a href="https://www.ablivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Atlantic Beach · ABLiveSurf</a></li>
+          <li><a href="https://atlantislodge.com/webcam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/atlantis-lodge.png" alt="" width="22" height="22" loading="lazy">Pine Knoll Shores · Atlantis Lodge</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/268/Eastern-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Eastern Beach Access</a></li>
+          <li><a href="https://www.ebmcdn.net/webcast/flash/bogue-inlet/live-iframe-jsobf.html" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/bogue-inlet-pier.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · Pier Cam</a></li>
+          <li><a href="https://www.eilivesurf.com/livecams/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/live-surf.png" alt="" width="22" height="22" loading="lazy">Bogue Inlet Pier · EILiveSurf</a></li>
+          <li><a href="https://www.emeraldisle-nc.org/275/Western-Ocean-Regional-Access-Beach-Came" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/emerald-isle.png" alt="" width="22" height="22" loading="lazy">Emerald Isle · Western Beach Access</a></li>
+          <li><a href="https://surfchex.com/cams/north-topsail-island-web-cam/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">North Topsail Beach</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-north/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · North</a></li>
+          <li><a href="https://surfchex.com/cams/surf-city-pier-south/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Surf City Pier · South</a></li>
+          <li><a href="https://surfchex.com/cams/wrightsville-beach/" target="_blank" rel="noopener noreferrer"><img class="sc-cam-icon" src="/assets/surf-cam-icons/surfchex.png" alt="" width="22" height="22" loading="lazy">Wrightsville Beach</a></li>
+        </ul>
+      </details>
+      <a href="/surfreport/">Surf Data</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <label class="sc-theme-control" hidden>
+      <span>Theme</span>
+      <select id="sc-theme-picker">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
+  </div>
+</div>
+<script defer src="/navigation.js?v=07e2a726d1de"></script>
+<script defer src="/surf-cams.js?v=fb479f63e9da"></script>
+<!-- SITE NAVIGATION END -->
+
+<main class="tunnel-lab">
+  <div class="lab-intro">
+    <div>
+      <h1>Quantum Tunneling <span>Lab</span></h1>
+      <p>Send a wave packet toward a barrier and see how much gets through.</p>
+    </div>
+    <a href="https://github.com/netcodermike/quantum-tunneling-lab">Project source</a>
+  </div>
+  <div class="workspace">
+    <section class="panel" aria-labelledby="plot-title">
+      <div class="panel-title">
+        <h2 id="plot-title">Wave packet scattering</h2>
+        <span class="clock" id="clock">t = 0.00</span>
+      </div>
+      <canvas id="plot" role="img" aria-label="Position versus quantum probability density with the barrier potential and central incident energy on a separate scale" aria-describedby="plot-note"></canvas>
+      <ul class="legend" aria-label="Chart legend">
+        <li><span class="key density"></span>Probability density</li>
+        <li><span class="key potential"></span>Barrier potential</li>
+        <li><span class="key energy"></span>Central energy</li>
+      </ul>
+      <div class="playback">
+        <button class="primary" id="play" type="button">Play packet</button>
+        <button id="restart" type="button">Reset</button>
+        <button id="jump" type="button">Jump to result</button>
+        <label>Speed
+          <select id="speed">
+            <option value="0.5">0.5×</option>
+            <option value="1" selected>1×</option>
+            <option value="2">2×</option>
+          </select>
+        </label>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+      <p class="plot-note" id="plot-note" aria-live="polite">Packet ready on the left.</p>
+    </section>
+    <section class="panel controls" aria-labelledby="setup-title">
+      <h2 id="setup-title">Experiment setup</h2>
+      <label for="preset">Preset</label>
+      <select id="preset">
+        <option value="tunneling">Below the barrier</option>
+        <option value="thin">Thin barrier</option>
+        <option value="above">Above the barrier</option>
+        <option value="custom">Custom</option>
+      </select>
+      <div class="slider">
+        <div><label for="energy">Packet central energy</label><output for="energy" id="energy-value">0.80</output></div>
+        <input type="range" id="energy" min="0.25" max="2.50" step="0.05" value="0.80">
+      </div>
+      <div class="slider">
+        <div><label for="height">Barrier height</label><output for="height" id="height-value">1.15</output></div>
+        <input type="range" id="height" min="0" max="3" step="0.05" value="1.15">
+      </div>
+      <div class="slider">
+        <div><label for="width">Barrier width</label><output for="width" id="width-value">1.25</output></div>
+        <input type="range" id="width" min="0.125" max="3.5" step="0.125" value="1.25">
+      </div>
+      <p class="relaunch-note">Changing a setting prepares a new packet.</p>
+      <section class="prediction" aria-labelledby="prediction-title">
+        <h3 id="prediction-title">Plane-wave transmission</h3>
+        <p><strong id="prediction">–</strong> <span id="regime"></span></p>
+        <p>Prediction for a single energy. The packet contains a range of energies.</p>
+      </section>
+    </section>
+    <section class="panel probabilities" aria-labelledby="probability-title">
+      <div class="panel-title">
+        <h2 id="probability-title">Packet probability by region</h2>
+        <span class="norm" id="norm">Total 100.00%</span>
+      </div>
+      <div class="distribution" aria-hidden="true">
+        <span class="tone-left"></span><span class="tone-inside"></span><span class="tone-right"></span>
+      </div>
+      <dl class="metrics">
+        <div><dt><span class="point tone-left"></span>Left of barrier</dt><dd id="left">100.00%</dd></div>
+        <div><dt><span class="point tone-inside"></span>Inside barrier</dt><dd id="inside">0.00%</dd></div>
+        <div><dt><span class="point tone-right"></span>Right of barrier</dt><dd id="right">0.00%</dd></div>
+      </dl>
+      <p>The left side includes the incoming packet until it reaches the barrier. After the packets separate, the outer regions approximate reflection and transmission.</p>
+    </section>
+  </div>
+  <details class="model-note">
+    <summary>About the model</summary>
+    <p>The simulation evolves a normalized Gaussian packet with the one-dimensional Schrödinger equation using a Crank–Nicolson solver. Axes use scaled units with ℏ = m = 1. The plot shows a 56-unit window. Region probabilities integrate over the full grid.</p>
+    <p><a href="https://openstax.org/books/university-physics-volume-3/pages/7-6-the-quantum-tunneling-of-particles-through-potential-barriers">Rectangular barrier transmission at OpenStax</a></p>
+  </details>
+</main>
+
+<!-- SITE FOOTER START -->
+<footer class="sc-site-footer">
+  <div class="sc-footer-wrap">
+    <a href="/">SurfingCoder / Stay curious. Build something.</a>
+    <span>© 2026</span>
+  </div>
+</footer>
+<!-- SITE FOOTER END -->
+</body>
+</html>

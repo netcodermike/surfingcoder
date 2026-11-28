@@ -1,0 +1,8 @@
+{
+  "name": "quantum-tunneling-lab",
+  "kind": "runtime",
+  "caption": "A scattered wave packet shows probability on each side of a rectangular barrier, with a separate plane-wave transmission prediction.",
+  "capture_date": "2026-11-28T01:50:11.604211+00:00",
+  "demo_data": true,
+  "capture_method": "Chrome workspace capture at 2x device scale"
+}
